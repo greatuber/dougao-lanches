@@ -9,7 +9,11 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
- 
+        <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      />
+    
         <style>
         .baner {
           text-align: center;
@@ -43,8 +47,10 @@
                <section class=" mt-0 items-center text-center">
                     <div class=" lg:w-full flex space-x-4 ">
                         <div class="baner pt-2 font-bold">
-                            <h1 class="dog md:text-xl sm:text-4xl">DOUGÃO</h1>
-                            <h2 class="lanch animate-pulse">LANCHES</h2>
+                            <div class="animate__animated animate__bounce">
+                                <h1 class="dog md:text-xl sm:text-4xl">DOUGÃO</h1>
+                                <h2 class="lanch animate-pulse">LANCHES</h2>
+                            </div>
                         </div>
                         {{-- <div class="items-center pr-4">
                             <img src="{{asset('image/hamburgueorange.png')}}" alt="Imagem de Lanches" class="border-none"> 

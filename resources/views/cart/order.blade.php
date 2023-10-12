@@ -84,6 +84,7 @@
                     </thead>
                     <tbody class="pb-2">
                       @foreach ($item->orderList as $list)  
+                    
                         <tr>
                             <td class="py-2 px-2 max-w-full border-b">{{ $list->product->name ?? ''}}</td>
                             <td class="py-2 px-4 border-b text-center">{{ $list->quamtity}}</td>

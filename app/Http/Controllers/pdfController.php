@@ -21,12 +21,13 @@ class pdfController extends Controller
      */
     public function create(Request $request, $id)
         {
-            // $order = Order::findOrFail($request->id)->first();
-            $order = Order::where(['status'=>('aceito')])->with('orderUser')->get();
-
+            $order = Order::findOrFail($request->id)->first();
+         
+            $order = Order::where(['status'=>('aceito')])->with('orderUser')->first();
+        
             $pdf = Pdf::loadView('status.index',compact('order'));
 
-            return $pdf->setPaper('a4')->stream('imprimi');
+            return $pdf->setPaper('A4')->stream('imprimi');
 
 
             

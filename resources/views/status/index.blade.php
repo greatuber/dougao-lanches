@@ -27,6 +27,7 @@
         <div class="">
             @include('layouts.statusNavegation')
           </div>
+         
          @forelse ($order as $item)
             <div class="card p-2">
                 <div class="overflow-auto">
@@ -37,7 +38,9 @@
                                 <th class="px-4 py-2">Número</th>
                                 <th class="px-4 py-2">Data </th>
                                 <th class="px-4 py-2">Total </th>
-                                <th class="px-4 py-2">Entrega</th></tr>
+                                <th class="px-4 py-2">Entrega</th>
+                                <th class="px-4 py-2">ESTATUS</th>
+                            </tr>
                             </thead>
                                   <!-- Loop através dos pedidos -->
                             <tbody>
@@ -47,6 +50,7 @@
                                     <td class="border px-4 py-2 order rounded">{{ $item->created_at->format('d/m/y')}}</td>
                                     <td class="border px-4 py-2 order rounded">{{number_format( $item->total,2, ',', '.')}}</td>
                                     <td class="border px-4 py-2 order rounded">{{ $item->delivery ? 'Sim' : 'Não' }}</td>
+                                    <td class="border px-4 py-2 order rounded">{{ $item->status}}</td>
                                 </tr>
                             </tbody>
                     </table>
@@ -61,18 +65,18 @@
                             <th class="py-2 px-4 border-b">PREÇO</th>
                             <th class="py-2 px-4 border-b">OBSERVAÇÃO</th>
                             <th class="py-2 px-4 border-b">ADICIONAIS</th>
-                            <th class="py-2 px-4 border-b">ESTATUS</th>
+                            
                         </tr>
                     </thead>
                     <tbody class="pb-2">
-                        @foreach ($item->orderList as $list)            
+                        @foreach ($item->orderList as $list) 
                                 <tr>
                                     <td class="py-2 px-4 border-b">{{ $list->product->name ?? ''}}</td>
                                     <td class="py-2 px-4 border-b text-center">{{ $list->quamtity}}</td>
                                     <td class="py-2 px-4 border-b">{{ number_format($list->value, 2, ',', '.')  }}</td>
-                                    <td class="py-2 px-4 border-b">{{ $item->observation ?? '' }}</td>
-                                    <td class="py-2 px-4 border-b">{{ $list->product->additonal}}</td>
-                                    <td class="py-2 px-4 border-b">{{ $item->status }}</td>
+                                    <td class="py-2 px-4 border-b">{{ $list->observation ?? '' }}</td>
+                                    <td class="py-2 px-4 border-b">{{ $list->additional->name ?? ''}}</td>
+                                   
                                 </tr>
                         @endforeach 
                     </tbody>
@@ -115,7 +119,7 @@
                            <div class="">
                                 <form action="{{ route('pdfimprimi',$item->id)}}" method="POST">
                                     @csrf
-                                    <button class="border rounded p-2 button hover:text-blue-800">IMPRIMIR</button>
+                                    <button class="border rounded p-2 button hover:text-blue-800 mr-2">IMPRIMIR</button>
                                 </form>
                            </div>
                            <div class="">
