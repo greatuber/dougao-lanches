@@ -12,6 +12,7 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link  rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
         <style>
               .baner {
           background-color: orangered;      
@@ -35,9 +36,11 @@
     </head>
     <body class="font-sans text-gray-900 antialiased">
 
-      <div class="baner bg-red-500 pt-2 pb-4 ">
-        <h1 class="dog md:text-xl">DOUGÃO</h1>
-        <H2 class="lanch animate-pulse">LANCHES</H2>
+      <div class="baner bg-red-500 pt-2 pb-4">
+         <div class="">
+          <h1 class="dog md:text-xl">DOUGÃO</h1>
+          <H2 class="lanch animate-pulse">LANCHES</H2>
+         </div>
       </div>
     </body>
     </html>     

@@ -86,9 +86,8 @@ class adminController extends Controller
 
              {
                   $order = Order::findOrFail($id);
-                  // $order->with('orderUser')->get();
-              // dd($order);
-                  $order->update(['status'=>('aceito')])->get();
+            
+                  $order->update(['status'=>('aceito')]);
                  
 
                   return redirect()->back();

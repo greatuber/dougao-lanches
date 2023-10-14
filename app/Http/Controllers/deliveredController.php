@@ -21,7 +21,7 @@ class deliveredController extends Controller
               
 
                 $userAddresses = Address::where('user_id', $users)->with('userAdress')->get();
-                $order = Order::where(['status'=>('entregue')])->get();
+                $order = Order::orderBy('id', 'desc')->where(['status'=>('entregue')])->get();
 
                 return view('status.delivered',compact('order', 'userAddresses'));
             }

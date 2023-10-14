@@ -15,7 +15,7 @@
       }
     .icon {
       font-size: 30px;
-    color: red;
+    color: white;
     margin-left: 15px;
     margin-top: 3px;
 
@@ -83,13 +83,17 @@
              @endif
              </form>
                 
-         <div class="">
-          <div class=" flex text-cnter  bg-orange-500">
-            <a href="{{ route('showbeer')}}" class=""> <div class=" hover:bg-blue-700  border text-white p-2 mt-2 ml-12 rounded font-bold">BEBIDAS</div></a>
-            <a href="{{ route('showcombo')}}">   <div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">COMBOS</div></a>
-           <a href="{{ route('create.product')}}">  <div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">LANCHES</div></a>
-           <a href="{{ route('order.show')}}">  <div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">PEDIDOS</div></a>
-           <a href="{{ route('client.show')}}">  <div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">USER</div></a>
+         <div class="w-full">
+           
+          <div class="  text-center pr-4 bg-orange-500 rounded">
+             <div class="text-center p-2 text-white font-bold"> <h1>CATEGORIAS</h1></div>
+             <div class="">
+                <a href="{{ route('showbeer')}}" class=""><div class=" hover:bg-blue-700  border text-white p-2 mt-2 ml-2 rounded font-bold">BEBIDAS</div></a>
+                <a href="{{ route('showcombo')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">COMBOS</div></a>
+                <a href="{{ route('create.product')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">LANCHES</div></a>
+                <a href="{{ route('order.show')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">PEDIDOS</div></a>
+                <a href="{{ route('client.show')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">USER</div></a>
+             </div>
          </div>
 
          {{-- <div class=" flex text-cnter  bg-orange-500">
@@ -101,14 +105,14 @@
 
            <div class=" orange bg-orange-500 w-full  pr-4 ">
              <table class="w-full ">
-               <thead>
-                 <tr>
-                      {{-- <th></th>       --}}
-                     <th class="p-2">LANCHES</th>
-                     <th class="p-2">INGREDIENTES</th>
-                     <th class="p-12" >PREÇO</th>
-                 </tr>
-               </thead>
+                <thead>
+                  <tr>
+                        {{-- <th></th>       --}}
+                      <th class="p-2">LANCHES</th>
+                      <th class="p-2">INGREDIENTES</th>
+                      <th class="p-12" >PREÇO</th>
+                  </tr>
+                </thead>
                <tbody class="">
                  @foreach ($product as $products)
                  <tr>
@@ -187,7 +191,7 @@
           </div>
              <p class="text-center text-gray-500 text-xs">
         
-               &copy;2020 Acme Corp. All rights reserved.
+               &copy;2023 todos os direitos reservados.
              </p>
          </div>
     </div>

@@ -21,7 +21,7 @@ class deliveryController extends Controller
             
 
                 $userAddresses = Address::where('user_id', $users)->with('userAdress')->get();
-                $order = Order::where(['status'=>('saiu para entrega')])->get();
+                $order = Order::orderBy('id', 'desc')->where(['status'=>('saiu para entrega')])->get();
 
                 return view('status.delivery',compact('order', 'userAddresses'));
 

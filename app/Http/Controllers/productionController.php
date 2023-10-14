@@ -22,7 +22,7 @@ class productionController extends Controller
 
                 $userAddresses = Address::where('user_id',$users)->with('userAdress')->get();
 
-                $order = Order::where(['status'=>('produção')])->get();
+                $order = Order::orderBy('id', 'desc')->where(['status'=>('produção')])->get();
 
                 return view('status.production',compact('userAddresses','order'));
             }

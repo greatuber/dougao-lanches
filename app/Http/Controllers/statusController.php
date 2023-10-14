@@ -26,7 +26,7 @@ class statusController extends Controller
 
                 $userAddresses = Address::where('user_id', $users)->with('userAdress')->get();
 
-                $order = Order::where(['status'=>('aceito')])->get();
+                $order = Order::orderBy('id', 'desc')->where(['status'=>('aceito')])->get();
 
                 return view('status.index',compact('order','userAddresses'));
             }
