@@ -107,16 +107,30 @@
                     
                     <div class=" pb-2 mt-2">
               
-                            <div class="p-4">
-                                <div class="pb-4">
-                                  <input class="toremove" type="radio" checked value="0" id="toRemove" name="delivery" onchange="atualizarValor()" > 
-                                  <label for=""  class="text-gray-700 font-bold" >Retirar na lanchonete</label>
-                                </div>
-                               <div class="pl-4">
-                                  <input  class="delivery" type="radio" value="1" id="entrega" name="delivery" onchange="atualizarValor()"> 
-                                  <label for="" class="text-gray-700 font-bold" >para Entregar</label>
-                               </div>
+                            <div class="p-4 relative">
+                                  <div class="pb-4">
+                                      <input class="toremove" type="radio" checked value="0" id="toRemove" name="delivery" onchange="atualizarValor()" > 
+                                      <label for=""  class="text-gray-700 font-bold pr-4" >Retirar na lanchonete</label>
+                                      <input  class="delivery" type="radio" value="1" id="entrega" name="delivery" onchange="atualizarValor()"> 
+                                      <label for="" class="text-gray-700 font-bold" >para Entregar</label>
+                                  </div>
+                          
+                             
                             </div>
+
+                            <div class="pb-4">
+                              <h2 class="text-gray-700 font-bold pb-2">forma de pagamento</h2>
+                              <input class="" type="checkbox" checked value="0" id="" name="payment" onchange="atualizarValor()" > 
+                              <label for=""  class="text-gray-700 font-bold pr-4" >cartão</label>
+                              <input  class="" type="checkbox" value="1" id="" name=""> 
+                              <label for="" class="text-gray-700 font-bold" >dinheiro</label>
+                          </div>
+                          <div class="pl-4 grid-templates-rows">
+                            <h2 class="text-gray-700 font-bold pb-2 text-sm">o pagamento sera realizado na entrega</h2>
+                              <input type="text" class="rounded text-sm" placeholder="ex: bandeira do cartão ou valor do troco">
+                          </div>
+                            
+
                             <div class="">
                               <button type="submit" class="green bg-white font-bold p-2 mt-2 rounded order">Enviar Pedido</button>
                             </div>
