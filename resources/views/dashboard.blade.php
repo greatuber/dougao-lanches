@@ -108,40 +108,43 @@
                                             <div class="text  pt-4 rounded">
                                               <form class="grup-control">
                                                   <fieldset>
-                                                      <div class="label text-center">
-                                                       <strong><h1>PRODUTO</h1></strong>
-                                                        <input type="text" disabled class=" p-2  rounded "  name="product_id" id="product_id" value="{{ $products->name }}"/><br>
-                                                      </div>
-                                                      <div class=" mt-2 label2 text-center">
-                                                      <strong><h1>DESCRIÇÃO</h1></strong>
-                                                        <input type="text" disabled class=" p-2 rounded " id="description" value="{{ $products->description }}"/><br>
-                                                      </div>
-                                                      <div class=" mt-2 label2 text-center">
-                                                        <strong><h1>QUANTIDADE</h1></strong>
-                                                        <input type="number" min="1"  class=" p-2  rounded text-center " name="quanty" value="{{ $products->quanty }}"/><br>
-                                                      </div>
-                                                      <div class="label3 text-center p-2">
-                                                      <strong><h1>PREÇO UNITARIO</h1></strong>
-                                                        <input type="text"  disabled class=" rounded text-center " name="price" id="price" value="{{number_format($products->price,2,',','.') }}"/><br>
-                                                      </div>
-                                                      <div class="text-center p-2">
-                                                       <strong><label for="">ADICIONAIS</label></strong>
-                                                      </div>
-                                                      <div class="text-center  rounded">
-                                                        <select class=" rounded" name="additional" id="additional">
-                                                          @foreach( $adde as $add)
-                                                            <option class=" bg-orange-500 " value="{{$add->id}}">{{$add->name}}-R$-{{ number_format($add->price,2,',','.') }}</option>
-                                                          @endforeach
-                                                        </select>
-                                                      </div>
-                                                      <div class=" p-2 text-center">
-                                                        <strong><h1>OBSERVAÇÃO</h1></strong>
-                                                        <input type="text" autocomplete="off" class="  rounded " placeholder="Ex: sem tomate" name="observation" id="observation" value="{{$products->observation}}">
-                                                      </div>
-                                                      <div class="flex flex-col gap-2">
-                                                        <button class="btn btn-success text-with bg-success m-2" type="submit">ADICIONAR</button>
-                                                        <button type="button" class="btn btn-warning bg-warning m-2"data-bs-dismiss="modal">Cancelar</button>
-                                                      </div>
+                                                        <div class="label text-center">
+                                                            <strong><h1>PRODUTO</h1></strong>
+                                                            <input type="text" disabled class=" p-2  rounded "  name="product_id" id="product_id" value="{{ $products->name }}"/><br>
+                                                        </div>
+                                                        <div class=" mt-2 label2 text-center">
+                                                            <strong><h1>DESCRIÇÃO</h1></strong>
+                                                            <input type="text" disabled class=" p-2 rounded " id="description" value="{{ $products->description }}"/><br>
+                                                        </div>
+                                                        <div class=" mt-2 label2 text-center">
+                                                           <strong><h1>QUANTIDADE</h1></strong>
+                                                            <input type="number" min="1"  class=" p-2  rounded text-center " name="quanty" value="{{ $products->quanty }}"/><br>
+                                                        </div>
+                                                        <div class="label3 text-center p-2">
+                                                            <strong><h1>PREÇO UNITARIO</h1></strong>
+                                                            <input type="text"  disabled class=" rounded text-center " name="price" id="price" value="{{number_format($products->price,2,',','.') }}"/><br>
+                                                        </div>
+                                                        <div class="text-center p-2">
+                                                            <strong><label for="">ADICIONAIS</label></strong>
+                                                            </div>
+                                                        <div class="text-center  rounded">
+                                                            <select class=" rounded" name="additional" id="additional">
+                                                              @foreach( $adde as $add)
+                                                                <div class="mb-4">
+                                                                  <option value="{{$add->id}}">{{$add->name}}-R$-{{ number_format($add->price,2,',','.') }}</option>
+                                                                </div>
+                                                                
+                                                              @endforeach
+                                                            </select>
+                                                        </div>
+                                                        <div class=" p-2 text-center">
+                                                          <strong><h1>OBSERVAÇÃO</h1></strong>
+                                                          <input type="text" autocomplete="off" class="  rounded " placeholder="Ex: sem tomate" name="observation" id="observation" value="{{$products->observation}}">
+                                                        </div>
+                                                        <div class="flex flex-col gap-2">
+                                                          <button class="btn btn-success text-with bg-success m-2" type="submit">ADICIONAR</button>
+                                                          <button type="button" class="btn btn-warning bg-warning m-2"data-bs-dismiss="modal">Cancelar</button>
+                                                        </div>
                                                   </fieldset>
                                               </form>
                                             </div>
@@ -150,7 +153,6 @@
                                     </div>
                                 </div>
                             </div>
-       
                     </td> 
                     <td class="p-4 sm:w-60">{{$products->name}} <hr class="linear-1"></td>
                     <td class="">
@@ -164,16 +166,13 @@
                     </tr>
                 @endforeach
               </tbody>
-        
             </table>
-            
               <div class="">
                   {{   $product->links() }}
               </div>
-      </div>
+        </div>
          @vite('resources/js/app.js')
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
-        
     </body>
   </html>
 

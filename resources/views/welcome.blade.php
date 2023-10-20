@@ -70,7 +70,7 @@
                                         para entregador na hora da entrega.
                                     </p>
                                     <div class="">
-                                        <h1>aqui</h1>
+                                        {{-- <h1>aqui</h1> --}}
                                     </div>  
                                
 

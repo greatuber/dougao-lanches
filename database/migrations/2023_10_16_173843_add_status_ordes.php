@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->enum('status',['processando','aceito','produção','saiu para entrega','entregue'])->dafault('process');
+            $table->enum('status',['processando','aceito','produção','saiu para entrega','entregue','recusado'])->dafault('process');  
+
         });
     }
 

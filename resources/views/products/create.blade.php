@@ -29,7 +29,7 @@
     <div class="container ">
        <div class="text-center sm:ml-32 ml-32">
            <div class="w-full center">
-         
+               <h1 class="pt-2 font-bold">CASDASTRAR NOVO PRODUTO</h1>
              <form action="{{route('store.product')}}" class=" bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 " method="post">
                @csrf
                <div class="mb-4">
@@ -91,6 +91,7 @@
                 <a href="{{ route('showbeer')}}" class=""><div class=" hover:bg-blue-700  border text-white p-2 mt-2 ml-2 rounded font-bold">BEBIDAS</div></a>
                 <a href="{{ route('showcombo')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">COMBOS</div></a>
                 <a href="{{ route('create.product')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">LANCHES</div></a>
+                <a href="{{ route('user.bomboniere')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">BOMBONIÉRE</div></a>
                 <a href="{{ route('order.show')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">PEDIDOS</div></a>
                 <a href="{{ route('client.show')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">USER</div></a>
              </div>
@@ -103,30 +104,33 @@
         </div> --}}
          </div>
 
-           <div class=" orange bg-orange-500 w-full  pr-4 ">
-             <table class="w-full ">
+           <div class=" orange bg-orange-500 w-full  pr-4 overflow-auto">
+             <table class="w-full  ">
                 <thead>
                   <tr>
                         {{-- <th></th>       --}}
                       <th class="p-2">LANCHES</th>
                       <th class="p-2">INGREDIENTES</th>
-                      <th class="p-12" >PREÇO</th>
+                      <th class="p-2" >PREÇO</th>
+                      
+                      
                   </tr>
                 </thead>
                <tbody class="">
                  @foreach ($product as $products)
+                
                  <tr>
                    {{-- <td class="">{{$products->id}}-</td> --}}
                    <td class="p-4 sm:w-60">{{$products->name}} <hr class="linear-1"></td>
                    <td class="">
-                     <details>
-                       <summary>INGREDIENTES</summary>
-                       <p class="text-center mr-12 border border-blue-800 bg-slate-900 p-2 rounded">{{$products->description}}</p>
-                     </details>
+                      <details>
+                            <summary>INGREDIENTES</summary>
+                            <p class="text-center mr-12 border border-blue-800 bg-slate-900 p-2 rounded">{{$products->description}}</p>
+                      </details>
                      <hr class="linear">
                    </td>
                    <td class="">{{number_format($products->price,2,',','.')}}</td>
-                   <td class="p-2">
+                   <td class="p-2 flex">
                     <button class="btn btn-success" data-bs-toggle="modal"
                     data-bs-target="#firstModal{{$products->id}}"><i class="fa-regular fa-pen-to-square "></i></button>
                       <div class="modal fade" id="firstModal{{$products->id}}" tabindex="-1"
@@ -171,15 +175,16 @@
                               </div>
                           </div>
                       </div>
-                      <div class="pr-4" >
+                      <div class="pr-4 produto" >
                         <form action="{{ route('delete.product',$products->id)}}" method="post">
-                          @method('DELETE')
-                          @csrf
-                          <button type="submit" class="" onclick="preventDefoult">
-                            <i class="icon fa-sharp fa-solid fa-trash"></i>
-                          </button>
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit" class="" onclick="preventDefoult">
+                              <i class="icon fa-sharp fa-solid fa-trash"></i>
+                            </button>
                         </form>
                       </div>
+                        <button class="toggle-button bg-white p-2 rounded" data-produto-id="{{ $products->id }}">Desativar</button>
                   </td>
                   <td>
                   
@@ -198,7 +203,53 @@
     {{-- {{ $product->links()}} --}}
 
     @vite('resources/js/app.js')
+
+<script>
+
+// document.addEventListener("DOMContentLoaded", function () {
+//         const toggleButtons = document.querySelectorAll(".toggle-button");
+
+//         toggleButtons.forEach((button) => {
+//             button.addEventListener("click", function () {
+//                 const produtoId = this.getAttribute("data-produto-id");
+//                 const produtoElement = document.querySelector(".produto");
+
+//                 if (produtoElement.classList.contains("hidden")) {
+//                     produtoElement.classList.remove("hidden");
+//                     this.textContent = "Ativar";
+//                 } else {
+//                     produtoElement.classList.add("hidden");
+//                     this.textContent = "Desativar";
+//                 }
+//             });
+//         });
+//     });
+
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+      const toggleButtons = document.querySelectorAll(".toggle-button");
+
+      toggleButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+              const produtoId = this.getAttribute("data-produto-id");
+              const produtoElement = document.querySelector(`.produto[data-produto-id="${produtoId}"]`);
+              console.log(produtoElement,);
+              const isHidden = produtoElement.style.display === "none";
+
+              if (isHidden) {
+                  produtoElement.style.display = "block";
+                  this.textContent = "Desativar";
+              } else {
+                  produtoElement.style.display = "none";
+                  this.textContent = "Ativar";
+              }
+          });
+      });
+  });
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 </html>
  

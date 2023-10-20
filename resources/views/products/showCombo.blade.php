@@ -40,7 +40,7 @@
         <div class=" ">
           <div class=" flex   bg-orange-500">
             <a href="{{ route('showbeer')}}"> <div class=" border text-white p-2 mt-2 ml-12 rounded font-bold">BEBIDAS</div></a>
-            <a href="">   <div class=" border text-white p-2 rounded mt-2 ml-2 font-bold">COMBOS</div></a>
+            <a href="{{ route('user.bomboniere')}}">  <div class=" border text-white p-2 rounded mt-2 ml-2 font-bold">BOMBONIÉRE</div></a>
           <a href="{{ route('create.product')}}">  <div class=" border text-white p-2 rounded mt-2 ml-2 font-bold">LANCHES</div></a>
         </div>
 
@@ -73,7 +73,7 @@
                     <hr class="linear">
                   </td>
                   <td class="">{{number_format($products->price,2,',','.')}}</td>
-                  <td class="p-2">
+                  <td class="p-2 flex">
                    <button class="btn btn-success" data-bs-toggle="modal"
                    data-bs-target="#firstModal{{$products->id}}"><i class="fa-regular fa-pen-to-square "></i></button>
                      <div class="modal fade" id="firstModal{{$products->id}}" tabindex="-1"

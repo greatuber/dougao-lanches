@@ -9,11 +9,13 @@ use App\Http\Controllers\ShowController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\OrderProductController;
 use App\Http\Controllers\adminController;
+use App\Http\Controllers\bomboniereController;
 use App\Http\Controllers\deliveredController;
 use App\Http\Controllers\deliveryController;
 use App\Http\Controllers\pdfController;
 use App\Http\Controllers\productionController;
 use App\Http\Controllers\statusController;
+use App\Http\Controllers\statusRefusedController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,12 +52,14 @@ Route::put('/update/{id}',[CreateController::class, 'update'])->name('update.pro
                 
 Route::get('/showbeer',[ShowController::class, 'show'])->name('showbeer');
 Route::get('/showcombo',[ShowController::class, 'shows'])->name('showcombo');
+Route::get('/showbomboniere',[bomboniereController::class, 'show'])->name('show.bomboniere');
 
 // view client
 
 Route::get('/dashboard',[ClientController::class, 'index'])->middleware('auth')->name('client.show');
 Route::get('/beer',[ShowController::class,'index'])->name('users.beer');
 Route::get('/combo',[ShowController::class, 'combo'])->name('user.combo');
+Route::get('/bomboniere',[bomboniereController::class, 'index'])->name('user.bomboniere');
 
         // cart
 
@@ -78,7 +82,7 @@ Route::post('/adminCreateCart',[adminController::class, 'store'])->name('admin.c
 Route::post('/updateStatus/{id}', [adminController::class, 'update'])->name('update.status');
 
 //   rota de status dos pedidos
-
+Route::post('/statusrefused,{id}',[statusRefusedController::class, 'update'])->name('refused.status');
 Route::get('/statusAceito', [statusController::class, 'index'])->name('status.aceito');
 Route::post('/updateProduct,{id}', [statusController::class, 'update'])->name('status.product');
 

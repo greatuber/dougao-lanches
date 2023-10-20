@@ -20,6 +20,9 @@
         .delivery {
             color: green;
         }
+        .deliveryd {
+            color: red;
+        }
   
     </style>
 </head>
@@ -28,7 +31,7 @@
     <div class="text-center">
         <h1 class="p-2 pt-4">LISTAGEM DE PEDIDOS</h1>
         
-              <div class="">
+              <div class="overflow-auto">
                 @include('layouts.statusNavegation')
               </div>
         
@@ -125,12 +128,19 @@
                                 <input class="rounded border" type="text" value="{{$item->orderUser->address[0]->complement	 ?? ''}}">
                             </div>
                         </div>
-                     <form action="{{route('update.status',$item->id)}}" method="POST">
-                        @csrf
-                        <div class="float-rigth">
-                            <button class=" delivery border rounded p-2 button hover:text-blue-800">ACEITAR PEDIDO</button>
+                        <div class=" flex p-2">
+                            <form action="{{route('update.status',$item->id)}}" method="POST">
+                                @csrf
+                                    <div class="mr-2">
+                                        <button class=" delivery border rounded p-2 button hover:text-blue-800">ACEITAR PEDIDO</button>
+                                    </div>
+                                   
+                            </form>
+                            <form action="{{route('refused.status', $item->id)}}" method="post">
+                                @csrf
+                                <button class=" deliveryd border rounded p-2 button hover:text-blue-800">RECUSAR PEDIDO</button>
+                            </form>
                         </div>
-                     </form>
                  </div>
                  <div class="row pb-2">
                     <hr>

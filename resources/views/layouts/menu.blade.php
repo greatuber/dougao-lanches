@@ -20,9 +20,10 @@
         <ul class="folat-right mr-10 pl-4 space-y-8 text-black fixed">
          <div class="flex space-x-8 ml-4 p-8 text-white">
             <li><a class="p-8" href="{{ route('create.product')}}">adim/cadastrar</a></li>
-            <li><a href="{{ route('client.show')}}">Lanche</a></li>
-            <li><a href="{{ route('users.beer')}}">Bebidas</a></li>
-            <li><a href="{{ route('user.combo')}}">Combos</a></li>
+            <li><a href="{{ route('client.show')}}">LANCHES</a></li>
+            <li><a href="{{ route('users.beer')}}">BEBIDAS</a></li>
+            <li><a href="{{ route('user.combo')}}">COMBOS</a></li>
+            <li><a href="{{ route('show.bomboniere')}}">BOMBONIÉRE</a></li>
          </div>
         </ul>
     </div>

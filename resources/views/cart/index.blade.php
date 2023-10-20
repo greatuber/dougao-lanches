@@ -20,7 +20,10 @@
       .gray {
         background-color: #696969;
       }
-
+     .green {
+  
+      color: green;
+     }
 
    
     </style>
@@ -30,7 +33,7 @@
       <div class=" bg-orange-500 text-center md: p-2">
               <div class="text-center pt-4">
                     <h1 class="text-3xl text-gray-700 font-bold">Bem vindo a sua Sacola de Compras:</h1>
-                    <p class="text-gray-700 font-bold">{{auth()->user()->name}}</p>
+                    <p class="text-gray-700 font-bold">{{ auth()->user()->name }}</p>
                   </div>
                       @if (session('message'))
                           <div class="text-green-600 bg-white">
@@ -102,17 +105,24 @@
                                 </div>
                             </div>
                     
-                    <div class="p-2 pb-2 mt-2">
+                    <div class=" pb-2 mt-2">
               
-                        <input class="toremove" type="radio" checked value="0" id="toRemove" name="delivery" onchange="atualizarValor()" > 
-                        <label for=""  class="text-gray-700 font-bold" >Retirar na lanchonete</label>
-                        <input  class="delivery" type="radio" value="1" id="entrega" name="delivery" onchange="atualizarValor()"> 
-                        <label for="" class="text-gray-700 font-bold" >para Entregar</label>
-                            <div class="">
-                              <button type="submit" class="bg-white text-green font-bold p-2 mt-2 rounded order">Enviar Pedido</button>
+                            <div class="p-4">
+                                <div class="pb-4">
+                                  <input class="toremove" type="radio" checked value="0" id="toRemove" name="delivery" onchange="atualizarValor()" > 
+                                  <label for=""  class="text-gray-700 font-bold" >Retirar na lanchonete</label>
+                                </div>
+                               <div class="pl-4">
+                                  <input  class="delivery" type="radio" value="1" id="entrega" name="delivery" onchange="atualizarValor()"> 
+                                  <label for="" class="text-gray-700 font-bold" >para Entregar</label>
+                               </div>
                             </div>
+                            <div class="">
+                              <button type="submit" class="green bg-white font-bold p-2 mt-2 rounded order">Enviar Pedido</button>
+                            </div>
+                    </div>
                   </form>       
-                </div>
+                
                 <div class="p-2 text-center">
                     <a href="{{ route('client.show')}}"><button class="text-sm border bg-white font-bold rounded p-2">CONTINUAR COMPRANDO</button></a>
                 </div>
