@@ -114,20 +114,18 @@
                                       <input  class="delivery" type="radio" value="1" id="entrega" name="delivery" onchange="atualizarValor()"> 
                                       <label for="" class="text-gray-700 font-bold" >para Entregar</label>
                                   </div>
-                          
-                             
                             </div>
 
                             <div class="pb-4">
                               <h2 class="text-gray-700 font-bold pb-2">forma de pagamento</h2>
                               <input class="" type="checkbox" checked value="0" id="" name="payment" onchange="atualizarValor()" > 
                               <label for=""  class="text-gray-700 font-bold pr-4" >cartão</label>
-                              <input  class="" type="checkbox" value="1" id="" name=""> 
+                              <input  class="" type="checkbox" value="1" id="" name="payment"> 
                               <label for="" class="text-gray-700 font-bold" >dinheiro</label>
                           </div>
                           <div class="pl-4 grid-templates-rows">
                             <h2 class="text-gray-700 font-bold pb-2 text-sm">o pagamento sera realizado na entrega</h2>
-                              <input type="text" class="rounded text-sm" placeholder="ex: bandeira do cartão ou valor do troco">
+                              <input type="text" class="rounded text-sm" name="description" placeholder="ex: bandeira do cartão ou valor do troco">
                           </div>
                             
 

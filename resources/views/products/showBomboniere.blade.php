@@ -56,7 +56,6 @@
             <table class="w-full ">
               <thead>
                 <tr>
-                     {{-- <th></th>       --}}
                     <th class="p-2">PRODUTOS</th>
                     <th class="p-2">DESCRIÇÃO</th>
                     <th class="p-12" >PREÇO</th>

@@ -15,7 +15,8 @@ class adminController extends Controller
 {
     public function store(Request $request)
     
-            {
+            {         $payment  = $request->payment;
+                      $desription = $request->description; 
                       $delivery = $request->delivery;
                       $total    = $request->total;
                       $user      = Auth::user();
@@ -32,6 +33,8 @@ class adminController extends Controller
                             $total = ($delivery == 1 ? ($total+ 6) : $total);  
                           
                             $order = Order::create([
+                              'observation' => $desription,
+                               'payment'  =>  $payment,
                               'user_id' => $user->id ?? '',
                               'total'   => $total,
                               'delivery' => $delivery,

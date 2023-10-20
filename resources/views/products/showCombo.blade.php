@@ -41,7 +41,7 @@
           <div class=" flex   bg-orange-500">
             <a href="{{ route('showbeer')}}"> <div class=" border text-white p-2 mt-2 ml-12 rounded font-bold">BEBIDAS</div></a>
             <a href="{{ route('user.bomboniere')}}">  <div class=" border text-white p-2 rounded mt-2 ml-2 font-bold">BOMBONIÉRE</div></a>
-          <a href="{{ route('create.product')}}">  <div class=" border text-white p-2 rounded mt-2 ml-2 font-bold">LANCHES</div></a>
+            <a href="{{ route('create.product')}}">  <div class=" border text-white p-2 rounded mt-2 ml-2 font-bold">LANCHES</div></a>
         </div>
 
           {{-- <div class=" flex text-cnter  bg-orange-500">
