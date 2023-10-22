@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         blade::directive('datetime', function ($expression) {
-            return "<?php echo ($expression)->format('m/d/Y H:i'); ?>";
+            return "<?php echo ($expression)->format('d/m/Y H:i'); ?>";
         });
         blade::directive('money', function($expression) {
             return "<?php echo number_format($expression, 2, ',', '.');?>";       

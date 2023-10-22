@@ -140,7 +140,7 @@
                     </details>
                     <hr class="linear">
                 </td>
-                <td class="">R$-{{ number_format($products->price, 2, ',','.')}}</td>
+                <td class="text-white text-lg">R$-{{ number_format($products->price, 2, ',','.')}}</td>
                 <td class="p-2">
                 </td>
                 <td>

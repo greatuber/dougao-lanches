@@ -14,7 +14,10 @@
            background-color: black;
         }
         .order {
-            background-color: rgba(212, 210, 210, 0.897);
+            background-color: rgba(149, 226, 245, 0.897);
+        }
+        .troco {
+            background-color: rgba(149, 226, 245, 0.897);
         }
   
         .delivery {
@@ -49,10 +52,16 @@
                       @endphp
                        
                        <p>Cliente {{ $item->orderUser->name}} tem <span class="font-bold">'{{$userCount}}'</span> pedidos na plataforma.</p>
-                    
+                        <div class="pt-2">
+                            <div class="border">
+                                <h1 class="font-bold troco p-2">forma de pagamento</h1>
+                                <p>{{ $item->payment ? 'DINHEIRO' : 'CARTÃO' }}</p>
+                                <p class="troco p-2">{{ $item->observation}}</p>
+                            </div>
+                        </div>
                     <table class="table-auto w-full hover:text:blue-800">
                         <thead>
-                                <th class="px-4 py-2 hover-text-blue-800">Cliente</th>
+                                <th class="px-4 py-2 hover:text-blue-800">Cliente</th>
                                 <th class="px-4 py-2 hover:text-blue-800">Número</th>
                                 <th class="px-4 py-2 hover:text-blue-800">Data </th>
                                 <th class="px-4 py-2 hover:text-blue-800">Total </th>
@@ -64,7 +73,7 @@
                                 <tr>
                                     <td class="border px-4 py-2 order rounded">{{ $item->orderUser->name }}</td>
                                     <td class="border px-4 py-2 order rounded">{{ $item->id }}</td>
-                                    <td class="border px-4 py-2 order rounded">@datetime( $item->created_at)</td>
+                                    <td class="border px-4 py-2 order rounded">{{ $item->created_at->format('d/m/y')}}</td>
                                     <td class="border px-4 py-2 order rounded">@money($item->total)</td>
                                     <td class="border px-4 py-2 order rounded">{{ $item->delivery ? 'Sim' : 'Não' }}</td>
                                     <td class="border px-4 py-2 order rounded">{{ $item->status }}</td>

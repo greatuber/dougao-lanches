@@ -52,7 +52,7 @@
           <thead>
             <tr>
                  <th></th>      
-                <th class="">BEBIDAS</th>
+                <th class="">PRODUTO</th>
                 <th class="p-2">DESCRIÇÃO</th>
                 <th class="p-2" >PREÇO</th>
             </tr>
@@ -113,7 +113,7 @@
                 <td class="">
                     <p class="">{{$products->description}}</p>
                 </td>
-                <td class="">R$-{{ number_format($products->price, 2, ',','.')}}</td>
+                <td class=" text-white text-lg">R$-{{ number_format($products->price, 2, ',','.')}}</td>
                 <td class="p-2">
                 </td>
                 </tr>

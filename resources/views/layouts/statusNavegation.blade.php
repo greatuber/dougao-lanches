@@ -13,7 +13,7 @@
 
     <style>
             .button {
-            background-color: rgba(184, 177, 177, 0.897);
+                background-color: rgba(149, 226, 245, 0.897);
            
             }
          
@@ -39,7 +39,6 @@
                 <li class="mr-6">
                     <a class=" hover:text-blue-800" href="{{ route('status.delivered')}}"><button class="border rounded p-2 m-2 button">pedidos entregue</button></a>
                 </li>
-          
             </ul>
     </div> 
     @vite('resources/js/app.js')

@@ -14,8 +14,12 @@
           
            background-color: black;
         }
+     
         .order {
-            background-color: rgba(184, 177, 177, 0.897);
+            background-color: rgba(212, 210, 210, 0.897);
+        }
+        .troco {
+            background-color: rgba(212, 210, 210, 0.897);
         }
   
     </style>
@@ -24,8 +28,16 @@
   <div class="container mx-auto">
     <div class="text-center">
         <h1 class="p-4">LISTAGEM DE PEDIDOS ACEITOS</h1>
-        <div class="">
+          <div class="">
             @include('layouts.statusNavegation')
+          </div>
+
+          <div class="pt-2">
+            <div class="border">
+                <h1 class="font-bold">forma de pagamento</h1>
+                <p>{{ $order[0]->payment ? 'DINHEIRO' : 'CARTÃO' }}</p>
+                <p class="troco p-2">{{ $order[0]->observation}}</p>
+            </div>
           </div>
          
          @forelse ($order as $item)
@@ -47,8 +59,8 @@
                                 <tr>
                                     <td class="border px-4 py-2 order rounded">{{ $item->orderUser->name }}</td>
                                     <td class="border px-4 py-2 order rounded">{{ $item->id }}</td>
-                                    <td class="border px-4 py-2 order rounded">{{ $item->created_at->format('d/m/y')}}</td>
-                                    <td class="border px-4 py-2 order rounded">{{number_format( $item->total,2, ',', '.')}}</td>
+                                    <td class="border px-4 py-2 order rounded">{{ $item->created_at->format('d/m/Y')}}</td>
+                                    <td class="border px-4 py-2 order rounded">@money( $item->total)</td>
                                     <td class="border px-4 py-2 order rounded">{{ $item->delivery ? 'Sim' : 'Não' }}</td>
                                     <td class="border px-4 py-2 order rounded">{{ $item->status}}</td>
                                 </tr>

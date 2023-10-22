@@ -35,9 +35,9 @@
                     <h1 class="text-3xl text-gray-700 font-bold">Bem vindo a sua Sacola de Compras:</h1>
                     <p class="text-gray-700 font-bold">{{ auth()->user()->name }}</p>
                   </div>
-                      @if (session('message'))
-                          <div class="text-green-600 bg-white">
-                             {{ session('message')}}
+                      @if (session('sucessesmessagem'))
+                          <div class="text-green-600 text-lg p-2 font-bold">
+                             {{ session('sucessesmessagem')}}
                           </div>
                           
                       @endif
@@ -88,15 +88,15 @@
                                 </tr>
                     
                         @empty
-                        <p class="text-white text-lg p-2 font-bold">'Seu carrinho esta vazio'</p>
+                        <p class="text-white text-lg p-2 font-bold">'Sua sacola esta vazio'</p>
                     @endforelse
                           </tbody>
                       </table>
                     </div>
 
-                          <div class="sm:w-96 sm:ml[width:150px]">
-                              <div class="bg-white rounded border pt-2 mt-2">
-                                <h1 class="font-bold text-gray-700 pt-2 pb-2">TOTAL</h1>
+                            <div class="sm:w-96 sm:ml[width:150px]">
+                                <div class="bg-white rounded border pt-2 mt-2">
+                                  <h1 class="font-bold text-gray-700 pt-2 pb-2">TOTAL</h1>
                 <form action="{{route('admin.create')}}"  method="post">
                   @csrf
                                   <samp  class=" font-bold "  id="toremove"> R$ @money($total)</samp>
@@ -124,7 +124,7 @@
                               <label for="" class="text-gray-700 font-bold" >dinheiro</label>
                           </div>
                           <div class="pl-4 grid-templates-rows">
-                            <h2 class="text-gray-700 font-bold pb-2 text-sm">o pagamento sera realizado na entrega</h2>
+                              <h2 class="text-gray-700 font-bold pb-2 text-sm">o pagamento sera realizado na entrega</h2>
                               <input type="text" class="rounded text-sm" name="description" placeholder="ex: bandeira do cartão ou valor do troco">
                           </div>
                             

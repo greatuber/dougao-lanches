@@ -19,7 +19,9 @@
     <div class="nav h-12 w-full pt-12 ">
         <ul class="folat-right mr-10 pl-4 space-y-8 text-black fixed">
          <div class="flex space-x-8 ml-4 p-8 text-white">
+            @can('access')
             <li><a class="p-8" href="{{ route('create.product')}}">adim/cadastrar</a></li>
+            @endcan
             <li><a href="{{ route('client.show')}}">LANCHES</a></li>
             <li><a href="{{ route('users.beer')}}">BEBIDAS</a></li>
             <li><a href="{{ route('user.combo')}}">COMBOS</a></li>

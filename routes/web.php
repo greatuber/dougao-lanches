@@ -45,7 +45,7 @@ Route::middleware('auth')->group(function () {
 //    crud
 // Route::get('/produts',ProjectCreate::class);
 
-Route::get('/create',[CreateController::class,'index'])->name('create.product');
+Route::get('/create',[CreateController::class,'index'])->name('create.product')->middleware('can:access');
 Route::post('/store',[CreateController::class, 'store'])->name('store.product');
 Route::delete('/delete/{id}',[CreateController::class, 'delete'])->name('delete.product');
 Route::put('/update/{id}',[CreateController::class, 'update'])->name('update.product');
