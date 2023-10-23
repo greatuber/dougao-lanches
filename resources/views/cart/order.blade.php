@@ -159,6 +159,25 @@
               <p>Para o dia: {{$date}}</p>
            @endforelse
     </div>
+    <audio id="alert-audio" autoplay controls>
+        <source src="https://cdns-preview-8.dzcdn.net/stream/821246fb5d7e2ff6975f65ef7460a708-0.mp3" type="audio/mp3">
+    </audio>
+            @if(request()->has('new_order'))
+            <script>
+                playAlertSound();
+            </script>
+            @endif
+     {{-- <div class="">
+        <audio id="alert-audio">
+            <source src="{{ route('alert-sound') }}" type="audio/mpeg">
+        </audio>
+     </div> --}}
+    <script>
+        function playAlertSound() {
+            var audio = document.getElementById('alert-audio');
+            audio.play();
+        }
+    </script>
 </body>
 </html>
  

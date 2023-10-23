@@ -59,7 +59,9 @@ class adminController extends Controller
                         
                             $product = Order_product::where('user_id', $users)->delete();
           
-                                return redirect()->back()->with('sucessesmessagem', 'pedido enviado com sucesso');
+                                // return redirect()->back()->with('sucessesmessagem', 'pedido enviado com sucesso');
+
+                                return redirect()->back()->with('sucessesmessagem', 'pedido enviado com sucesso')->with('new_order', true);
                             
                             
                       }else{

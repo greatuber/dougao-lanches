@@ -100,5 +100,11 @@ Route::post('/pdf,{id}',[pdfController::class, 'index'])->name('pdf.index');
  
         // rota que imprimir de fato
 Route::post('/pdfimprimi,{id}',[pdfController::class, 'create'])->name('pdfimprimi');
+ 
+  //rota para som de alerta
+// Route::get('alert-sound', function () {
+//     return response()->file(public_path('caminho/para/o/seu/arquivo-de-som.mp3'));
+// });
+
         
 require __DIR__.'/auth.php';
