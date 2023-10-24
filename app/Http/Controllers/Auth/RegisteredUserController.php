@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NovoClientMailable;
+use Illuminate\Contracts\Mail\Mailer;
+use Illuminate\Mail\Mailable;
+
 
 class RegisteredUserController extends Controller
 {
@@ -41,10 +46,12 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
+       
         event(new Registered($user));
 
         Auth::login($user);
+
+        Mail::to($user->email)->send(new NovoClientMailable($user->name));
 
         return redirect(RouteServiceProvider::HOME);
     }

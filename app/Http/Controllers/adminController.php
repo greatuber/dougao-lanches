@@ -9,7 +9,9 @@ use App\Models\Order;
 use App\Models\Address;
 use App\Models\OrderList;
 use App\Models\Order_product;
+use App\Notifications\NewOrderNotification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 
 class adminController extends Controller
 {
@@ -56,11 +58,11 @@ class adminController extends Controller
                               ]);
                             
                             }
-                        
-                            $product = Order_product::where('user_id', $users)->delete();
-          
-                                // return redirect()->back()->with('sucessesmessagem', 'pedido enviado com sucesso');
 
+                          
+                            $product = Order_product::where('user_id', $users)->delete();
+                           
+          
                                 return redirect()->back()->with('sucessesmessagem', 'pedido enviado com sucesso')->with('new_order', true);
                             
                             

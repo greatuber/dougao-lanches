@@ -33,12 +33,13 @@
   <div class="container mx-auto">
     <div class="text-center">
         <h1 class="p-2 pt-4">LISTAGEM DE PEDIDOS</h1>
-        
+       
               <div class="overflow-auto">
                 @include('layouts.statusNavegation')
               </div>
         
          @forelse ($order as  $item)
+        
             <div class="card p-2">
                 <div class="overflow-auto">
                       @php
@@ -159,25 +160,26 @@
               <p>Para o dia: {{$date}}</p>
            @endforelse
     </div>
-    <audio id="alert-audio" autoplay controls>
-        <source src="https://cdns-preview-8.dzcdn.net/stream/821246fb5d7e2ff6975f65ef7460a708-0.mp3" type="audio/mp3">
-    </audio>
-            @if(request()->has('new_order'))
-            <script>
-                playAlertSound();
-            </script>
-            @endif
-     {{-- <div class="">
-        <audio id="alert-audio">
-            <source src="{{ route('alert-sound') }}" type="audio/mpeg">
-        </audio>
-     </div> --}}
+
+  
+
+  @if ($new_order)
+  playNotificationSound();
+  @endif
+
+
     <script>
-        function playAlertSound() {
-            var audio = document.getElementById('alert-audio');
+        function playNotificationSound() {
+            const audio = new Audio('../../../public/sounds/new_order.mp3');
             audio.play();
         }
+    
+        // Chame esta função quando um novo pedido for criado
+        function novoPedidoCriado() {
+            playNotificationSound();
+        }
     </script>
+    
 </body>
 </html>
  
