@@ -18,7 +18,7 @@ class ClientController extends Controller
    
         $adde = Additional::all();
 
-        $product = Product::where('category_id', 1)->simplePaginate(10);
+        $product = Product::where('category_id', 1)->where('status',0)->simplePaginate(10);
      
   
       

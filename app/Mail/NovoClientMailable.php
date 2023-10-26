@@ -24,9 +24,9 @@ class NovoClientMailable extends Mailable
     public function build()
     {
         $user = User::all();
-        return $this->view('emails.novo_cliente')
+        return $this->view('emails.novo_client')
                 ->with([
-                    'nome' => $this->$user->nome,
+                    'nome' => $this->$user->nome ?? '',
                     // Outras variáveis que deseja passar para a view
                 ])
                 ->subject('Bem-vindo ao Dougão lanches');

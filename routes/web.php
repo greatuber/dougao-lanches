@@ -14,6 +14,7 @@ use App\Http\Controllers\deliveredController;
 use App\Http\Controllers\deliveryController;
 use App\Http\Controllers\pdfController;
 use App\Http\Controllers\productionController;
+use App\Http\Controllers\ProductStatusController;
 use App\Http\Controllers\statusController;
 use App\Http\Controllers\statusRefusedController;
 use Illuminate\Support\Facades\Route;
@@ -100,6 +101,10 @@ Route::post('/pdf,{id}',[pdfController::class, 'index'])->name('pdf.index');
  
         // rota que imprimir de fato
 Route::post('/pdfimprimi,{id}',[pdfController::class, 'create'])->name('pdfimprimi');
+
+//rota para mudar o status do produto para ativo e vice verso
+
+Route::post('/statusProduct,{id}',[ProductStatusController::class, 'update'])->name('product.update');
  
 
 

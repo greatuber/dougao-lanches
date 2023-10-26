@@ -123,7 +123,7 @@
                              </div>
                          </div>
                      </div>
-                     <div class="pr-4" >
+                     <div class="pr-4 flex" >
                        <form action="{{ route('delete.product',$products->id)}}" method="post">
                          @method('DELETE')
                          @csrf
@@ -131,6 +131,21 @@
                            <i class="icon fa-sharp fa-solid fa-trash text-white"></i>
                          </button>
                        </form>
+
+                       <form action="{{ route('product.update',$products->id)}}" method="POST" >
+                        @csrf
+                            <button type="submit" 
+                            class="toggle-button bg-white p-2 ml-2 rounded 
+                                @if($products->status == 0) inertex @endif">
+                            
+                                @if($products->status == 0)
+                                  Desativar
+                                @else
+                                  Ativar
+                                @endif
+                            </button>
+                 
+                        </form>
                      </div>
                  </td>
                  <td>

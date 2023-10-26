@@ -116,6 +116,9 @@
                       
                   </tr>
                 </thead>
+              
+              
+                
                <tbody class="">
                  @foreach ($product as $products)
                 
@@ -175,7 +178,9 @@
                               </div>
                           </div>
                       </div>
-                      <div class="pr-4 produto" >
+                    
+                      
+                      <div class="pr-4 produto flex" >
                         <form action="{{ route('delete.product',$products->id)}}" method="post">
                             @method('DELETE')
                             @csrf
@@ -183,8 +188,23 @@
                               <i class="icon fa-sharp fa-solid fa-trash"></i>
                             </button>
                         </form>
+
+                        <form action="{{ route('product.update',$products->id)}}" method="POST" >
+                             @csrf
+                             <button type="submit" 
+                              class="toggle-button bg-white p-2 ml-2 rounded 
+                                  @if($products->status == 0) inertex @endif">
+                              
+                                  @if($products->status == 0)
+                                    Desativar
+                                  @else
+                                    Ativar
+                                  @endif
+                             </button>
+                      
+                        </form>
                       </div>
-                        <button class="toggle-button bg-white p-2 rounded" data-produto-id="{{ $products->id }}">Desativar</button>
+                       
                   </td>
                   <td>
                   
@@ -192,7 +212,7 @@
                  </tr>
                  @endforeach
                </tbody>
-             </table>
+            </table>
           </div>
              <p class="text-center text-gray-500 text-xs">
         
@@ -206,47 +226,7 @@
 
 <script>
 
-// document.addEventListener("DOMContentLoaded", function () {
-//         const toggleButtons = document.querySelectorAll(".toggle-button");
 
-//         toggleButtons.forEach((button) => {
-//             button.addEventListener("click", function () {
-//                 const produtoId = this.getAttribute("data-produto-id");
-//                 const produtoElement = document.querySelector(".produto");
-
-//                 if (produtoElement.classList.contains("hidden")) {
-//                     produtoElement.classList.remove("hidden");
-//                     this.textContent = "Ativar";
-//                 } else {
-//                     produtoElement.classList.add("hidden");
-//                     this.textContent = "Desativar";
-//                 }
-//             });
-//         });
-//     });
-
-
-
-  document.addEventListener("DOMContentLoaded", function () {
-      const toggleButtons = document.querySelectorAll(".toggle-button");
-
-      toggleButtons.forEach((button) => {
-          button.addEventListener("click", function () {
-              const produtoId = this.getAttribute("data-produto-id");
-              const produtoElement = document.querySelector(`.produto[data-produto-id="${produtoId}"]`);
-              console.log(produtoElement,);
-              const isHidden = produtoElement.style.display === "none";
-
-              if (isHidden) {
-                  produtoElement.style.display = "block";
-                  this.textContent = "Desativar";
-              } else {
-                  produtoElement.style.display = "none";
-                  this.textContent = "Ativar";
-              }
-          });
-      });
-  });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
