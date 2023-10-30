@@ -30,14 +30,14 @@ class ShowController extends Controller
      public function index()
         {
           $adde = Additional::all();
-          $product = Product::where('category_id',2)->where('status', 0)->get();
+          $product = Product::where('category_id',2)->where('status', 0)->simplePaginate(10);
           return view('users.showBeer', compact('product','adde'));
         }  
 
     public function combo()
         {
           $adde = Additional::all();
-          $product = Product::where('category_id', 3)->where('status', 0)->get();
+          $product = Product::where('category_id', 3)->where('status', 0)->simplePaginate(10);
 
           return view('users.showCombo',compact('product','adde'));
         }    

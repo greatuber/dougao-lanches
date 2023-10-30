@@ -28,7 +28,7 @@ class bomboniereController extends Controller
          $users = $user->id;
 
          $order = Order::where('user_id', $users)->latest()->first();
-         $product = Product::where('category_id', 4)->where('status', 0)->get();
+         $product = Product::where('category_id', 4)->where('status', 0)->simplePaginate(10);
 
          return view('users.showbomboniere', compact('order', 'product'));
       }   

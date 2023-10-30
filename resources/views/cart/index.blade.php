@@ -113,6 +113,7 @@
                                       <label for=""  class="text-gray-700 font-bold pr-4" >Retirar na lanchonete</label>
                                       <input  class="delivery" type="radio" value="1" id="entrega" name="delivery" onchange="atualizarValor()"> 
                                       <label for="" class="text-gray-700 font-bold" >para Entregar</label>
+                                      <i class="fa-solid fa-motorcycle text-white"></i>
                                   </div>
                             </div>
 
