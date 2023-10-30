@@ -13,7 +13,7 @@ class CreateController extends Controller
 
             {
                     $category = Category::all();
-                    $product = Product::where('category_id',1)->where('status', 0)->get();
+                    $product = Product::where('category_id',1)->get();
                 
                     return view('products.create',compact('category','product'));
 

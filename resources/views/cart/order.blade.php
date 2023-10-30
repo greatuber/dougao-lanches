@@ -37,6 +37,7 @@
               <div class="overflow-auto">
                 @include('layouts.statusNavegation')
               </div>
+
         
          @forelse ($order as  $item)
         
@@ -134,7 +135,7 @@
                                 <input class="rounded border" type="number" value="{{$item->orderUser->address[0]->zipcode ?? ''}}">
                             </div>
                             <div class="p-2 text-start">
-                                <label for="">complemento:</label>
+                                <label for="">Complemento:</label>
                                 <input class="rounded border" type="text" value="{{$item->orderUser->address[0]->complement	 ?? ''}}">
                             </div>
                         </div>
@@ -160,26 +161,7 @@
               <p>Para o dia: {{$date}}</p>
            @endforelse
     </div>
-
   
-
-  @if ($new_order)
-  playNotificationSound();
-  @endif
-
-
-    <script>
-        function playNotificationSound() {
-            const audio = new Audio('../../../public/sounds/new_order.mp3');
-            audio.play();
-        }
-    
-        // Chame esta função quando um novo pedido for criado
-        function novoPedidoCriado() {
-            playNotificationSound();
-        }
-    </script>
-    
 </body>
 </html>
  

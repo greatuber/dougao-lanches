@@ -82,6 +82,7 @@
                </div>
              @endif
              </form>
+         
                 
          <div class="w-full">
            
@@ -182,7 +183,7 @@
                       
                       <div class="pr-4 produto flex" >
                         <form action="{{ route('delete.product',$products->id)}}" method="post">
-                            @method('DELETE')
+                            @method( 'DELETE' )
                             @csrf
                             <button type="submit" class="" onclick="preventDefoult">
                               <i class="icon fa-sharp fa-solid fa-trash"></i>
@@ -201,6 +202,7 @@
                                     Ativar
                                   @endif
                              </button>
+                            
                       
                         </form>
                       </div>
@@ -224,10 +226,6 @@
 
     @vite('resources/js/app.js')
 
-<script>
-
-
-</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
