@@ -23,7 +23,7 @@ class adminController extends Controller
                       $total    = $request->total;
                       $user      = Auth::user();
                       $users       = $user->id;
-                      $total      = str_replace(",", ".",$total);
+                      $total      = str_replace( ",", ".",$total );
                       $product    = Order_product::where('user_id',$users)->get();
                       $quantity = $product[0]->quanty;
            

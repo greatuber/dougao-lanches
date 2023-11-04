@@ -106,7 +106,9 @@
                             </div>
                     
                     <div class=" pb-2 mt-2">
-              
+                             <div class="text-center">
+                              <h1 class="text-gray-700 font-bold pb-2 text-lg">o pagamento sera realizado na entrega</h1>
+                             </div>
                             <div class="p-4 relative">
                                   <div class="pb-4">
                                       <input class="toremove" type="radio" checked value="0" id="toRemove" name="delivery" onchange="atualizarValor()" > 
@@ -121,18 +123,18 @@
                               <h2 class="text-gray-700 font-bold pb-2">forma de pagamento</h2>
                               <input class="" type="radio" checked value="0" id="" name="payment" > 
                               <label for=""  class="text-gray-700 font-bold pr-4" >cartão</label>
-                              <select name="description" id="" class="rounded mr-2">
-                                <option name="description" value="descripion">Visa</option>
+                              <select name="description" id="select" class="rounded mr-2">
+                                <option name="description" value="visa">Visa</option>
                                 <option name="description" value="Master Card">Master Card</option>
                                 <option name="description" value="Ouro Card">Ouro Card</option>
                               </select>
                             
                              
-                              <input  class="" type="radio" value="1" id="" name="payment"> 
+                              <input  class="" type="radio" value="1" name="payment"> 
                               <label for="" class="text-gray-700 font-bold" >dinheiro</label>
                           </div>
                           <div class="pl-4 grid-templates-rows">
-                              <h2 class="text-gray-700 font-bold pb-2 text-sm">o pagamento sera realizado na entrega</h2>
+                             
                               <input type="text" class="rounded text-sm" name="description" placeholder="ex: troco para 50 reais">
                           </div>
                             
@@ -249,6 +251,8 @@
                     delivery.innerHTML = 'R$' + "_" + totalAmount;
           }
       }
+  
+
     </script>
 </body>
 </html>

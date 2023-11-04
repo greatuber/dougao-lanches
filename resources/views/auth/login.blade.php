@@ -2,6 +2,7 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
+    
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
@@ -12,7 +13,7 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        <!-- Password -->
+        <!-- Password --> 
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
 
