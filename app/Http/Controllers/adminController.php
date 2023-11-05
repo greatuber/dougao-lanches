@@ -12,13 +12,15 @@ use App\Models\Order_product;
 use App\Notifications\NewOrderNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Collection;
 
 class adminController extends Controller
 {
     public function store(Request $request)
     
             {         $payment  = $request->payment;
-                      $desription = $request->description; 
+                      $selectedCreditCard = $request->input('credit_card');
+                      $observation = $request->observation; 
                       $delivery = $request->delivery;
                       $total    = $request->total;
                       $user      = Auth::user();
@@ -26,16 +28,18 @@ class adminController extends Controller
                       $total      = str_replace( ",", ".",$total );
                       $product    = Order_product::where('user_id',$users)->get();
                       $quantity = $product[0]->quanty;
-           
-                      // verificando se usuario tem endereço e depois criando pedido
 
+                 
+                      // verificando se usuario tem endereço e depois criando pedido
+                   
+                      // dd(     $request->all() );
                   if(Address::where('user_id',$users)->exists())
                       {
 
                             $total = ($delivery == 1 ? ($total+ 6) : $total);  
                           
                             $order = Order::create([
-                              'observation' => $desription,
+                              'observation' => $observation ?? $selectedCreditCard,
                                'payment'  =>  $payment,
                               'user_id' => $user->id ?? '',
                               'total'   => $total,
