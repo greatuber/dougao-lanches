@@ -44,6 +44,7 @@
             margin-top: 10px;
             padding-right: 10px;
           }
+       
 
         </style>
         <title>CreateProduct</title>
@@ -53,6 +54,30 @@
         @vite('resources/css/app.css')
         
           <div class="baner  text-center">
+              <div class="flex ml-4">
+                  <div class="" @if ($toggle->is_open == 0)  inertex @endif>
+                    @if ($toggle->is_open == 0)
+                      Lanchonete fechada
+                    @else
+                      Lanchonete aberta
+                    @endif
+                  </div>
+  
+                <form action="{{ route('toggle.open')}}" method="POST">
+                  @csrf
+                    @can('access')
+                        <button type="submit" class="bg-white text-black p-2 rounded mt-2 ml-2"
+                            @if ($toggle->is_open == 0) inertex @endif >
+                            @if ($toggle->is_open == 0)
+                              abrir lanchonete
+                            @else
+                              fechar lanchonete
+                            @endif
+                        </button>
+                    @endcan
+                </form>
+    
+              </div>
               <div class="cart">
                     <a href="{{ route('cart.show')}}"><i class="fa-solid fa-cart-flatbed-suitcase fa-beat text-white"></i>
                     <p class="text-white text-sm ">minhas compras</p></a>
@@ -78,7 +103,7 @@
                </div>
            @endif
         <div class=" orange bg-orange-500  w-full">
-            <table class="w-full">
+             <table class="w-full">
               <thead>
                 <tr>
                      <th></th>      
@@ -91,8 +116,19 @@
                 @foreach ($product as $products)
                     <tr>
                      <td class="">
-                      <button class="btn btn-success ml-2" data-bs-toggle="modal"
-                      data-bs-target="#firstModal{{$products->id}}"><i class="fa-sharp fa-solid fa-cart-plus text-white"></i></button>
+                   
+                      @if ($toggle->is_open ?? '' )
+                          
+                          <button class="btn btn-success ml-2" data-bs-toggle="modal"
+                              data-bs-target="#firstModal{{$products->id}}">
+                              <i class="fa-sharp fa-solid fa-cart-plus text-white"></i>
+                         </button>
+                      @else  
+                         <button class="btn btn-success ml-2" disabled>
+                           <i class="fa-sharp fa-solid fa-cart-plus text-white"></i>
+                         </button>
+                     @endif
+
                         <div class="modal fade" id="firstModal{{$products->id}}" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">

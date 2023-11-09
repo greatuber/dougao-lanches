@@ -29,6 +29,8 @@
     <div class="container ">
        <div class="text-center sm:ml-32 ml-32">
            <div class="w-full center">
+        
+             
                <h1 class="pt-2 font-bold">CASDASTRAR NOVO PRODUTO</h1>
              <form action="{{route('store.product')}}" class=" bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 " method="post">
                @csrf

@@ -42,6 +42,13 @@
         <a href="{{ route('cart.show')}}"><i class="fa-solid fa-cart-shopping text-white"></i></i></a>
         <p class="text-white text-sm">minhas compras</p>
       </div>
+            <div class="" @if ($toggle->is_open == 0)  inertex @endif>
+              @if ($toggle->is_open == 0)
+                Lanchonete fechada
+              @else
+                Lanchonete aberta
+              @endif
+            </div>
         @include('layouts.baner')
     </div>
     <div class="pb-8 pt-4 bg-orange-500">
@@ -61,8 +68,20 @@
             @foreach ($product as $products)
                 <tr>
                  <td class="">
-                  <button class="btn btn-success" data-bs-toggle="modal"
-                  data-bs-target="#firstModal{{$products->id}}"><i class="fa-sharp fa-solid fa-cart-plus text-white"></i></button>
+  
+                      
+                  @if ($toggle->is_open ?? '' )
+                          
+                        <button class="btn btn-success ml-2" data-bs-toggle="modal"
+                            data-bs-target="#firstModal{{$products->id}}">
+                            <i class="fa-sharp fa-solid fa-cart-plus text-white"></i>
+                        </button>
+                 @else  
+                      <button class="btn btn-success ml-2" disabled>
+                        <i class="fa-sharp fa-solid fa-cart-plus text-white"></i>
+                      </button>
+                   @endif
+
                     <div class="modal fade" id="firstModal{{$products->id}}" tabindex="-1"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">

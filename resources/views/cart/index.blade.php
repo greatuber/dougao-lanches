@@ -88,17 +88,17 @@
                                 </tr>
                     
                         @empty
-                        <p class="text-white text-lg p-2 font-bold">'Sua sacola esta vazio'</p>
+                        <p class="text-white text-lg p-2 font-bold">'Sua sacola esta vazia'</p>
                     @endforelse
                           </tbody>
                       </table>
                     </div>
 
                             <div class="sm:w-96 sm:ml[width:150px]">
-                                <div class="bg-white rounded border pt-2 mt-2">
+                                  <div class="bg-white rounded border pt-2 mt-2">
                                   <h1 class="font-bold text-gray-700 pt-2 pb-2">TOTAL</h1>
                 <form action="{{route('admin.create')}}"  method="post">
-                  @csrf
+                        @csrf
                                   <samp  class=" font-bold "  id="toremove"> R$ @money($total)</samp>
                                   <input type="hidden" name="total" value=" @money($total)">
                                   <samp  class=" font-bold" id="delivery"></samp>
@@ -107,7 +107,7 @@
                     
                     <div class=" pb-2 mt-2">
                              <div class="text-center">
-                              <h1 class="text-gray-700 font-bold pb-2 text-lg">o pagamento sera realizado na entrega</h1>
+                                <h1 class="text-gray-700 font-bold pb-2 text-lg">o pagamento sera realizado na entrega</h1>
                              </div>
                             <div class="p-4 relative">
                                   <div class="pb-4">
@@ -120,25 +120,22 @@
                             </div>
 
                             <div class="pb-4">
-                              <h2 class="text-gray-700 font-bold pb-2">forma de pagamento</h2>
-                              <input class="payment_card" type="radio" checked value="0" id="" name="payment" > 
-                              <label for=""  class="text-gray-700 font-bold pr-4" >cartão</label>
-                              <select name="credit_card" id="select" class="rounded mr-2" >
-                                <option  value="visa">Visa</option>
-                                <option  value="Master Card">Master Card</option>
-                                <option  value="Ouro Card">Ouro Card</option>
-                              </select>
-                            
-                             
-                              <input  class="" type="radio" value="1"  name="payment"> 
-                              <label for="" class="text-gray-700 font-bold" >dinheiro</label>
+                                  <h2 class="text-gray-700 font-bold pb-2">forma de pagamento</h2>
+                                  <input class="payment_card" type="radio" checked value="0" id="" name="payment" > 
+                                  <label for=""  class="text-gray-700 font-bold pr-4" >cartão</label>
+                                  <select name="credit_card" id="select" class="rounded mr-2" >
+                                    <option  value="visa">Visa</option>
+                                    <option  value="Master Card">Master Card</option>
+                                    <option  value="Ouro Card">Ouro Card</option>
+                                  </select>
+                                
+                                  <input  class="" type="radio" value="1"  name="payment"> 
+                                  <label for="" class="text-gray-700 font-bold" >dinheiro</label>
                           </div>
                           <div class="pl-4 grid-templates-rows">
-                             
-                              <input type="text" class="rounded text-sm" name="observation" id="observation" placeholder="ex: troco para 50 reais">
+                                <input type="text" class="rounded text-sm" name="observation" id="observation" placeholder="ex: troco para 50 reais">
                           </div>
-                            
-
+                          
                             <div class="">
                               <button type="submit" class="green bg-white font-bold p-2 mt-2 rounded order">Enviar Pedido</button>
                             </div>

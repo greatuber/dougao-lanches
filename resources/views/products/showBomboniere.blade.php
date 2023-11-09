@@ -36,6 +36,13 @@
          
           <div class="baner p-12 font-bold">
             @include('layouts.baner')
+            <div class="" @if ($toggle->is_open == 0)  inertex @endif>
+              @if ($toggle->is_open == 0)
+                Lanchonete fechada
+              @else
+                Lanchonete aberta
+              @endif
+            </div>
           </div>
 
         <div class=" ">

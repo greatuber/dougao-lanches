@@ -33,6 +33,7 @@
             
       <div class="baner p-12">
         @include('layouts.baner')
+        
       </div>
 
     <div class="">

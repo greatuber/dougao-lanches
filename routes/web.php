@@ -17,6 +17,7 @@ use App\Http\Controllers\productionController;
 use App\Http\Controllers\ProductStatusController;
 use App\Http\Controllers\statusController;
 use App\Http\Controllers\statusRefusedController;
+use App\Http\Controllers\toggleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -105,6 +106,10 @@ Route::post('/pdfimprimi,{id}',[pdfController::class, 'create'])->name('pdfimpri
 //rota para mudar o status do produto para ativo e vice verso
 
 Route::post('/statusProduct,{id}',[ProductStatusController::class, 'update'])->name('product.update');
+
+//rota para abrir e fechar a loja
+
+Route::post('/is_open',[ClientController::class, 'toggle'])->name('toggle.open');
  
 
 
