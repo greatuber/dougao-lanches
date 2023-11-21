@@ -29,10 +29,10 @@ class adminController extends Controller
                       $product    = Order_product::where('user_id',$users)->get();
                       $quantity = $product[0]->quanty;
 
-                 
+                     
                       // verificando se usuario tem endereço e depois criando pedido
                    
-                      // dd(     $request->all() );
+                    
                   if(Address::where('user_id',$users)->exists())
                       {
 
@@ -49,20 +49,31 @@ class adminController extends Controller
           
                           
                             $orderId = $order->id;
+                         
                              // criando itens do pedido
+
                             foreach($product as $item){
                             
-                                OrderList::create([
+                                $orderlist = OrderList::create([
                                 'order_id'      => $orderId,
                                 'product_id'    => $item->product_id,
-                                'additional_id' => $item->additional_id?? null,
+                                // 'additional_id' => $item->additional_id?? null,
                                 'observation'   => $item->observation,
                                 'quamtity'      => $item->quanty,
                                 'value'         => $item->price,
                               ]);
-                            
-                            }
 
+                            //criar uma tabela pivor igual a do pedido
+                              // pegar relacionamento do adicional 
+                            }
+                            $selectAdditional = $product[0]->orderProductAdditional;
+// dd($selectAdditional);
+                            foreach ($selectAdditional as $additionalId )
+                            {
+                              $orderlist->oderAdditional()->attach($additionalId);
+                                 
+                            }
+        
                           
                             $product = Order_product::where('user_id', $users)->delete();
                            

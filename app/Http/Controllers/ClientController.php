@@ -16,7 +16,9 @@ class ClientController extends Controller
                   $users     = $user->id;
 
                   $order = Order::where('user_id', $users)->latest()->first();
+
                   $toggle = Toggle::first();
+                  
                
                   $adde = Additional::all();
 

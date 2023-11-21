@@ -58,6 +58,7 @@
                                 <th scope="col" class="px-4 py-2 text-gray-700">ADICIONAIS</th>
                             </tr>
                           </thead>
+                        
                           @forelse ($cart as $item)
                               <?php $total = $total?>
                           <tbody>
@@ -73,9 +74,21 @@
                                     <td class="whitespace-nowrap px-6 py-4">
                                         <span class="border text-white rounded p-2 gray">{{ $item->quanty }}</span>
                                     </td>
-                            
-                                    <td class="text-gray-700 font-bold">{{ $item->observation ?? ''}}</td>
-                                    <td class="text-gray-700 font-bold">{{ $item->orderProductAdditional->name ?? '' }}</td>
+                                     
+                                    <td class="text-gray-700 font-bold">
+                                      {{ $item->observation ?? ''}}
+                                    </td>
+                                     
+                                    <td class="text-gray-700 font-bold">
+                                  
+                                        @if($item->orderProductAdditional()->count()>0)
+                                            @foreach ($item->orderProductAdditional as $additional)
+                                              {{ $additional->name ?? '' }},
+                                            @endforeach  
+                                        @else
+                                          não há adicional
+                                        @endif
+                                    </td>
                                     <td>
                             
                                       <form action="{{ route('cart.delete', $item->id) }}" method="POST">

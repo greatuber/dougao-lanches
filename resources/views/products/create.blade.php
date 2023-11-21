@@ -18,8 +18,14 @@
     color: white;
     margin-left: 15px;
     margin-top: 3px;
-
     }
+    .lime {
+      background-color: rgb(37, 238, 37);
+    }
+    .activ {
+      background-color: rgb(236, 16, 16);
+    }
+  
     </style>
 
     <title>CreateProduct</title>
@@ -195,13 +201,13 @@
                         <form action="{{ route('product.update',$products->id)}}" method="POST" >
                              @csrf
                              <button type="submit" 
-                              class="toggle-button bg-white p-2 ml-2 rounded 
+                              class=" p-2 ml-2 bg-white rounded
                                   @if($products->status == 0) inertex @endif">
                               
                                   @if($products->status == 0)
-                                    Desativar
+                                    <p class="lime p-2 text-white "> Desativar</p>
                                   @else
-                                    Ativar
+                                   <p class="activ p-2 text-white">Ativar</p>
                                   @endif
                              </button>
                             

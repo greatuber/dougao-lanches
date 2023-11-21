@@ -45,17 +45,18 @@
     @vite('resources/css/app.css')
     
     <div class="baner p-12 ">
+      <div class=" flex ml-2" @if ($toggle->is_open == 0)  inertex @endif>
+        @if ($toggle->is_open == 0)
+          Lanchonete fechada
+        @else
+          Lanchonete aberta
+        @endif
+      </div>
       <div class="cart">
         <a href="{{ route('cart.show')}}"><i class="fa-solid fa-cart-shopping text-white"></i></i></a>
         <p class="text-white text-sm ">minhas compras</p>
       </div>
-          <div class="" @if ($toggle->is_open == 0)  inertex @endif>
-            @if ($toggle->is_open == 0)
-              Lanchonete fechada
-            @else
-              Lanchonete aberta
-            @endif
-          </div>
+       
         @include('layouts.baner')
     </div>
     <div class="pb-8 pt-4 bg-orange-500">
@@ -82,19 +83,19 @@
                           <i class="fa-sharp fa-solid fa-cart-plus text-white"></i>
                     </button>
                  @else  
-                    <button class="btn btn-success ml-2" disabled>
-                      <i class="fa-sharp fa-solid fa-cart-plus text-white"></i>
-                    </button>
+
+                 @include('layouts.button')
+
                  @endif
  
-                     
                     <div class="modal fade" id="firstModal{{$products->id}}" tabindex="-1"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog ">
                             <div class="modal-content">
                                 <div class="modal-header,btn btn-warning">
                                     {{-- <h2 class="modal-title pt-4 ml-40" id="exampleModalLabel text-center">Adiciona este produto em seu carrinho</h2> --}}
-                                    <button type="button" class="btn-close " data-bs-dismiss="modal"   aria-label="Close">X
+                                    <button type="button" class="btn-close " data-bs-dismiss="modal"   aria-label="Close">
+                                      X
                                     </button>
                                 </div>
                                 <div class="modal-body">

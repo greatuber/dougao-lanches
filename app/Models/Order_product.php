@@ -16,11 +16,14 @@ class Order_product extends Model
         return $this->belongsTo(Product::class,'product_id', 'id');
        }
 
-    public function orderProductAdditional(){
-        return $this->belongsTo(Additional::class, 'additional_id', 'id');
-    }
+    public function orderProductAdditional()
+
+        {
+            return $this->BelongsToMany(Additional::class, 'additional_order_products', 'order_product_id','additional_id', 'id');
+        }
 
     public function orderPorductUser()
+
        {
         return $this->belongsTo(User::class, 'user_id', 'id');
        }

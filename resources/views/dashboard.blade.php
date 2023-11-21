@@ -11,12 +11,17 @@
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Chela+One&display=swap" rel="stylesheet">
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+           
+                 {{-- select --}}
+            <link rel="stylesheet" href="../css/bootstrap-multselect.css" type="text/css"/>
+         
+
+            
 
         <style>
           .container {
             font-family: 'Chela One', cursive;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Roboto', sans-serif;                       
           }
           .price {
              font-size: 20px;
@@ -44,7 +49,9 @@
             margin-top: 10px;
             padding-right: 10px;
           }
-       
+           .lime {
+            color: green;
+           }
 
         </style>
         <title>CreateProduct</title>
@@ -52,14 +59,16 @@
     
     <body>
         @vite('resources/css/app.css')
-        
+        {{-- @dd($toggle) --}}
           <div class="baner  text-center">
               <div class="flex ml-4">
                   <div class="" @if ($toggle->is_open == 0)  inertex @endif>
-                    @if ($toggle->is_open == 0)
+                    @if ($toggle->is_open == 0 )
                       Lanchonete fechada
                     @else
-                      Lanchonete aberta
+                       <div class="lime">
+                        Lanchonete aberta
+                       </div>
                     @endif
                   </div>
   
@@ -69,9 +78,13 @@
                         <button type="submit" class="bg-white text-black p-2 rounded mt-2 ml-2"
                             @if ($toggle->is_open == 0) inertex @endif >
                             @if ($toggle->is_open == 0)
-                              abrir lanchonete
+                              <div class="text-red-500">
+                                abrir lanchonete
+                              </div>
                             @else
-                              fechar lanchonete
+                               <div class="lime">
+                                fechar lanchonete
+                               </div>
                             @endif
                         </button>
                     @endcan
@@ -123,10 +136,11 @@
                               data-bs-target="#firstModal{{$products->id}}">
                               <i class="fa-sharp fa-solid fa-cart-plus text-white"></i>
                          </button>
+
                       @else  
-                         <button class="btn btn-success ml-2" disabled>
-                           <i class="fa-sharp fa-solid fa-cart-plus text-white"></i>
-                         </button>
+
+                        @include('layouts.button')
+
                      @endif
 
                         <div class="modal fade" id="firstModal{{$products->id}}" tabindex="-1"
@@ -135,7 +149,8 @@
                                 <div class="modal-content">
                                     <div class="modal-header,btn btn-warning">
                                         {{-- <h2 class="modal-title pt-4 ml-40" id="exampleModalLabel text-center">Adiciona este produto em seu carrinho</h2> --}}
-                                        <button type="button" class="btn-close " data-bs-dismiss="modal"   aria-label="Close">X
+                                        <button type="button" class="btn-close " data-bs-dismiss="modal"   aria-label="Close">
+                                          X
                                         </button>
                                     </div>
                                     <div class="modal-body">
@@ -161,17 +176,20 @@
                                                             <input type="text"  disabled class=" rounded text-center " name="price" id="price" value="{{number_format($products->price,2,',','.') }}"/><br>
                                                         </div>
                                                         <div class="text-center p-2">
-                                                            <strong><label for="">ADICIONAIS</label></strong>
+                                                            <strong><label for="additional">ADICIONAIS</label></strong>
                                                             </div>
-                                                        <div class="text-center  rounded">
-                                                            <select class=" rounded" name="additional" id="additional">
-                                                              @foreach( $adde as $add)
-                                                                <div class="mb-4">
-                                                                  <option value="{{$add->id}}">{{$add->name}}-R$-{{ number_format($add->price,2,',','.') }}</option>
-                                                                </div>
-                                                                
-                                                              @endforeach
+                                                        <div class="text-center  rounded multiselect-container ">
+
+                                                            <select  class=" rounded" name="additional[]" multiple="multiple">
+                                                                @foreach( $adde as $add)
+                                                                  
+                                                                    <option value="{{$add->id}}" name="{{$add->name}}" >
+                                                                      {{$add->name}}-R$-{{ number_format($add->price,2,',','.') }}
+                                                                    </option>
+                                                                  
+                                                                @endforeach
                                                             </select>
+
                                                         </div>
                                                         <div class=" p-2 text-center">
                                                           <strong><h1>OBSERVAÇÃO</h1></strong>
@@ -209,6 +227,15 @@
         </div>
          @vite('resources/js/app.js')
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script src="../js/bootstrap-multiselect.js"></script>
+        <script src="https://u3r3f6s2.rocketcdn.me/jquery.min.js"></script>
+        <script src="https://u3r3f6s2.rocketcdn.me/bootstrap/4/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+          $(document).ready(function() {
+              $('#additional').multiselect();
+          });
+      </script>
     </body>
   </html>
 
