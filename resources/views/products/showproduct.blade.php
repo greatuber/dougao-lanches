@@ -31,7 +31,7 @@
     <body>
         @vite('resources/css/app.css')
      @yield('dashboard')
-        <div class=" orange bg-orange-500 w-full sm:w-40 pr-4 ">
+        <div class=" orange bg-orange-500 w-full sm:w-40 pr-4 overflow-auto">
             <table class="w-full ">
               <thead>
                 <tr>

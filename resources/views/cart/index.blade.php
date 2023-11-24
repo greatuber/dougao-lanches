@@ -36,11 +36,21 @@
                     <p class="text-gray-700 font-bold">{{ auth()->user()->name }}</p>
                   </div>
                       @if (session('sucessesmessagem'))
+
                           <div class="text-green-600 text-lg p-2 font-bold">
                              {{ session('sucessesmessagem')}}
                           </div>
                           
                       @endif
+
+                       @if (session('empaty'))
+                       
+                       <div class="text-red-500">
+                        {{ session('empaty')}}
+                       </div>
+
+                      @endif 
+
                       @if (session('menssagem'))
                          <div class="text-red-500 bg-white p-2">
                           {{ session('menssagem')}}
@@ -64,6 +74,7 @@
                           <tbody>
                                   <tr class="border-b dark:border-neutral-500">
                                     <td class="whitespace-nowrap px-2 py-4 text-gray-700 font-bold">{{ $item->orderProductProduct->name }}</td>
+                                      <input type="hidden"  name="product_id" value="{{ $item->orderProductProduct->name }}">
                                     <td class="whitespace-nowrap px-6 py-4">
                                         <span class="gray text-white p-1 rounded">
                                          
@@ -72,13 +83,15 @@
                                         </span>
                                     </td>
                                     <td class="whitespace-nowrap px-6 py-4">
+
                                         <span class="border text-white rounded p-2 gray">{{ $item->quanty }}</span>
+                                        
                                     </td>
                                      
                                     <td class="text-gray-700 font-bold">
                                       {{ $item->observation ?? ''}}
                                     </td>
-                                     
+                                              
                                     <td class="text-gray-700 font-bold">
                                   
                                         @if($item->orderProductAdditional()->count()>0)
@@ -86,7 +99,7 @@
                                               {{ $additional->name ?? '' }},
                                             @endforeach  
                                         @else
-                                          não há adicional
+                                          Sem adicionais
                                         @endif
                                     </td>
                                     <td>
@@ -117,18 +130,20 @@
                                   <samp  class=" font-bold" id="delivery"></samp>
                                 </div>
                             </div>
-                    
+                                 
                     <div class=" pb-2 mt-2">
                              <div class="text-center">
                                 <h1 class="text-gray-700 font-bold pb-2 text-lg">o pagamento sera realizado na entrega</h1>
                              </div>
                             <div class="p-4 relative">
                                   <div class="pb-4">
+
                                       <input class="toremove" type="radio" checked value="0" id="toRemove" name="delivery" onchange="atualizarValor()" > 
                                       <label for=""  class="text-gray-700 font-bold pr-4" >Retirar na lanchonete</label>
                                       <input  class="delivery" type="radio" value="1" id="entrega" name="delivery" onchange="atualizarValor()"> 
                                       <label for="" class="text-gray-700 font-bold" >para Entregar</label>
                                       <i class="fa-solid fa-motorcycle text-white"></i>
+                                      
                                   </div>
                             </div>
 
@@ -144,6 +159,11 @@
                                 
                                   <input  class="" type="radio" value="1"  name="payment"> 
                                   <label for="" class="text-gray-700 font-bold" >dinheiro</label>
+                                    @error('payment')
+                                         <div class="bg-black p-2">
+                                           <samp>{{ $message}}</samp>
+                                         </div>
+                                    @enderror
                           </div>
                           <div class="pl-4 grid-templates-rows">
                                 <input type="text" class="rounded text-sm" name="observation" id="observation" placeholder="ex: troco para 50 reais">
@@ -153,7 +173,7 @@
                               <button type="submit" class="green bg-white font-bold p-2 mt-2 rounded order">Enviar Pedido</button>
                             </div>
                     </div>
-                  </form>       
+                </form>       
                 
                 <div class="p-2 text-center">
                     <a href="{{ route('client.show')}}"><button class="text-sm border bg-white font-bold rounded p-2">CONTINUAR COMPRANDO</button></a>

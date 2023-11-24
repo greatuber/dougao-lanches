@@ -54,6 +54,7 @@
                       @endphp
                        
                        <p>Cliente {{ $item->orderUser->name}} tem <span class="font-bold">'{{$userCount}}'</span> pedidos na plataforma.</p>
+                       <p>{{ $date}}</p>
                         <div class="pt-2">
                             <div class="border">
                                 <h1 class="font-bold troco p-2">forma de pagamento</h1>
@@ -107,8 +108,8 @@
                             <td class="py-2 px-4 border-b">
                                 {{-- {{ $list->additional->name ?? ''}} --}}
                                 @if($list->oderAdditional()->count()>0)
+
                                 @foreach ($list->oderAdditional as $additional)
-                              
                                   {{ $additional->name ?? '' }},
                                 @endforeach  
                                 @else

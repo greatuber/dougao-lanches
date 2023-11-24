@@ -129,7 +129,7 @@
                 <td class="">
                     <p class="">{{$products->description}}</p>
                 </td>
-                <td class="text-white font-bold">R$-@money($products->price)</td>
+                <td class="text-white font-bold">R$ _ @money($products->price)</td>
                 <td class="p-2">
                 </td>
                 </tr>

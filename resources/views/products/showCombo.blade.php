@@ -24,6 +24,9 @@
     margin-top: 3px;
 
     }
+    .green {
+      background-color: green;
+    }
     </style>
 
     <title>CreateProduct</title>
@@ -51,7 +54,7 @@
           </div> --}}
         </div>
                   
-        <div class=" orange bg-orange-500 w-full sm:w-40 pr-4 ">
+        <div class=" orange bg-orange-500 w-full sm:w-40 pr-4 overflow-auto">
             <table class="w-full ">
               <thead>
                 <tr>
@@ -107,7 +110,7 @@
                                                    </div>
                                                    <div class="label3 text-center">
                                                      <h1>PREÇO</h1>
-                                                     <input type="number" class="bg-info rounded" name="price" value="{{ number_format($products->price,2,',','.' )}}"/><br>
+                                                     <input type="" class="bg-info rounded" name="price" value="{{ number_format($products->price,2,'.',',' )}}"/><br>
                                                    </div>
                                                  <button class="btn btn-primary text-with bg-primary mt-2" type="submit">Atualizar</button>
                                                </fieldset>
@@ -134,16 +137,31 @@
 
                        <form action="{{ route('product.update',$products->id)}}" method="POST" >
                         @csrf
+                        <div class="flex">
+                          <div class="">
                             <button type="submit" 
-                            class="toggle-button bg-white p-2 ml-2 rounded 
+                                class="toggle-button bg-white p-2 ml-2 rounded 
                                 @if($products->status == 0) inertex @endif">
                             
                                 @if($products->status == 0)
-                                  Desativar
+
+                                  <p class="pr-2 ">Desativar</p> 
+                                  
                                 @else
                                   Ativar
+                                
                                 @endif
                             </button>
+                          </div>
+
+                          <div class="">
+                              @if($products->status == 0)
+                              <button class="green text-white p-2 rounded ml-2 " onclick="preventDefoult"><i class="fa-regular fa-eye"></i></button>
+                              @else
+                              <button class="bg-white text-red-500 p-2 ml-2 rounded"><i class="fa-sharp fa-solid fa-eye-slash"></i></button>
+                              @endif
+                          </div>
+                        </div>
                  
                         </form>
                      </div>

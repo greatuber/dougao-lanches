@@ -9,6 +9,7 @@ use App\Models\Order;
 use App\Models\Address;
 use App\Models\OrderList;
 use App\Models\Order_product;
+use App\Http\Requests\OrderProductRequest;
 use App\Notifications\NewOrderNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
@@ -17,15 +18,29 @@ use Illuminate\Support\Collection;
 class adminController extends Controller
 {
     public function store(Request $request)
-    
-            {         $payment  = $request->payment;
+                        
+                           
+
+            {         
+              
+              $user      = Auth::user();
+              $users       = $user->id;
+              $product    = Order_product::where('user_id',$users)->get();
+
+              if (Order_product::where('user_id',$users)->exists()){
+               
+              }else{
+                return redirect()->back()->with('menssagem','Vocẽ presisa relizar uma compra para conseguir enviar um pedido');
+              }
+              
+                      $payment  = $request->payment;
                       $selectedCreditCard = $request->input('credit_card');
                       $observation = $request->observation; 
                       $delivery = $request->delivery;
                       $total    = $request->total;
                       $user      = Auth::user();
                       $users       = $user->id;
-                      $total      = str_replace( ",", ".",$total );
+                      $total      = str_replace(",", ".",$total );
                       $product    = Order_product::where('user_id',$users)->get();
                       $quantity = $product[0]->quanty;
 
@@ -57,17 +72,15 @@ class adminController extends Controller
                                 $orderlist = OrderList::create([
                                 'order_id'      => $orderId,
                                 'product_id'    => $item->product_id,
-                                // 'additional_id' => $item->additional_id?? null,
                                 'observation'   => $item->observation,
                                 'quamtity'      => $item->quanty,
                                 'value'         => $item->price,
                               ]);
 
-                            //criar uma tabela pivor igual a do pedido
-                              // pegar relacionamento do adicional 
+                           
                             }
                             $selectAdditional = $product[0]->orderProductAdditional;
-// dd($selectAdditional);
+
                             foreach ($selectAdditional as $additionalId )
                             {
                               $orderlist->oderAdditional()->attach($additionalId);

@@ -45,10 +45,10 @@ class CreateController extends Controller
 
     public function update(Request $request, $id)
            {
-                    $product = Product::findOrFail($request->id)->update($request->all());
-
-                
-
+                    $product = Product::findOrFail($id);
+                //    dd($product);
+                    $product->update($request->all());
+               
                     return redirect()->route('create.product');
            }   
 }

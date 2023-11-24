@@ -131,7 +131,7 @@
                 <td class="">
                     <p class="">{{$products->description}}</p>
                 </td>
-                <td class=" text-white text-lg">R$-{{ number_format($products->price, 2, ',','.')}}</td>
+                <td class=" text-white text-lg">R$ _ {{ number_format($products->price, 2, ',','.')}}</td>
                 <td class="p-2">
                 </td>
                 </tr>

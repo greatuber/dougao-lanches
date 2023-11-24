@@ -59,12 +59,13 @@
     
     <body>
         @vite('resources/css/app.css')
-        {{-- @dd($toggle) --}}
+        
           <div class="baner  text-center">
               <div class="flex ml-4">
                   <div class="" @if ($toggle->is_open == 0)  inertex @endif>
                     @if ($toggle->is_open == 0 )
-                      Lanchonete fechada
+                       <p> Lanchonete fechada</p>
+                       <p>abre as 18:00hs</p>
                     @else
                        <div class="lime">
                         Lanchonete aberta
@@ -216,7 +217,7 @@
                         </details>
                         <hr class="linear">
                     </td>
-                    <td class="pl-16 text-2xl text-white price">R$-{{ number_format($products->price, 2, ',','.')}}</td>
+                    <td class="pl-16 text-2xl text-white price">R$_{{ number_format($products->price, 2, ',','.')}}</td>
                     </tr>
                 @endforeach
               </tbody>

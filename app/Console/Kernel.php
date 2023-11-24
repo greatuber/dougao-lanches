@@ -12,7 +12,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('OpenLanchonete')
+            ->dailyAt('18:00')
+            ->days([Schedule::TUESDAY, Schedule:: WEDNESDAY, Schedule:: THURSDAY, Schedule:: FRIDAY, Schedule:: SATURDAY, Schedule:: SUNDAY ]);
+
+        $schedule->command('closedLanchonete')->daily();
     }
 
     /**

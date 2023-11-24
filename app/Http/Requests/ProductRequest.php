@@ -21,18 +21,20 @@ class ProductRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        return
+         [
             'name' =>['required'],
             'description' => ['required'],
             'price' => ['required'],
             'category_id' => []
-        ];
+         ];
 
    
     }
     public function messages()
     {
-       return [
+       return
+            [
             'name.required' => 'O campo produto é obrigatorio',
             'description.required'=> 'O campo Descrição é obrigatorio',
             'price.required' => 'O campo preço é obrigatorio',

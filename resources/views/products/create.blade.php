@@ -19,12 +19,9 @@
     margin-left: 15px;
     margin-top: 3px;
     }
-    .lime {
-      background-color: rgb(37, 238, 37);
-    }
-    .activ {
-      background-color: rgb(236, 16, 16);
-    }
+   .green {
+    background-color: green;
+   }
   
     </style>
 
@@ -121,13 +118,8 @@
                       <th class="p-2">LANCHES</th>
                       <th class="p-2">INGREDIENTES</th>
                       <th class="p-2" >PREÇO</th>
-                      
-                      
                   </tr>
                 </thead>
-              
-              
-                
                <tbody class="">
                  @foreach ($product as $products)
                 
@@ -142,7 +134,7 @@
                      <hr class="linear">
                    </td>
                    <td class="">{{number_format($products->price,2,',','.')}}</td>
-                   <td class="p-2 flex">
+                   <td class="p-2  flex max-w-full">
                     <button class="btn btn-success" data-bs-toggle="modal"
                     data-bs-target="#firstModal{{$products->id}}"><i class="fa-regular fa-pen-to-square "></i></button>
                       <div class="modal fade" id="firstModal{{$products->id}}" tabindex="-1"
@@ -171,7 +163,7 @@
                                                     </div>
                                                     <div class="label3">
                                                       <h1>PREÇO</h1>
-                                                      <input type="number" class="bg-info rounded m-2" name="price" value="{{$products->price}}"/><br>
+                                                      <input type="" class="bg-info rounded m-2" name="price" value="{{number_format($products->price,2, '.', ',')}}"/><br>
                                                     </div>
                                                   <button class="btn btn-primary text-with bg-primary mt-2" type="submit">Atualizar</button>
                                                 </fieldset>
@@ -189,7 +181,7 @@
                       </div>
                     
                       
-                      <div class="pr-4 produto flex" >
+                      <div class="pr-2 produto flex flex-row lg:flex-row  w-full" w-full>
                         <form action="{{ route('delete.product',$products->id)}}" method="post">
                             @method( 'DELETE' )
                             @csrf
@@ -200,22 +192,36 @@
 
                         <form action="{{ route('product.update',$products->id)}}" method="POST" >
                              @csrf
-                             <button type="submit" 
-                              class=" p-2 ml-2 bg-white rounded
-                                  @if($products->status == 0) inertex @endif">
-                              
+                        <div class="flex">
+                              <div class="">
+                                <button type="submit" 
+                                    class="toggle-button bg-white p-2 ml-2 rounded 
+                                    @if($products->status == 0) inertex @endif">
+                                
+                                    @if($products->status == 0)
+
+                                      <p class="pr-2 ">Desativar</p> 
+                                      
+                                    @else
+                                      Ativar
+                                    
+                                    @endif
+                                </button>
+                              </div>
+
+                              <div class="">
                                   @if($products->status == 0)
-                                    <p class="lime p-2 text-white "> Desativar</p>
+                                  <button class="green text-white p-2 rounded ml-2 " onclick="preventDefoult"><i class="fa-regular fa-eye"></i></button>
                                   @else
-                                   <p class="activ p-2 text-white">Ativar</p>
+                                  <button class="bg-white text-red-500 p-2 ml-2 rounded"><i class="fa-sharp fa-solid fa-eye-slash"></i></button>
                                   @endif
-                             </button>
+                              </div>
+                        </div>
                             
-                      
                         </form>
                       </div>
                        
-                  </td>
+                   </td>
                   <td>
                   
                   </td>

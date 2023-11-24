@@ -34,7 +34,7 @@
 
           <div class="pt-2">
             <div class="border">
-                <h1 class="font-bold">forma de pagamento</h1>
+                <h1 class="font-bold troco p-2">forma de pagamento</h1>
                 <p>{{ $order[0]->payment ? 'DINHEIRO' : 'CARTÃO' }}</p>
                 <p class="troco p-2">{{ $order[0]->observation}}</p>
             </div>
@@ -88,16 +88,16 @@
                                     <td class="py-2 px-4 border-b">{{ number_format($list->value, 2, ',', '.')  }}</td>
                                     <td class="py-2 px-4 border-b">{{ $list->observation ?? '' }}</td>
                                     <td class="py-2 px-4 border-b">
-                                        {{-- {{ $list->additional->name ?? ''}} --}}
+                                       
                                         @if($list->oderAdditional()->count()>0)
                                         @foreach ($list->oderAdditional as $additional)
                                       
                                           {{ $additional->name ?? '' }},
                                         @endforeach  
-                                    @else
-                                      não há adicional
-                                    @endif
-                                    @dd($additional)
+                                        @else
+                                            não há adicional
+                                        @endif
+                                   
                                     </td>
                                    
                                 </tr>
