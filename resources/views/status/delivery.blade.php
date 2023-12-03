@@ -81,12 +81,11 @@
                             <td class="py-2 px-4 border-b">
                               
                                 @if($list->oderAdditional()->count()>0)
-                                @foreach ($list->oderAdditional as $additional)
-                              
-                                  {{ $additional->name ?? '' }},
-                                @endforeach  
-                                @else
-                                    não há adicional
+
+                                    @foreach ($list->oderAdditional as $additional)
+                                    {{ $additional->name ?? '' }},
+                                    @endforeach  
+                             
                                 @endif
                             </td>
                          
@@ -138,7 +137,7 @@
                  </div>
             @empty
               <p class="pt-4 font-bold text-lg">Sem Pedidos com estatus saiu para entrega no momento!</p>
-              {{-- <p>Para o dia: {{$date}}</p> --}}
+              <p>Para o dia: @datetime(now())</p>
            @endforelse
     </div>
 </body>

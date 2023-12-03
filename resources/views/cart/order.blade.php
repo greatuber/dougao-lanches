@@ -37,8 +37,19 @@
               <div class="overflow-auto">
                 @include('layouts.statusNavegation')
               </div>
+              @if(session('new_order'))
+              <script>
+                  Echo.channel('new-order')
+                      .listen('NewOrderCreated', (event) => {
+                          // Adicione aqui a lógica para reproduzir o som, por exemplo, usando o Web Audio API
+                          var audio = new Audio('../../../public/sounds/new_order.mp3');
+                          audio.play();
+                      });
+              </script>
+          @endif
 
-        
+    
+          
          @forelse ($order as  $item)
         
             <div class="card p-2">
@@ -109,11 +120,11 @@
                                 {{-- {{ $list->additional->name ?? ''}} --}}
                                 @if($list->oderAdditional()->count()>0)
 
-                                @foreach ($list->oderAdditional as $additional)
-                                  {{ $additional->name ?? '' }},
-                                @endforeach  
-                                @else
-                                    não há adicional
+                                    @foreach ($list->oderAdditional as $additional)
+                                        {{ $additional->name ?? '' }},
+                                    @endforeach 
+                                     
+                              
                                 @endif
                             </td>
                           
@@ -173,6 +184,9 @@
            @endforelse
     </div>
   
+
+  
+             
 </body>
 </html>
  

@@ -20,7 +20,7 @@
     margin-top: 3px;
     }
    .green {
-    background-color: green;
+    background-color: rgb(21, 185, 21);
    }
   
     </style>
@@ -197,6 +197,7 @@
                                 <button type="submit" 
                                     class="toggle-button bg-white p-2 ml-2 rounded 
                                     @if($products->status == 0) inertex @endif">
+                                    {{-- <i class="fa-solid fa-toggle-on"></i> --}}
                                 
                                     @if($products->status == 0)
 

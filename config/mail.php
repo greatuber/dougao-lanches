@@ -32,17 +32,20 @@ return [
     |            "postmark", "log", "array", "failover"
     |
     */
+   
+    
 
     'mailers' => [
         'smtp' => [
-            'transport' => 'smtp',
+            'drive' => 'mailgun',
             'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
             'port' => env('MAIL_PORT', 587),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
             'username' => env('MAIL_USERNAME'),
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
-            'local_domain' => env('MAIL_EHLO_DOMAIN'),
+            'local_domain' => env('MAILGUN_DOMAIN'),
+            'transport' => env('MAIL_TRANSPORT'),
         ],
 
         'ses' => [
@@ -50,10 +53,17 @@ return [
         ],
 
         'mailgun' => [
-            'transport' => 'mailgun',
+
             // 'client' => [
             //     'timeout' => 5,
             // ],
+        ],
+
+        'markdown' => [
+            'theme' => 'default',
+            'paths' => [
+                resource_path('views/vendor/mail'),
+            ],
         ],
 
         'postmark' => [
@@ -98,7 +108,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+        'address' => env('MAIL_FROM_ADDRESS', ''),
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 

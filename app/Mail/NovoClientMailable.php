@@ -17,19 +17,20 @@ class NovoClientMailable extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public $user;
+    public function __construct($user)
     {
-        //
+        $this->user = $user;
     }
     public function build()
     {
-        $user = User::all();
-        return $this->view('emails.novo_client')
-                ->with([
-                    'nome' => $this->$user->nome ?? '',
-                    // Outras variáveis que deseja passar para a view
-                ])
-                ->subject('Bem-vindo ao Dougão lanches');
+        $user = User::get();
+        
+        return $this->markdown('emails.novo_client')
+        ->subject('Bem-vindo ao Dougão lanches');
+        
+        
+                
     }
 
     /**

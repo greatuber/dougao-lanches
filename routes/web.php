@@ -98,18 +98,24 @@ Route::get('/delivereds',[deliveredController::class, 'index'])->name('status.de
 
     //   controller que vai gerar pdf para impressão
 
-Route::post('/pdf,{id}',[pdfController::class, 'index'])->name('pdf.index');
+// Route::post('/pdf,{id}',[pdfController::class, 'index'])->name('pdf.index');
  
         // rota que imprimir de fato
-Route::post('/pdfimprimi,{id}',[pdfController::class, 'create'])->name('pdfimprimi');
+Route::post('/pdfimprimird,{id}',[pdfController::class, 'create'])->name('pdf.imprimird');
 
-//rota para mudar o status do produto para ativo e vice verso
+//rota para mudar o status do produto para ativo e vice versa
 
 Route::post('/statusProduct,{id}',[ProductStatusController::class, 'update'])->name('product.update');
 
 //rota para abrir e fechar a loja
 
 Route::post('/is_open',[ClientController::class, 'toggle'])->name('toggle.open');
+
+//rota sonora
+
+Route::get('/alert-sound', function ()  {
+    return response()->file(public_path('sounds/new_order.mp3'));
+})->name('aler-sound');
  
 
 

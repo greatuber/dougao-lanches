@@ -16,8 +16,8 @@
     </style>
 </head>
 <body>
-    <div class="nav h-12 w-full pt-12 ">
-        <ul class="folat-right mr-10 pl-4 space-y-8 text-black fixed">
+    <div class="nav h-12 w-full pt-12 overflow-auto pr-2">
+        <ul class="folat-right mr-10 pl-4 space-y-8 text-black ">
          <div class="flex space-x-8 ml-4 p-8 text-white">
             @can('access')
             <li><a class="p-8" href="{{ route('create.product')}}">adim/cadastrar</a></li>

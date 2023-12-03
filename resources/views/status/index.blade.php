@@ -27,20 +27,26 @@
 <body>
   <div class="container mx-auto">
     <div class="text-center">
-        <h1 class="p-4">LISTAGEM DE PEDIDOS ACEITOS</h1>
-          <div class="">
+        {{-- <h1 class="p-4">LISTAGEM DE PEDIDOS ACEITOS</h1> --}}
+          {{-- <div class="">
             @include('layouts.statusNavegation')
-          </div>
+          </div> --}}
 
-          <div class="pt-2">
-            <div class="border">
-                <h1 class="font-bold troco p-2">forma de pagamento</h1>
-                <p>{{ $order[0]->payment ? 'DINHEIRO' : 'CARTÃO' }}</p>
-                <p class="troco p-2">{{ $order[0]->observation}}</p>
-            </div>
-          </div>
-         
          @forelse ($order as $item)
+          
+        <form action="{{ route('pdf.imprimird',$item)}}" method="POST">
+         
+            @csrf 
+                <div class="pt-2 container overflow-auto">
+                    <div class="border p-2">
+                        <h3 class="font-bold troco p-2">forma de pagamento</h3>
+                        
+                        <p>{{ $item->payment ? 'DINHEIRO' : 'CARTÃO' }} </p>
+                    
+                        <p class="troco p-2">{{ $order[0]->observation}}</p>
+                    </div>
+                </div>
+
             <div class="card p-2">
                 <div class="overflow-auto">
                     <table class="table-auto w-full">
@@ -59,7 +65,7 @@
                                 <tr>
                                     <td class="border px-4 py-2 order rounded">{{ $item->orderUser->name }}</td>
                                     <td class="border px-4 py-2 order rounded">{{ $item->id }}</td>
-                                    <td class="border px-4 py-2 order rounded">{{ $item->created_at->format('d/m/Y')}}</td>
+                                    <td class="border px-4 py-2 order rounded">{{ $item->created_at->format('d/m/Y H:i')}}</td>
                                     <td class="border px-4 py-2 order rounded">@money( $item->total)</td>
                                     <td class="border px-4 py-2 order rounded">{{ $item->delivery ? 'Sim' : 'Não' }}</td>
                                     <td class="border px-4 py-2 order rounded">{{ $item->status}}</td>
@@ -81,7 +87,9 @@
                         </tr>
                     </thead>
                     <tbody class="pb-2">
+                        
                         @foreach ($item->orderList as $list) 
+
                                 <tr>
                                     <td class="py-2 px-4 border-b">{{ $list->product->name ?? ''}}</td>
                                     <td class="py-2 px-4 border-b text-center">{{ $list->quamtity}}</td>
@@ -90,16 +98,14 @@
                                     <td class="py-2 px-4 border-b">
                                        
                                         @if($list->oderAdditional()->count()>0)
-                                        @foreach ($list->oderAdditional as $additional)
-                                      
-                                          {{ $additional->name ?? '' }},
-                                        @endforeach  
-                                        @else
-                                            não há adicional
+                                        
+                                            @foreach ($list->oderAdditional as $additional)
+                                            {{ $additional->name ?? '' }},
+                                            @endforeach  
+                                  
                                         @endif
                                    
                                     </td>
-                                   
                                 </tr>
                         @endforeach 
                     </tbody>
@@ -108,7 +114,7 @@
                
                  <div class=" container pt-4 pb-4">
 
-                    <h1 class="font-bold">ENDEREÇO PARA ENTREGA</h1>
+                    <h3 class="font-bold">ENDEREÇO PARA ENTREGA</h3>
             
                     <div class="flex flex-wrap content-start ">
                         <div class="p-2 text-start">
@@ -140,15 +146,14 @@
             
                     <div class=" flex">
                            <div class="">
-                                <form action="{{ route('pdfimprimi',$item->id)}}" method="POST">
-                                    @csrf
-                                    <button class="border rounded p-2 button hover:text-blue-800 mr-2">IMPRIMIR</button>
-                                </form>
+                               
+                <button type="submit" class="border rounded p-2 button hover:text-blue-800 mr-2">IMPRIMIR</button>
+        </form>
                            </div>
                            <div class="">
                                 <form action="{{route('status.product',$item->id)}}" method="POST">
                                     @csrf
-                                        <button class="border rounded p-2 button hover:text-blue-800">IR PARA PRODUÇÃO</button>
+                                        <button type="submit" class="border rounded p-2 button hover:text-blue-800">IR PARA PRODUÇÃO</button>
                                 </form>
                             </div>
                     </div>
@@ -159,7 +164,7 @@
                  </div>
             @empty
               <p class="pt-4 font-bold text-lg">Sem Pedidos com estatus aceito no momento!</p>
-              {{-- <p>Para o dia: {{$date}}</p> --}}
+              <p>Para o dia: @datetime(now())</p>
            @endforelse
           
     </div>

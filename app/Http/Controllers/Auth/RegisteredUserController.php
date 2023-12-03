@@ -47,11 +47,14 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
        
-        event(new Registered($user));
+        // event(new Registered($user));
 
         Auth::login($user);
+       
 
-        Mail::to($user->email)->send(new NovoClientMailable($user->name));
+        // Mail::to($user->email)->send(new NovoClientMailable($user));
+      Mail::mailer('smtp')->to($user->email)->send(new NovoClientMailable($user));
+
 
         return redirect(RouteServiceProvider::HOME);
     }

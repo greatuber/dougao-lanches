@@ -57,6 +57,7 @@
                          </div>
 
                       @endif
+
                     <div class=" block  overflow-auto">
                       <table class=" sm:w-full text-md font-light ">
                           <thead class="border-b ">
@@ -95,11 +96,11 @@
                                     <td class="text-gray-700 font-bold">
                                   
                                         @if($item->orderProductAdditional()->count()>0)
+                                        
                                             @foreach ($item->orderProductAdditional as $additional)
                                               {{ $additional->name ?? '' }},
                                             @endforeach  
-                                        @else
-                                          Sem adicionais
+                                        
                                         @endif
                                     </td>
                                     <td>
@@ -250,6 +251,13 @@
                   </form>
               </div>
 </div>
+      <script>
+        function playAlertSound() 
+        {
+        var audio = document.getElementById('alert-audio');
+        audio.play();
+        }
+      </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
     <script>
       function atualizarValor() {

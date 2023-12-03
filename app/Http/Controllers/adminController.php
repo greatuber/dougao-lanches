@@ -90,8 +90,10 @@ class adminController extends Controller
                           
                             $product = Order_product::where('user_id', $users)->delete();
                            
+                           
           
-                                return redirect()->back()->with('sucessesmessagem', 'pedido enviado com sucesso')->with('new_order', true);
+                            return redirect()->back()->with('sucessesmessagem', 'pedido enviado com sucesso');
+
                             
                             
                       }else{
@@ -109,7 +111,8 @@ class adminController extends Controller
                   $user      = Auth::user();
                   $users     = $user->id ?? '';
 
-          
+                  // event(new NewOrderCreated());
+                   
                   $date = now()->format('d/m/y H:i:s');
             
                   $order = Order::orderBY('id', 'desc')->where('status', 'processando')->get();

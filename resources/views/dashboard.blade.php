@@ -49,9 +49,7 @@
             margin-top: 10px;
             padding-right: 10px;
           }
-           .lime {
-            color: green;
-           }
+         
 
         </style>
         <title>CreateProduct</title>
@@ -61,37 +59,31 @@
         @vite('resources/css/app.css')
         
           <div class="baner  text-center">
+               
               <div class="flex ml-4">
-                  <div class="" @if ($toggle->is_open == 0)  inertex @endif>
+                <div class="" @if ($toggle->is_open == 0) inertex @endif>
                     @if ($toggle->is_open == 0 )
-                       <p> Lanchonete fechada</p>
-                       <p>abre as 18:00hs</p>
+                        @php
+                            // Verificar se o dia da semana é segunda-feira (considerando o formato padrão do Carbon)
+                            $isMonday = \Carbon\Carbon::now()->dayOfWeek === 1;
+                        @endphp
+            
+                        @if ($isMonday)
+                            <p>A lanchonete está fechada. Abre terça-feira às 18:00hs.</p>
+                        @else
+                            <p>Lanchonete fechada</p>
+                            <p>Abre às 18:00hs</p>
+                        @endif
                     @else
-                       <div class="lime">
-                        Lanchonete aberta
-                       </div>
+                        <div class="lime">
+                            Lanchonete aberta
+                        </div>
                     @endif
-                  </div>
-  
-                <form action="{{ route('toggle.open')}}" method="POST">
-                  @csrf
-                    @can('access')
-                        <button type="submit" class="bg-white text-black p-2 rounded mt-2 ml-2"
-                            @if ($toggle->is_open == 0) inertex @endif >
-                            @if ($toggle->is_open == 0)
-                              <div class="text-red-500">
-                                abrir lanchonete
-                              </div>
-                            @else
-                               <div class="lime">
-                                fechar lanchonete
-                               </div>
-                            @endif
-                        </button>
-                    @endcan
-                </form>
-    
-              </div>
+                </div>
+            
+                @include('layouts.closed-button')
+            </div>
+            
               <div class="cart">
                     <a href="{{ route('cart.show')}}"><i class="fa-solid fa-cart-flatbed-suitcase fa-beat text-white"></i>
                     <p class="text-white text-sm ">minhas compras</p></a>
