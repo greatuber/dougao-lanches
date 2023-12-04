@@ -14,33 +14,32 @@
           
            background-color: black;
         }
-     
-         .order {
+/*      
+        .order {
             background-color: rgba(212, 210, 210, 0.897);
         }
         .troco {
             background-color: rgba(212, 210, 210, 0.897);
-        }
+        } */
   
     </style>
 </head>
 <body>
   <div class="container mx-auto">
     <div class="text-center">
-        <h1 class="p-4">LISTAGEM DE PEDIDOS ACEITOS</h1>
-        
-          <div class="">
+        {{-- <h1 class="p-4">LISTAGEM DE PEDIDOS ACEITOS</h1> --}}
+          {{-- <div class="">
             @include('layouts.statusNavegation')
-          </div>
+          </div> --}}
 
          @forelse ($order as $item)
           
-        <form action="{{ route('pdf.imprimird',$item)}}" method="POST">
+        <form action="{{ route('pdf.imprimird',$item->id)}}" method="POST">
          
             @csrf 
                 <div class="pt-2 container overflow-auto">
-                    <div class="border p-2">
-                        <h1 class="font-bold troco p-2">forma de pagamento</h1>
+                    <div class="border p-2 ">
+                        <h3 class="font-bold troco p-2">forma de pagamento</h3>
 
                         <div class="" @if ($item->payment == 0) inertex @endif >
                             @if($item->payment == 0)
@@ -125,7 +124,7 @@
                
                  <div class=" container pt-4 pb-4">
 
-                    <h1 class="font-bold">ENDEREÇO PARA ENTREGA</h1>
+                    <h3 class="font-bold">ENDEREÇO PARA ENTREGA</h3>
             
                     <div class="flex flex-wrap content-start ">
                         <div class="p-2 text-start">
@@ -157,12 +156,9 @@
             
                     <div class=" flex">
                            <div class="">
-
+                               
+                <button type="submit" class="border rounded p-2 button hover:text-blue-800 mr-2">IMPRIMIR</button>
         </form>
-              <form action="{{ route('pdf.index',$item->id)}}" method="GET">
-                @csrf
-                <button type="submit" class="border rounded p-2 button hover:text-blue-800 mr-2"> PREPARAR P/ IMPRIMIR</button>
-              </form>
                            </div>
                            <div class="">
                                 <form action="{{route('status.product',$item->id)}}" method="POST">

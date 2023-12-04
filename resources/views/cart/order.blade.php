@@ -48,8 +48,6 @@
               </script>
           @endif
 
-    
-          
          @forelse ($order as  $item)
         
             <div class="card p-2">

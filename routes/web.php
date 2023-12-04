@@ -98,7 +98,7 @@ Route::get('/delivereds',[deliveredController::class, 'index'])->name('status.de
 
     //   controller que vai gerar pdf para impressão
 
-// Route::post('/pdf,{id}',[pdfController::class, 'index'])->name('pdf.index');
+Route::get('/pdfpreper,{id}',[pdfController::class, 'index'])->name('pdf.index');
  
         // rota que imprimir de fato
 Route::post('/pdfimprimird,{id}',[pdfController::class, 'create'])->name('pdf.imprimird');

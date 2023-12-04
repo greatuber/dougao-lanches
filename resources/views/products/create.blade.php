@@ -22,6 +22,7 @@
    .green {
     background-color: rgb(21, 185, 21);
    }
+
   
     </style>
 
@@ -82,10 +83,10 @@
                  </a> --}}
                </div>
                @if(session('success'))
-               <div class="text-green-600">
-                   {{ session('success')}}  
-               </div>
-             @endif
+                  <div class="text-green-600">
+                      {{ session('success')}}  
+                  </div>
+                @endif
              </form>
          
                 
@@ -110,6 +111,10 @@
         </div> --}}
          </div>
 
+              @if (session('update'))
+                  <p class="text-green-600 ">{{ session('update')}}</p>
+              @endif
+              
            <div class=" orange bg-orange-500 w-full  pr-4 overflow-auto">
              <table class="w-full  ">
                 <thead>
@@ -134,6 +139,9 @@
                      <hr class="linear">
                    </td>
                    <td class="">{{number_format($products->price,2,',','.')}}</td>
+                   
+               
+
                    <td class="p-2  flex max-w-full">
                     <button class="btn btn-success" data-bs-toggle="modal"
                     data-bs-target="#firstModal{{$products->id}}"><i class="fa-regular fa-pen-to-square "></i></button>

@@ -28,7 +28,7 @@ class CreateController extends Controller
                         'name'          => $request->name,
                         'description'   => $request->description,
                         'price'         => $request->price,
-                        'category_id'  =>$request->category,
+                        'category_id'   =>$request->category,
                     ]);
 
                     $product = Product::all();
@@ -46,9 +46,9 @@ class CreateController extends Controller
     public function update(Request $request, $id)
            {
                     $product = Product::findOrFail($id);
-                //    dd($product);
+               
                     $product->update($request->all());
                
-                    return redirect()->route('create.product');
+                    return redirect()->route('create.product')->with('update', 'produto atualizado com sucesso');
            }   
 }

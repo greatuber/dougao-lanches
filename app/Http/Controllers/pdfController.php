@@ -16,6 +16,11 @@ class pdfController extends Controller
      */
     public function index(Request $request, $id)
         {
+
+            $date = now()->format('d/m/y H:i:s');
+
+            $order = Order::where(['status' => ('aceito')])->get();
+            return view('status.impress',compact('order', 'date'));
         
         }
     /**
@@ -37,7 +42,7 @@ class pdfController extends Controller
             $date = now()->format('d/m/y H:i:s');
 
             $order = Order::where(['status' => ('aceito')])->get();
-            $pdf = PDF::loadView('status.index', compact('order', 'date'));
+            $pdf = PDF::loadView('status.impress', compact('order', 'date'));
             
             return $pdf->setPaper('A4','landscape')->stream('imprimi');
             

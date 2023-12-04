@@ -18,11 +18,11 @@
                             @if ($toggle->is_open == 0) inertex @endif >
                             @if ($toggle->is_open == 0)
                               <div class="text-red-500">
-                                abrir lanchonete
+                                  abrir lanchonete
                               </div>
                             @else
                                <div class="lime">
-                                fechar lanchonete
+                                  fechar lanchonete
                                </div>
                             @endif
                         </button>
