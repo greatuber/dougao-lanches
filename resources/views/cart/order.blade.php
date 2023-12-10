@@ -38,14 +38,14 @@
                 @include('layouts.statusNavegation')
               </div>
               @if(session('new_order'))
-              <script>
+              {{-- <script>
                   Echo.channel('new-order')
                       .listen('NewOrderCreated', (event) => {
                           // Adicione aqui a lógica para reproduzir o som, por exemplo, usando o Web Audio API
                           var audio = new Audio('../../../public/sounds/new_order.mp3');
                           audio.play();
                       });
-              </script>
+              </script> --}}
           @endif
 
          @forelse ($order as  $item)

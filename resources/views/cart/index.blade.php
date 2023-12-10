@@ -24,7 +24,14 @@
   
       color: green;
      }
-
+     .wdt {
+      
+    
+      margin-left: 40px;
+      margin-right: 40px;
+     }
+  
+ 
    
     </style>
     @vite('resources/css/app.css')
@@ -108,7 +115,7 @@
                                       <form action="{{ route('cart.delete', $item->id) }}" method="POST">
                                         @csrf
                                         <div class="button border rounded">
-                                            <button class="rounded text-red-500 p-2 ml-60 font-bold">EXCLUIR</button>
+                                            <button class="rounded text-red-500 p-2 ml-60 font-bold text-sm bg-white">EXCLUIR</button>
                                         </div>
                                     </form>
                                     </td>
@@ -120,17 +127,20 @@
                           </tbody>
                       </table>
                     </div>
+                     <div class="text-center">
 
-                            <div class="sm:w-96 sm:ml[width:150px]">
-                                  <div class="bg-white rounded border pt-2 mt-2">
-                                  <h1 class="font-bold text-gray-700 pt-2 pb-2">TOTAL</h1>
+
+                      <div class="text-center container">
+                        <div class="rounded border pt-2 mt-2 bg-white wdt">
+                            <h1 class="font-bold text-gray-700 pt-2 pb-2">TOTAL</h1>
                 <form action="{{route('admin.create')}}"  method="post">
-                        @csrf
-                                  <samp  class=" font-bold "  id="toremove"> R$ @money($total)</samp>
-                                  <input type="hidden" name="total" value=" @money($total)">
-                                  <samp  class=" font-bold" id="delivery"></samp>
-                                </div>
-                            </div>
+                  @csrf
+                            <samp  class=" font-bold "  id="toremove"> R$ @money($total)</samp>
+                            <input type="hidden" name="total" value=" @money($total)">
+                            <samp  class=" font-bold" id="delivery"></samp>
+                       </div>
+                     </div>
+                     </div>
                                  
                     <div class=" pb-2 mt-2">
                              <div class="text-center">
@@ -167,7 +177,7 @@
                                     @enderror
                           </div>
                           <div class="pl-4 grid-templates-rows">
-                                <input type="text" class="rounded text-sm" name="observation" id="observation" placeholder="ex: troco para 50 reais">
+                                <input type="text" class="rounded text-sm " name="observation" id="observation" placeholder="ex: troco para 50 reais">
                           </div>
                           
                             <div class="">
@@ -190,62 +200,65 @@
                         @endif
                     
                   <form action="{{ route('adress.create')}}" method="POST">
-                    @csrf
-                        <div class="mb-4 ">
-                                    <label class="block text-gray-700 text-sm font-bold mb-2" for="Produto">CIDADE</label>
-                                    <input autocomplete="off" value="{{ $address->city ?? ''}}" class="shadow appearance-none border rounded sm:w-full py-2 px-3 text-gray-700  leading-tight focus:outline-none focus:shadow-outline" id="city" type="text" placeholder="digite a cidade" name="city">
-                                      @error('city')
-                                      <div class="bg-black p-2 ">
-                                        <span class="error text-white ">{{ $message }}</span>
+                    @csrf  
+                            <div class="container">
+                                <div class="mb-4 sachadow-black">
+                                  <label class="block text-gray-700 text-sm font-bold mb-2" for="Produto">CIDADE</label>
+                                  <input autocomplete="off" value="{{ $address->city ?? ''}}" class="shadow-balck appearance-none border rounded sm:w-full py-2 px-3 text-gray-700  leading-tight focus:outline-none focus:shadow-outline" id="city" type="text" placeholder="digite a cidade" name="city">
+                                    @error('city')
+                                    <div class="bg-black p-2 ">
+                                      <span class="error text-white ">{{ $message }}</span>
+                                    </div>
+                                    @enderror
+                                </div>
+                                <div class="mb-4">
+                                  <label class="block text-gray-700 text-sm font-bold mb-2" for="Produto">Bairro</label>
+                                  <input autocomplete="off" value=" {{ $address->district ?? ''}}"  class="shadow appearance-none border rounded  sm:w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="bairro" type="text" placeholder="digite o Bairro" name="district">
+                                    @error('district')
+                                      <div class="bg-black p-2">
+                                        <span class="error text-white">{{ $message }}</span>
                                       </div>
-                                      @enderror
-                                  </div>
-                                  <div class="mb-4">
-                                    <label class="block text-gray-700 text-sm font-bold mb-2" for="Produto">Bairro</label>
-                                    <input autocomplete="off" value=" {{ $address->district ?? ''}}"  class="shadow appearance-none border rounded  sm:w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="bairro" type="text" placeholder="digite o Bairro" name="district">
-                                      @error('district')
-                                        <div class="bg-black p-2">
-                                          <span class="error text-white">{{ $message }}</span>
-                                        </div>
-                                      @enderror
-                                  </div>
-                                  <div class="mb-4">
-                                    <label class="block text-gray-700 text-sm font-bold mb-2" for="Produto">Rua</label>
-                                    <input autocomplete="off" value=" {{ $address->street ?? ''}}" class="shadow appearance-none border rounded sm:w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="street" type="text" placeholder="digite sua Rua" name="street">
-                                      @error('street')
-                                        <div class="bg-black p-2">
-                                          <span class="error text-white">{{ $message }}</span>
-                                        </div>
-                                      @enderror
-                                  </div>
-                                  <div class="mb-4">
-                                    <label class="block text-gray-700 text-sm font-bold mb-2" for="Produto">Número</label>
-                                    <input autocomplete="off" value=" {{ $address->number ?? ''}}" class="shadow appearance-none border rounded sm:w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="number"  placeholder="digite seu numero" name="number">
-                                      @error('number')
-                                        <div class="bg-black p-2">
-                                          <span class="error text-white">{{ $message }}</span>
-                                        </div>
-                                      @enderror
-                                  </div>
-                                  <div class="mb-4">
-                                    <label class="block text-gray-700 text-sm font-bold mb-2" for="Produto">CEP</label>
-                                    <input autocomplete="off" value=" {{ $address->zipcode ?? ''}}"  class="shadow appearance-none border rounded sm:w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="street"  placeholder="digite seu cep" name="zipcode">
-                                      @error('zipcode')
-                                        <div class="bg-black p-2">
-                                          <span class="error text-white">{{ $message }}</span>
-                                        </div>
-                                      @enderror
-                                  </div>
-                                  <div class="mb-4 ">
-                                    <label class="block text-gray-700 text-sm font-bold mb-2" for="Produto">Complemento</label>
-                                    <input autocomplete="off" value=" {{ $address->complement ?? ''}}" class="shadow  appearance-none border rounded sm:w-full py-3 px-3 pb-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="complement" type="text" placeholder="digite um complemento" name="complement">
-                                      @error('complement')
-                                        <div class="bg-black p-2">
-                                          <span class="error text-white">{{ $message }}</span>
-                                        </div>
-                                      @enderror
-                                  </div>
-                        <div class="pb-4 ">
+                                    @enderror
+                                </div>
+                                <div class="mb-4">
+                                  <label class="block text-gray-700 text-sm font-bold mb-2" for="Produto">Rua</label>
+                                  <input autocomplete="off" value=" {{ $address->street ?? ''}}" class="shadow appearance-none border rounded sm:w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="street" type="text" placeholder="digite sua Rua" name="street">
+                                    @error('street')
+                                      <div class="bg-black p-2">
+                                        <span class="error text-white">{{ $message }}</span>
+                                      </div>
+                                    @enderror
+                                </div>
+                                <div class="mb-4">
+                                  <label class="block text-gray-700 text-sm font-bold mb-2" for="Produto">Número</label>
+                                  <input autocomplete="off" value=" {{ $address->number ?? ''}}" class="shadow appearance-none border rounded sm:w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="number"  placeholder="digite seu numero" name="number">
+                                    @error('number')
+                                      <div class="bg-black p-2">
+                                        <span class="error text-white">{{ $message }}</span>
+                                      </div>
+                                    @enderror
+                                </div>
+                                <div class="mb-4">
+                                  <label class="block text-gray-700 text-sm font-bold mb-2" for="Produto">CEP</label>
+                                  <input autocomplete="off" value=" {{ $address->zipcode ?? ''}}"  class="shadow appearance-none border rounded sm:w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="street"  placeholder="digite seu cep" name="zipcode">
+                                    @error('zipcode')
+                                      <div class="bg-black p-2">
+                                        <span class="error text-white">{{ $message }}</span>
+                                      </div>
+                                    @enderror
+                                </div>
+                                <div class="mb-4 ">
+                                  <label class="block text-gray-700 text-sm font-bold mb-2" for="Produto">Complemento</label>
+                                  <input autocomplete="off" value=" {{ $address->complement ?? ''}}" class="shadow  appearance-none border rounded sm:w-full py-3 px-3 pb-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="complement" type="text" placeholder="digite um complemento" name="complement">
+                                    @error('complement')
+                                      <div class="bg-black p-2">
+                                        <span class="error text-white">{{ $message }}</span>
+                                      </div>
+                                    @enderror
+                                </div>
+                            </div>
+                               
+                        <div class="pb-4">
                           <button class="border p-2 rounded text-gray-700 bg-white  font-bold hover:orange-500">CADASTRAR</button>
                         </div>
                   </form>
@@ -259,42 +272,43 @@
         }
       </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
-    <script>
-      function atualizarValor() {
-              const opcoes = document.getElementsByName('delivery');
-              var toremove = document.getElementById('toremove');
-              var delivery = document.getElementById('delivery');
-              let total = "<?php echo $total; ?>";
-              const taxa = 6.00;
-              let totalAmount = 0;
-          
-          for (let i = 0; i <opcoes.length; i++) {
-              if (opcoes[i].checked) {
-                
-                  if (opcoes[i].value === '0') {
-                    
-                      delivery.style.display = 'none';
-                      toremove.style.display = 'block';
-                    
-                  } else if (opcoes[i].value === '1') {
+    <script> 
+    function atualizarValor() {
+    const opcoes = document.getElementsByName('delivery');
+    var toremove = document.getElementById('toremove');
+    var delivery = document.getElementById('delivery');
+    let total = "<?php echo $total; ?>";
+    const taxa = 6.00;
+    let totalAmount = 0;
 
-                    toremove.style.display = 'none';
-                    delivery.style.display = 'block';
-                    totalAmount = parseFloat(total) + parseFloat(taxa);
-                    
-                  }
-              }
-                    totalAmount = totalAmount.toFixed(2);
-                    totalAmount = totalAmount.replace(".",",");
-                    delivery.innerHTML = 'R$' + "_" + totalAmount;
-          }
-      }
-  
+for (let i = 0; i <opcoes.length; i++) {
+    if (opcoes[i].checked) {
+      
+        if (opcoes[i].value === '0') {
+          
+            delivery.style.display = 'none';
+            toremove.style.display = 'block';
+          
+        } else if (opcoes[i].value === '1') {
+
+          toremove.style.display = 'none';
+          delivery.style.display = 'block';
+          totalAmount = parseFloat(total) + parseFloat(taxa);
+          
+        }
+    }
+          totalAmount = totalAmount.toFixed(2);
+          totalAmount = totalAmount.replace(".",",");
+          delivery.innerHTML = 'R$' + "_" + totalAmount;
+}
+}
+    </script>
+      
    
      
   
 
-    </script>
+   
 </body>
 </html>
  

@@ -36,6 +36,10 @@
             margin-top: 15px;
             padding-right: 10px;
           }
+    .color{
+      background-color: rgba(223, 91, 91, 0.726);
+    }
+         
       
     </style>
 
@@ -53,8 +57,8 @@
         @endif
       </div>
       <div class="cart">
-        <a href="{{ route('cart.show')}}"><i class="fa-solid fa-cart-shopping text-white"></i></i></a>
-        <p class="text-white text-sm ">minhas compras</p>
+        <a href="{{ route('cart.show')}}"><i class="fa-solid fa-cart-shopping text-yellow"></i></i></a>
+        <p class="text-yellow text-sm ">minhas compras</p>
       </div>
        
         @include('layouts.baner')
@@ -155,7 +159,7 @@
                 <td class="">
                     <details>
                     <summary>INGREDIENTES</summary>
-                    <p class="text-center mr-12 border border-blue-800 bg-slate-900 p-2 rounded">{{$products->description}}</p>
+                    <p class="text-center mr-12 border border-blue-800 color text-white p-2 rounded">{{$products->description}}</p>
                     </details>
                     <hr class="linear">
                 </td>

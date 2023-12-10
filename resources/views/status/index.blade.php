@@ -41,8 +41,8 @@
                 <div class="pt-2 container overflow-auto">
                     <div class="border p-2">
                         <h1 class="font-bold troco p-2">forma de pagamento</h1>
-
-                        <div class="" @if ($item->payment == 0) inertex @endif >
+{{-- @dd($item) --}}
+                        {{-- <div class="" @if ($item->payment == 0) inertex @endif >
                             @if($item->payment == 0)
                              
                                 <p>CARTÃO</p>
@@ -50,9 +50,9 @@
                                 <p>DINHEIRO</p>
                              
                             @endif
-                        </div>
+                        </div> --}}
                         
-                        {{-- <p>{{ $item->payment ? 'DINHEIRO' : 'CARTÃO' }} </p> --}}
+                        <p>{{ $item->payment ? 'DINHEIRO' : 'CARTÃO' }} </p>
                     
                         <p class="troco p-2">{{ $order[0]->observation}}</p>
                     </div>

@@ -1,0 +1,32 @@
+
+.container {
+    font-family: 'Chela One', cursive;
+    font-family: 'Roboto', sans-serif;                       
+  }
+  .price {
+     font-size: 20px;
+    font-weight: bold;
+  }
+  .add {
+    background-color: chartreuse;
+    color: green;
+  }
+  .icon {
+    font-size: 30px;
+  color: red;
+  margin-left: 15px;
+  margin-top: 3px;
+  }
+  .success{
+    border: 2px solid green;
+    padding: 4px;
+    color: green;
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  .cart{
+    float:right;
+    margin-top: 10px;
+    padding-right: 10px;
+  }
+ 

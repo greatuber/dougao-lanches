@@ -14,10 +14,7 @@
            
                  {{-- select --}}
             <link rel="stylesheet" href="../css/bootstrap-multselect.css" type="text/css"/>
-         
-
             
-
         <style>
           .container {
             font-family: 'Chela One', cursive;
@@ -49,6 +46,9 @@
             margin-top: 10px;
             padding-right: 10px;
           }
+          .color{
+            background-color: rgba(223, 91, 91, 0.726);
+          }
          
 
         </style>
@@ -72,7 +72,7 @@
                             <p>A lanchonete está fechada. Abre terça-feira às 18:00hs.</p>
                         @else
                             <p>Lanchonete fechada</p>
-                            <p>Abre às 18:00hs</p>
+                            <p>Abre hoje às 18:00 hs</p>
                         @endif
                     @else
                         <div class="lime">
@@ -85,12 +85,12 @@
             </div>
             
               <div class="cart">
-                    <a href="{{ route('cart.show')}}"><i class="fa-solid fa-cart-flatbed-suitcase fa-beat text-white"></i>
-                    <p class="text-white text-sm ">minhas compras</p></a>
+                    <a href="{{ route('cart.show')}}"><i class="fa-solid fa-cart-flatbed-suitcase fa-beat text-yellow"></i>
+                    <p class="text-yellow text-2xl ">minhas compras</p></a>
                 <div class="">
                
-                      <p class="text-white text-sm ">Status do seu pedido de numero: <span class="text-lg">{{$order->id ?? ''}}</span></p>
-                      <p class="text-black text-bold ">{{$order->status ?? ''}}</p>
+                      <p class="text-yellow text-sm ">Status do seu pedido de numero: <span class="text-lg">{{$order->id ?? ''}}</span></p>
+                      <p class="text-yellow  ">{{$order->status ?? ''}}</p>
               
                 </div>
               </div>
@@ -205,7 +205,7 @@
                     <td class="">
                         <details>
                         <summary>INGREDIENTES</summary>
-                        <p class="text-start mr-12 border border-blue-800 bg-white p-2 rounded">{{$products->description}}</p>
+                        <p class="text-start text-white mr-12 border border-blue-800 color p-2 rounded">{{$products->description}}</p>
                         </details>
                         <hr class="linear">
                     </td>
@@ -220,15 +220,6 @@
         </div>
          @vite('resources/js/app.js')
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-        <script src="../js/bootstrap-multiselect.js"></script>
-        <script src="https://u3r3f6s2.rocketcdn.me/jquery.min.js"></script>
-        <script src="https://u3r3f6s2.rocketcdn.me/bootstrap/4/js/bootstrap.min.js"></script>
-        <script type="text/javascript">
-          $(document).ready(function() {
-              $('#additional').multiselect();
-          });
-      </script>
     </body>
   </html>
 

@@ -41,7 +41,7 @@
                     <div class="border p-2 ">
                         <h3 class="font-bold troco p-2">forma de pagamento</h3>
 
-                        <div class="" @if ($item->payment == 0) inertex @endif >
+                        {{-- <div class="" @if ($item->payment == 0) inertex @endif >
                             @if($item->payment == 0)
                              
                                 <p>CARTÃO</p>
@@ -49,9 +49,9 @@
                                 <p>DINHEIRO</p>
                              
                             @endif
-                        </div>
-                        
-                        {{-- <p>{{ $item->payment ? 'DINHEIRO' : 'CARTÃO' }} </p> --}}
+                        </div> --}}
+                        {{-- @dd($item) --}}
+                        <p>{{ $item->payment ? 'DINHEIRO' : 'CARTÃO' }} </p>
                     
                         <p class="troco p-2">{{ $order[0]->observation}}</p>
                     </div>
@@ -141,11 +141,11 @@
                         </div>
                         <div class="p-2 text-start">
                             <label for="">Numero:</label>
-                            <input class="rounded border" type="number" value="{{$item->orderUser->address[0]->number ?? ''}}">
+                            <input class="rounded border" type="text" value="{{$item->orderUser->address[0]->number ?? ''}}">
                         </div>
                         <div class="p-2 text-start">
                             <label for="">Cep:</label>
-                            <input class="rounded border" type="number" value="{{$item->orderUser->address[0]->zipcode ?? ''}}">
+                            <input class="rounded border" type="text" value="{{$item->orderUser->address[0]->zipcode ?? ''}}">
                         </div>
                         <div class="p-2 text-start">
                             <label for="">complemento:</label>

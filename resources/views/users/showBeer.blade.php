@@ -45,8 +45,8 @@
             @endif
           </div>
       <div class="cart">
-        <a href="{{ route('cart.show')}}"><i class="fa-solid fa-cart-shopping text-white"></i></i></a>
-        <p class="text-white text-sm">minhas compras</p>
+        <a href="{{ route('cart.show')}}"><i class="fa-solid fa-cart-shopping text-yellow"></i></i></a>
+        <p class="text-yellow text-sm">minhas compras</p>
       </div>
         
         @include('layouts.baner')
