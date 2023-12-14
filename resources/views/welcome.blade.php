@@ -10,7 +10,7 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
         <link  rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-       
+        <script src="https://kit.fontawesome.com/03e947ed86.js" crossorigin="anonymous"></script>
         <style>
         .baner {
           text-align: center;
@@ -18,6 +18,9 @@
           color: yellow;
           width: 100%;
           font-size: 35px;
+        }
+        .icons{
+            width: 300px;
         }
         </style>
 
@@ -53,53 +56,51 @@
                             <img src="{{asset('image/hamburgueorange.png')}}" alt="Imagem de Lanches" class="border-none"> 
                         </div> --}}
                     </div>
-                    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between px-4">
-                        <div class="">
+                    <div class="container mx-auto flex flex-col md:flex-row items-center  px-4">
+                        <div class="text-end">
                                 <h1 class="text-3xl text-white font-bold mb-2">Bem-vindo(a) ao Dougão Lanches</h1>
-                                <div class="grid grid-cols-3">
-                                    <p class="col-span-1 mb-4 text-white text-start">
+                                <div class="">
+                                    <p class=" mb-4 text-white  text-left">
                                         Aqui você encontra o melhor lanche da cidade, com ingredientes
                                         frescos e de qualidade. Venha matar sua fome com a gente, é só cadastra aqui no delivery do 
                                         Dougão,e fazer seu pedido por aqui mesmo sem demora e sem borocracia,forma de pagamentos,dinheiro,cartão e pix sendo efetuado 
-                                        para entregador na hora da entrega.
-                                    </p>
-                                    <p class="col-span-2 mb-4 text-white text-start">
-                                        Aqui você encontra o melhor lanche da cidade, com ingredientes
-                                        frescos e de qualidade. Venha matar sua fome com a gente, é só cadastra aqui no delivery do 
-                                        Dougão,e fazer seu pedido por aqui mesmo sem demora e sem borocracia,forma de pagamentos,dinheiro,cartão e pix sendo efetuado 
-                                        para entregador na hora da entrega.
-                                    </p>
-                                    <div class="">
-                                        {{-- <h1>aqui</h1> --}}
-                                    </div>  
-                               
+                                        para entregador na hora da entrega, 
+                                        aberto de terça a domingo apartir das 19:00 hr e fechamento as 12:00 hr
 
+                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                                        Beatae illo quod officia enim repellendus, reiciendis obcaecati 
+                                        impedit labore dolor perspiciatis dolorem eius pariatur quis autem 
+                                        dolores, suscipit saepe iste voluptatibus.
+                                    </p>
                                 </div>
                         </div>
-                    </div>
+                   
                 
                     <!-- Rodapé -->
-                <footer class="bg-orange-500 py-4">
-                    <div class="container mx-auto  justify-between items-center px-4">
-                            <p class="text-white">Todos os direitos reservados - Dougão Lanches</p>
-                            <nav>
-                                <ul class="flex">
-                                    <li>
-                                        <a href="#"  class="text-white hover:text-gray-200 px-4 py-2  rounded-md">Facebook</a>
-                                    </li>
-                                    <li>
-                                        <a  href="#" class="text-white hover:text-gray-200 px-4 py-2 rounded-md">Instagram</a >
-                                    </li>
-                                    <li>
-                                        <a  href="#" class="text-white hover:text-gray-200 px-4 py-2 rounded-md">WhatsApp</a>
-                                    </li>
-                                </ul>   
-                            </nav>       
-                    </div>
-                </footer> 
-            </section>
-        </div>
+                            <footer class="bg-orange-500 py-4">
+                                <div class="container mx-auto  justify-between items-center ">
+                                      
+                                        <nav class="text-center">
+                                            <ul class="flex">
+                                                <li>
+                                                    <a href="https://www.facebook.com/alexandre.dv.2023 target_blanck"  class="text-white hover:text-gray-200 px-4 py-2 "><i class="fa-brands fa-square-facebook fa-2xl"></i></a>
+                                                </li>
 
+                                                <li>
+                                                    <a  href="#" class="text-white hover:text-gray-200 px-4 py-2 icons"><i class="fa-brands fa-instagram fa-2xl"></i></a >
+                                                </li>
+
+                                                <li>
+                                                    <a  href="https://api.whatsapp.com/send?phone=5535998464219  target_blanck" class="text-white hover:text-gray-200 px-4 py-2 icons"><i class="fa-brands fa-whatsapp fa-2xl"></i></a>
+                                                </li>
+
+                                            </ul>   
+                                        </nav>       
+                                </div>
+                            </footer> 
+                </section>
+        </div>
+    
     @vite('resources/js/app.js')
 </body>
 </html>

@@ -60,8 +60,8 @@
         
           <div class="baner  text-center">
                
-              <div class="flex ml-4">
-                <div class="" @if ($toggle->is_open == 0) inertex @endif>
+            <div class="flex ml-4">
+                <div class="pt-2" @if ($toggle->is_open == 0) inertex @endif>
                     @if ($toggle->is_open == 0 )
                         @php
                             // Verificar se o dia da semana é segunda-feira (considerando o formato padrão do Carbon)
@@ -74,14 +74,32 @@
                             <p>Lanchonete fechada</p>
                             <p>Abre hoje às 18:00 hs</p>
                         @endif
-                    @else
-                        <div class="lime">
-                            Lanchonete aberta
-                        </div>
-                    @endif
+                          @else
+                              <div class="lime pt-2">
+                                  Lanchonete aberta
+                              </div>
+                          @endif
                 </div>
+                
             
-                @include('layouts.closed-button')
+                <div class="p-2">
+                  @include('layouts.closed-button')
+                </div> 
+                      <div class="bg-white text-black rounded p-2 hidden">
+                        <form action="{{ route('update.admin')}}" method="post">
+                          @csrf
+                          <button type="submit">
+                            trocar para admin
+                        </button>
+                        </form>
+                      </div>
+                        @if(session('access'))
+                          <div class="text-green-600">
+                              <p>
+                                {{ session('access')}}
+                              </p>
+                          </div>
+                        @endif
             </div>
             
               <div class="cart">

@@ -15,7 +15,7 @@ class CreateController extends Controller
                     $category = Category::all();
                     $product = Product::where('category_id',1)->get();
                 
-                    return view('products.create',compact('category','product'));
+                    return view('products.showLanche',compact('category','product'));
 
             }
 
@@ -23,16 +23,20 @@ class CreateController extends Controller
       
             {
                     $category = Category::all();
+                    $price = $request->price;
+        
+                    $price = str_replace(',', '.', $request->price);
                     $product = Product::create
                     ([
                         'name'          => $request->name,
                         'description'   => $request->description,
-                        'price'         => $request->price,
-                        'category_id'   =>$request->category,
+                        'price'         => $price,
+                        'category_id'   => $request->category,
                     ]);
 
-                    $product = Product::all();
-                    return redirect()->route('create.product',compact('product','category'))->with('success','produto cadastrado com suceeso!');    
+                    $product::all();
+
+                    return redirect()->back()->with('success','produto cadastrado com suceeso!');
             }
 
     public function delete(Request $request,$id)
@@ -46,8 +50,10 @@ class CreateController extends Controller
     public function update(Request $request, $id)
            {
                     $product = Product::findOrFail($id);
+
+                    $formatadPrice  = str_replace(',', '.', $request->price);
                
-                    $product->update($request->all());
+                    $product->update(['price' => $formatadPrice] + $request->except('price') + $request->all());
                
                     return redirect()->route('create.product')->with('update', 'produto atualizado com sucesso');
            }   

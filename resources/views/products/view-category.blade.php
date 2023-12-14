@@ -44,36 +44,32 @@
             </div>
         @endif
    </form>
-   <a href="{{ route('create.product')}}">
-       <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-           Voltar
-       </button>
-   </a>
+
     
       <div class="container pt-2 ml-4">
           <table class="">
             <thead>
               <tr>
-                <th>NOME</th>
+                <th class="px-6 py-3">NOME</th>
                 <th>AÇOẼS</th>
               </tr>
                 
             </thead>
             <tbody>
               @foreach ($category as $item)
+              
               <tr class=" space-x-2">
-                <td class="p-2">{{ $item->name}}</td>
+                <td class="px-6 py-3">{{ $item->name}}</td>
                   <form action="{{ route('category.delete',$item->id)}}" method="post">
                      @csrf
-                 
+                     
                       <td>
                         <button type="submit">
-                        <i class="icon fa-sharp fa-solid fa-trash text-red-500"></i>
+                        <i class="icon fa-sharp fa-solid fa-trash text-red-500 fa-2xl"></i>
                       </button>
                       </td>
                   
                   </form>
-                
               </tr>
             
               @endforeach
@@ -82,6 +78,11 @@
           </table>
 
       </div>
+      <a href="{{ route('panel.admin')}}">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+            Voltar
+        </button>
+    </a>
 
  </div>
 

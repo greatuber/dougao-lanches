@@ -57,37 +57,96 @@
           
       @endif
    </form>
-   <a href="{{ route('create.product')}}">
-       <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-           Voltar
-       </button>
-   </a>
 
+    @if (session('updated'))
+       <div class="text-green-600">
+
+         {{ session('updated')}}
+
+       </div>
+        
+    @endif
    <div class="container pt-2 ml-4">
     <table class="">
       <thead>
         <tr>
-          <th>NOME</th>
-          <th>PREÇO</th>
-          <th>AÇÕES</th>
+          <th class="px-6 py-3">NOME</th>
+          <th class="px-6 py-3">PREÇO</th>
+          <th >AÇÕES</th>
         </tr>
           
       </thead>
       <tbody>
         @foreach ($additional as $item)
         <tr class=" space-x-2">
-          <td class="p-2">{{ $item->name}}</td>
-          <td>{{ $item->price}}</td>
+          <td class="px-6 py-3">{{ $item->name}}</td>
+          <td class="px-6 py-3">@money($item->price)</td>
             <form action="{{ route('additional.delete',$item->id)}}" method="post">
                @csrf
            
-                <td>
-                  <button type="submit">
-                  <i class="icon fa-sharp fa-solid fa-trash text-red-500"></i>
-                </button>
-                </td>
+          <td>
+            <button type="submit">
+              <i class="icon fa-sharp fa-solid fa-trash fa-2xl text-red-500"></i>
+            </button>
+          </td>
             
             </form>
+
+        
+              <td>
+                <button class="btn btn-success" data-bs-toggle="modal"
+                  data-bs-target="#firstModal{{$item->id}}">
+                  <i class="fa-regular fa-pen-to-square "></i>
+                </button>
+                <div class="modal fade" id="firstModal{{$item->id}}" tabindex="-1"
+                  aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                      <div class="modal-content">
+                          <div class="modal-header,btn btn-warning">
+                            <div class="text-center">
+                              <h1 class="modal-title pt-4" id="exampleModalLabel">ATUALIZAR</h1>
+                            </div>
+                            
+                              <button type="button" class="btn-close" data-bs-dismiss="modal"   aria-label="Close">
+                              </button>
+                          </div>
+                          <div class="modal-body">
+                              <form action="{{ route('additional.update',$item->id)}}" method="post">
+                                  @method('PUT')
+                                  @csrf
+                                  <div class="text">
+                                    <form class="grup-control">
+                                        <fieldset>
+                                            <div class="label text-center">
+                                              
+                                              <h1>PRODUTO</h1>
+                                              
+                                              <input type="text" class=" rounded" name="name" value="{{ $item->name }}"/><br>
+                                            </div>
+                                         
+                                            <div class="label3 text-center">
+                                              <h1>PREÇO</h1>
+                                              <input type="text" class=" rounded" name="price" value="@money($item->price)"/><br>
+                                            </div>
+                                          <button class="btn btn-primary text-with bg-primary mt-2" type="submit">Atualizar</button>
+                                        </fieldset>
+                                    </form>
+                                  </div>
+                              </form>
+                          </div>
+                              <div class="modal-footer mt-10">
+                                <button type="button" class="btn btn-warning"
+                                  data-bs-dismiss="modal">Cancelar
+                                </button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              
+              </td>
+           
+        
           
         </tr>
       
@@ -95,6 +154,11 @@
           
       </tbody>
     </table>
+    <a href="{{ route('panel.admin')}}">
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4  rounded focus:outline-none focus:shadow-outline" type="submit">
+          Voltar
+      </button>
+  </a>
 
 </div>
 

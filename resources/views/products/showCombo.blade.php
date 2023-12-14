@@ -36,15 +36,16 @@
 
     <div class="container">
          
-          <div class="baner p-12 font-bold">
-            @include('layouts.baner')
+          <div class="text-center pt-2">
+               <h1>ÁREA ADMINISTRATIVA</h1>
+                <h2>aqui você pode excluir,editar ou desativar um combo</h2>
           </div>
 
         <div class=" ">
-          <div class=" flex   bg-orange-500">
-            <a href="{{ route('showbeer')}}"> <div class=" border text-white p-2 mt-2 ml-12 rounded font-bold">BEBIDAS</div></a>
-            <a href="{{ route('user.bomboniere')}}">  <div class=" border text-white p-2 rounded mt-2 ml-2 font-bold">BOMBONIÉRE</div></a>
-            <a href="{{ route('create.product')}}">  <div class=" border text-white p-2 rounded mt-2 ml-2 font-bold">LANCHES</div></a>
+          <div class=" flex">
+            <a href="{{ route('showbeer')}}"> <div class=" border text-black p-2 mt-2 ml-12 rounded font-bold">BEBIDAS</div></a>
+            <a href="{{ route('user.bomboniere')}}">  <div class=" border text-black p-2 rounded mt-2 ml-2 font-bold">BOMBONIÉRE</div></a>
+            <a href="{{ route('create.product')}}">  <div class=" border text-black p-2 rounded mt-2 ml-2 font-bold">LANCHES</div></a>
         </div>
 
           {{-- <div class=" flex text-cnter  bg-orange-500">
@@ -54,7 +55,7 @@
           </div> --}}
         </div>
                   
-        <div class=" orange bg-orange-500 w-full sm:w-40 pr-4 overflow-auto">
+        <div class=" w-full sm:w-40 pr-4 overflow-auto">
             <table class="w-full ">
               <thead>
                 <tr>
@@ -75,96 +76,98 @@
                    
                     <hr class="linear">
                   </td>
-                  <td class="">{{number_format($products->price,2,',','.')}}</td>
+                  <td class="">{{number_format($products->price, 2, ',', '.')}}</td>
                   <td class="p-2 flex">
-                   <button class="btn btn-success" data-bs-toggle="modal"
-                   data-bs-target="#firstModal{{$products->id}}"><i class="fa-regular fa-pen-to-square "></i></button>
-                     <div class="modal fade" id="firstModal{{$products->id}}" tabindex="-1"
-                         aria-labelledby="exampleModalLabel" aria-hidden="true">
-                         <div class="modal-dialog">
-                             <div class="modal-content">
-                                 <div class="modal-header,btn btn-warning">
-                                  <div class="text-center">
-                                    <h1 class="modal-title pt-4" id="exampleModalLabel">ATUALIZAR</h1>
-                                  </div>
-                                  
-                                     <button type="button" class="btn-close" data-bs-dismiss="modal"   aria-label="Close">
-                                     </button>
-                                 </div>
-                                 <div class="modal-body">
-                                     <Form action="{{ route('update.product',$products->id)}}" method="post">
-                                         @method('PUT')
-                                         @csrf
-                                         <div class="text">
-                                           <form class="grup-control">
-                                               <fieldset>
-                                                   <div class="label text-center">
-                                                     
-                                                     <h1>PRODUTO</h1>
-                                                     
-                                                     <input type="text" class="bg-info rounded" name="name" value="{{ $products->name }}"/><br>
-                                                   </div>
-                                                   <div class="label2 text-center">
-                                                     <h1>DESCRIÇÃO</h1>
-                                                     <input type="text" class="bg-info rounded" name="description" value="{{$products->description }}"/><br>
-                                                   </div>
-                                                   <div class="label3 text-center">
-                                                     <h1>PREÇO</h1>
-                                                     <input type="" class="bg-info rounded" name="price" value="{{ number_format($products->price,2,'.',',' )}}"/><br>
-                                                   </div>
-                                                 <button class="btn btn-primary text-with bg-primary mt-2" type="submit">Atualizar</button>
-                                               </fieldset>
-                                           </form>
-                                         </div>
-                                     </Form>
-                                 </div>
-                                     <div class="modal-footer mt-10">
-                                     <button type="button" class="btn btn-warning"
-                                         data-bs-dismiss="modal">Cancelar</button>
-                                     </div>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                     <div class="pr-4 flex" >
-                       <form action="{{ route('delete.product',$products->id)}}" method="post">
-                         @method('DELETE')
-                         @csrf
-                         <button type="submit" class="" onclick="preventDefoult">
-                           <i class="icon fa-sharp fa-solid fa-trash text-white"></i>
-                         </button>
-                       </form>
-
-                       <form action="{{ route('product.update',$products->id)}}" method="POST" >
-                        @csrf
-                        <div class="flex">
-                          <div class="">
-                            <button type="submit" 
-                                class="toggle-button bg-white p-2 ml-2 rounded 
-                                @if($products->status == 0) inertex @endif">
-                            
-                                @if($products->status == 0)
-
-                                  <p class="pr-2 ">Desativar</p> 
-                                  
-                                @else
-                                  Ativar
-                                
-                                @endif
-                            </button>
-                          </div>
-
-                          <div class="">
-                              @if($products->status == 0)
-                              <button class="green text-white p-2 rounded ml-2 " onclick="preventDefoult"><i class="fa-regular fa-eye"></i></button>
-                              @else
-                              <button class="bg-white text-red-500 p-2 ml-2 rounded"><i class="fa-sharp fa-solid fa-eye-slash"></i></button>
-                              @endif
-                          </div>
+                        <button class="btn btn-success" data-bs-toggle="modal"
+                            data-bs-target="#firstModal{{$products->id}}">
+                            <i class="fa-regular fa-pen-to-square "></i>
+                        </button>
+                        <div class="modal fade" id="firstModal{{$products->id}}" tabindex="-1"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header,btn btn-warning">
+                                      <div class="text-center">
+                                        <h1 class="modal-title pt-4" id="exampleModalLabel">ATUALIZAR</h1>
+                                      </div>
+                                      
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"   aria-label="Close">
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <Form action="{{ route('update.product',$products->id)}}" method="post">
+                                            @method('PUT')
+                                            @csrf
+                                            <div class="text">
+                                              <form class="grup-control">
+                                                  <fieldset>
+                                                      <div class="label text-center">
+                                                        
+                                                        <h1>PRODUTO</h1>
+                                                        
+                                                        <input type="text" class="bg-info rounded" name="name" value="{{ $products->name }}"/><br>
+                                                      </div>
+                                                      <div class="label2 text-center">
+                                                        <h1>DESCRIÇÃO</h1>
+                                                        <input type="text" class="bg-info rounded" name="description" value="{{$products->description }}"/><br>
+                                                      </div>
+                                                      <div class="label3 text-center">
+                                                        <h1>PREÇO</h1>
+                                                        <input type="" class="bg-info rounded" name="price" value="{{ number_format($products->price, 2, ',', '.' )}}"/><br>
+                                                      </div>
+                                                    <button class="btn btn-primary text-with bg-primary mt-2" type="submit">Atualizar</button>
+                                                  </fieldset>
+                                              </form>
+                                            </div>
+                                        </Form>
+                                    </div>
+                                        <div class="modal-footer mt-10">
+                                        <button type="button" class="btn btn-warning"
+                                            data-bs-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                 
-                        </form>
-                     </div>
+                        <div class="pr-4 flex" >
+                          <form action="{{ route('delete.product',$products->id)}}" method="post">
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit" class="" onclick="preventDefoult">
+                              <i class="icon fa-sharp fa-solid fa-trash text-red-500"></i>
+                            </button>
+                          </form>
+
+                          <form action="{{ route('product.update',$products->id)}}" method="POST" >
+                            @csrf
+                            <div class="flex">
+                              <div class="">
+                                <button type="submit" 
+                                    class="toggle-button bg-white p-2 ml-2 rounded 
+                                    @if($products->status == 0) inertex @endif">
+                                
+                                    @if($products->status == 0)
+
+                                      <p class="pr-2 ">Desativar</p> 
+                                      
+                                    @else
+                                      Ativar
+                                    
+                                    @endif
+                                </button>
+                              </div>
+
+                              <div class="">
+                                  @if($products->status == 0)
+                                  <button class="green text-white p-2 rounded ml-2 " onclick="preventDefoult"><i class="fa-regular fa-eye"></i></button>
+                                  @else
+                                  <button class="bg-white text-red-500 p-2 ml-2 rounded"><i class="fa-sharp fa-solid fa-eye-slash"></i></button>
+                                  @endif
+                              </div>
+                            </div>
+                    
+                            </form>
+                        </div>
                  </td>
                  <td>
                  
@@ -174,7 +177,11 @@
               </tbody>
             </table>
          </div>
-
+         <a href="{{ route('panel.admin')}}">
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+              Voltar
+          </button>
+      </a>
     </div>
 
 

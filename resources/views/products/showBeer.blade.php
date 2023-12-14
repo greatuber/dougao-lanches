@@ -34,16 +34,18 @@
 
     <div class="container">
             
-      <div class="baner p-12">
-        @include('layouts.baner')
+      <div class=" text-center pt-2">
+        {{-- @include('layouts.baner') --}}
+        <h1 class="pb-2">ÁREA ADMINISTRATIVA</h1>
+        <h2 class="pb-2">aqui você pode excluir, atualizar ou desativar uma bebida</h2>
         
       </div>
 
     <div class="">
-      <div class=" flex text-cnter  bg-orange-500">
-        <a href="{{ route('showcombo')}}">   <div class=" border text-white p-2 rounded mt-2 ml-2 font-bold">COMBOS</div></a>
-        <a href="{{ route('create.product')}}">  <div class=" border text-white p-2 rounded mt-2 ml-2 font-bold">LANCHES</div></a>
-        <a href="{{ route('user.bomboniere')}}">  <div class=" border text-white p-2 rounded mt-2 ml-2 font-bold">BOMBONIÉRE</div></a>
+      <div class=" flex text-cnter">
+        <a href="{{ route('showcombo')}}">   <div class=" border text-black p-2 rounded mt-2 ml-2 font-bold">COMBOS</div></a>
+        <a href="{{ route('create.product')}}">  <div class=" border text-black p-2 rounded mt-2 ml-2 font-bold">LANCHES</div></a>
+        <a href="{{ route('user.bomboniere')}}">  <div class=" border text-black p-2 rounded mt-2 ml-2 font-bold">BOMBONIÉRE</div></a>
      </div>
 
      {{-- <div class=" flex text-cnter  bg-orange-500">
@@ -53,7 +55,7 @@
    </div> --}}
     </div>
             
-        <div class=" orange bg-orange-500 w-full sm:w-40 pr-4 overflow-auto">
+        <div class="  w-full sm:w-40 pr-4 overflow-auto">
             <table class="w-full ">
               <thead>
                 <tr>
@@ -61,6 +63,7 @@
                     <th class="p-2">BEBIDAS</th>
                     <th class="p-2">DESCRIÇÃO</th>
                     <th class="p-12" >PREÇO</th>
+                    <th class="">AÇOẼS</th>
                 </tr>
               </thead>
               <tbody class="">
@@ -104,7 +107,7 @@
                                                    </div>
                                                    <div class="label3 text-center m-2">
                                                      <h1>PREÇO</h1>
-                                                     <input type="" class="bg-info  rounded" name="price" value="{{number_format($products->price,2, '.', ',') }}"/><br>
+                                                     <input type="" class="bg-info  rounded" name="price" value="{{number_format($products->price, 2, ',', '.') }}"/><br>
                                                    </div>
                                                  <button class="btn btn-primary text-with bg-primary mt-2" type="submit">Atualizar</button>
                                                </fieldset>
@@ -125,7 +128,7 @@
                          @method('DELETE')
                          @csrf
                          <button type="submit" class="" onclick="preventDefoult">
-                           <i class="icon fa-sharp fa-solid fa-trash"></i>
+                           <i class="icon fa-sharp fa-solid fa-trash text-red-500"></i>
                          </button>
                        </form>
                        
@@ -168,7 +171,11 @@
               </tbody>
             </table>
          </div>
-
+              <a href="{{ route('panel.admin')}}">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    Voltar
+                </button>
+              </a>
     </div>
 
 

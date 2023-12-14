@@ -20,6 +20,8 @@ use App\Http\Controllers\ProductStatusController;
 use App\Http\Controllers\statusController;
 use App\Http\Controllers\statusRefusedController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\updateAdminController;
+use App\Http\Controllers\panelAdminController;
 use App\Http\Controllers\toggleController;
 use Illuminate\Support\Facades\Route;
 
@@ -135,9 +137,15 @@ Route::post('/categoryDelet,{id}', [CategoryController::class, 'destroy'])->name
 Route::get('/view-aditional', [AditionalController::class, 'index'])->name('view.aditional'); 
 Route::post('/create-additional', [AditionalController::class, 'create'])->name('create.additional'); 
 Route::post('/additionalDelete,{id}',[AditionalController::class, 'destroy'])->name('additional.delete');  
+Route::put('/additionalUpdate,{id}',[AditionalController::class, 'update'])->name('additional.update');
+
+    //    rota para adicionar administrador no sistema  
+
+Route::post('/update-admin',[updateAdminController::class, 'update'])->name('update.admin');    
  
+        //  view admin
 
-
-
+Route::get('/panel-admin',[panelAdminController::class, 'index'])->name('panel.admin');
         
 require __DIR__.'/auth.php';
+     

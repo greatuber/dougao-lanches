@@ -30,165 +30,43 @@
 </head>
 <body>
     @vite('resources/css/app.css')
-    <div class="container pt-2">
+
+    <div class="container pt-2 pb-2">
      
        <div class="text-center sm:ml-32 ml-32">
-          <div class="w-full center">
-                  <div class="w-full">
+          <div class=" center">
+                  <div class="">
                           <div class="  text-center pr-4 bg-orange-500 rounded">
-                            <h1 class="text-center text-white font-bold pb-2 pt-2">SEJA BEM VINDO AO SEU PAINEL ADMINISTRATIVO  {{Auth::user()->name}} </h1>
-                              <div class="text-center p-2 text-white font-bold"> <h1>CATEGORIAS</h1></div>
-                                  <div class="">
+                            <h1 class="text-center text-white font-bold  pt-2">SEJA BEM VINDO AO SEU PAINEL ADMINISTRATIVO</h1> <br>  
+                                  <h2 class="font-bold text-lg"> {{Auth::user()->name}} </h2>
+                                        <div class="text-center p-2 ">
+                                          <h1>CATEGORIAS</h1>
+                                        </div>
+                                  <div class="container pl-2 pb-2">
+
                                       <a href="{{ route('showbeer')}}" class=""><div class=" hover:bg-blue-700  border text-white p-2 mt-2 ml-2 rounded font-bold">BEBIDAS</div></a>
                                       <a href="{{ route('showcombo')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">COMBOS</div></a>
                                       <a href="{{ route('create.product')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">LANCHES</div></a>
                                       <a href="{{ route('user.bomboniere')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">BOMBONIÉRE</div></a>
                                       <a href="{{ route('order.show')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">PEDIDOS</div></a>
+                                          <div class="pt-2">
+                                            <h1>CADASTRO E ATUALIZAÇOÊS DE PRODUTOS</h1>
+                                          </div>
                                       <a href="{{ route('new.project')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">CADASTRAR NO PRODUTO</div></a>
                                       <a href="{{ route('view.category')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">CADASTRAR NOVA CATEGORIA</div></a>
                                       <a href="{{ route('view.aditional')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">CADASTRAR NOVO ADICIONAL</div></a>
-                                      <a href="{{ route('client.show')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">USER</div></a>
+                                      <a href="{{ route('client.show')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold mb-2">CLIENTES</div></a>
                                     
                                   </div>
-                        </div>
+                          </div>
                   </div>
 
-              @if (session('update'))
-                  <p class="text-green-600 ">{{ session('update')}}</p>
-              @endif
-              
-           <div class=" orange bg-orange-500 w-full  pr-4 overflow-auto">
-                <table class="w-full  ">
-                    <thead>
-                      <tr>
-                            {{-- <th></th>       --}}
-                          <th class="p-2">LANCHES</th>
-                          <th class="p-2">INGREDIENTES</th>
-                          <th class="p-2" >PREÇO</th>
-                      </tr>
-                    </thead>
-                  <tbody class="">
-                    @foreach ($product as $products)
-                    
-                        <tr>
-                          {{-- <td class="">{{$products->id}}-</td> --}}
-                          <td class="p-4 sm:w-60">{{$products->name}} <hr class="linear-1"></td>
-                          <td class="">
-                              <details>
-                                    <summary>INGREDIENTES</summary>
-                                    <p class="text-center mr-12 border border-blue-800 bg-white p-2 rounded">{{$products->description}}</p>
-                              </details>
-                            <hr class="linear">
-                          </td>
-                          <td class="">{{number_format($products->price,2,',','.')}}</td>
-                          
-                      
-
-                          <td class="p-2  flex max-w-full">
-                            <button class="btn btn-success" data-bs-toggle="modal"
-                            data-bs-target="#firstModal{{$products->id}}"><i class="fa-regular fa-pen-to-square "></i></button>
-                              <div class="modal fade" id="firstModal{{$products->id}}" tabindex="-1"
-                                  aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog">
-                                      <div class="modal-content">
-                                          <div class="modal-header,btn btn-warning">
-                                              <h5 class="modal-title pt-4" id="exampleModalLabel">Atualizar</h5>
-                                              <button type="button" class="btn-close" data-bs-dismiss="modal"   aria-label="Close">
-                                              </button>
-                                          </div>
-                                          <div class="modal-body">
-                                              <Form action="{{ route('update.product',$products->id)}}" method="post">
-                                                  @method('PUT')
-                                                  @csrf
-                                                  <div class="text">
-                                                    <form class="grup-control">
-                                                        <fieldset>
-                                                            <div class="label">
-                                                              <h1>PRODUTO</h1>
-                                                              <input type="text" class=" m-2 bg-info rounded" name="name" value="{{ $products->name }}"/><br>
-                                                            </div>
-                                                            <div class="label2">
-                                                              <h1>DESCRIÇÃO</h1>
-                                                              <input type="text" class=" m-2 bg-info rounded" name="description" value="{{ $products->description }}"/><br>
-                                                            </div>
-                                                            <div class="label3">
-                                                              <h1>PREÇO</h1>
-                                                              <input type="" class="bg-info rounded m-2" name="price" value="{{number_format($products->price,2, '.', ',')}}"/><br>
-                                                            </div>
-                                                          <button class="btn btn-primary text-with bg-primary mt-2" type="submit">Atualizar</button>
-                                                        </fieldset>
-                                                    </form>
-                                                  </div>
-                                              </Form>
-                                          </div>
-                                              <div class="modal-footer mt-10">
-                                              <button type="button" class="btn btn-warning"
-                                                  data-bs-dismiss="modal">Cancelar</button>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                            
-                              
-                              <div class="pr-2 produto flex flex-row lg:flex-row  w-full" w-full>
-                                <form action="{{ route('delete.product',$products->id)}}" method="post">
-                                    @method( 'DELETE' )
-                                    @csrf
-                                    <button type="submit" class="" onclick="preventDefoult">
-                                      <i class="icon fa-sharp fa-solid fa-trash"></i>
-                                    </button>
-                                </form>
-
-                                <form action="{{ route('product.update',$products->id)}}" method="POST" >
-                                    @csrf
-                                <div class="flex">
-                                      <div class="">
-                                        <button type="submit" 
-                                            class="toggle-button bg-white p-2 ml-2 rounded 
-                                            @if($products->status == 0) inertex @endif">
-                                            {{-- <i class="fa-solid fa-toggle-on"></i> --}}
-                                        
-                                            @if($products->status == 0)
-
-                                              <p class="pr-2 ">Desativar</p> 
-                                              
-                                            @else
-                                              Ativar
-                                            
-                                            @endif
-                                        </button>
-                                      </div>
-
-                                      <div class="">
-                                          @if($products->status == 0)
-                                          <button class="green text-white p-2 rounded ml-2 " onclick="preventDefoult"><i class="fa-regular fa-eye"></i></button>
-                                          @else
-                                          <button class="bg-white text-red-500 p-2 ml-2 rounded"><i class="fa-sharp fa-solid fa-eye-slash"></i></button>
-                                          @endif
-                                      </div>
-                                </div>
-                                    
-                                </form>
-                              </div>
-                              
-                          </td>
-                          <td>
-                          
-                          </td>
-                        </tr>
-                    @endforeach
-                  </tbody>
-                </table>
-           </div>
              <p class="text-center text-gray-500 text-xs">
         
-               &copy;2023 todos os direitos reservados.
+               &copy;2023 todos os direitos reservados desenvolvendor web Alexandre Roberto.
              </p>
          </div>
     </div>
-    {{-- {{ $product->links()}} --}}
-
     @vite('resources/js/app.js')
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
