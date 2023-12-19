@@ -9,26 +9,28 @@ use App\Http\Requests\Requestadress;
 use Illuminate\Http\Request;
 
 class AdressController extends Controller
-{
-public function create(Requestadress  $request){
-    $cart = Order_product::all();
-    $user = auth::user();
-    $users = $user->id;
+        {
+        public function create(Requestadress  $request)
+        {
+            $cart = Order_product::all();
+            $user = auth::user();
+            $users = $user->id;
 
-    $adress = Address:: create([
-        'city'          => $request->city,
-        'district'      => $request->district,      
-        'street'        => $request->street,
-        'number'        => $request->number,
-        'zipcode'       => $request->zipcode,
-        'complement'    => $request->complement,
-        'user_id'       => $users,
+            $address = Address:: create([
+                'city'          => $request->city,
+                'district'      => $request->district,      
+                'street'        => $request->street,
+                'number'        => $request->number,
+                'zipcode'       => $request->zipcode,
+                'complement'    => $request->complement,
+                'user_id'       => $users,
 
-    ]);
-   
-    return redirect()->route('cart.show',compact('user','cart'))
-                     ->with('success','Endereço Cadastrado com sucesso');
-}
+            ]);
 
+          
+        
+            return redirect()->route('cart.show',compact('user','cart'))
+                             ->with('success','Endereço Cadastrado com sucesso');
+        }
 
 }

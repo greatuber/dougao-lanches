@@ -37,7 +37,7 @@
           <div class=" center">
             
 
-              @if (session('update'))
+              @if ( session('update'))
                   <p class="text-green-600 ">{{ session('update')}}</p>
               @endif
               <div class="text-center pt-2">
@@ -127,10 +127,10 @@
                                   
                                   <div class="pr-2 produto flex flex-row lg:flex-row  w-full" w-full>
                                     <form action="{{ route('delete.product',$products->id)}}" method="post">
-                                        @method( 'DELETE' )
+                                        @method('DELETE' )
                                         @csrf
                                         <button type="submit" class="" onclick="preventDefoult">
-                                          <i class="icon fa-sharp fa-solid fa-trash"></i>
+                                          <i class="icon fa-sharp fa-solid fa-trash text-red-500"></i>
                                         </button>
                                     </form>
 

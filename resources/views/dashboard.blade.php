@@ -141,18 +141,18 @@
                     <tr>
                      <td class="">
                    
-                      @if ($toggle->is_open ?? '' )
-                          
-                          <button class="btn btn-success ml-2" data-bs-toggle="modal"
-                              data-bs-target="#firstModal{{$products->id}}">
-                              <i class="fa-sharp fa-solid fa-cart-plus text-white"></i>
-                         </button>
+                          @if ($toggle->is_open ?? '' )
+                              
+                              <button class="btn btn-success ml-2" data-bs-toggle="modal"
+                                  data-bs-target="#firstModal{{$products->id}}">
+                                  <i class="fa-sharp fa-solid fa-cart-plus text-white"></i>
+                              </button>
 
-                      @else  
+                          @else  
 
-                        @include('layouts.button')
+                            @include('layouts.button')
 
-                     @endif
+                          @endif
 
                         <div class="modal fade" id="firstModal{{$products->id}}" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -217,7 +217,7 @@
                                     </div>
                                     </div>
                                 </div>
-                            </div>
+                        </div>
                     </td> 
                     <td class="p-4 sm:w-60">{{$products->name}} <hr class="linear-1"></td>
                     <td class="">

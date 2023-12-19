@@ -73,7 +73,7 @@ class OrderProductController extends Controller
                 $user = Auth::user();
                 $users = $user->id ?? '';
           
-                $address = Address::where('user_id',$users)->with('userAdress')->first();
+                $address = Address::where('user_id',$users)->with('userAdress')->latest()->first();
              
                 
                 $cart = Order_product::where('user_id', $users)
