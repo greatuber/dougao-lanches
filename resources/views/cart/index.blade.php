@@ -269,7 +269,7 @@
                         <div class="text-center text-3xl">
                               <button class="font-bold text-white text-md p-2 btn btn-primary border rounded mb-2 mt-2 " data-bs-toggle="modal"
                                   data-bs-target="#firstModal"> 
-                                  Cadastre um endereço para entrega
+                                  Cadastrar um endereço para entrega
                               </button>
                                  
                                 
@@ -336,6 +336,16 @@
                                                                     </div>
                                                                   @enderror
                                                               </div>
+
+                                                              <div class="mb-4">
+                                                                <label class="block text-gray-700 text-sm font-bold mb-2" for="Produto">Celular</label>
+                                                                <input autocomplete="off" value="" id="fone" class="shadow appearance-none border rounded sm:w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="fone"  placeholder="digite seu celular" name="fone">
+                                                                  @error('fone')
+                                                                    <div class="p-2">
+                                                                      <span class="error text-red-500">{{ $message }}</span>
+                                                                    </div>
+                                                                  @enderror
+                                                              </div>
                                                         
                                                               <div class="mb-4 ">
                                                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="Produto">Complemento</label>
@@ -392,6 +402,11 @@
                                   <div class="mb-4">
                                     <label class="block text-gray-700 text-sm font-bold mb-2" >Número</label>
                                     <p value=" " id="numero" class=" text-left border rounded sm:w-full py-2 px-3 text-gray-700" id="number" type="text"  placeholder="digite seu numero" name="number">{{ $address->number ?? ''}}</p>
+                                  </div>
+
+                                  <div class="mb-4">
+                                    <label class="block text-gray-700 text-sm font-bold mb-2" >Celular</label>
+                                    <p value=" " id="celular" class=" text-left border rounded sm:w-full py-2 px-3 text-gray-700" id="celular" type="text"  placeholder="digite seu whatsap" name="number">{{ $address->fone ?? ''}}</p>
                                   </div>
                    
                                   <div class="mb-4 ">

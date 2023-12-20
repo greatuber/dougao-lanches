@@ -24,6 +24,7 @@ class AdressController extends Controller
                 'zipcode'       => $request->zipcode,
                 'complement'    => $request->complement,
                 'user_id'       => $users,
+                'fone'          =>$request->fone,
 
             ]);
 

@@ -28,6 +28,7 @@ class Requestadress extends FormRequest
             'number'        => 'required',
             'zipcode'       =>  'required',
             'complement'    =>  'required', 
+            'fone'          =>  'required'
         ];
     }
     public function messages()
@@ -38,7 +39,8 @@ class Requestadress extends FormRequest
             'street.required'       => 'O Campo Rua é obrigatoío',
             'number.required'       => 'O Campo número é Obrigatorío',
             'zipcode.required'      => 'O Campo CEP é Obrigatorío',
-            'complement.required'   => 'O Campo complemento é O brigatorío'
+            'complement.required'   => 'O Campo complemento é O brigatorío',
+            'fone.required'         => 'O Campo celular é obrigatorio'
 
         ];
     }
