@@ -13,11 +13,16 @@
           
            background-color: black;
         }
-        .order {
-            background-color: rgba(149, 226, 245, 0.897);
+        .client {
+            width: 50%;
+            padding-right: 10px; 
+            background-color: rgb(241, 238, 238);
         }
-        .troco {
-            background-color: rgba(149, 226, 245, 0.897);
+
+        .payment{
+            width: 50%;
+            padding-left: 10px;
+            background-color: rgb(241, 238, 238);
         }
   
         .delivery {
@@ -62,14 +67,18 @@
                         $userCount = $item->where('user_id', $user)->count();
                       @endphp
                        
-                       <p>Cliente {{ $item->orderUser->name}} tem <span class="font-bold">'{{$userCount}}'</span> pedidos na plataforma.</p>
-                       <p>{{ $date}}</p>
-                        <div class="pt-2">
-                            <div class="border">
+                    
+                        <div class="pt-2 flex border p-2 rounded sm:w-full">
+                             <div class="client p-2 rounded">
+                                <p>Cliente {{ $item->orderUser->name}} tem <span class="font-bold">'{{$userCount}}'</span> pedidos na plataforma.</p>
+                                <p>{{ $item->created_at->format('d/m/y H:i')}}</p>
+                             </div>
+
+                             <div class="payment rounded">
                                 <h1 class="font-bold troco p-2">forma de pagamento</h1>
                                 <p>{{ $item->payment ? 'DINHEIRO' : 'CARTÃO' }}</p>
                                 <p class="troco p-2">{{ $item->observation}}</p>
-                            </div>
+                             </div>
                         </div>
                     <table class="table-auto w-full hover:text:blue-800">
                         <thead>

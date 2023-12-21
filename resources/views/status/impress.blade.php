@@ -14,13 +14,10 @@
           
            background-color: black;
         }
-/*      
-        .order {
-            background-color: rgba(212, 210, 210, 0.897);
+        .payment{
+            align-items: center;
+            justify-content: space-evenly;
         }
-        .troco {
-            background-color: rgba(212, 210, 210, 0.897);
-        } */
   
     </style>
 </head>
@@ -38,20 +35,10 @@
          
             @csrf 
                 <div class="pt-2 container overflow-auto">
-                    <div class="border p-2 ">
+                    <div class="border p-2 flex payment">
                         <h3 class="font-bold troco p-2">forma de pagamento</h3>
-
-                        {{-- <div class="" @if ($item->payment == 0) inertex @endif >
-                            @if($item->payment == 0)
-                             
-                                <p>CARTÃO</p>
-                             @else
-                                <p>DINHEIRO</p>
-                             
-                            @endif
-                        </div> --}}
-                        {{-- @dd($item) --}}
-                        <p>{{ $item->payment ? 'DINHEIRO' : 'CARTÃO' }} </p>
+                  
+                        <p>{{ $item->payment ? 'DINHEIRO' : 'CARTÃO' }} :</p>
                     
                         <p class="troco p-2">{{ $order[0]->observation}}</p>
                     </div>
@@ -129,27 +116,27 @@
                     <div class="flex flex-wrap content-start ">
                         <div class="p-2 text-start">
                             <label for="">Cidade:</label>
-                            <input class="rounded border" type="text" value="{{$item->orderUser->address[0]->city ?? ''}}">
+                            <p class="rounded " type="text" value="{{$item->orderUser->address[0]->city ?? ''}}">
                         </div>
                         <div class="p-2 text-start">
                             <label for="">Rua:</label>
-                            <input class="rounded border" type="text" value="{{$item->orderUser->address[0]->street ?? ''}}">
+                            <input class="rounded " type="text" value="{{$item->orderUser->address[0]->street ?? ''}}">
                         </div>
                         <div class="p-2 text-start">
                             <label for="">Bairro:</label>
-                            <input class="rounded border" type="text" value="{{$item->orderUser->address[0]->district ?? ''}}">
+                            <input class="rounded " type="text" value="{{$item->orderUser->address[0]->district ?? ''}}">
                         </div>
                         <div class="p-2 text-start">
                             <label for="">Numero:</label>
-                            <input class="rounded border" type="text" value="{{$item->orderUser->address[0]->number ?? ''}}">
+                            <input class="rounded " type="text" value="{{$item->orderUser->address[0]->number ?? ''}}">
                         </div>
                         <div class="p-2 text-start">
                             <label for="">Cep:</label>
-                            <input class="rounded border" type="text" value="{{$item->orderUser->address[0]->zipcode ?? ''}}">
+                            <input class="rounded " type="text" value="{{$item->orderUser->address[0]->zipcode ?? ''}}">
                         </div>
                         <div class="p-2 text-start">
                             <label for="">complemento:</label>
-                            <input class="rounded border" type="text" value="{{$item->orderUser->address[0]->complement	 ?? ''}}">
+                            <input class="rounded " type="text" value="{{$item->orderUser->address[0]->complement	 ?? ''}}">
                         </div>
                     </div>
             

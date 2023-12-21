@@ -21,6 +21,10 @@
         .troco {
             background-color: rgba(212, 210, 210, 0.897);
         }
+        .payment{
+            align-items: center;
+            justify-content: space-evenly;
+        }
   
     </style>
 </head>
@@ -39,22 +43,12 @@
          
             @csrf 
                 <div class="pt-2 container overflow-auto">
-                    <div class="border p-2">
-                        <h1 class="font-bold troco p-2">forma de pagamento</h1>
-{{-- @dd($item) --}}
-                        {{-- <div class="" @if ($item->payment == 0) inertex @endif >
-                            @if($item->payment == 0)
-                             
-                                <p>CARTÃO</p>
-                             @else
-                                <p>DINHEIRO</p>
-                             
-                            @endif
-                        </div> --}}
+                    <div class="border p-2 flex payment">
+                        <h1 class="font-bold  p-2">forma de pagamento</h1>
                         
-                        <p>{{ $item->payment ? 'DINHEIRO' : 'CARTÃO' }} </p>
+                        <p>{{ $item->payment ? 'DINHEIRO' : 'CARTÃO' }} : </p>
                     
-                        <p class="troco p-2">{{ $order[0]->observation}}</p>
+                        <p class=" p-2">{{ $order[0]->observation}}</p>
                     </div>
                 </div>
 
