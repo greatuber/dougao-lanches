@@ -15,12 +15,7 @@
            background-color: black;
         }
      
-         .order {
-            background-color: rgba(212, 210, 210, 0.897);
-        }
-        .troco {
-            background-color: rgba(212, 210, 210, 0.897);
-        }
+     
         .payment{
             align-items: center;
             justify-content: space-evenly;
@@ -29,143 +24,146 @@
     </style>
 </head>
 <body>
-  <div class="container mx-auto">
-    <div class="text-center">
-        <h1 class="p-4">LISTAGEM DE PEDIDOS ACEITOS</h1>
-        
-          <div class="">
-            @include('layouts.statusNavegation')
-          </div>
-
-         @forelse ($order as $item)
-          
-        <form action="{{ route('pdf.imprimird',$item)}}" method="POST">
-         
-            @csrf 
-                <div class="pt-2 container overflow-auto">
-                    <div class="border p-2 flex payment">
-                        <h1 class="font-bold  p-2">forma de pagamento</h1>
-                        
-                        <p>{{ $item->payment ? 'DINHEIRO' : 'CARTÃO' }} : </p>
-                    
-                        <p class=" p-2">{{ $order[0]->observation}}</p>
-                    </div>
+        <div class="container mx-auto">
+            <div class="text-center">
+                <h1 class="p-4">LISTAGEM DE PEDIDOS ACEITOS</h1>
+                
+                <div class="">
+                    @include('layouts.statusNavegation')
                 </div>
 
-            <div class="card p-2">
-                <div class="overflow-auto">
-                    <table class="table-auto w-full">
-                        <thead>
-                            <tr>
-                                <th class="px-4 py-2">Cliente</th>
-                                <th class="px-4 py-2">Número</th>
-                                <th class="px-4 py-2">Data </th>
-                                <th class="px-4 py-2">Total </th>
-                                <th class="px-4 py-2">Entrega</th>
-                                <th class="px-4 py-2">ESTATUS</th>
-                            </tr>
-                            </thead>
-                                  <!-- Loop através dos pedidos -->
-                            <tbody>
-                                <tr>
-                                    <td class="border px-4 py-2 order rounded">{{ $item->orderUser->name }}</td>
-                                    <td class="border px-4 py-2 order rounded">{{ $item->id }}</td>
-                                    <td class="border px-4 py-2 order rounded">{{ $item->created_at->format('d/m/Y H:i')}}</td>
-                                    <td class="border px-4 py-2 order rounded">@money( $item->total)</td>
-                                    <td class="border px-4 py-2 order rounded">{{ $item->delivery ? 'Sim' : 'Não' }}</td>
-                                    <td class="border px-4 py-2 order rounded">{{ $item->status}}</td>
-                                </tr>
-                            </tbody>
-                    </table>
-                </div>  
-            </div>
-            <div class=" overflow-auto">
-                <table class="w-full border border-gray-100 ">
-                    <thead>
-                        <tr class="bg-gray-200">
-                            <th class="py-2 px-4 border-b">Produto</th>
-                            <th class="py-2 px-4 border-b">QUANTIDADE</th>
-                            <th class="py-2 px-4 border-b">PREÇO</th>
-                            <th class="py-2 px-4 border-b">OBSERVAÇÃO</th>
-                            <th class="py-2 px-4 border-b">ADICIONAIS</th>
-                            
-                        </tr>
-                    </thead>
-                    <tbody class="pb-2">
-                        
-                        @foreach ($item->orderList as $list) 
-
-                                <tr>
-                                    <td class="py-2 px-4 border-b">{{ $list->product->name ?? ''}}</td>
-                                    <td class="py-2 px-4 border-b text-center">{{ $list->quamtity}}</td>
-                                    <td class="py-2 px-4 border-b">{{ number_format($list->value, 2, ',', '.')  }}</td>
-                                    <td class="py-2 px-4 border-b">{{ $list->observation ?? '' }}</td>
-                                    <td class="py-2 px-4 border-b">
-                                       
-                                        @if($list->oderAdditional()->count()>0)
-                                        
-                                            @foreach ($list->oderAdditional as $additional)
-                                            {{ $additional->name ?? '' }},
-                                            @endforeach  
-                                  
-                                        @endif
-                                   
-                                    </td>
-                                </tr>
-                        @endforeach 
-                    </tbody>
-                </table>    
-            </div>    
-               
-                 <div class=" container pt-4 pb-4">
-
-                    <h1 class="font-bold">ENDEREÇO PARA ENTREGA</h1>
-            
-                    <div class="flex flex-wrap content-start ">
-                        <div class="p-2 text-start">
-                            <label for="">Cidade:</label>
-                            <input class="rounded border" type="text" value="{{$item->orderUser->address[0]->city ?? ''}}">
-                        </div>
-                        <div class="p-2 text-start">
-                            <label for="">Rua:</label>
-                            <input class="rounded border" type="text" value="{{$item->orderUser->address[0]->street ?? ''}}">
-                        </div>
-                        <div class="p-2 text-start">
-                            <label for="">Bairro:</label>
-                            <input class="rounded border" type="text" value="{{$item->orderUser->address[0]->district ?? ''}}">
-                        </div>
-                        <div class="p-2 text-start">
-                            <label for="">Numero:</label>
-                            <input class="rounded border" type="number" value="{{$item->orderUser->address[0]->number ?? ''}}">
-                        </div>
-                        <div class="p-2 text-start">
-                            <label for="">Cep:</label>
-                            <input class="rounded border" type="number" value="{{$item->orderUser->address[0]->zipcode ?? ''}}">
-                        </div>
-                        <div class="p-2 text-start">
-                            <label for="">complemento:</label>
-                            <input class="rounded border" type="text" value="{{$item->orderUser->address[0]->complement	 ?? ''}}">
-                        </div>
-                    </div>
-            
-            
-                    <div class=" flex">
-                           <div class="">
-
-        </form>
-              <form action="{{ route('pdf.index',$item->id)}}" method="GET">
-                @csrf
-                <button type="submit" class="border rounded p-2 button hover:text-blue-800 mr-2"> PREPARAR P/ IMPRIMIR</button>
-              </form>
-                           </div>
-                           <div class="">
-                                <form action="{{route('status.product',$item->id)}}" method="POST">
-                                    @csrf
-                                        <button type="submit" class="border rounded p-2 button hover:text-blue-800">IR PARA PRODUÇÃO</button>
-                                </form>
+                @forelse ($order as $item)
+                
+                    <form action="{{ route('pdf.imprimird',$item)}}" method="POST">
+                    
+                        @csrf 
+                            <div class="pt-2 container overflow-auto">
+                                <div class="border p-2 flex payment">
+                                    <h1 class="font-bold  p-2">forma de pagamento</h1>
+                                    
+                                    <p>{{ $item->payment ? 'DINHEIRO' : 'CARTÃO' }} : </p>
+                                
+                                    <p class=" p-2">{{ $order[0]->observation}}</p>
+                                </div>
                             </div>
-                    </div>
-                 </div>
+
+                        <div class="card p-2">
+                            <div class="overflow-auto">
+                                <table class="table-auto w-full">
+                                    <thead>
+                                        <tr>
+                                            <th class="px-4 py-2">Cliente</th>
+                                            <th class="px-4 py-2">Número</th>
+                                            <th class="px-4 py-2">Data </th>
+                                            <th class="px-4 py-2">Total </th>
+                                            <th class="px-4 py-2">Entrega</th>
+                                            <th class="px-4 py-2">ESTATUS</th>
+                                        </tr>
+                                        </thead>
+                                            <!-- Loop através dos pedidos -->
+                                        <tbody>
+                                            <tr>
+                                                <td class="border px-4 py-2 order rounded">{{ $item->orderUser->name }}</td>
+                                                <td class="border px-4 py-2 order rounded">{{ $item->id }}</td>
+                                                <td class="border px-4 py-2 order rounded">{{ $item->created_at->format('d/m/Y H:i')}}</td>
+                                                <td class="border px-4 py-2 order rounded">@money( $item->total)</td>
+                                                <td class="border px-4 py-2 order rounded">{{ $item->delivery ? 'Sim' : 'Não' }}</td>
+                                                <td class="border px-4 py-2 order rounded">{{ $item->status}}</td>
+                                            </tr>
+                                        </tbody>
+                                </table>
+                            </div>  
+                        </div>
+                        <div class=" overflow-auto">
+                            <table class="w-full border border-gray-100 ">
+                                <thead>
+                                    <tr class="bg-gray-200">
+                                        <th class="py-2 px-4 border-b">Produto</th>
+                                        <th class="py-2 px-4 border-b">QUANTIDADE</th>
+                                        <th class="py-2 px-4 border-b">PREÇO</th>
+                                        <th class="py-2 px-4 border-b">OBSERVAÇÃO</th>
+                                        <th class="py-2 px-4 border-b">ADICIONAIS</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody class="pb-2">
+                                    
+                                    @foreach ($item->orderList as $list) 
+
+                                            <tr>
+                                                <td class="py-2 px-4 border-b">{{ $list->product->name ?? ''}}</td>
+                                                <td class="py-2 px-4 border-b text-center">{{ $list->quamtity}}</td>
+                                                <td class="py-2 px-4 border-b">{{ number_format($list->value, 2, ',', '.')  }}</td>
+                                                <td class="py-2 px-4 border-b">{{ $list->observation ?? '' }}</td>
+                                                <td class="py-2 px-4 border-b">
+                                                
+                                                    @if($list->oderAdditional()->count()>0)
+                                                    
+                                                        @foreach ($list->oderAdditional as $additional)
+                                                        {{ $additional->name ?? '' }},
+                                                        @endforeach  
+                                            
+                                                    @endif
+                                            
+                                                </td>
+                                            </tr>
+                                    @endforeach 
+                                </tbody>
+                            </table>    
+                        </div>    
+
+                        <div class=" container pt-4 pb-4">
+                            <h1 class="font-bold">ENDEREÇO PARA ENTREGA</h1>
+                          
+                            
+                            <div class="flex flex-wrap content-start pb-4">
+                                {{-- <div class="p-2 text-start">
+                                    <label for="">Cidade:</label>
+                                   
+                                    <span class=" p-2 mr-2 font-bold">{{$item->orderUser->address[0]->city  ?? ''}}</span>
+                                </div> --}}
+                                <div class="p-2 text-start">
+                                    <label for="">Rua:</label>
+                                    <span class="p-2 mr-2 font-bold">{{$item->orderUser->address[0]->street ?? ''}}</span>
+                                </div>
+                                <div class="p-2 text-start">
+                                    <label for="">Bairro:</label>
+                                    <span class="p-2 mr-2 font-bold">{{$item->orderUser->address[0]->district ?? ''}}</span>
+                                </div>
+                                <div class="p-2 text-start">
+                                    <label for="">Numero:</label>
+                                    <span class="p-2 mr-2 font-bold">{{$item->orderUser->address[0]->number ?? ''}}</span>
+                                </div>
+                                <div class="p-2 text-start">
+                                    <label for="">Fone:</label>
+                                    <span class="p-2 mr-2 font-bold">{{$item->orderUser->address[0]->fone ?? ''}}</span>
+                                </div>
+                                <div class="p-2 text-start">
+                                    <label for="">Complemento:</label>
+                                  
+                                    <span class="p-2 mr-2 font-bold">{{$item->orderUser->address[0]->complement	 ?? ''}}</span>
+                                </div>
+                            </div>
+                             
+                        
+                                <div class=" flex pb-2">
+
+                                <div class="">
+
+                    </form>
+                    <form action="{{ route('pdf.index',$item->id)}}" method="GET">
+                        @csrf
+                        <button type="submit" class="border rounded p-2 button hover:text-blue-800 mr-2"> PREPARAR P/ IMPRIMIR</button>
+                    </form>
+            </div>
+                <div class="">
+                    <form action="{{route('status.product',$item->id)}}" method="POST">
+                        @csrf
+                            <button type="submit" class="border rounded p-2 button hover:text-blue-800">IR PARA PRODUÇÃO</button>
+                    </form>
+                </div>
+        </div>
+                 
               
                  <div class="row pb-2">
                     <hr>
@@ -175,7 +173,7 @@
               <p>Para o dia: @datetime(now())</p>
            @endforelse
           
-    </div>
+    
 </body>
 </html>
  

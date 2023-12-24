@@ -108,37 +108,37 @@
                     </tbody>
                 </table>    
             </div>    
-               
-                 <div class=" container pt-4 pb-4">
 
-                    <h3 class="font-bold">ENDEREÇO PARA ENTREGA</h3>
-            
-                    <div class="flex flex-wrap content-start ">
-                        <div class="p-2 text-start">
+                    <div class="flex flex-wrap content-start pb-4">
+                        {{-- <div class="p-2 text-start">
                             <label for="">Cidade:</label>
-                            <p class="rounded " type="text" value="{{$item->orderUser->address[0]->city ?? ''}}">
-                        </div>
+                        
+                            <span class=" p-2 mr-2 font-bold">{{$item->orderUser->address[0]->city  ?? ''}}</span>
+                        </div> --}}
                         <div class="p-2 text-start">
                             <label for="">Rua:</label>
-                            <input class="rounded " type="text" value="{{$item->orderUser->address[0]->street ?? ''}}">
+                            <span class="p-2 mr-2 font-bold">{{$item->orderUser->address[0]->street ?? ''}}</span>
                         </div>
                         <div class="p-2 text-start">
                             <label for="">Bairro:</label>
-                            <input class="rounded " type="text" value="{{$item->orderUser->address[0]->district ?? ''}}">
+                            <span class="p-2 mr-2 font-bold">{{$item->orderUser->address[0]->district ?? ''}}</span>
                         </div>
                         <div class="p-2 text-start">
                             <label for="">Numero:</label>
-                            <input class="rounded " type="text" value="{{$item->orderUser->address[0]->number ?? ''}}">
+                            <span class="p-2 mr-2 font-bold">{{$item->orderUser->address[0]->number ?? ''}}</span>
                         </div>
                         <div class="p-2 text-start">
-                            <label for="">Cep:</label>
-                            <input class="rounded " type="text" value="{{$item->orderUser->address[0]->zipcode ?? ''}}">
+                            <label for="">Fone:</label>
+                            <span class="p-2 mr-2 font-bold">{{$item->orderUser->address[0]->fone ?? ''}}</span>
                         </div>
                         <div class="p-2 text-start">
-                            <label for="">complemento:</label>
-                            <input class="rounded " type="text" value="{{$item->orderUser->address[0]->complement	 ?? ''}}">
+                            <label for="">Complemento:</label>
+                        
+                            <span class="p-2 mr-2 font-bold">{{$item->orderUser->address[0]->complement	 ?? ''}}</span>
                         </div>
                     </div>
+               
+                
             
             
                     <div class=" flex">

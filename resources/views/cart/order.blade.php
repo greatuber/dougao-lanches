@@ -13,17 +13,17 @@
           
            background-color: black;
         }
-        .client {
-            width: 50%;
-            padding-right: 10px; 
-            background-color: rgb(241, 238, 238);
-        }
-
-        .payment{
-            width: 50%;
-            padding-left: 10px;
-            background-color: rgb(241, 238, 238);
-        }
+         .clients{
+            display: flex;
+           justify-items: center;
+            align-items: center;
+           
+         }
+         .payment{
+            align-items: center;
+            justify-content: space-evenly;
+            margin-left: 100px;
+         }
   
         .delivery {
             color: green;
@@ -53,7 +53,7 @@
               </script> --}}
           @endif
 
-         @forelse ($order as  $item)
+         @forelse ($orders as  $item)
         
             <div class="card p-2">
                 <div class="overflow-auto">
@@ -69,16 +69,18 @@
                        
                     
                         <div class="pt-2 flex border p-2 rounded sm:w-full">
-                             <div class="client p-2 rounded">
-                                <p>Cliente {{ $item->orderUser->name}} tem <span class="font-bold">'{{$userCount}}'</span> pedidos na plataforma.</p>
-                                <p>{{ $item->created_at->format('d/m/y H:i')}}</p>
-                             </div>
-
-                             <div class="payment rounded">
-                                <h1 class="font-bold troco p-2">forma de pagamento</h1>
-                                <p>{{ $item->payment ? 'DINHEIRO' : 'CARTÃO' }}</p>
-                                <p class="troco p-2">{{ $item->observation}}</p>
-                             </div>
+                              <div class="clients">
+                                <div class="client p-2 rounded">
+                                    <p>Cliente {{ $item->orderUser->name}} tem <span class="font-bold">'{{$userCount}}'</span> pedidos na plataforma.</p>
+                                    {{-- <p>{{ $item->created_at->format('d/m/y H:i')}}</p> --}}
+                                 </div>
+    
+                                 <div class="payment rounded flex">
+                                    <h1 class="font-bold  p-2">forma de pagamento</h1>
+                                    <p class="tex-center">{{ $item->payment ? 'DINHEIRO' : 'CARTÃO' }} :</p>
+                                    <p class=" p-2 text-center">{{ $item->observation}}</p>
+                                 </div>
+                              </div>
                         </div>
                     <table class="table-auto w-full hover:text:blue-800">
                         <thead>
@@ -121,10 +123,10 @@
                         <tr>
                             <td class="py-2 px-2 max-w-full border-b">{{ $list->product->name ?? ''}}</td>
                             <td class="py-2 px-4 border-b text-center">{{ $list->quamtity}}</td>
-                            <td class="py-2 px-4 border-b">{{ number_format($list->value, 2, ',', '.')  }}</td>
+                            <td class="py-2 px-4 border-b">@money($list->value)</td>
                             <td class="py-2 px-4 border-b">{{ $list->observation ?? '' }}</td>
                             <td class="py-2 px-4 border-b">
-                                {{-- {{ $list->additional->name ?? ''}} --}}
+                               
                                 @if($list->oderAdditional()->count()>0)
 
                                     @foreach ($list->oderAdditional as $additional)
@@ -142,32 +144,64 @@
             </div>    
                  <div class=" container pt-4 pb-4">
                     <h1 class="font-bold">ENDEREÇO PARA ENTREGA</h1>
-                        <div class="flex flex-wrap content-start ">
-                            <div class="p-2 text-start">
-                                <label for="">Cidade:</label>
-                                <input class="rounded border" type="text" value="{{$item->orderUser->address[0]->city ?? ''}}">
-                            </div>
-                            <div class="p-2 text-start">
-                                <label for="">Rua:</label>
-                                <input class="rounded border" type="text" value="{{$item->orderUser->address[0]->street ?? ''}}">
-                            </div>
-                            <div class="p-2 text-start">
-                                <label for="">Bairro:</label>
-                                <input class="rounded border" type="text" value="{{$item->orderUser->address[0]->district ?? ''}}">
-                            </div>
-                            <div class="p-2 text-start">
-                                <label for="">Numero:</label>
-                                <input class="rounded border" type="number" value="{{$item->orderUser->address[0]->number ?? ''}}">
-                            </div>
-                            <div class="p-2 text-start">
-                                <label for="">Cep:</label>
-                                <input class="rounded border" type="number" value="{{$item->orderUser->address[0]->zipcode ?? ''}}">
-                            </div>
-                            <div class="p-2 text-start">
-                                <label for="">Complemento:</label>
-                                <input class="rounded border" type="text" value="{{$item->orderUser->address[0]->complement	 ?? ''}}">
-                            </div>
+                      
+                    <div class="flex flex-wrap content-start pb-4">
+                        <div class="p-2 text-start">
+                            <label for="">Cidade:</label>
+                        
+                            <span class=" p-2 mr-2 font-bold">{{$item->orderUser->address[0]->city  ?? ''}}</span>
                         </div>
+                        <div class="p-2 text-start">
+                            <label for="">Rua:</label>
+                            <span class="p-2 mr-2 font-bold">{{$item->orderUser->address[0]->street ?? ''}}</span>
+                        </div>
+                        <div class="p-2 text-start">
+                            <label for="">Bairro:</label>
+                            <span class="p-2 mr-2 font-bold">{{$item->orderUser->address[0]->district ?? ''}}</span>
+                        </div>
+                        <div class="p-2 text-start">
+                            <label for="">Numero:</label>
+                            <span class="p-2 mr-2 font-bold">{{$item->orderUser->address[0]->number ?? ''}}</span>
+                        </div>
+                        <div class="p-2 text-start">
+                            <label for="">Fone:</label>
+                            <span class="p-2 mr-2 font-bold">{{$item->orderUser->address[0]->fone ?? ''}}</span>
+                        </div>
+                        <div class="p-2 text-start">
+                            <label for="">Complemento:</label>
+                        
+                            <span class="p-2 mr-2 font-bold">{{$item->orderUser->address[0]->complement	 ?? ''}}</span>
+                        </div>
+                    </div>
+                    
+                     {{-- <div class="flex flex-wrap content-start ">
+                        <div class="p-2 text-start">
+                            <label for="">Cidade:</label>
+                            <input class="rounded border" type="text" value="{{$item->orderUser->address[0]->city  ?? ''}}">
+                        </div>
+                        <div class="p-2 text-start">
+                            <label for="">Rua:</label>
+                            <input class="rounded border" type="text" value="{{$item->orderUser->address[0]->street ?? ''}}">
+                        </div>
+                        <div class="p-2 text-start">
+                            <label for="">Bairro:</label>
+                            <input class="rounded border" type="text" value="{{$item->orderUser->address[0]->district ?? ''}}">
+                        </div>
+                        <div class="p-2 text-start">
+                            <label for="">Numero:</label>
+                            <input class="rounded border" type="number" value="{{$item->orderUser->address[0]->number ?? ''}}">
+                        </div>
+                        <div class="p-2 text-start">
+                            <label for="">Fone:</label>
+                            <input class="rounded border" type="text" value="{{$item->orderUser->address[0]->fone ?? ''}}">
+                        </div>
+                        <div class="p-2 text-start">
+                            <label for="">Complemento:</label>
+                            <input class="rounded border" type="text" value="{{$item->orderUser->address[0]->complement	 ?? ''}}">
+                        </div>
+                    </div> --}}
+                     
+                      
                         <div class=" flex p-2">
                             <form action="{{route('update.status',$item->id)}}" method="POST">
                                 @csrf

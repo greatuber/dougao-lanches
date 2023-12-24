@@ -44,7 +44,7 @@
                 <h1>ÁREA ADMINISTRATIVA</h1>
                  <h2>aqui você pode excluir,editar ou desativar um lanche</h2>
            </div>
- 
+
          <div class=" ">
            <div class=" flex">
              <a href="{{ route('showbeer')}}"> <div class=" border text-black p-2 mt-2 ml-12 rounded font-bold">BEBIDAS</div></a>
@@ -59,6 +59,7 @@
                             <th class="p-2">LANCHES</th>
                             <th class="p-2">INGREDIENTES</th>
                             <th class="p-2" >PREÇO</th>
+                            <th class="">AÇOẼS</th>
                         </tr>
                       </thead>
                       <tbody class="">

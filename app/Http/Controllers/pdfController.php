@@ -24,11 +24,11 @@ class pdfController extends Controller
             $order = Order::all();
           
 
-            $userAddresses = Address::where('user_id', $users)->with('userAdress')->get();
+          
 
-            $order = Order::orderBy('id', 'desc')->where(['status'=>('aceito')])->get();
+            $order = Order::orderBy('id', 'desc')->with('orderUser')->where(['status'=>('aceito')])->get();
 
-            return view('status.impress',compact('order','userAddresses'));
+            return view('status.impress',compact('order', 'date', 'users'));
 
          
         

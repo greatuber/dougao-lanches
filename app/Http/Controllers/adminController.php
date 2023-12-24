@@ -109,13 +109,17 @@ class adminController extends Controller
                   $user      = Auth::user();
                   $users     = $user->id ?? '';
 
-                  // event(new NewOrderCreated());
+            
                    
                   $date = now()->format('d/m/y H:i:s');
-            
-                  $order = Order::orderBY('id', 'desc')->where('status', 'processando')->get();
+                 
                   
-                    return view('cart.order',compact('order', 'date', 'users'));
+            
+                  $orders = Order::orderBY('id', 'desc')->with('orderUser')->where('status', 'processando')->get();
+
+                
+                  
+                    return view('cart.order',compact('orders', 'date', 'users'));
             }
 
         public function update(Request $request, $id)

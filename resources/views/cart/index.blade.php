@@ -375,7 +375,7 @@
                             <div class="pb-2">
                               <p class="bg border rounded p-2 text-left">
                                   OBS;<br/>
-                                   O sistem vai busca sempre o ultimo endereço cadastrado,se deseja  que a entrega seja feita em outro 
+                                   O sistema vai busca sempre o ultimo endereço cadastrado,se deseja  que a entrega seja feita em outro 
                                    endereço cadastre o endereço que deja. 
                               </P>
                           </div>

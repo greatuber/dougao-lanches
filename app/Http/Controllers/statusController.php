@@ -21,14 +21,11 @@ class statusController extends Controller
                 $date = now()->format('d/m/y H:i:s');
                 $user      = Auth::user();
                 $users     = $user->id ?? '';
-                $order = Order::all();
-              
+          
+                $order = Order::orderBY('id', 'desc')->with('orderUser')->where('status', 'aceito')->get();
+                // $order = Order::orderBy('id', 'desc')->with('orderUser')->where(['status'=>('aceito')])->get();
 
-                $userAddresses = Address::where('user_id', $users)->with('userAdress')->get();
-
-                $order = Order::orderBy('id', 'desc')->where(['status'=>('aceito')])->get();
-
-                return view('status.index',compact('order','userAddresses'));
+                return view('status.index',compact('order', 'date', 'users'));
             }
 
     /**
