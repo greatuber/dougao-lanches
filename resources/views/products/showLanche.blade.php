@@ -37,9 +37,17 @@
           <div class=" center">
             
 
-              @if ( session('update'))
-                  <p class="text-green-600 ">{{ session('update')}}</p>
-              @endif
+                  @if ( session('update'))
+                      <p class="text-green-600 ">{{ session('update')}}</p>
+                  @endif
+
+                  @if (session('delete'))
+                  
+                  <div class="text-green-600">
+                      {{ session('delete')}}
+                  </div>
+                    
+                @endif
               <div class="text-center pt-2">
                 <h1>ÁREA ADMINISTRATIVA</h1>
                  <h2>aqui você pode excluir,editar ou desativar um lanche</h2>

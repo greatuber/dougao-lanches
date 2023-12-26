@@ -113,12 +113,12 @@ class adminController extends Controller
                    
                   $date = now()->format('d/m/y H:i:s');
                  
-                  
-            
-                  $orders = Order::orderBY('id', 'desc')->with('orderUser')->where('status', 'processando')->get();
+                     $orders = Order::with(['orderUser.address' => function ($query) {
+                     $query->latest('created_at')->limit(1); // Obtém o último endereço
+                }])   ->where('status', 'processando')->orderBy('id', 'desc')->get();
+ 
+                  // $orders = Order::orderBY('id', 'desc')->with('orderUser')->where('status', 'processando')->get();
 
-                
-                  
                     return view('cart.order',compact('orders', 'date', 'users'));
             }
 

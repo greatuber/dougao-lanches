@@ -117,11 +117,7 @@
                           
                             
                             <div class="flex flex-wrap content-start pb-4">
-                                {{-- <div class="p-2 text-start">
-                                    <label for="">Cidade:</label>
-                                   
-                                    <span class=" p-2 mr-2 font-bold">{{$item->orderUser->address[0]->city  ?? ''}}</span>
-                                </div> --}}
+                         
                                 <div class="p-2 text-start">
                                     <label for="">Rua:</label>
                                     <span class="p-2 mr-2 font-bold">{{$item->orderUser->address[0]->street ?? ''}}</span>

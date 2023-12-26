@@ -44,7 +44,7 @@ class CreateController extends Controller
                    
                     $product = Product::findOrFail($id);
                     $product->delete();
-                    return redirect()->route('create.product');
+                    return redirect()->route('create.product')->with('delete','produto deletado com sucesso');
             }
 
     public function update(Request $request, $id)

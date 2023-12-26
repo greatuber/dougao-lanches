@@ -36,6 +36,7 @@
        <div class="text-center sm:ml-32 ml-32">
           <div class=" center">
                   <div class="">
+                            
                           <div class="  text-center pr-4 bg-orange-500 rounded">
                             <h1 class="text-center text-white font-bold  pt-2">SEJA BEM VINDO AO SEU PAINEL ADMINISTRATIVO</h1> <br>  
                                   <h2 class="font-bold text-lg"> {{Auth::user()->name}} </h2>
