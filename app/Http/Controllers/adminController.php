@@ -11,6 +11,7 @@ use App\Models\OrderList;
 use App\Models\Order_product;
 use App\Http\Requests\OrderProductRequest;
 use App\Notifications\NewOrderNotification;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Collection;
@@ -113,13 +114,26 @@ class adminController extends Controller
                    
                   $date = now()->format('d/m/y H:i:s');
                  
-                     $orders = Order::with(['orderUser.address' => function ($query) {
-                     $query->latest('created_at')->limit(1); // Obtém o último endereço
-                }])   ->where('status', 'processando')->orderBy('id', 'desc')->get();
- 
-                  // $orders = Order::orderBY('id', 'desc')->with('orderUser')->where('status', 'processando')->get();
+                        //   $orders = Order::with(['orderUser.address' => function ($query) {
+                        //   $query->select('user_id', 'city', 'district', 'street','number','zipcode','complement','fone', DB::raw('MAX(created_at) as latest_created_at'))
+                        //   ->groupBy('user_id', 'city', 'district', 'street','number','zipcode','complement','fone'); // Subquery para obter o último endereço para cada usuário
+                        //   }])
+                        // ->where('status', 'aceito')
+                        // ->orderBy('id', 'desc')
+                        // ->get();
+                
+                // Agora, você precisa organizar os resultados para obter o último endereço para cada usuário
+                // $groupedOrders = $orders->groupBy('user_id');
 
-                    return view('cart.order',compact('orders', 'date', 'users'));
+              //   foreach ($groupedOrders as $userId => $userOrders) {
+              //     $latestAddress = $userOrders->first()->orderUser->address->last();
+              //     // Faça algo com $latestAddress, como armazená-lo em uma nova coleção, por exemplo
+              //     dd($latestAddress );
+              // }
+              
+                  $orders = Order::orderBY('id', 'desc')->with('orderUser')->where('status', 'processando')->get();
+
+                    return view('cart.order',compact('date', 'users', 'orders'));
             }
 
         public function update(Request $request, $id)

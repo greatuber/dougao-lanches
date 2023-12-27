@@ -149,28 +149,28 @@
                         <div class="p-2 text-start">
                             <label for="">Cidade:</label>
                         
-                            <span class=" p-2 mr-2 font-bold">{{$item->orderUser->address[0]->city  ?? ''}}</span>
+                            <span class=" p-2 mr-2 font-bold">{{$item->orderUser->address->last()->city  ?? ''}}</span>
                         </div>
                         <div class="p-2 text-start">
                             <label for="">Rua:</label>
-                            <span class="p-2 mr-2 font-bold">{{$item->orderUser->address[0]->street ?? ''}}</span>
+                            <span class="p-2 mr-2 font-bold">{{$item->orderUser->address->last()->street ?? ''}}</span>
                         </div>
                         <div class="p-2 text-start">
                             <label for="">Bairro:</label>
-                            <span class="p-2 mr-2 font-bold">{{$item->orderUser->address[0]->district ?? ''}}</span>
+                            <span class="p-2 mr-2 font-bold">{{$item->orderUser->address->last()->district ?? ''}}</span>
                         </div>
                         <div class="p-2 text-start">
                             <label for="">Numero:</label>
-                            <span class="p-2 mr-2 font-bold">{{$item->orderUser->address[0]->number ?? ''}}</span>
+                            <span class="p-2 mr-2 font-bold">{{$item->orderUser->address->last()->number ?? ''}}</span>
                         </div>
                         <div class="p-2 text-start">
                             <label for="">Fone:</label>
-                            <span class="p-2 mr-2 font-bold">{{$item->orderUser->address[0]->fone ?? ''}}</span>
+                            <span class="p-2 mr-2 font-bold">{{$item->orderUser->address->last()->fone ?? ''}}</span>
                         </div>
                         <div class="p-2 text-start">
                             <label for="">Complemento:</label>
                         
-                            <span class="p-2 mr-2 font-bold">{{$item->orderUser->address[0]->complement	 ?? ''}}</span>
+                            <span class="p-2 mr-2 font-bold">{{$item->orderUser->address->last()->complement	 ?? ''}}</span>
                         </div>
                     </div>
                     

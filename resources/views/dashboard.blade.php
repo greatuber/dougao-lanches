@@ -118,7 +118,7 @@
               </div>
          
           </div>
-            <div class="pb-8  bg-orange-500">
+            <div class="pb-8  bg-orange-500 p-2">
               @include('layouts.menu')
             </div>
            @if(session('success'))

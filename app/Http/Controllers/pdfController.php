@@ -24,7 +24,11 @@ class pdfController extends Controller
             $order = Order::all();
           
 
-          
+            
+            //     $order = Order::with(['orderUser.address' => function ($query) {
+            //     $query->latest('created_at')->limit(1); // Obtém o último endereço
+            //    }])->where('status', 'aceito')->orderBy('id', 'desc')->get();
+
 
             $order = Order::orderBy('id', 'desc')->with('orderUser')->where(['status'=>('aceito')])->get();
 

@@ -22,10 +22,14 @@ class statusController extends Controller
                 $user      = Auth::user();
                 $users     = $user->id ?? '';
           
-                $order = Order::orderBY('id', 'desc')->with('orderUser')->where('status', 'aceito')->get();
-                // $order = Order::orderBy('id', 'desc')->with('orderUser')->where(['status'=>('aceito')])->get();
+                // $orders = Order::with(['orderUser.address' => function ($query) {
+                //     $query->latest('created_at')->limit(1); // Obtém o último endereço
+                //    }])->where('status', 'aceito')->orderBy('id', 'desc')->get();
 
-                return view('status.index',compact('order', 'date', 'users'));
+                $orders = Order::orderBY('id', 'desc')->with('orderUser')->where('status', 'aceito')->get();
+            
+
+                return view('status.index',compact('orders', 'date', 'users'));
             }
 
     /**
