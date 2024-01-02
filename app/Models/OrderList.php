@@ -30,8 +30,12 @@ class OrderList extends Model
             return $this->belongsTo( Product::class);
          }
 
-     public function oderAdditional()
+     public function orderAdditional()
          {
-            return $this->belongsToMany(Additional::class, 'additional_orders', 'order_id','additional_id','id');
+            return $this->belongsToMany(Additional::class,
+             'additional_orders',
+              'order_id',
+              'additional_id',
+              'id');
          }
 }

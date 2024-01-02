@@ -53,7 +53,7 @@ class RegisteredUserController extends Controller
        
 
         // Mail::to($user->email)->send(new NovoClientMailable($user));
-      Mail::mailer('smtp')->to($user->email)->send(new NovoClientMailable($user));
+    //   Mail::mailer('smtp')->to($user->email)->send(new NovoClientMailable($user));
 
 
         return redirect(RouteServiceProvider::HOME);

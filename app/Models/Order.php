@@ -21,7 +21,10 @@ class Order extends Model
 
         public function orderAdditional()
         {
-            return $this->belongsTo(Additional::class, 'additional_id', 'id');
+            return $this->belongsToMany(Additional::class, 'additional_order_products',
+             'order_product_id',
+              'additional_id',
+               'id');
         }
 
         public function orderUser()

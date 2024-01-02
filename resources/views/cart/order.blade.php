@@ -10,7 +10,7 @@
     @vite('resources/css/app.css')
     <style>
         .row{
-          
+          margin-bottom: 10px;
            background-color: black;
         }
          .clients{
@@ -35,27 +35,28 @@
     </style>
 </head>
 <body>
-  <div class="container mx-auto">
+  <div class="container mx-auto pt-2 ">
     <div class="text-center">
-        <h1 class="p-2 pt-4">LISTAGEM DE PEDIDOS</h1>
+        <h1 class="p-2 pt-2 font-bold">LISTAGEM DE PEDIDOS</h1>
        
               <div class="overflow-auto">
                 @include('layouts.statusNavegation')
               </div>
-              @if(session('new_order'))
-              {{-- <script>
+
+              {{-- @if(session('new_order'))
+              <script>
                   Echo.channel('new-order')
                       .listen('NewOrderCreated', (event) => {
                           // Adicione aqui a lógica para reproduzir o som, por exemplo, usando o Web Audio API
                           var audio = new Audio('../../../public/sounds/new_order.mp3');
                           audio.play();
                       });
-              </script> --}}
-          @endif
+              </script>
+              @endif --}}
 
          @forelse ($orders as  $item)
         
-            <div class="card p-2">
+            <div class="card p-2 pt-2">
                 <div class="overflow-auto">
                       @php
                           $user = $item->user_id
@@ -68,8 +69,10 @@
                       @endphp
                        
                     
-                        <div class="pt-2 flex border p-2 rounded sm:w-full">
+                        <div class="pt-2 mt-2 flex border p-2 rounded sm:w-full">
                               <div class="clients">
+
+                                
                                 <div class="client p-2 rounded">
                                     <p>Cliente {{ $item->orderUser->name}} tem <span class="font-bold">'{{$userCount}}'</span> pedidos na plataforma.</p>
                                     {{-- <p>{{ $item->created_at->format('d/m/y H:i')}}</p> --}}
@@ -109,6 +112,7 @@
                 <table class="w-full border border-gray-100 ">
                     <thead>
                         <tr class="bg-gray-200">
+                            
                             <th class="py-2 px-4 border-b">Produto</th>
                             <th class="py-2 px-4 border-b">QUANTIDADE</th>
                             <th class="py-2 px-4 border-b">PREÇO</th>
@@ -126,15 +130,20 @@
                             <td class="py-2 px-4 border-b">@money($list->value)</td>
                             <td class="py-2 px-4 border-b">{{ $list->observation ?? '' }}</td>
                             <td class="py-2 px-4 border-b">
-                               
-                                @if($list->oderAdditional()->count()>0)
-
-                                    @foreach ($list->oderAdditional as $additional)
+                            {{-- @dd($list->orderAdditional[0]->name) --}}
+                                @if($list->orderAdditional->count()>0)
+                                    {{-- @dd($list->orderAdditional); --}}
+                                    @foreach ($list->orderAdditional as $additional)
                                         {{ $additional->name ?? '' }},
                                     @endforeach 
-                                     
-                              
+                                @else
+                                    <div class="">
+                                        <p>//</p>
+                                    </div>
+                                    
+                                    
                                 @endif
+                                
                             </td>
                           
                         </tr>

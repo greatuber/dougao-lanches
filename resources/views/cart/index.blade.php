@@ -10,11 +10,7 @@
     
     <title>centerCart</title>
     <style>
-      .button {
-        margin-left: 10px;
-        background-color:  #696969;
-        font-size: 15px;
-      }
+   
       .container {
         font-family: 'Chela One', cursive;
         font-family: 'Roboto', sans-serif;
@@ -27,9 +23,16 @@
       color: yellow;
       
      }
- 
-  
- 
+     .group{
+      justify-content: space-evenly;
+     }
+     .order {
+      background-color: blue;
+      
+     }
+     .yellow {
+      color: yellow;
+     }
    
     </style>
     
@@ -150,17 +153,17 @@
                           </thead>
                         
                                @forelse ($cart as $item)
-                              <?php $total = $total?>
+                                    <?php $total = $total?>
                           <tbody>
                                   <tr class="border-b dark:border-neutral-500">
                                     <td class="whitespace-nowrap px-2 py-4 text-gray-700 font-bold">{{ $item->orderProductProduct->name }}</td>
                                       <input type="hidden"  name="product_id" value="{{ $item->orderProductProduct->name }}">
                                     <td class="whitespace-nowrap px-6 py-4">
-                                        <span class="gray text-white p-1 rounded">
-                                         
-                                            @money($item->orderProductProduct->price)
 
+                                        <span class="gray text-white p-1 rounded">
+                                            @money($item->orderProductProduct->price)
                                         </span>
+
                                     </td>
                                     <td class="whitespace-nowrap px-6 py-4">
 
@@ -169,7 +172,7 @@
                                     </td>
                                      
                                     <td class="text-gray-700 font-bold">
-                                      {{ $item->observation ?? ''}}
+                                        <p> {{ $item->observation ?? ''}}</p>
                                     </td>
                                               
                                     <td class="text-gray-700 font-bold">
@@ -181,7 +184,8 @@
                                             @endforeach  
                                         
                                         @endif
-                                    </td>
+                                       
+                                    </td> 
                                     <td>
                             
                                       <form action="{{ route('cart.delete', $item->id) }}" method="POST">
@@ -203,7 +207,7 @@
                           <div class="rounded  pt-2 mt-2  ">
                                <div class="ml-4 mr-4  container">
                                 <h1 class="font-bold text-gray-700 pt-2 pb-2">TOTAL</h1>
-                            <form action="{{route('admin.create')}}"  method="post">
+          <form action="{{route('admin.create')}}"  method="post">
                                   @csrf
                                 <samp  class=" font-bold bg-white p-2  rounded"  id="toremove"> R$ @money($total)</samp>
                                 <samp  class=" font-bold bg-white p-2  rounded"  id="delivery"></samp>
@@ -249,31 +253,34 @@
                           <div class="pl-4 grid-templates-rows">
                                 <input type="text" class="rounded text-sm " name="observation" id="observation" placeholder="ex: troco para 50 reais">
                           </div>
+                    </div>
                           
-                            <div class=" btn btn-primary mt-2">
-                              <button type="submit" class=" font-bold  rounded ">Enviar Pedido</button>
-                            </div>
-                    </div>
+                          <div class="text-center md:flex sm:block group overflow-auto">
+                                  
+                                    <button type="submit" class="font-bold text-white p-2 mb-2 bg-blue-500  border rounded">
+
+                                        Enviar Pedido
+
+                                    </button>
+                                  
                 </form>       
-                
-                    <div class="p-2 text-center">
-                        <a href="{{ route('client.show')}}"><button class="text-sm border btn btn-primary font-bold rounded p-2">CONTINUAR COMPRANDO</button></a>
-                    </div>
-              <div class="">
-
-                        @if(session('success'))
-                            <div class=" text-center  bg-white text-green-600 p-4 text-2xl rounded font-bold">
-                                <p>{{ session('success')}}</p>
-                            </div>
-                        @endif
+                                  <div class="p-2 text-center">
+                                    <a href="{{ route('client.show')}}"><button class="text-sm text-white border bg-blue-500 font-bold rounded p-2">CONTINUAR COMPRANDO</button></a>
+                                  </div>
+                  
+                                  <button class="font-bold text-white text-md p-2 bg-blue-500 border rounded mb-2 mt-2 " data-bs-toggle="modal"
+                                      data-bs-target="#firstModal"> 
+                                      Cadastrar um endereço para entrega
+                                  </button>
+                          </div>
+              <div class="">   
+                            @if(session('success'))
+                                <div class=" text-center  bg-white text-green-600 p-4 text-2xl rounded font-bold">
+                                    <p>{{ session('success')}}</p>
+                                </div>
+                            @endif             
                         <div class="text-center text-3xl">
-                              <button class="font-bold text-white text-md p-2 btn btn-primary border rounded mb-2 mt-2 " data-bs-toggle="modal"
-                                  data-bs-target="#firstModal"> 
-                                  Cadastrar um endereço para entrega
-                              </button>
-                                 
-                                
-
+                           
                                     <div class="modal fade" id="firstModal" tabindex="-1"
                                       aria-labelledby="exampleModalLabel" aria-hidden="true">
                                       <div class="modal-dialog">
@@ -372,13 +379,18 @@
                            @if($address)
                            <div class="container">
                                
-                            <div class="pb-2">
-                              <p class="bg border rounded p-2 text-left">
-                                  OBS;<br/>
-                                   O sistema vai busca sempre o ultimo endereço cadastrado,se deseja  que a entrega seja feita em outro 
-                                   endereço cadastre o endereço que deja. 
-                              </P>
-                          </div>
+                                <div class="pb-2 yellow">
+                                  <details>
+                                      <summary >OBS;</summary>
+        
+                                      <p class="bg border rounded p-2 text-left">
+                                          
+                                          O sistema vai busca sempre o ultimo endereço cadastrado,se deseja  que a entrega seja feita em outro 
+                                          endereço cadastre o endereço que deja. 
+                                      </P>
+                                  </details>
+                                
+                                </div>
                               <div class="container">
                                   <div class="mb-4">
                                     <label class="block text-gray-700 text-sm font-bold mb-2" >CIDADE</label>
@@ -425,10 +437,6 @@
                               </div>
                            @endif
 
-                         
-                     
-                    
-                           
               </div>
      </div>
       {{-- <script>

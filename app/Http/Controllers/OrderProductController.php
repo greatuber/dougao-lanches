@@ -32,9 +32,9 @@ class OrderProductController extends Controller
                     'user_id' => $users, 
                     'price' => $price
                 ]);
-               
+              
                 $selectedAdditionals = $request->input('additional',[]);
-               
+            //    dd($selectedAdditionals);
                  foreach ($selectedAdditionals as $additionalId )
                     {
                        $cart->orderProductAdditional()->attach($additionalId);
@@ -81,7 +81,7 @@ class OrderProductController extends Controller
                     ->get();
                    
                 $total = 0;
-                // dd($cart);
+               
                 $cart->each(function ($item) use (&$total)
                  {
                     $total += $item->orderProductProduct->price * $item->quanty; 

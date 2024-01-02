@@ -94,13 +94,19 @@
                                     <td class="py-2 px-4 border-b">{{ $list->observation ?? '' }}</td>
                                     <td class="py-2 px-4 border-b">
                                        
-                                        @if($list->oderAdditional()->count()>0)
-                                        
-                                            @foreach ($list->oderAdditional as $additional)
-                                            {{ $additional->name ?? '' }},
-                                            @endforeach  
-                                  
-                                        @endif
+                                        @if($list->orderAdditional->count()>0)
+                                    {{-- @dd($list->orderAdditional); --}}
+                                    @foreach ($list->orderAdditional as $additional)
+                                        {{ $additional->name ?? '' }},
+                                    @endforeach 
+                                @else
+                                
+                                    <div class="">
+                                        <p>sem adicional</p>
+                                    </div>
+                                    
+                                    
+                                @endif
                                    
                                     </td>
                                 </tr>
@@ -137,9 +143,6 @@
                             <span class="p-2 mr-2 font-bold">{{$item->orderUser->address->last()->complement	 ?? ''}}</span>
                         </div>
                     </div>
-               
-                
-            
             
                     <div class=" flex">
                            <div class="">

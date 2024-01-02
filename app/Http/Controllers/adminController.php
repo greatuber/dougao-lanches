@@ -54,11 +54,11 @@ class adminController extends Controller
                           
                             $order = Order::create([
                               'observation' => $observation ?? $selectedCreditCard,
-                               'payment'  =>  $payment,
-                              'user_id' => $user->id ?? '',
-                              'total'   => $total,
-                              'delivery' => $delivery,
-                              'quantity' => $quantity,
+                              'payment'     =>  $payment,
+                              'user_id'     => $user->id ?? '',
+                              'total'       => $total,
+                              'delivery'    => $delivery,
+                              'quantity'    => $quantity,
                             ]);
           
                           
@@ -75,17 +75,10 @@ class adminController extends Controller
                                 'quamtity'      => $item->quanty,
                                 'value'         => $item->price,
                               ]);
-
+                              $orderlist->orderAdditional()->attach($item->orderProductAdditional);
                            
                             }
-                            $selectAdditional = $product[0]->orderProductAdditional;
-
-                            foreach ($selectAdditional as $additionalId )
-                            {
-                              $orderlist->oderAdditional()->attach($additionalId);
-                                 
-                            }
-        
+                          
                           
                             $product = Order_product::where('user_id', $users)->delete();
                            
@@ -113,26 +106,10 @@ class adminController extends Controller
             
                    
                   $date = now()->format('d/m/y H:i:s');
-                 
-                        //   $orders = Order::with(['orderUser.address' => function ($query) {
-                        //   $query->select('user_id', 'city', 'district', 'street','number','zipcode','complement','fone', DB::raw('MAX(created_at) as latest_created_at'))
-                        //   ->groupBy('user_id', 'city', 'district', 'street','number','zipcode','complement','fone'); // Subquery para obter o último endereço para cada usuário
-                        //   }])
-                        // ->where('status', 'aceito')
-                        // ->orderBy('id', 'desc')
-                        // ->get();
-                
-                // Agora, você precisa organizar os resultados para obter o último endereço para cada usuário
-                // $groupedOrders = $orders->groupBy('user_id');
-
-              //   foreach ($groupedOrders as $userId => $userOrders) {
-              //     $latestAddress = $userOrders->first()->orderUser->address->last();
-              //     // Faça algo com $latestAddress, como armazená-lo em uma nova coleção, por exemplo
-              //     dd($latestAddress );
-              // }
+   
               
-                  $orders = Order::orderBY('id', 'desc')->with('orderUser')->where('status', 'processando')->get();
-
+                  $orders = Order::orderBY('id', 'desc')->with('orderUser','orderlist','orderAdditional')->where('status', 'processando')->get();
+                
                     return view('cart.order',compact('date', 'users', 'orders'));
             }
 

@@ -53,7 +53,7 @@
                                           <div class="pt-2">
                                             <h1>CADASTRO E ATUALIZAÇOÊS DE PRODUTOS</h1>
                                           </div>
-                                      <a href="{{ route('new.project')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">CADASTRAR NO PRODUTO</div></a>
+                                      <a href="{{ route('new.project')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">CADASTRAR NOVO PRODUTO</div></a>
                                       <a href="{{ route('view.category')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">CADASTRAR NOVA CATEGORIA</div></a>
                                       <a href="{{ route('view.aditional')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">CADASTRAR NOVO ADICIONAL</div></a>
                                       <a href="{{ route('client.show')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold mb-2">CLIENTES</div></a>
