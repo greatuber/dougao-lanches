@@ -147,8 +147,8 @@
                                 <th scope="col" class="px-4 py-2 text-gray-700">Produto</th>
                                 <th scope="col" class="px-4 py-2 text-gray-700">Preço</th>
                                 <th scope="col" class="px-4 py-2 text-gray-700">Quantidade</th>
-                                <th scope="col" class="px-4 py-2 text-gray-700">OBSERVAÇÃO</th>
-                                <th scope="col" class="px-4 py-2 text-gray-700">ADICIONAIS</th>
+                                <th scope="col" class="px-4 py-2 text-gray-700">Observação</th>
+                                <th scope="col" class="px-4 py-2 text-gray-700">Adicionais</th>
                             </tr>
                           </thead>
                         
@@ -218,7 +218,7 @@
                                  
                     <div class=" pb-2 mt-2">
                              <div class="text-center">
-                                <h1 class="text-gray-700 font-bold pb-2 text-lg">o pagamento sera realizado na entrega</h1>
+                                <h1 class="text-gray-700 font-bold pb-2 text-lg">o pagamento será realizado na entrega</h1>
                              </div>
                             <div class="p-4 relative">
                                   <div class="pb-4 w-full">
@@ -226,7 +226,7 @@
                                       <input class="toremove" type="radio" checked value="0" id="toRemove" name="delivery" onchange="atualizarValor()" > 
                                       <label for=""  class="text-gray-700 font-bold pr-4" >Retirar na lanchonete</label>
                                       <input  class="delivery" type="radio" value="1" id="entrega" name="delivery" onchange="atualizarValor()"> 
-                                      <label for="" class="text-gray-700 font-bold" >para Entregar</label>
+                                      <label for="" class="text-gray-700 font-bold" >Para entregar</label>
                                       <i class="fa-solid fa-motorcycle fa-xl text-blue-500"></i>
                                      
                                   </div>
@@ -257,15 +257,15 @@
                           
                           <div class="text-center md:flex sm:block group overflow-auto">
                                   
-                                    <button type="submit" class="font-bold text-white p-2 mb-2 bg-blue-500  border rounded">
+                                    <button type="submit" class="font-bold text-sm text-white p-2 mb-2 bg-blue-500  border rounded">
 
-                                        Enviar Pedido
+                                        Enviar pedido
 
                                     </button>
                                   
                 </form>       
                                   <div class="p-2 text-center">
-                                    <a href="{{ route('client.show')}}"><button class="text-sm text-white border bg-blue-500 font-bold rounded p-2">CONTINUAR COMPRANDO</button></a>
+                                    <a href="{{ route('client.show')}}"><button class="text-sm text-white border bg-blue-500 font-bold rounded p-2">Continuar comprando</button></a>
                                   </div>
                   
                                   <button class="font-bold text-white text-md p-2 bg-blue-500 border rounded mb-2 mt-2 " data-bs-toggle="modal"
@@ -296,7 +296,7 @@
                                                   @csrf  
                                                           <div class="container">
                                                               <div class="mb-4 sachadow-black">
-                                                                <label class="block text-gray-700 text-sm font-bold mb-2" for="Produto">CIDADE</label>
+                                                                <label class="block text-gray-700 text-sm font-bold mb-2" for="Produto">Cidade</label>
                                                                 <input autocomplete="off" value="" class="shadow-balck appearance-none border rounded sm:w-full py-2 px-3 text-gray-700  leading-tight focus:outline-none focus:shadow-outline" id="city" type="text" placeholder="digite a cidade" name="city">
                                                                   @error('city')
                                                                   <div class=" p-2 ">
@@ -381,7 +381,7 @@
                                
                                 <div class="pb-2 yellow">
                                   <details>
-                                      <summary >OBS;</summary>
+                                      <summary>OBS;</summary>
         
                                       <p class="bg border rounded p-2 text-left">
                                           
@@ -393,7 +393,7 @@
                                 </div>
                               <div class="container">
                                   <div class="mb-4">
-                                    <label class="block text-gray-700 text-sm font-bold mb-2" >CIDADE</label>
+                                    <label class="block text-gray-700 text-sm font-bold mb-2" >Cidade</label>
                                     <p value="" class=" text-left border rounded sm:w-full py-2 px-3 text-gray-700 " id="city" type="text" placeholder="digite a cidade" name="city">{{ $address->city ?? ''}}</p>
                                   </div>
                                   <div class="mb-4">
@@ -403,12 +403,12 @@
   
                                   <div class="mb-4">
                                       <label class="block text-gray-700 text-sm font-bold mb-2" >Bairro</label>
-                                      <p value="" id="bairro" class="border rounded  sm:w-full py-2 px-3 text-gray-700 text-left" id="bairro" type="text" placeholder="digite o Bairro" name="district"> {{ $address->district ?? ''}}</p>
+                                      <p value="" id="bairro" class="border rounded  sm:w-full py-2 px-3 text-gray-700 text-left" id="bairro" type="text" placeholder="digite o bairro" name="district"> {{ $address->district ?? ''}}</p>
                                   </div>
   
                                   <div class="mb-4">
                                       <label class="block text-gray-700 text-sm font-bold mb-2" >Rua</label>
-                                      <p value=" " id="rua" class=" text-left border rounded sm:w-full py-2 px-3 text-gray-700" id="street" type="text" placeholder="digite sua Rua" name="street">{{ $address->street ?? ''}}</p>
+                                      <p value=" " id="rua" class=" text-left border rounded sm:w-full py-2 px-3 text-gray-700" id="street" type="text" placeholder="digite sua rua" name="street">{{ $address->street ?? ''}}</p>
                                   </div>
   
                                   <div class="mb-4">

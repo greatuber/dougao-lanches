@@ -22,7 +22,14 @@
    .green {
     background-color: rgb(21, 185, 21);
    }
-
+   .painel{
+    margin-left: 50px;
+    margin-right: 50px;
+   }
+   .slate{
+    background-color: rgb(228, 217, 217);
+    border: 2px solid black;
+   }
   
     </style>
 
@@ -37,34 +44,37 @@
           <div class=" center">
                   <div class="">
                             
-                          <div class="  text-center pr-4 bg-orange-500 rounded">
-                            <h1 class="text-center text-white font-bold  pt-2">SEJA BEM VINDO AO SEU PAINEL ADMINISTRATIVO</h1> <br>  
+                          <div class="  text-center pr-4  rounded container ">
+                            <h1 class="text-center  font-bold  pt-4">SEJA BEM VINDO AO SEU PAINEL ADMINISTRATIVO</h1> <br>  
                                   <h2 class="font-bold text-lg"> {{Auth::user()->name}} </h2>
                                         <div class="text-center p-2 ">
-                                          <h1>CATEGORIAS</h1>
+                                          <h1 class="font-bold">CATEGORIAS</h1>
                                         </div>
-                                  <div class="container pl-2 pb-2">
+                                  <div class=" pl-2 pb-2 painel">
 
-                                      <a href="{{ route('showbeer')}}" class=""><div class=" hover:bg-blue-700  border text-white p-2 mt-2 ml-2 rounded font-bold">BEBIDAS</div></a>
-                                      <a href="{{ route('showcombo')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">COMBOS</div></a>
-                                      <a href="{{ route('create.product')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">LANCHES</div></a>
-                                      <a href="{{ route('user.bomboniere')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">BOMBONIÉRE</div></a>
-                                      <a href="{{ route('order.show')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">PEDIDOS</div></a>
+                                      <a href="{{ route('showbeer')}}" class=""><div class=" slate  p-2 mt-2 ml-2 rounded">BEBIDAS</div></a>
+                                      <a href="{{ route('showcombo')}}" class=""><div class=" slate  p-2 rounded mt-2 ml-2">COMBOS</div></a>
+                                      <a href="{{ route('create.product')}}" class=""><div class=" slate  p-2 rounded mt-2 ml-2">LANCHES</div></a>
+                                      <a href="{{ route('user.bomboniere')}}" class=""><div class=" slate  p-2 rounded mt-2 ml-2">BOMBONIÉRE</div></a>
+                                      <a href="{{ route('order.show')}}" class=""><div class= "slate p-2 rounded mt-2 ml-2">PEDIDOS</div></a>
                                           <div class="pt-2">
-                                            <h1>CADASTRO E ATUALIZAÇOÊS DE PRODUTOS</h1>
+                                            <h1 class= "font-bold p-2">CADASTRO E ATUALIZAÇOÊS DE PRODUTOS</h1>
                                           </div>
-                                      <a href="{{ route('new.project')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">CADASTRAR NOVO PRODUTO</div></a>
-                                      <a href="{{ route('view.category')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">CADASTRAR NOVA CATEGORIA</div></a>
-                                      <a href="{{ route('view.aditional')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold">CADASTRAR NOVO ADICIONAL</div></a>
-                                      <a href="{{ route('client.show')}}"><div class=" hover:bg-blue-700  border text-white p-2 rounded mt-2 ml-2 font-bold mb-2">CLIENTES</div></a>
-                                    
+                                      <a href="{{ route('new.project')}}" class=""><div class=" slate p-2 rounded mt-2 ml-2">CADASTRAR NOVO PRODUTO</div></a>
+                                      <a href="{{ route('view.category')}}" class=""><div class=" slate p-2 rounded mt-2 ml-2">CADASTRAR NOVA CATEGORIA</div></a>
+                                      <a href="{{ route('view.aditional')}}" class=""><div class=" slate p-2 rounded mt-2 ml-2">CADASTRAR NOVO ADICIONAL</div></a>
+                                      <a href="{{ route('client.show')}}" class=""><div class=" slate p-2 rounded mt-2 ml-2 mb-2">CLIENTES</div></a>
+                                      <div class="pt-2">
+                                        <h1 class= "font-bold p-2">RESUMO DOS PEDIDOS</h1>
+                                        <a href="{{ route('summary.index')}}" class=""><div class=" slate p-2 rounded mt-2 ml-2 mb-2">RESUMO</div></a>
+                                      </div>
                                   </div>
                           </div>
                   </div>
 
              <p class="text-center text-gray-500 text-xs">
         
-               &copy;2023 todos os direitos reservados desenvolvendor web Alexandre Roberto.
+               &copy;2024 todos os direitos reservados desenvolvendor web Alexandre Roberto.
              </p>
          </div>
     </div>

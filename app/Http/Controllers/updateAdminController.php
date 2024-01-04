@@ -9,14 +9,13 @@ use Illuminate\Support\Facades\Auth;
 
 class updateAdminController extends Controller
 {
-    public function update(Request $request)
-       {
-          
-            $userId = Auth::id();
-          
-            User::where('id',$userId)->update(['access_level' => 'admin']);
+     public function update(Request $request)
+     {
 
-            return redirect()->back()->with('access', 'agora você é um admistrador Parabéns');
+          $userId = Auth::id();
 
-       }
+          User::where('id', $userId)->update(['access_level' => 'admin']);
+
+          return redirect()->back()->with('access', 'agora você é um admistrador Parabéns');
+     }
 }

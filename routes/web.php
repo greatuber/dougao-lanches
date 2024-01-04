@@ -22,6 +22,7 @@ use App\Http\Controllers\statusRefusedController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\updateAdminController;
 use App\Http\Controllers\panelAdminController;
+use App\Http\Controllers\summaryController;
 use App\Http\Controllers\toggleController;
 use Illuminate\Support\Facades\Route;
 
@@ -146,6 +147,9 @@ Route::post('/update-admin',[updateAdminController::class, 'update'])->name('upd
         //  view admin
 
 Route::get('/panel-admin',[panelAdminController::class, 'index'])->name('panel.admin');
-        
+
+    // rota de resumo dos pedidos
+Route::get('/summary',[summaryController::class, 'index'])->name('summary.index');   
+Route::post('/summary/filter', [SummaryController::class, 'filter'])->name('summary.filter');     
 require __DIR__.'/auth.php';
      
