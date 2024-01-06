@@ -150,6 +150,7 @@ Route::get('/panel-admin',[panelAdminController::class, 'index'])->name('panel.a
 
     // rota de resumo dos pedidos
 Route::get('/summary',[summaryController::class, 'index'])->name('summary.index');   
-Route::post('/summary/filter', [SummaryController::class, 'filter'])->name('summary.filter');     
+Route::post('/summary/filter', [SummaryController::class, 'filter'])->name('summary.filter');  
+Route::post('/search',[summaryController::class, 'search'])->name('summary.search');   
 require __DIR__.'/auth.php';
      

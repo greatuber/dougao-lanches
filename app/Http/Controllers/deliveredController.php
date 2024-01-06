@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Order;
 use App\Models\Address;
 use Illuminate\Support\Facades\Auth;
@@ -13,18 +14,18 @@ class deliveredController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-            {
-                $date = now()->format('d/m/y H:i:s');
-                $user      = Auth::user();
-                $users     = $user->id ?? '';
-                $order = Order::all();
-              
+    {
+        $date = now()->format('d/m/y H:i:s');
+        $user      = Auth::user();
+        $users     = $user->id ?? '';
+        $order = Order::all();
 
-                $userAddresses = Address::where('user_id', $users)->with('userAdress')->get();
-                $order = Order::orderBy('id', 'desc')->where(['status'=>('entregue')])->get();
 
-                return view('status.delivered',compact('order', 'userAddresses'));
-            }
+        $userAddresses = Address::where('user_id', $users)->with('userAdress')->get();
+        $order = Order::orderBy('id', 'desc')->where(['status' => ('entregue')])->get();
+
+        return view('status.delivered', compact('order', 'userAddresses'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -63,7 +64,6 @@ class deliveredController extends Controller
      */
     public function update(Request $request, string $id)
     {
-     
     }
 
     /**

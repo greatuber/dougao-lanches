@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Order;
 use App\Models\OrderList;
 use App\Models\Product;
@@ -15,22 +16,22 @@ class statusController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-            {
-             
-            
-                $date = now()->format('d/m/y H:i:s');
-                $user      = Auth::user();
-                $users     = $user->id ?? '';
-          
-                // $orders = Order::with(['orderUser.address' => function ($query) {
-                //     $query->latest('created_at')->limit(1); // Obtém o último endereço
-                //    }])->where('status', 'aceito')->orderBy('id', 'desc')->get();
+    {
 
-                $orders = Order::orderBY('id', 'desc')->with('orderUser')->where('status', 'aceito')->get();
-            
 
-                return view('status.index',compact('orders', 'date', 'users'));
-            }
+        $date = now()->format('d/m/y H:i:s');
+        $user      = Auth::user();
+        $users     = $user->id ?? '';
+
+        // $orders = Order::with(['orderUser.address' => function ($query) {
+        //     $query->latest('created_at')->limit(1); // Obtém o último endereço
+        //    }])->where('status', 'aceito')->orderBy('id', 'desc')->get();
+
+        $orders = Order::orderBY('id', 'desc')->with('orderUser')->where('status', 'aceito')->get();
+
+
+        return view('status.index', compact('orders', 'date', 'users'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -71,7 +72,7 @@ class statusController extends Controller
     {
         $order = Order::findOrFail($id);
 
-        $order->update(['status'=>('produção')]);
+        $order->update(['status' => ('produção')]);
 
         return redirect()->back();
     }

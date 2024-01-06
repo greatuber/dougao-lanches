@@ -14,10 +14,10 @@ class CategoryController extends Controller
      */
     public function index()
 
-    {    
+    {
 
         $category = Category::get();
-      
+
         return view('products.view-category', compact('category'));
     }
 
@@ -68,11 +68,11 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-    
+
         $category = Category::findOrFail($id);
-       
+
         $category->delete();
-        
-        return redirect()->back()->with('deleted','categoria excluida com sucesso');
+
+        return redirect()->back()->with('deleted', 'categoria excluida com sucesso');
     }
 }

@@ -47,7 +47,7 @@
             padding-right: 10px;
           }
           .color{
-            background-color: rgba(223, 91, 91, 0.726);
+            background-color: rgba(55, 122, 53, 0.726);
           }
          
 
@@ -72,7 +72,7 @@
                             <p>A lanchonete está fechada. Abre terça-feira às 18:00hs.</p>
                         @else
                             <p>Lanchonete fechada</p>
-                            <p>Abre hoje às 18:00 hs</p>
+                            <p>Abre hoje às 19:00 hs</p>
                         @endif
                           @else
                               <div class="lime pt-2">

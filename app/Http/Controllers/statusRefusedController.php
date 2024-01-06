@@ -7,12 +7,12 @@ use App\Models\Order;
 
 class statusRefusedController extends Controller
 {
-    public function update(Request $request, $id)
-      {
-           $order = Order::findOrFail($id);
-          
-           $order->update(['status'=>('recusado')]);
+     public function update(Request $request, $id)
+     {
+          $order = Order::findOrFail($id);
 
-           return redirect()->back();
-      }
+          $order->update(['status' => ('recusado')]);
+
+          return redirect()->back();
+     }
 }

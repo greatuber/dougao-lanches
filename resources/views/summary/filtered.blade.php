@@ -15,11 +15,13 @@
 
     <div class="text-center">
         <div class="container mx-auto pt-2">
+
             <div class="text-center pb-2">
                 <h1 class="font-bold pt-2">RESUMO DE PEDIDOS FILTRADOS</h1>
             </div>
-    
-        
+          @if(session('nfound'))
+             {{session('nfound')}}
+          @endif
          <details>
             <summary>Mostrar tabela</summary>
             <div class="mt-4 container text-center">
@@ -28,6 +30,7 @@
                         <tr>
                             <th class="border border-gray-300 px-4 py-2">Número do Pedido</th>
                             <th class="border border-gray-300 px-4 py-2">Data do Pedido</th>
+                            <th class="border border-gray-300 px-4 py-2">Produto</th>
                             <th class="border border-gray-300 px-4 py-2">Valor</th>
                             <th class="border border-gray-300 px-4 py-2">Tipo de Pagamento</th>
                             <th class="border border-gray-300 px-4 py-2">Usuário</th>
@@ -38,8 +41,14 @@
                         <tr>
                             <td class="border border-gray-300  py-2">{{$order->id}}</td>
                             <td class="border border-gray-300 px-4 py-2">{{$order->created_at->format('d/m/y')}}</td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                @foreach ($order->orderList as $item)
+                                {{$item->product->name}},
+                                @endforeach
+                                
+                            </td>
                             <td class="border border-gray-300 px-4 py-2">${{$order->total}}</td>
-                            <td class="border border-gray-300 px-4 py-2">{{$order->payment == '0' ? 'Dinheiro' : 'Cartão'}}</td>
+                            <td class="border border-gray-300 px-4 py-2">{{$order->payment == '0' ? 'Cartão' : 'Dinheiro'}}</td>
                             <td class="border border-gray-300 px-4 py-2">{{$order->orderUser->name}}</td>
                         </tr>
                         @endforeach
@@ -53,11 +62,19 @@
                     <p class="p-2 text-lg">Número de pedidos: {{$count}}</p>
                     <p class="p-2 text-lg">Total em dinheiro: $ {{$totalCash}} </p>
                     <p class="p-2 text-lg">Total em cartão: $ {{$totalCard}}</p>
-                    <p class="p-2 text-lg">Total: $ {{$total}}</p>
+                    <p class="p-2 text-lg text-green-600">Total: $ {{$total}}</p>
                 </div>
             </div>
         </div>
-    
+         <div class="">
+            <form action="{{route('summary.search')}}" method="POST">
+                 @csrf
+                <label for="">Pesquisar pedido</label>
+                <input type="text" class="border mb-2" autocomplete="off" name="search" placeholder="digite o numero do pedido">
+                <button type="submit" class="border p-2">Pesquisar</button>
+            </form>
+           
+         </div>
         <a href="{{ route('panel.admin')}}">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                 Voltar

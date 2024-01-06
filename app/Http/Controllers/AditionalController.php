@@ -8,49 +8,49 @@ use App\Models\Additional;
 
 class AditionalController extends Controller
 {
-    public function index()
+  public function index()
 
-          {
-            $additional = Additional::get();
+  {
+    $additional = Additional::get();
 
-            return view('products.aditional-view',compact('additional'));
-          }
+    return view('products.aditional-view', compact('additional'));
+  }
 
-     public function create(additionalRequest $request)
-          {
-          
-            $name = $request->name;
+  public function create(additionalRequest $request)
+  {
 
-            $price = $request->price;
+    $name = $request->name;
+
+    $price = $request->price;
 
 
-            $price  = str_replace(",",  "." ,$price);
+    $price  = str_replace(",",  ".", $price);
 
-            $additional = Additional::create([
-              'name' => $name,
-              'price' => $price
-            ]);
-            
-            return redirect()->back()->with('success',  'adicional cadastrado com sucesso');
-          }
-        
-     public function destroy(Request $request, $id)
-        {
-          $additional = Additional::findOrFail($id);
+    $additional = Additional::create([
+      'name' => $name,
+      'price' => $price
+    ]);
 
-          $additional->delete();
-          return redirect()->back()->with('deleted', 'adicional excluido com sucesso');
-        }  
-       
-     public function update(Request $request, $id)
-        {
-          $additional = Additional::findOrFail($id);
+    return redirect()->back()->with('success',  'adicional cadastrado com sucesso');
+  }
 
-          $formattedPrice = str_replace(',', '.', $request->input('price'));
+  public function destroy(Request $request, $id)
+  {
+    $additional = Additional::findOrFail($id);
 
-          // Atualize o preço formatado
-          $additional->update(['price' => $formattedPrice] + $request->except('price') + $request->all());
+    $additional->delete();
+    return redirect()->back()->with('deleted', 'adicional excluido com sucesso');
+  }
 
-          return redirect()->back()->with('updated', ' atualizado com sucesso');
-        }   
+  public function update(Request $request, $id)
+  {
+    $additional = Additional::findOrFail($id);
+
+    $formattedPrice = str_replace(',', '.', $request->input('price'));
+
+    // Atualize o preço formatado
+    $additional->update(['price' => $formattedPrice] + $request->except('price') + $request->all());
+
+    return redirect()->back()->with('updated', ' atualizado com sucesso');
+  }
 }
