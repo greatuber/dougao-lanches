@@ -9,10 +9,7 @@
     <title>centerCart</title>
     @vite('resources/css/app.css')
     <style>
-        .row{
-          margin-bottom: 10px;
-           background-color: black;
-        }
+     
          .clients{
             display: flex;
            justify-items: center;
@@ -37,7 +34,7 @@
 <body>
   <div class="container mx-auto pt-2 ">
     <div class="text-center">
-        <h1>RESULTADO DO PEDIDO PEQUISADO</h1>
+        <h1 class="pb-2">RESULTADO DO PEDIDO PEQUISADO</h1>
 
             <div class="card p-2 pt-2">
                 <div class="overflow-auto">
@@ -50,16 +47,16 @@
                       @endphp
                        
                     
-                        <div class="pt-2 mt-2 flex border p-2 rounded sm:w-full">
+                        <div class="pt-2 mt-2 flex border p-2 rounded sm:w-full overflow-auto">
                               <div class="clients">
 
                                 <div class="client p-2 rounded">
-                                    <p>Cliente {{ $order->orderUser->name}} tem <span class="font-bold">'{{$userCount}}'</span> pedidos na plataforma.</p>
+                                    <p> {{ $order->orderUser->name}} tem <span class="font-bold">'{{$userCount}}'</span> pedidos na plataforma.</p>
                                     {{-- <p>{{ $order->created_at->format('d/m/y H:i')}}</p> --}}
                                  </div>
    
                                  <div class="payment rounded flex">
-                                    <h1 class="font-bold  p-2">forma de pagamento</h1>
+                                    <h1 class="font-bold  p-2"></h1>
                                     <p class="tex-center">{{ $order->payment ? 'DINHEIRO' : 'CARTÃO' }} :</p>
                                     <p class=" p-2 text-center">{{ $order->observation}}</p>
                                  </div>
@@ -110,26 +107,60 @@
                             <td class="py-2 px-4 border-b">@money($list->value)</td>
                             <td class="py-2 px-4 border-b">{{ $list->observation ?? '' }}</td>
                             <td class="py-2 px-4 border-b">
-                            {{-- @dd($list->orderAdditional[0]->name) --}}
+                           
                                 @if($list->orderAdditional->count()>0)
-                                    {{-- @dd($list->orderAdditional); --}}
                                     @foreach ($list->orderAdditional as $additional)
                                         {{ $additional->name ?? '' }},
                                     @endforeach 
                                 @else
+
                                     <div class="">
                                         <p>//</p>
                                     </div>
-                                    
-                                    
+
                                 @endif
                                 
                             </td>
                           
                         </tr>
                       @endforeach
+
+                 
                     </tbody>
-                </table>    
+                </table>  
+                          
+                <div class=" container pt-4 pb-4">
+                    <h1 class="font-bold">ENDEREÇO DO CLIENTE</h1>
+                      
+                    <div class="flex flex-wrap content-start pb-4">
+                        <div class="p-2 text-start">
+                            <label for="">Cidade:</label>
+                        
+                            <span class=" p-2 mr-2 font-bold">{{$order->orderUser->address->last()->city  ?? ''}}</span>
+                        </div>
+                        <div class="p-2 text-start">
+                            <label for="">Rua:</label>
+                            <span class="p-2 mr-2 font-bold">{{$order->orderUser->address->last()->street ?? ''}}</span>
+                        </div>
+                        <div class="p-2 text-start">
+                            <label for="">Bairro:</label>
+                            <span class="p-2 mr-2 font-bold">{{$order->orderUser->address->last()->district ?? ''}}</span>
+                        </div>
+                        <div class="p-2 text-start">
+                            <label for="">Numero:</label>
+                            <span class="p-2 mr-2 font-bold">{{$order->orderUser->address->last()->number ?? ''}}</span>
+                        </div>
+                        <div class="p-2 text-start">
+                            <label for="">Fone:</label>
+                            <span class="p-2 mr-2 font-bold">{{$order->orderUser->address->last()->fone ?? ''}}</span>
+                        </div>
+                        <div class="p-2 text-start">
+                            <label for="">Complemento:</label>
+                        
+                            <span class="p-2 mr-2 font-bold">{{$order->orderUser->address->last()->complement	 ?? ''}}</span>
+                        </div>
+                    </div>      
+
             </div>    
                
         </div>

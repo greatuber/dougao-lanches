@@ -129,11 +129,15 @@
                                                     <label for="">ADICIONAIS</label>
                                                   </div>
                                                   <div class="text-center p-2">
-                                                    <select class="bg-white rounded" name="additional" id="additional">
+
+                                                    <select  class=" rounded" name="additional[]" multiple="multiple">
                                                       @foreach( $adde as $add)
-                                                        <option class=" bg-orange-500" value="{{$add->id}}">{{$add->name}}-R$-{{ number_format($add->price,2,',','.') }}</option>
+                                                          <option value="{{$add->id}}" name="{{$add->name}}" >
+                                                            {{$add->name}}-R$-{{ number_format($add->price,2,',','.') }}
+                                                          </option>
                                                       @endforeach
-                                                    </select>
+                                                  </select>
+
                                                   </div>
                                                   </div>
                                                   <div class=" p-2 text-center">

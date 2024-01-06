@@ -19,9 +19,7 @@
             <div class="text-center pb-2">
                 <h1 class="font-bold pt-2">RESUMO DE PEDIDOS FILTRADOS</h1>
             </div>
-          @if(session('nfound'))
-             {{session('nfound')}}
-          @endif
+        
          <details>
             <summary>Mostrar tabela</summary>
             <div class="mt-4 container text-center">
@@ -60,18 +58,22 @@
             <div class="pb-2 container">
                 <div class="text">
                     <p class="p-2 text-lg">Número de pedidos: {{$count}}</p>
-                    <p class="p-2 text-lg">Total em dinheiro: $ {{$totalCash}} </p>
+                    <p class="p-2 text-lg">Total em dinheiro: $ @money($totalCash) </p>
                     <p class="p-2 text-lg">Total em cartão: $ {{$totalCard}}</p>
                     <p class="p-2 text-lg text-green-600">Total: $ {{$total}}</p>
                 </div>
             </div>
+                <div class="container mt-4 mb-4">
+                    <canvas id="myChart" width="300" height="200"></canvas>
+                </div>
         </div>
          <div class="">
+
             <form action="{{route('summary.search')}}" method="POST">
                  @csrf
-                <label for="">Pesquisar pedido</label>
-                <input type="text" class="border mb-2" autocomplete="off" name="search" placeholder="digite o numero do pedido">
-                <button type="submit" class="border p-2">Pesquisar</button>
+                <label for="" class="pb-2">Pesquisar pedido</label><br>
+                <input type="text" class="border mb-2 rounded" required autocomplete="off" name="search" placeholder="digite o numero do pedido">
+                <button type="submit" class="border text-white p-2 bg-blue-500 hover:bg-blue-700 rounded">Pesquisar</button>
             </form>
            
          </div>
@@ -81,6 +83,41 @@
             </button>
         </a>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Dinheiro', 'Cartão'],
+                datasets: [{
+                    label: 'Gráfico de Vendas',
+                    data: [{{$totalCash}}, {{$totalCard}}],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.3)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
  

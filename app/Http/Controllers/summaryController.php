@@ -17,6 +17,8 @@ class summaryController extends Controller
 
     public function filter(Request $request)
     {
+       
+
         $start_date = $request->input('start_date');
         $end_date = $request->input('end_date');
 
@@ -41,6 +43,7 @@ class summaryController extends Controller
     }
 
     public function search(Request $request){
+        
         $search = $request->search;
 
         $user  = Auth::user();
@@ -54,7 +57,7 @@ class summaryController extends Controller
             return view('summary.search', compact('order', 'users'));
         }else {
             // Se o pedido não for encontrado, você pode lidar com isso conforme necessário
-            return view('summary.search', compact('order', 'users'));
+           return redirect()->route('summary.index')->with('nfound', 'pedido não encontrado');
         }
     }
     
