@@ -19,7 +19,7 @@
             <div class="text-center pb-2">
                 <h1 class="font-bold pt-2">RESUMO DE PEDIDOS FILTRADOS</h1>
             </div>
-        
+
          <details>
             <summary>Mostrar tabela</summary>
             <div class="mt-4 container text-center">
@@ -72,10 +72,10 @@
             <form action="{{route('summary.search')}}" method="POST">
                  @csrf
                 <label for="" class="pb-2">Pesquisar pedido</label><br>
-                <input type="text" class="border mb-2 rounded" required autocomplete="off" name="search" placeholder="digite o numero do pedido">
+                <input type="search" class="border mb-2 rounded" required autocomplete="off" name="search" placeholder="digite o numero do pedido">
                 <button type="submit" class="border text-white p-2 bg-blue-500 hover:bg-blue-700 rounded">Pesquisar</button>
             </form>
-           
+         
          </div>
         <a href="{{ route('panel.admin')}}">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
@@ -92,17 +92,23 @@
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Dinheiro', 'Cartão'],
+                labels: ['Dinheiro', 'Cartão', 'Total'],
                 datasets: [{
                     label: 'Gráfico de Vendas',
-                    data: [{{$totalCash}}, {{$totalCard}}],
+                    data: [{{$totalCash}}, {{$totalCard}}, {{$total}}],
                     backgroundColor: [
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(255, 99, 132, 0.3)'
+                        'rgba(255,255,0)',
+                        'rgb(47,79,79)',
+                        'rgba(0,255, 0, 0.6)'
                     ],
                     borderColor: [
                         'rgba(75, 192, 192, 1)',
-                        'rgba(255, 99, 132, 1)'
+                        'rgba(235, 90, 132, 0)'
+
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(235, 90, 132, 0)'
                     ],
                     borderWidth: 1
                 }]
@@ -117,6 +123,40 @@
         });
     });
 </script>
+
+<!-- Adicione no final da sua view, antes do fechamento do body -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var ctx = document.getElementById('myCharts').getContext('2d');
+        var salesData = $salesData;
+
+        var chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: salesData.dates,
+                datasets: [{
+                    label: 'Total de Vendas',
+                    data: salesData.totals,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)', // Cor de fundo
+                    borderColor: 'rgba(75, 192, 192, 1)', // Cor da linha
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        type: 'linear',
+                        position: 'bottom'
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    });
+</script>
+
 
 </body>
 </html>

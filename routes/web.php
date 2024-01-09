@@ -148,9 +148,11 @@ Route::post('/update-admin',[updateAdminController::class, 'update'])->name('upd
 
 Route::get('/panel-admin',[panelAdminController::class, 'index'])->name('panel.admin');
 
-    // rota de resumo dos pedidos
+    // rota de resumo dos pedidos graficos
 Route::get('/summary',[summaryController::class, 'index'])->name('summary.index');   
 Route::post('/summary/filter', [SummaryController::class, 'filter'])->name('summary.filter');  
-Route::post('/search',[summaryController::class, 'search'])->name('summary.search');   
+Route::post('/search',[summaryController::class, 'search'])->name('summary.search'); 
+Route::get('/salesData',[summaryController::class, 'salesChartData'])->name('summary.sales');
+Route::get('/productQuantity',[summaryController::class, 'productGraphic'])->name('summary.product');
 require __DIR__.'/auth.php';
      

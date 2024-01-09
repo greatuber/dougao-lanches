@@ -60,11 +60,19 @@
                     </button>
                 </a>
             </div>
+               <a href="{{route('summary.sales')}}" class=" p-2 mt-2">
+                <button type="submit" class="mt-4 text-white bg-blue-500 p-2 rounded">GRAFICO DE VENDAS DO MÊS</button>
+               </a>
 
+               <a href="{{route('summary.product')}}" class=" p-2 mt-2">
+                <button type="submit" class="mt-4 text-white bg-blue-500 p-2 rounded">GRAFICO DE LANCHE MAIS VENDIDO</button>
+               </a>
      </div>
   
+     <canvas id="salesChart" width="800" height="400"></canvas>
 
-  
+   
+    
              
 </body>
 </html>
