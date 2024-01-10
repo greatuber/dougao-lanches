@@ -79,12 +79,15 @@
                             <td class="py-2 px-4 border-b">{{ number_format($list->value, 2, ',', '.')  }}</td>
                             <td class="py-2 px-4 border-b">{{  $list->observation ?? '' }}</td>
                             <td class="py-2 px-4 border-b">
-                                @if($list->oderAdditional()->count()>0)
-
-                                    @foreach ($list->oderAdditional as $additional)
+                                @if($list->orderAdditional->count()>0)
+                                {{-- @dd($list->orderAdditional); --}}
+                                @foreach ($list->orderAdditional as $additional)
                                     {{ $additional->name ?? '' }},
-                                    @endforeach  
-                              
+                                @endforeach 
+                                 @else
+                                    <div class="">
+                                        <p>//</p>
+                                    </div>
                                 @endif
                             </td>
                         </tr>

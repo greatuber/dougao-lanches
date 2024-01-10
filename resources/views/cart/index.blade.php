@@ -224,10 +224,13 @@
                                   <div class="pb-4 w-full">
 
                                       <input class="toremove" type="radio" checked value="0" id="toRemove" name="delivery" onchange="atualizarValor()" > 
-                                      <label for=""  class="text-gray-700 font-bold pr-4" >Retirar na lanchonete</label>
+                                      <label for="toRemove"  class="text-gray-700 font-bold pr-4" >Retirar na lanchonete</label>
                                       <input  class="delivery" type="radio" value="1" id="entrega" name="delivery" onchange="atualizarValor()"> 
-                                      <label for="" class="text-gray-700 font-bold" >Para entregar</label>
+                                      <label for="entrega" class="text-gray-700 font-bold" >Para entregar</label>
                                       <i class="fa-solid fa-motorcycle fa-xl text-blue-500"></i>
+
+                                      
+                                      
                                      
                                   </div>
                             </div>
@@ -449,14 +452,27 @@
   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
     <script> 
-      
+        
+
+        window.onload = function() {
+        var entregaInput = document.getElementById('entrega');
+        var storedValue = localStorage.getItem('entregaChecked');
+
+        if (storedValue === 'true') {
+            entregaInput.checked = true;
+        }
+    };
+
     function atualizarValor() {
     const opcoes = document.getElementsByName('delivery');
+    var entregaInput = document.getElementById('entrega');
     var toremove = document.getElementById('toremove');
     var delivery = document.getElementById('delivery');
     let total = "<?php echo $total; ?>";
     const taxa = 6.00;
     let totalAmount = 0;
+
+    localStorage.setItem('entregaChecked', entregaInput.checked);
 
 for (let i = 0; i <opcoes.length; i++) {
     if (opcoes[i].checked) {

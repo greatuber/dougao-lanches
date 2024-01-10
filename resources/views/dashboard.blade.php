@@ -195,7 +195,7 @@
                                                                 @foreach( $adde as $add)
                                                                   
                                                                     <option value="{{$add->id}}" name="{{$add->name}}" >
-                                                                      {{$add->name}}-R$-{{ number_format($add->price,2,',','.') }}
+                                                                      {{$add->name}}-R$- @money($add->price)
                                                                     </option>
                                                                   
                                                                 @endforeach

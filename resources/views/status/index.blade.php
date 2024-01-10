@@ -27,7 +27,7 @@
         <div class="container mx-auto">
             <div class="text-center">
                 <h1 class="p-4">LISTAGEM DE PEDIDOS ACEITOS</h1>
-                <marquee>pedidos aceitos do dia {{$date}}</marquee>
+                <marquee>pedidos aceitos do dia @datetime(now())</marquee>
                 <div class="">
                     @include('layouts.statusNavegation')
                 </div>
@@ -102,13 +102,11 @@
                                                     @foreach ($list->orderAdditional as $additional)
                                                         {{ $additional->name ?? '' }},
                                                     @endforeach 
-                                                @else
-                                                    <div class="">
-                                                        <p>//</p>
-                                                    </div>
-                                                    
-                                                    
-                                                @endif
+                                                     @else
+                                                        <div class="">
+                                                            <p>//</p>
+                                                        </div>
+                                                    @endif
                                             
                                                 </td>
                                             </tr>
