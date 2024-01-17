@@ -20,40 +20,40 @@
                 <h1 class="font-bold pt-2">RESUMO DE PEDIDOS FILTRADOS</h1>
             </div>
 
-         <details>
-            <summary>Mostrar tabela</summary>
-            <div class="mt-4 container text-center">
-                <table class="min-w-full bg-white border border-gray-300 overflow-auto">
-                    <thead>
-                        <tr>
-                            <th class="border border-gray-300 px-4 py-2">Número do Pedido</th>
-                            <th class="border border-gray-300 px-4 py-2">Data do Pedido</th>
-                            <th class="border border-gray-300 px-4 py-2">Produto</th>
-                            <th class="border border-gray-300 px-4 py-2">Valor</th>
-                            <th class="border border-gray-300 px-4 py-2">Tipo de Pagamento</th>
-                            <th class="border border-gray-300 px-4 py-2">Usuário</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($orders as $order)
-                        <tr>
-                            <td class="border border-gray-300  py-2">{{$order->id}}</td>
-                            <td class="border border-gray-300 px-4 py-2">{{$order->created_at->format('d/m/y')}}</td>
-                            <td class="border border-gray-300 px-4 py-2">
-                                @foreach ($order->orderList as $item)
-                                {{$item->product->name}},
+            <details>
+                <summary>Mostrar pedidos</summary>
+                    <div class="mt-4 container text-center">
+                        <table class="min-w-full bg-white border border-gray-300 overflow-auto">
+                            <thead>
+                                <tr>
+                                    <th class="border border-gray-300 px-4 py-2">Número do Pedido</th>
+                                    <th class="border border-gray-300 px-4 py-2">Data do Pedido</th>
+                                    <th class="border border-gray-300 px-4 py-2">Produto</th>
+                                    <th class="border border-gray-300 px-4 py-2">Valor</th>
+                                    <th class="border border-gray-300 px-4 py-2">Tipo de Pagamento</th>
+                                    <th class="border border-gray-300 px-4 py-2">Usuário</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($orders as $order)
+                                <tr>
+                                    <td class="border border-gray-300  py-2">{{$order->id}}</td>
+                                    <td class="border border-gray-300 px-4 py-2">{{$order->created_at->format('d/m/y')}}</td>
+                                    <td class="border border-gray-300 px-4 py-2">
+                                        @foreach ($order->orderList as $item)
+                                        {{$item->product->name}},
+                                        @endforeach
+                                        
+                                    </td>
+                                    <td class="border border-gray-300 px-4 py-2">${{$order->total}}</td>
+                                    <td class="border border-gray-300 px-4 py-2">{{$order->payment == '0' ? 'Cartão' : 'Dinheiro'}}</td>
+                                    <td class="border border-gray-300 px-4 py-2">{{$order->orderUser->name}}</td>
+                                </tr>
                                 @endforeach
-                                
-                            </td>
-                            <td class="border border-gray-300 px-4 py-2">${{$order->total}}</td>
-                            <td class="border border-gray-300 px-4 py-2">{{$order->payment == '0' ? 'Cartão' : 'Dinheiro'}}</td>
-                            <td class="border border-gray-300 px-4 py-2">{{$order->orderUser->name}}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-         </details>
+                            </tbody>
+                        </table>
+                    </div>
+            </details>
             
             <div class="pb-2 container">
                 <div class="text">
@@ -71,7 +71,7 @@
 
             <form action="{{route('summary.search')}}" method="POST">
                  @csrf
-                <label for="" class="pb-2">Pesquisar pedido</label><br>
+                <label for="" class="pb-2">Pesquisar detalhes do pedido pelo numéro</label><br>
                 <input type="search" class="border mb-2 rounded" required autocomplete="off" name="search" placeholder="digite o numero do pedido">
                 <button type="submit" class="border text-white p-2 bg-blue-500 hover:bg-blue-700 rounded">Pesquisar</button>
             </form>

@@ -50,6 +50,9 @@
                                         <div class="text-center p-2 ">
                                           <h1 class="font-bold">CATEGORIAS</h1>
                                         </div>
+                                        <div class="">
+                                          <p>O sistema tem '{{$userCount}}' usuarios cadastrados</p>
+                                        </div>
                                   <div class=" pl-2 pb-2 painel">
 
                                       <a href="{{ route('showbeer')}}" class=""><div class=" slate  p-2 mt-2 ml-2 rounded">BEBIDAS</div></a>

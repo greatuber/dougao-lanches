@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\User;
 
 use Illuminate\Http\Request;
 
@@ -8,6 +9,8 @@ class panelAdminController extends Controller
 {
   public function index()
   {
-    return view('products.create');
+    $userCount = User::all()->count();
+    
+    return view('products.create',compact('userCount'));
   }
 }

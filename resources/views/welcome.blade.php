@@ -59,18 +59,16 @@
                     <div class="container mx-auto flex flex-col md:flex-row items-center  px-4">
                         <div class="text-end">
                                 <h1 class="text-3xl text-white font-bold mb-2">Bem-vindo(a) ao Dougão Lanches</h1>
-                                <div class="">
+                                <div class="container ml-4 mr-4">
                                     <p class=" mb-4 text-white  text-left">
                                         Aqui você encontra o melhor lanche da cidade, com ingredientes
                                         frescos e de qualidade. Venha matar sua fome com a gente, é só cadastra aqui no delivery do 
                                         Dougão,e fazer seu pedido por aqui mesmo sem demora e sem borocracia,forma de pagamentos,dinheiro,cartão e pix sendo efetuado 
                                         para entregador na hora da entrega, 
-                                        aberto de terça a domingo apartir das 19:00 hr e fechamento as 12:00 hr
-
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                                        Beatae illo quod officia enim repellendus, reiciendis obcaecati 
-                                        impedit labore dolor perspiciatis dolorem eius pariatur quis autem 
-                                        dolores, suscipit saepe iste voluptatibus.
+                                        aberto de terça a domingo apartir das 19:00 hr e fechamento as 12:00 hr,
+                                        você também pode nos fazer uma visita pessoalmente e conhecer nosso estabelecimento
+                                        situado na Rua Batista Luzardo numéro 1005 São Lourenço MG,será um praser recebelo em nosso
+                                        estabecimento e nâo se esqueça de nos seguir no faceboock, para ficar pordentro das novidades.
                                     </p>
                                 </div>
                         </div>
@@ -83,7 +81,7 @@
                                         <nav class="text-center">
                                             <ul class="flex">
                                                 <li>
-                                                    <a href="https://www.facebook.com/alexandre.dv.2023 target_blanck"  class="text-white hover:text-gray-200 px-4 py-2 "><i class="fa-brands fa-square-facebook fa-2xl"></i></a>
+                                                    <a href="https://www.facebook.com/douglasodin199/?locale=pt_BR target_blanck"  class="text-white hover:text-gray-200 px-4 py-2 "><i class="fa-brands fa-square-facebook fa-2xl"></i></a>
                                                 </li>
 
                                                 <li>
@@ -91,7 +89,7 @@
                                                 </li>
 
                                                 <li>
-                                                    <a  href="https://api.whatsapp.com/send?phone=5535998464219  target_blanck" class="text-white hover:text-gray-200 px-4 py-2 icons"><i class="fa-brands fa-whatsapp fa-2xl"></i></a>
+                                                    <a  href="https://api.whatsapp.com/send?phone=553599810371  target_blanck" class="text-white hover:text-gray-200 px-4 py-2 icons"><i class="fa-brands fa-whatsapp fa-2xl"></i></a>
                                                 </li>
 
                                             </ul>   

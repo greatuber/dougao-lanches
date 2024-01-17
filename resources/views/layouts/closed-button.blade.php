@@ -14,7 +14,7 @@
               <form action="{{ route('toggle.open')}}" method="POST">
                   @csrf
                     @can('access')
-                        <button type="submit" class="bg-white text-black p-2 rounded mt-2 ml-2"
+                        <button type="submit" class="bg-white text-black text-sm p-2 rounded mt-2 ml-2"
                             @if ($toggle->is_open == 0) inertex @endif >
                             @if ($toggle->is_open == 0)
                               <div class="text-red-500">

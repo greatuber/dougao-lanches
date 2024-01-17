@@ -10,17 +10,7 @@
     @vite('resources/css/app.css')
     <style>
      
-         .clients{
-            display: flex;
-           justify-items: center;
-            align-items: center;
-           
-         }
-         .payment{
-            align-items: center;
-            justify-content: space-evenly;
-            margin-left: 100px;
-         }
+ 
   
         .delivery {
             color: green;
@@ -37,7 +27,7 @@
         <h1 class="pb-2">RESULTADO DO PEDIDO PEQUISADO</h1>
 
             <div class="card p-2 pt-2">
-                <div class="overflow-auto">
+                <div class="overflow-auto w-full">
                       @php
                           $user = $order->user_id
                       @endphp
@@ -47,17 +37,16 @@
                       @endphp
                        
                     
-                        <div class="pt-2 mt-2 flex border p-2 rounded sm:w-full overflow-auto">
-                              <div class="clients">
+                        <div class="pt-2 mt-2 flex border p-2 rounded w-full overflow-auto">
+                              <div class="">
 
-                                <div class="client p-2 rounded">
+                                <div class="">
                                     <p> {{ $order->orderUser->name}} tem <span class="font-bold">'{{$userCount}}'</span> pedidos na plataforma.</p>
                                     {{-- <p>{{ $order->created_at->format('d/m/y H:i')}}</p> --}}
                                  </div>
    
-                                 <div class="payment rounded flex">
-                                    <h1 class="font-bold  p-2"></h1>
-                                    <p class="tex-center">{{ $order->payment ? 'DINHEIRO' : 'CARTÃO' }} :</p>
+                                 <div class=" rounded flex" >
+                                    <p class=" p-2 tex-center">{{ $order->payment ? 'DINHEIRO' : 'CARTÃO' }}:</p>
                                     <p class=" p-2 text-center">{{ $order->observation}}</p>
                                  </div>
                               </div>
