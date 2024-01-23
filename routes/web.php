@@ -22,6 +22,7 @@ use App\Http\Controllers\statusRefusedController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\updateAdminController;
 use App\Http\Controllers\panelAdminController;
+use App\Http\Controllers\pointsController;
 use App\Http\Controllers\summaryController;
 use App\Http\Controllers\toggleController;
 use Illuminate\Support\Facades\Route;
@@ -155,4 +156,7 @@ Route::post('/search',[summaryController::class, 'search'])->name('summary.searc
 Route::get('/salesData',[summaryController::class, 'salesChartData'])->name('summary.sales');
 Route::get('/productQuantity',[summaryController::class, 'productGraphic'])->name('summary.product');
 require __DIR__.'/auth.php';
-     
+
+       //rota de visualização dos pontos
+
+Route::get('/points', [pointsController::class, 'index'])->name('index.point');       

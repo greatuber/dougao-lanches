@@ -9,6 +9,7 @@ use App\Models\Order;
 use App\Models\Address;
 use App\Models\OrderList;
 use App\Models\Order_product;
+use App\Models\LoyaltyPoint;
 use App\Http\Requests\OrderProductRequest;
 use App\Notifications\NewOrderNotification;
 use Illuminate\Support\Facades\DB;
@@ -31,6 +32,8 @@ class adminController extends Controller
       return redirect()->back()->with('menssagem', 'Vocẽ presisa relizar uma compra para conseguir enviar um pedido');
     }
 
+   
+
     $payment  = $request->payment;
     $selectedCreditCard = $request->input('credit_card');
     $observation = $request->observation;
@@ -43,6 +46,7 @@ class adminController extends Controller
     $quantity = $product[0]->quanty;
 
 
+  
     // verificando se usuario tem endereço e depois criando pedido
 
 
@@ -59,7 +63,7 @@ class adminController extends Controller
         'quantity'    => $quantity,
       ]);
 
-
+      //  dd($order->total);
       $orderId = $order->id;
 
       // criando itens do pedido
@@ -75,7 +79,21 @@ class adminController extends Controller
         ]);
         $orderlist->orderAdditional()->attach($item->orderProductAdditional);
       }
+       
+      $orderPoints = Order::where('user_id', $users)->get();
 
+      $totalPointsEarned = 0;
+      
+      foreach ($orderPoints as $order) {
+          $totalPointsEarned += ($order->total / 100) * 3;
+      }
+     
+         //se existir pontos na tabela faz opdate no numero de pontos se não cria
+      LoyaltyPoint::updateOrCreate(
+          ['user_id' => $users],
+          ['points_earned' => $totalPointsEarned]
+      );
+      
 
       $product = Order_product::where('user_id', $users)->delete();
 

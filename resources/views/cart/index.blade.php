@@ -33,7 +33,7 @@
      .yellow {
       color: yellow;
      }
-   
+ 
     </style>
     
     <script>
@@ -113,7 +113,14 @@
 </head>
 <body>
       <div class=" bg-orange-500 text-center md: p-2">
-              <div class="text-center pt-4">
+                   <div class="p-2">
+                    <a href="{{route('index.point')}}"  class="cart">
+                      Cartão fidelidade
+                      <i class="fa-solid fa-id-card fa-2xl"></i>
+                    </a>
+                   </div>
+              <div class="text-center ">
+                     
                     <h1 class="text-3xl text-gray-700 font-bold">Bem vindo a sua Sacola de Compras:</h1>
                     <p class="text-gray-700 font-bold">{{ auth()->user()->name }}</p>
               </div>
@@ -139,6 +146,8 @@
                          </div>
 
                       @endif
+
+                   
 
                     <div class=" block  overflow-auto">
                       <table class=" sm:w-full text-md font-light ">
@@ -207,7 +216,7 @@
                           <div class="rounded  pt-2 mt-2  ">
                                <div class="ml-4 mr-4  container">
                                 <h1 class="font-bold text-gray-700 pt-2 pb-2">TOTAL</h1>
-          <form action="{{route('admin.create')}}"  method="post">
+            <form action="{{route('admin.create')}}"  method="post">
                                   @csrf
                                 <samp  class=" font-bold bg-white p-2  rounded"  id="toremove"> R$ @money($total)</samp>
                                 <samp  class=" font-bold bg-white p-2  rounded"  id="delivery"></samp>
@@ -229,9 +238,6 @@
                                       <label for="entrega" class="text-gray-700 font-bold" >Para entregar</label>
                                       <i class="fa-solid fa-motorcycle fa-xl text-blue-500"></i>
 
-                                      
-                                      
-                                     
                                   </div>
                             </div>
 
@@ -266,7 +272,7 @@
 
                                     </button>
                                   
-                </form>       
+            </form>       
                                   <div class="p-2 text-center">
                                     <a href="{{ route('client.show')}}"><button class="text-sm text-white border bg-blue-500 font-bold rounded p-2">Continuar comprando</button></a>
                                   </div>

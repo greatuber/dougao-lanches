@@ -40,7 +40,7 @@
 
       <div class="baner bg-red-500 pt-2 pb-4">
          <div class="">
-          <h1 class="dog md:text-xl">AMIGÃO</h1>
+          <h1 class="dog md:text-xl">DOUGÃO</h1>
           <H2 class="lanch animate-pulse">LANCHES</H2>
          </div>
       </div>
