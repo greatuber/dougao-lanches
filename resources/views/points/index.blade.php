@@ -62,11 +62,19 @@
             font-size: 1.2em;
             color: #6c757d;
         }
+        .blind{
+           background-color: #3aee64;
+           width: 150px;
+           padding: 2px;
+        }
+        .denied{
+            color: red;
+        }
     </style>
 </head>
 
 <body>
-
+    @vite('resources/css/app.css')
     <div class="container">
         <div class="user-info">
             <h1>{{Auth::user()->name}}</h1>
@@ -85,45 +93,97 @@
                 Aqui, o valor do seu pedido vira pontos e com eles você pode resgatar esses brindes:
             </p>
         </div>
+          
+            @if (session('delivery'))
+               <div class="text-red text-center p-4">
+                    <p>
+                        {{session('delivery')}}
+                    </p>
+               </div>
+            @endif
 
+            @if (session('brind'))
+                <div class="blind rounded text-white p-2">
+                    <p>{{session('brind')}}</p>
+                </div>
+                
+            @endif
+
+            @if ( session('denied'))
+                <div class="denied text-center p-4">
+                    <p>
+                        {{ session('denied')}}
+                    </p>
+                </div>
+            @endif
+    
+         
         <div class="products-section">
             <div class="row mt-4">
                 <!-- Brinde 1 -->
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="{{ asset('image/guarána.png')}}" class="product img" alt="Imagem do Refrigerante">
-                        <div class="card-body">
-                            <p class="card-text">Resgate por 10 pontos</p>
-                            <p class="card-text">Guaraná Mantiqueira de 2l</p>
-                            <button class="text-sm bg-blue-500 p-2 rounded text-white">RESGATAR</button>
-                        </div>
-                    </div>
-                </div>
+             @foreach ($point as $item)
 
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="{{ asset('image/coca.png')}}" class="product img" alt="Imagem do Doce">
-                        <div class="card-body">
-                            <p class="card-text">Resgate por 13 pontos</p>
-                            <p class="card-text">Coca-cola 2l</p>
-                            <button class="text-sm bg-blue-500 p-2 rounded text-white">RESGATAR</button>
-                        </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{{ asset('storage/' .$item->image) }}" class="product img" alt="Imagem do Doce">
+                    <div class="card-body">
+                        <p class="card-text">{{$item->name }}</p>
+                        <p class="card-text">Resgate por {{$item->points}}  pontos</p>
+                        <button class="text-sm bg-blue-500 p-2 rounded text-white"  data-bs-toggle="modal"
+                        data-bs-target="#firstModal{{$item->id}}">RESGATAR</button>
                     </div>
                 </div>
+                <div class="modal fade" id="firstModal{{$item->id}}" tabindex="-1"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header,btn btn-warning">
+                                {{-- <h2 class="modal-title pt-4 ml-40" id="exampleModalLabel text-center">Adiciona este produto em seu carrinho</h2> --}}
+                                <button type="button" class="btn-close " data-bs-dismiss="modal"   aria-label="Close">
+                                  X
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="p-4 relative">
+                                    <form action="{{route('blind.create',$item->id)}}" method="POST">
+                                        @csrf
+                                        <div class="pb-4 w-full text-start">
+                                            <input class="toremove" type="radio" checked value="0" id="toRemove" name="delivery"> 
+                                            <label for="toRemove"  class="text-gray-700 font-bold pr-4" >Retirar na lanchonete</label><br>
+                                            <input  class="delivery" type="radio" value="1" id="entrega" name="delivery"> 
+                                            <label for="entrega" class="text-gray-700 font-bold" >Resgatar junto com pedido</label>
+                                            <i class="fa-solid fa-motorcycle fa-xl text-blue-500"></i>
+      
+                                        </div>
+                                        <div class="card">
+                                            <img src="{{ asset('storage/' .$item->image) }}" class="product img" alt="Imagem do Doce">
+                                            <div class="card-body">
+                                                <p class="card-text">{{$item->name }}</p>
+                                                <input type="hidden" name="name" value="{{$item->name}}">
+                                                <p class="card-text">Resgate por {{$item->points}}  pontos</p>
+                                                <input type="hidden" name="points" value="{{$item->points}}">
+                                               
+                                            </div>
+                                            <button class='text-sm bg-blue-500 p-2 rounded text-white' type="submit">RESGATAR</button>
+                                        </div>
 
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="{{ asset('image/cocalata-4.png')}}" class="product img" alt="Imagem do Lanche">
-                        <div class="card-body">
-                            <p class="card-text">Resgate por 6 pontos</p>
-                            <p class="card-text">Coca-cola Lata</p>
-                            <button class="text-sm bg-blue-500 p-2 rounded text-white">RESGATAR</button>
+                                      
+                                    </form>
+                                  
+                              </div>
+                             
+                            </div>
+                            </div>
                         </div>
-                    </div>
                 </div>
+            </div>
+
+             @endforeach   
+      
         </div>
     </div>
-
+    @vite('resources/js/app.js')
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 </body>
 
 </html>

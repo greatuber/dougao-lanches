@@ -10,6 +10,7 @@ use App\Http\Controllers\ShowController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\OrderProductController;
 use App\Http\Controllers\adminController;
+use App\Http\Controllers\BlindController;
 use App\Http\Controllers\bomboniereController;
 use App\Http\Controllers\deliveredController;
 use App\Http\Controllers\deliveryController;
@@ -159,4 +160,21 @@ require __DIR__.'/auth.php';
 
        //rota de visualização dos pontos
 
-Route::get('/points', [pointsController::class, 'index'])->name('index.point');       
+Route::get('/points', [pointsController::class, 'index'])->name('index.point'); 
+Route::get('/creatpoints', [pointsController::class, 'show'])->name('createpoints');  
+Route::post('upload/points', [pointsController::class,'store'])->name('upload.points');   
+
+    //rota para cadastrar o regate dos blinedes
+
+Route::post('/create-blind,{id}', [BlindController::class, 'create'])->name('blind.create');  
+
+  //rota para adiministrador visualizar o resgate
+ 
+Route::get('index-blind', [BlindController::class, 'index'])->name('blind.index'); 
+
+  //rota de update do blinde
+Route::post('/update-blind, {id}', [BlindController::class, 'update'])->name('blind.update'); 
+ 
+  //rota para mostrar pedidos entregues
+
+Route::get('/blind-show', [BlindController::class, 'show'])->name('blind.show');  

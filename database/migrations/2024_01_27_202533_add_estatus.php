@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('addresses', function (Blueprint $table) {
-            $table->string('fone')->nullable();
+        Schema::table('blinds', function (Blueprint $table) {
+            $table->enum('status',['pendente', 'entregue'])->default('pendente')->after('created_at','updated_at');
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('addresses', function (Blueprint $table) {
-            $table->dropColumn('fone');
+        Schema::table('blinds', function (Blueprint $table) {
+            $table->dropColumn('status');
         });
     }
 };

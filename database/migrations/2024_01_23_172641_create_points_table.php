@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('addresses', function (Blueprint $table) {
-            $table->string('fone')->nullable();
+        Schema::create('points', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->integer('points');
+            $table->string('image');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('addresses', function (Blueprint $table) {
-            $table->dropColumn('fone');
-        });
+        Schema::dropIfExists('points');
     }
 };

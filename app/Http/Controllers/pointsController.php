@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\LoyaltyPoint;
+use App\Models\Point;
 use Illuminate\Support\Facades\Auth;
 class pointsController extends Controller
 {
@@ -15,7 +16,10 @@ class pointsController extends Controller
         $user      = Auth::user();
         $users       = $user->id;
         $points = LoyaltyPoint::where('user_id', $users)->get();
-        return view('points.index', compact('points'));
+        
+        $point = Point::all();
+       
+        return view('points.index', compact('points', 'point'));
     }
 
     /**
@@ -31,15 +35,23 @@ class pointsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $imagePath = $request->file('image')->store('upload', 'public');
+       $name = $request->name;
+       $points = $request->points;
+       Point::create([
+        'image' => $imagePath,
+        'name'  => $name,
+        'points' => $points
+       ]);
+       return redirect()->back()->with('create', 'brinde criado com sucesso');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
-        //
+        return view('points.create');
     }
 
     /**
