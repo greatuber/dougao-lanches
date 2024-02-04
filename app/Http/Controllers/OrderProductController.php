@@ -39,9 +39,10 @@ class OrderProductController extends Controller
         ]);
 
         $selectedAdditionals = $request->input('additional', []);
-        //    dd($selectedAdditionals);
-        foreach ($selectedAdditionals as $additionalId) {
-            $cart->orderProductAdditional()->attach($additionalId);
+        
+            foreach ($selectedAdditionals as $additionalId) {
+                $cart->orderProductAdditional()->attach($additionalId);
+
         }
 
 

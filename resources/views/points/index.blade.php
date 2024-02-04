@@ -94,64 +94,24 @@
             </p>
         </div>
           
-            @if (session('delivery'))
-               <div class="text-red text-center p-4">
-                    <p>
-                        {{session('delivery')}}
-                    </p>
-               </div>
-            @endif
-
-            @if (session('brind'))
-                <div class="blind rounded text-white p-2">
-                    <p>{{session('brind')}}</p>
-                </div>
-                
-            @endif
-
-            @if ( session('denied'))
-                <div class="denied text-center p-4">
-                    <p>
-                        {{ session('denied')}}
-                    </p>
-                </div>
-            @endif
-    
-         
         <div class="products-section">
             <div class="row mt-4">
                 <!-- Brinde 1 -->
-          
+                <div class="col-md-6">
+                    <a href="{{ route('delivery.index') }}" class="btn btn-primary btn-block">
+                        <h5>Retirar na Lanchonete</h5>
+                        <p>Click aqui para resgatar seu brinde retirando na lanchonete</p>
+                    </a>
+                </div>
 
-            <div class="col-md-4 flex gep-4">
-                <a href="{{route('delivery.index')}}">
-                    <div class="card p-2">
-                        <h1>Click aqui para resgatar seu blinde retirando na lanchonete</h1>
-                        <div class="card-body">
-    
-                           <P>Retirar nalanchonete</P>
-                         
-                        </div>
-                    </div>
-
-                </a>
-             
-                <a href="{{route('delivery.show')}}">
-                    <div class="card p-2">
-                        <h1>Click aqui para resgatar seu blinde junto com um pedido</h1>
-                        <div class="card-body">
-    
-                           <P>Resgatar junto com pedido</P>
-                         
-                        </div>
-                    </div>
-               
-                </a>
-            
-
-              <div class=""></div>
-      
-        </div>
+                <div class="col-md-6">
+                    <a href="{{ route('delivery.show') }}" class="btn btn-success btn-block">
+                        <h5>Resgatar com Pedido</h5>
+                        <p>Click aqui para resgatar seu brinde junto com um pedido</p>
+                    </a>
+                </div>
+         
+            </div>    
     </div>
     @vite('resources/js/app.js')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
