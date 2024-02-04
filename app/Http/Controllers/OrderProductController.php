@@ -89,7 +89,7 @@ class OrderProductController extends Controller
         $total = 0;
 
         $cart->each(function ($item) use (&$total) {
-            $total += $item->orderProductProduct->price ?? 0 * $item->quanty;
+            $total += ($item->orderProductProduct ? $item->orderProductProduct->price : 0) * $item->quanty;
 
             if ($item->orderProductAdditional) {
                 // Se existirem adicionais, itera sobre a coleção

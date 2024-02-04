@@ -41,7 +41,7 @@
                                     <td class="border border-gray-300 px-4 py-2">{{$order->created_at->format('d/m/y')}}</td>
                                     <td class="border border-gray-300 px-4 py-2">
                                         @foreach ($order->orderList as $item)
-                                        {{$item->product->name}},
+                                          {{$item->product->name ?? ''}},
                                         @endforeach
                                         
                                     </td>
