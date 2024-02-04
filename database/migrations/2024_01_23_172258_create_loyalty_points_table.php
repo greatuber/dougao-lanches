@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('loyalty_points', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->integer('points_earned')->default(0);
+            $table->integer('points_earned')->default(1);
             $table->timestamps();
     
             $table->foreign('user_id')->references('id')->on('users');

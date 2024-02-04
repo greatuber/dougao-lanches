@@ -11,6 +11,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\OrderProductController;
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\BlindController;
+use App\Http\Controllers\BlindCartController;
 use App\Http\Controllers\bomboniereController;
 use App\Http\Controllers\deliveredController;
 use App\Http\Controllers\deliveryController;
@@ -21,6 +22,7 @@ use App\Http\Controllers\ProductStatusController;
 use App\Http\Controllers\statusController;
 use App\Http\Controllers\statusRefusedController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DeliveryBlindController;
 use App\Http\Controllers\updateAdminController;
 use App\Http\Controllers\panelAdminController;
 use App\Http\Controllers\pointsController;
@@ -85,7 +87,7 @@ Route::post('/adress',[AdressController::class, 'create'])->name('adress.create'
 // order
 
 Route::get('/showorder', [adminController::class, 'index'])->name('order.show'); 
-Route::post('/adminCreateCart',[adminController::class, 'store'])->name('admin.create');
+Route::post('/adminCreateCart/{id}',[adminController::class, 'store'])->name('admin.create');
 
 // update in status
 
@@ -178,3 +180,13 @@ Route::post('/update-blind, {id}', [BlindController::class, 'update'])->name('bl
   //rota para mostrar pedidos entregues
 
 Route::get('/blind-show', [BlindController::class, 'show'])->name('blind.show');  
+
+//rota para escolher como retirar o blinde
+
+Route::get('/delivery-index', [DeliveryBlindController::class, 'index'])->name('delivery.index');
+
+Route::get('delivery-toremove', [DeliveryBlindController::class, 'show'])->name('delivery.show');
+
+ //rota para ciar blindcart
+
+Route::post('/create-blindCart,{id}', [BlindCartController::class, 'store'])->name('blindcart.store'); 

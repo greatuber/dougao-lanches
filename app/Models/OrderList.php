@@ -11,6 +11,7 @@ class OrderList extends Model
     use HasFactory;
 
     protected $fillable = [
+        'blind_carts_id',
         'order_id',
         'product_id',
         'quamtity',
@@ -29,6 +30,12 @@ class OrderList extends Model
          {
             return $this->belongsTo( Product::class);
          }
+    
+    public function blindCart()
+         {
+            return $this->belongsTo( BlindCart::class, 'blind_carts_id');
+         }
+    
 
      public function orderAdditional()
          {

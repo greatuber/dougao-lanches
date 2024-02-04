@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\blind;
+use App\Models\BlindCart;
 use App\Models\LoyaltyPoint;
+use App\Models\Order_product;
 use App\Models\Point;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -15,57 +17,65 @@ class BlindController extends Controller
      */
     public function index()
     {
-        $blinds = blind::where('status', 'pendente')->get();
-        $blinds->load('blindUser');
+                $blinds = blind::where('status', 'pendente')->get();
+                $blinds->load('blindUser');
 
-        return view('blind.index',compact('blinds'));
+                return view('blindAdmin.index',compact('blinds'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create(Request $request, $id)
-    {
-       $user_id = Auth::user()->id;
-       $name = $request->name;
-       $points = $request->points;
-       $delivery = $request->delivery;
+            /**
+             * Show the form for creating a new resource.
+             */
+            public function create(Request $request, $id)
+            {
+            $user_id = Auth::user()->id;
+            $name = $request->name;
+            $points = $request->points;
         
-       $loyaut = LoyaltyPoint::where('user_id', $user_id)->get();
-       if ($loyaut->isEmpty()) 
-          {
-            return redirect()->back()->with('denied', 'Usuário não possui pontos suficientes para resgatar este brinde');
-          }
+            $loyaut = LoyaltyPoint::where('user_id', $user_id)->get();
+            
+            if ($loyaut->isEmpty()) 
+                {
+                    return redirect()->back()->with('denied', 'Você não possui pontos suficientes para resgatar este brinde');
+                }
 
-         
-       $loyauts = $loyaut[0]->points_earned;
+                
+            $loyauts = $loyaut[0]->points_earned;
 
-      if ($loyauts < $points) 
-          {
-            return redirect()->back()->with('denied','Você não possui pontos  para resgatar este blinde');
-          }
+            if ($loyauts < $points) 
+                {
+                    return redirect()->back()->with('denied','Você não possui pontos  para resgatar este blinde');
+                }
 
-      if ($delivery == 0){
-        blind::create([
-          'user_id' => $user_id,
-           'name'  => $name,
-           'points' => $points,
-           'delivery' => $delivery
-        ]);
+            
+                blind::create([
+                'user_id' => $user_id,
+                'name'  => $name,
+                'points' => $points,
+                ]);
 
-        $loyaut[0]->update([
-            'points_earned' => $loyauts - $points
-        ]);
+                $loyaut[0]->update([
+                    'points_earned' => $loyauts - $points
+                ]);
 
-        return redirect()->back()->with('brind','resgate enviado com suuceso');
-      }else {
-        return redirect()->back()->with('delivery', 'só pode ser retirado na lanchonete');
-      }
-   
-    }
+                return redirect()->back()->with('brind','resgate enviado com suceso');
+            
+
+                   
+
+                    
+                    $loyaut[0]->update([
+                        'points_earned' => $loyauts - $points
+                    ]);
+
+            return redirect()->back()->with('brind', 'Resgate enviado com sucesso junto ao pedido');
+        
+            
+        
+            
 
     
-   
+   }
 
     /**
      * Store a newly created resource in storage.
@@ -82,7 +92,7 @@ class BlindController extends Controller
     {
         $blinds = Blind::where('status', 'entregue')->get();
 
-        return view('blind.show', compact('blinds'));
+        return view('blindAdmin.show', compact('blinds'));
     }
 
     /**

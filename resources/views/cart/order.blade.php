@@ -31,6 +31,10 @@
         .deliveryd {
             color: red;
         }
+        .blind {
+            background-color: rgb(151, 240, 17);
+
+        }
   
     </style>
 </head>
@@ -118,6 +122,7 @@
                             <th class="py-2 px-4 border-b">PREÇO</th>
                             <th class="py-2 px-4 border-b">OBSERVAÇÃO</th>
                             <th class="py-2 px-4 border-b">ADICIONAIS</th>
+                            <th class="py-2 px-4 border-b blind">BLINDE</th>
                             
                         </tr>
                     </thead>
@@ -128,11 +133,20 @@
                             <td class="py-2 px-2 max-w-full border-b">{{ $list->product->name ?? ''}}</td>
                             <td class="py-2 px-4 border-b text-center">{{ $list->quamtity}}</td>
                             <td class="py-2 px-4 border-b">@money($list->value)</td>
-                            <td class="py-2 px-4 border-b">{{ $list->observation ?? '' }}</td>
+                            <td class="py-2 px-4 border-b">
+                                @if ($list->observation)
+                                  {{ $list->observation ?? '' }}
+                                @else 
+                                  <div class="">
+                                      <p>
+                                        //
+                                      </p>
+                                  </div>
+                                @endif
+                            </td>
                             <td class="py-2 px-4 border-b">
                             {{-- @dd($list->orderAdditional[0]->name) --}}
                                 @if($list->orderAdditional->count()>0)
-                                    {{-- @dd($list->orderAdditional); --}}
                                     @foreach ($list->orderAdditional as $additional)
                                         {{ $additional->name ?? '' }},
                                     @endforeach 
@@ -144,6 +158,17 @@
                                     
                                 @endif
                                 
+                            </td>
+                            <td >
+                                @if($list->blindCart->name)
+                                  {{ $list->blindCart->name ?? ''}}
+                                @else
+                                  <div class="">
+                                     <p>
+                                        //
+                                     </p>
+                                  </div>
+                                @endif
                             </td>
                           
                         </tr>

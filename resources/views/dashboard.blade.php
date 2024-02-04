@@ -87,7 +87,7 @@
                   <div class="p-2">
                     @include('layouts.closed-button')
                   </div> 
-                        <div class="bg-white text-black rounded p-2 hidden">
+                        <div class="bg-white text-black rounded p-2 mt-2 hidden">
                           <form action="{{ route('update.admin')}}" method="post">
                             @csrf
                             <button type="submit">
@@ -95,6 +95,7 @@
                           </button>
                           </form>
                         </div>
+
                           @if(session('access'))
                             <div class="text-green-600">
                                 <p>
@@ -225,7 +226,7 @@
                                                                 </div>
                                                                 <div class="label3 text-center p-2">
                                                                     <strong><h1>PREÇO UNITARIO</h1></strong>
-                                                                    <input type="text"  disabled class=" rounded text-center " name="price" id="price" value="{{number_format($products->price,2,',','.') }}"/><br>
+                                                                    <input type="text"  disabled class=" rounded text-center " name="price" id="price" value="{{number_format($products->price,2,',','.')?? '' }}"/><br>
                                                                 </div>
                                                                 <div class="text-center p-2">
                                                                     <strong><label for="additional">ADICIONAIS</label></strong>

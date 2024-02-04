@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('blinds', function (Blueprint $table) {
+        Schema::create('blind_carts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->integer('points');
-            $table->enum('status',['pendente', 'entregue'])->default('pendente');
+            $table->enum('status',['pendente','aceito','impresso','entregue'])->default('pendente');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('blinds');
+        Schema::dropIfExists('blind_carts');
     }
 };

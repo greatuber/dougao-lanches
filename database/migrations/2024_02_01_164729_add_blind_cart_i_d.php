@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('blinds', function (Blueprint $table) {
-            $table->enum('status',['pendente', 'entregue'])->default('pendente')->after('created_at','updated_at');
+        Schema::table('order_products', function (Blueprint $table) {
+            $table->foreignId('blind_carts_id')->nullable()->after('created_at');
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('blinds', function (Blueprint $table) {
-            $table->dropColumn('status');
+        Schema::table('order_products', function (Blueprint $table) {
+            $table->dropColumn('blind_carts_id');
         });
     }
 };

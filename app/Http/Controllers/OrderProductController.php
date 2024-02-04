@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Additional;
-use App\Models\AdditionalOrderProduct;
+
 use App\Models\Address;
+use App\Models\BlindCart;
 use App\Models\Order_product;
 use App\Models\Product;
-use app\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,15 +16,21 @@ class OrderProductController extends Controller
 {
     public function store(Request $request, $id)
     {
-
+        
         $product = Product::findOrFail($id);
         $products = $product->id;
         $user = auth::user();
         $users = $user->id;
         $price = $product->price;
 
+        
+        // $blindCart = BlindCart::findOrFail($id);
+        // $blindCartId = $blindCart->id ?? '';
+        
+        
 
         $cart = Order_product::create([
+            'blind_carts_id' => $blindCartId ?? null,
             'product_id' => $products,
             'quanty' => $request->quanty,
             'observation' => $request->observation,
@@ -43,8 +48,9 @@ class OrderProductController extends Controller
         $cart = Order_product::where('user_id', $users)
             ->with('orderProductProduct', 'orderProductAdditional')
             ->get();
+        $blindCart = BlindCart::where('user_id', $users)->get();    
 
-        return redirect()->route('client.show', compact('cart'))->with('success', 'produto adicionado ao carrinho com sucesso');
+        return redirect()->back()->with('success', 'produto adicionado ao carrinho com sucesso');
     }
 
     public function storebeer(Request $request, $id)
@@ -60,7 +66,7 @@ class OrderProductController extends Controller
             'product_id' => $products,
             'quanty' => $request->quanty,
             'user_id' => $users,
-            'price'   => $price,
+            'price'   => $price ?? 0,
         ]);
 
         return view('cart.index', compact('cart', 'user'));
@@ -74,6 +80,7 @@ class OrderProductController extends Controller
 
         $address = Address::where('user_id', $users)->with('userAdress')->latest()->first();
 
+         $blindCart = BlindCart::where('user_id', $users)->where('status', 'pendente')->get();
 
         $cart = Order_product::where('user_id', $users)
             ->with('orderProductAdditional', 'orderProductProduct')
@@ -82,7 +89,7 @@ class OrderProductController extends Controller
         $total = 0;
 
         $cart->each(function ($item) use (&$total) {
-            $total += $item->orderProductProduct->price * $item->quanty;
+            $total += $item->orderProductProduct->price ?? 0 * $item->quanty;
 
             if ($item->orderProductAdditional) {
                 // Se existirem adicionais, itera sobre a coleção
@@ -92,7 +99,7 @@ class OrderProductController extends Controller
             }
         });
 
-        return view('cart.index', compact('cart', 'address', 'total', 'users'));
+        return view('cart.index', compact('cart', 'address', 'total', 'users', 'blindCart'));
     }
     public function delete(Request $request, $id)
     {

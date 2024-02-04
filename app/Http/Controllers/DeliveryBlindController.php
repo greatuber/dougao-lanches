@@ -3,21 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\LoyaltyPoint;
+use App\Models\blind;
 use App\Models\Point;
+use App\Models\LoyaltyPoint;
 use Illuminate\Support\Facades\Auth;
-class pointsController extends Controller
+
+class DeliveryBlindController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $user      = Auth::user()->id;
-        $points = LoyaltyPoint::where('user_id', $user)->get();
+        $user_id = Auth::user()->id;
+
+        $blinds = blind::where('status', 'pendente')->get();
+        $blinds->load('blindUser');
+        $points = LoyaltyPoint::where('user_id', $user_id)->get();
         $point = Point::all();
-       
-        return view('points.index', compact('points', 'point'));
+
+        return view('delivery.index',compact('blinds', 'points','point'));
     }
 
     /**
@@ -33,15 +38,7 @@ class pointsController extends Controller
      */
     public function store(Request $request)
     {
-       $imagePath = $request->file('image')->store('upload', 'public');
-       $name = $request->name;
-       $points = $request->points;
-       Point::create([
-        'image' => $imagePath,
-        'name'  => $name,
-        'points' => $points
-       ]);
-       return redirect()->back()->with('create', 'brinde criado com sucesso');
+        //
     }
 
     /**
@@ -49,7 +46,13 @@ class pointsController extends Controller
      */
     public function show()
     {
-        return view('points.create');
+        $user_id = Auth::user()->id;
+        $blinds = blind::where('status', 'pendente')->get();
+        $blinds->load('blindUser');
+        $points = LoyaltyPoint::where('user_id', $user_id)->get();
+        $point = Point::all();
+
+        return view('delivery.toremove',compact('blinds', 'point', 'points'));
     }
 
     /**

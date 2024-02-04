@@ -88,6 +88,7 @@
             @endif
         </div>
 
+
         <div class="mt-4">
             <p class="text-center">
                 Aqui, o valor do seu pedido vira pontos e com eles você pode resgatar esses brindes:
@@ -121,35 +122,67 @@
         <div class="products-section">
             <div class="row mt-4">
                 <!-- Brinde 1 -->
-          
+             @foreach ($point as $item)
 
-            <div class="col-md-4 flex gep-4">
-                <a href="{{route('delivery.index')}}">
-                    <div class="card p-2">
-                        <h1>Click aqui para resgatar seu blinde retirando na lanchonete</h1>
-                        <div class="card-body">
-    
-                           <P>Retirar nalanchonete</P>
-                         
-                        </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{{ asset('storage/' .$item->image) }}" class="product img" alt="Imagem do Doce">
+                    <div class="card-body">
+                        <p class="card-text">{{$item->name }}</p>
+                        <p class="card-text">Resgate por {{$item->points}}  pontos</p>
+                        <button class="text-sm bg-blue-500 p-2 rounded text-white"  data-bs-toggle="modal"
+                        data-bs-target="#firstModal{{$item->id}}">RESGATAR</button>
                     </div>
+                </div>
+                <div class="modal fade" id="firstModal{{$item->id}}" tabindex="-1"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header,btn btn-warning">
+                                {{-- <h2 class="modal-title pt-4 ml-40" id="exampleModalLabel text-center">Adiciona este produto em seu carrinho</h2> --}}
+                                <button type="button" class="btn-close " data-bs-dismiss="modal"   aria-label="Close">
+                                  X
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="p-4 relative">
+                                    <form action="{{route('blind.create',$item->id)}}" method="POST">
+                                        @csrf
+                                        <div class="pb-4 w-full text-start">
+                                            
+                                        </div>
+                                        <div class="card">
+                                            <img src="{{ asset('storage/' .$item->image) }}" class="product img" alt="Imagem do Doce">
+                                            <div class="card-body">
+                                                <p class="card-text">{{$item->name }}</p>
+                                                <input type="hidden" name="name" value="{{$item->name}}">
+                                                <p class="card-text">Resgate por {{$item->points}}  pontos</p>
+                                                <input type="hidden" name="points" value="{{$item->points}}">
+                                               
+                                            </div>
+                                          
+                                              
+                                                <div class="">
+                                                 
+                                                    <button class='text-sm bg-blue-500 p-2 rounded text-white' type="submit">RESGATAR</button>
+                                                </div>
+                                                
+                                            
+                                          
+                                        </div>
 
-                </a>
-             
-                <a href="{{route('delivery.show')}}">
-                    <div class="card p-2">
-                        <h1>Click aqui para resgatar seu blinde junto com um pedido</h1>
-                        <div class="card-body">
-    
-                           <P>Resgatar junto com pedido</P>
-                         
+                                      
+                                    </form>
+                                  
+                              </div>
+                             
+                            </div>
+                            </div>
                         </div>
-                    </div>
-               
-                </a>
-            
+                </div>
+            </div>
 
-              <div class=""></div>
+             @endforeach   
       
         </div>
     </div>

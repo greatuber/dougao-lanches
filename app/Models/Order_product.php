@@ -15,6 +15,11 @@ class Order_product extends Model
        {
         return $this->belongsTo(Product::class,'product_id', 'id');
        }
+    public function blinCart()
+
+       {
+        return $this->belongsTo(BlindCart::class,'blind_carts_id', 'id');
+       }
 
     public function orderProductAdditional()
 
@@ -27,4 +32,8 @@ class Order_product extends Model
        {
         return $this->belongsTo(User::class, 'user_id', 'id');
        }
+    public function orderBlind()
+       {
+        return $this->belongsTo(blind::class, 'user_id', 'id');
+       }   
 }

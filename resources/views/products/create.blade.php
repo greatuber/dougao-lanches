@@ -77,8 +77,14 @@
             <a href="{{ route('view.category')}}" class=""><div class="slate p-2 rounded mt-2 ml-2">CADASTRAR NOVA CATEGORIA</div></a>
             <a href="{{ route('view.aditional')}}" class=""><div class="slate p-2 rounded mt-2 ml-2">CADASTRAR NOVO ADICIONAL</div></a>
             <a href="{{ route('createpoints')}}" class=""><div class="slate p-2 rounded mt-2 ml-2">CADASTRAR BRINDES</div></a>
-            <a href="{{ route('order.show')}}" class=""><div class="slate p-2 rounded mt-2 ml-2">PEDIDOS</div></a>
+            <div class="pt-2">
+              <h1 class="font-bold p-2"> PEDIDOS</h1>
+              <a href="{{ route('order.show')}}" class=""><div class="slate p-2 rounded mt-2 ml-2">PEDIDOS</div></a>
+            </div>
+          
             <a href="{{ route('client.show')}}" class=""><div class="slate p-2 rounded mt-2 ml-2 mb-2">CLIENTES</div></a>
+
+           
 
             <div class="pt-2">
               <h1 class="font-bold p-2">RESUMO DOS PEDIDOS</h1>
@@ -91,7 +97,7 @@
             </div>
 
             <div class="pt-2">
-              <h1 class="font-bold p-2"> BLINDES ENTREGUÊS</h1>
+              <h1 class="font-bold p-2"> BLINDES ENTREGUES</h1>
               <a href="{{ route('blind.show')}}" class=""><div class="slate p-2 rounded mt-2 ml-2 mb-2">BLINDES ENTREGUÊS</div></a>
             </div>
 

@@ -33,6 +33,11 @@
      .yellow {
       color: yellow;
      }
+     .blind {
+      background-color: rgb(85, 240, 85);
+    
+     }
+   
  
     </style>
     
@@ -119,160 +124,214 @@
                       <i class="fa-solid fa-id-card fa-2xl"></i>
                     </a>
                    </div>
-              <div class="text-center ">
-                     
-                    <h1 class="text-3xl text-gray-700 font-bold">Bem vindo a sua Sacola de Compras:</h1>
-                    <p class="text-gray-700 font-bold">{{ auth()->user()->name }}</p>
-              </div>
-                      @if (session('sucessesmessagem'))
+                <div class="text-center ">
+                      
+                      <h1 class="text-3xl text-gray-700 font-bold">Bem vindo a sua Sacola de Compras:</h1>
+                      <p class="text-gray-700 font-bold">{{ auth()->user()->name }}</p>
+                </div>
+                            @if (session('sucessesmessagem'))
 
-                          <div class="text-green-600 text-lg p-2 font-bold">
-                             {{ session('sucessesmessagem')}}
-                          </div>
-                          
-                      @endif
+                                <div class="text-green-600 text-lg p-2 font-bold">
+                                  {{ session('sucessesmessagem')}}
+                                </div>
+                                  
+                              @endif
 
-                       @if (session('empaty'))
-                       
-                       <div class="text-red-500">
-                        {{ session('empaty')}}
-                       </div>
+                              @if (session('empaty'))
+                              
+                                  <div class="text-red-500">
+                                    {{ session('empaty')}}
+                                  </div>
 
-                      @endif 
+                              @endif 
 
-                      @if (session('menssagem'))
-                         <div class="text-red-500 bg-white p-2">
-                          {{ session('menssagem')}}
-                         </div>
+                              @if (session('menssagem'))
 
-                      @endif
+                                <div class="text-red-500 bg-white p-2">
+                                  {{ session('menssagem')}}
+                                </div>
 
-                   
+                              @endif
+
+                              @if ( session('total'))
+                                 <div class="text-red-500 bg-white p-2">
+                                  <p>
+                                    {{session('total')}}
+                                  </p>
+                                 </div>
+                              @endif
 
                     <div class=" block  overflow-auto">
-                      <table class=" sm:w-full text-md font-light ">
-                          <thead class="border-b ">
-                            <tr>
-                                <th scope="col" class="px-4 py-2 text-gray-700">Produto</th>
-                                <th scope="col" class="px-4 py-2 text-gray-700">Preço</th>
-                                <th scope="col" class="px-4 py-2 text-gray-700">Quantidade</th>
-                                <th scope="col" class="px-4 py-2 text-gray-700">Observação</th>
-                                <th scope="col" class="px-4 py-2 text-gray-700">Adicionais</th>
-                            </tr>
-                          </thead>
-                        
-                               @forelse ($cart as $item)
-                                    <?php $total = $total?>
-                          <tbody>
-                                  <tr class="border-b dark:border-neutral-500">
-                                    <td class="whitespace-nowrap px-2 py-4 text-gray-700 font-bold">{{ $item->orderProductProduct->name }}</td>
-                                      <input type="hidden"  name="product_id" value="{{ $item->orderProductProduct->name }}">
-                                    <td class="whitespace-nowrap px-6 py-4">
 
-                                        <span class="gray text-white p-1 rounded">
-                                            @money($item->orderProductProduct->price)
-                                        </span>
-
-                                    </td>
-                                    <td class="whitespace-nowrap px-6 py-4">
-
-                                        <span class="border text-white rounded p-2 gray">{{ $item->quanty }}</span>
-                                        
-                                    </td>
-                                     
-                                    <td class="text-gray-700 font-bold">
-                                        <p> {{ $item->observation ?? ''}}</p>
-                                    </td>
-                                              
-                                    <td class="text-gray-700 font-bold">
+                          <table class=" sm:w-full text-md font-light ">
+                              <thead class="border-b ">
+                                <tr>
+                                    <th scope="col" class="px-4 py-2 text-gray-700">Produto</th>
+                                    <th scope="col" class="px-4 py-2 text-gray-700">Preço</th>
+                                    <th scope="col" class="px-4 py-2 text-gray-700">Quantidade</th>
+                                    <th scope="col" class="px-4 py-2 text-gray-700">Observação</th>
+                                    <th scope="col" class="px-4 py-2 text-gray-700">Adicionais</th>
+                                    <th scope="col" class="px-4 py-2 text-gray-700">Blinde</th>
                                   
-                                        @if($item->orderProductAdditional()->count()>0)
-                                        
-                                            @foreach ($item->orderProductAdditional as $additional)
-                                              {{ $additional->name ?? '' }},
-                                            @endforeach  
-                                        
-                                        @endif
-                                       
-                                    </td> 
-                                    <td>
-                            
-                                      <form action="{{ route('cart.delete', $item->id) }}" method="POST">
-                                        @csrf
-                                        <div class=" rounded">
-                                            <button class="rounded text-red-500 p-2 ml-60 font-bold text-sm bg-white">EXCLUIR</button>
-                                        </div>
-                                    </form>
-                                    </td>
                                 </tr>
-                    
-                            @empty
-                                <p class="text-white text-lg p-2 font-bold">'Sua sacola esta vazia'</p>
-                            @endforelse
-                          </tbody>
-                      </table>
+                              </thead>
+                            
+                                  @forelse ($cart as $item)
+                                        <?php $total = $total?>
+                                      <tbody>
+                                              <tr class="border-b dark:border-neutral-500">
+                                                <td class="whitespace-nowrap px-2 py-4 text-gray-700 font-bold">{{ $item->orderProductProduct->name ?? ''}}</td>
+
+                                                  <input type="hidden"  name="product_id" value="{{ $item->orderProductProduct->name ?? ''}}">
+                                              
+                                                <td class="whitespace-nowrap px-6 py-4">
+
+                                                    <span class="gray text-white p-1 rounded">
+                                                        @money($item->orderProductProduct->price ?? 0)
+                                                    </span>
+
+
+                                                </td>
+                                                <td class="whitespace-nowrap px-6 py-4">
+
+                                                    <span class="border text-white rounded p-2 gray">{{ $item->quanty}}</span>
+
+                                                    
+                                                </td>
+                                                
+                                                <td class="text-gray-700 font-bold">
+                                                    <p> {{ $item->observation ?? ''}}</p>
+                                                  
+                                                </td>
+                                                          
+                                                <td class="text-gray-700 font-bold">
+                                              
+                                                    @if($item->orderProductAdditional()->count()>0)
+                                                    
+                                                        @foreach ($item->orderProductAdditional as $additional)
+                                                          {{ $additional->name ?? '' }},
+                                                        @endforeach  
+                                                    
+                                                    @endif
+                                                  
+                                                </td> 
+                                                <td class="text-gray-700 font-bold"> 
+                                                        
+                                                        <span class="border text-white rounded p-2 gray">{{ $item->blinCart->name ?? ''}}</span>
+                                                      
+                                                </td>
+                                                <td>
+                                        
+                                                  <form action="{{ route('cart.delete', $item->id) }}" method="POST">
+                                                    @csrf
+                                                    <div class=" rounded">
+                                                        <button class="rounded text-red-500 p-2 ml-60 font-bold text-sm bg-white">EXCLUIR</button>
+                                                    </div>
+                                                </form>
+                                                </td>
+                                              
+                                            </tr>
+                                
+                                    @empty
+                                            <p class="text-white text-lg p-2 font-bold">'Sua sacola esta vazia'</p>
+                                    @endforelse
+                                      </tbody>
+                          </table>
                     </div>
+
+                        {{-- <div class="pt-2 text-center">
+                          @if(count($blindCart) > 0)
+                              <div class="row">
+                                  @foreach($blindCart as $blindItem)
+                                    @if($blindItem->status == 'pendente')
+                                      <div class="col-md-8 mb-2">
+                                          <div class="card text-center">
+                                            <h2 class="card-title font-bold pt-2">Blinde solicitado</h2>
+                                              <div class="card-body d-flex flex-row text-center">
+                                                  <h5 class="card-title p-2">Cliente: {{ $blindItem->blindCartUser->name }}</h5>
+                                                  <p class="card-text p-2">Blind: {{ $blindItem->name }}</p>
+                                                  <p class="card-text p-2">Pontos: {{ $blindItem->points }}</p>
+                                              </div>
+                                          </div>
+                                      </div>
+                                    @endif  
+                                  @endforeach
+                              </div>
+                          @endif
+                      </div> --}}
+                      
                     <div class="  container ">
                           <div class="rounded  pt-2 mt-2  ">
                                <div class="ml-4 mr-4  container">
                                 <h1 class="font-bold text-gray-700 pt-2 pb-2">TOTAL</h1>
-            <form action="{{route('admin.create')}}"  method="post">
-                                  @csrf
-                                <samp  class=" font-bold bg-white p-2  rounded"  id="toremove"> R$ @money($total)</samp>
-                                <samp  class=" font-bold bg-white p-2  rounded"  id="delivery"></samp>
-                                  <input type="hidden" name="total" value=" @money($total)">
-                               </div>
-                          </div>
-                    </div>
-                                 
-                    <div class=" pb-2 mt-2">
-                             <div class="text-center">
-                                <h1 class="text-gray-700 font-bold pb-2 text-lg">o pagamento será realizado na entrega</h1>
-                             </div>
-                            <div class="p-4 relative">
-                                  <div class="pb-4 w-full">
-
-                                      <input class="toremove" type="radio" checked value="0" id="toRemove" name="delivery" onchange="atualizarValor()" > 
-                                      <label for="toRemove"  class="text-gray-700 font-bold pr-4" >Retirar na lanchonete</label>
-                                      <input  class="delivery" type="radio" value="1" id="entrega" name="delivery" onchange="atualizarValor()"> 
-                                      <label for="entrega" class="text-gray-700 font-bold" >Para entregar</label>
-                                      <i class="fa-solid fa-motorcycle fa-xl text-blue-500"></i>
-
-                                  </div>
-                            </div>
-
-                            <div class="pb-4">
-                                  <h2 class="text-gray-700 font-bold pb-2">forma de pagamento</h2>
-                                  <input class="payment_card" type="radio" checked value="0" id="" name="payment" > 
-                                  <label for=""  class="text-gray-700 font-bold pr-4" >cartão</label>
-                                  <select name="credit_card" id="select" class="rounded mr-2" >
-                                    <option  value="visa">Visa</option>     
-                                    <option  value="Master Card">Master Card</option>
-                                    <option  value="Ouro Card">Ouro Card</option>
-                                  </select>
+                               
+                           
+                                  @foreach ($blindCart as $item)
+                                  <form action="{{ route('admin.create',['id' => $item->id] ?? '') }}" method="post">
                                 
-                                  <input  class="" type="radio" value="1"  name="payment"> 
-                                  <label for="" class="text-gray-700 font-bold" >dinheiro</label>
-                                    @error('payment')
-                                         <div class="bg-black p-2">
-                                           <samp>{{ $message}}</samp>
-                                         </div>
-                                    @enderror
-                          </div>
-                          <div class="pl-4 grid-templates-rows">
-                                <input type="text" class="rounded text-sm " name="observation" id="observation" placeholder="ex: troco para 50 reais">
-                          </div>
-                    </div>
-                          
-                          <div class="text-center md:flex sm:block group overflow-auto">
-                                  
-                                    <button type="submit" class="font-bold text-sm text-white p-2 mb-2 bg-blue-500  border rounded">
+                                    <input type="hidden" name="blindCartId" value="{{ $item}}">
+                                      
+                                  @endforeach
+                                        
+                            
+                                
+                                                          @csrf
+                                                          <samp  class=" font-bold bg-white p-2  rounded"  id="toremove"> R$ @money($total)</samp>
+                                                          <samp  class=" font-bold bg-white p-2  rounded"  id="delivery"></samp>
+                                                          <input type="hidden" name="total" value=" @money($total)">
+                                                      </div>
+                                                  </div>
+                                            </div>
+                                            
+                                            <div class=" pb-2 mt-2">
+                                                    <div class="text-center">
+                                                        <h1 class="text-gray-700 font-bold pb-2 text-lg">o pagamento será realizado na entrega</h1>
+                                                    </div>
+                                                    <div class="p-4 relative">
+                                                          <div class="pb-4 w-full">
 
-                                        Enviar pedido
+                                                              <input class="toremove" type="radio" checked value="0" id="toRemove" name="delivery" onchange="atualizarValor()" > 
+                                                              <label for="toRemove"  class="text-gray-700 font-bold pr-4" >Retirar na lanchonete</label>
+                                                              <input  class="delivery" type="radio" value="1" id="entrega" name="delivery" onchange="atualizarValor()"> 
+                                                              <label for="entrega" class="text-gray-700 font-bold" >Para entregar</label>
+                                                              <i class="fa-solid fa-motorcycle fa-xl text-blue-500"></i>
 
-                                    </button>
-                                  
-            </form>       
+                                                          </div>
+                                                    </div>
+
+                                                    <div class="pb-4">
+                                                          <h2 class="text-gray-700 font-bold pb-2">forma de pagamento</h2>
+                                                          <input class="payment_card" type="radio" checked value="0" id="" name="payment" > 
+                                                          <label for=""  class="text-gray-700 font-bold pr-4" >cartão</label>
+                                                          <select name="credit_card" id="select" class="rounded mr-2" >
+                                                            <option  value="visa">Visa</option>     
+                                                            <option  value="Master Card">Master Card</option>
+                                                            <option  value="Ouro Card">Ouro Card</option>
+                                                          </select>
+                                                        
+                                                          <input  class="" type="radio" value="1"  name="payment"> 
+                                                          <label for="" class="text-gray-700 font-bold" >dinheiro</label>
+                                                            @error('payment')
+                                                                <div class="bg-black p-2">
+                                                                  <samp>{{ $message}}</samp>
+                                                                </div>
+                                                            @enderror
+                                                  </div>
+                                                  <div class="pl-4 grid-templates-rows">
+                                                        <input type="text" class="rounded text-sm " name="observation" id="observation" placeholder="ex: troco para 50 reais">
+                                                  </div>
+                                            </div>
+                                                  
+                                                  <div class="text-center md:flex sm:block group overflow-auto">
+                                                          
+                                                            <button type="submit" class="font-bold text-sm text-white p-2 mb-2 bg-blue-500  border rounded">
+
+                                                                Enviar pedido
+
+                                                            </button>
+                                                          
+                                    </form>     
+                                   
                                   <div class="p-2 text-center">
                                     <a href="{{ route('client.show')}}"><button class="text-sm text-white border bg-blue-500 font-bold rounded p-2">Continuar comprando</button></a>
                                   </div>

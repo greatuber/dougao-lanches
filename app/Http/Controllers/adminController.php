@@ -11,6 +11,8 @@ use App\Models\OrderList;
 use App\Models\Order_product;
 use App\Models\LoyaltyPoint;
 use App\Http\Requests\OrderProductRequest;
+use App\Models\blind;
+use App\Models\BlindCart;
 use App\Notifications\NewOrderNotification;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +21,7 @@ use Illuminate\Support\Collection;
 
 class adminController extends Controller
 {
-  public function store(Request $request)
+  public function store(Request $request, $id)
 
   {
 
@@ -31,7 +33,7 @@ class adminController extends Controller
     } else {
       return redirect()->back()->with('menssagem', 'Vocẽ presisa relizar uma compra para conseguir enviar um pedido');
     }
-
+   
    
 
     $payment  = $request->payment;
@@ -45,7 +47,11 @@ class adminController extends Controller
     $product    = Order_product::where('user_id', $users)->get();
     $quantity = $product[0]->quanty;
 
-
+      
+    if ($total < 20.00) 
+    {
+     return redirect()->back()->with('total', 'o valor de sua compra precisa ser maior que 20,00 reais');
+    }
   
     // verificando se usuario tem endereço e depois criando pedido
 
@@ -60,10 +66,15 @@ class adminController extends Controller
         'user_id'     => $user->id ?? '',
         'total'       => $total,
         'delivery'    => $delivery,
-        'quantity'    => $quantity,
+        'quantity'    => $quantity ?? 0,
       ]);
-
-      //  dd($order->total);
+        
+       $blindCart = $request->blindCartId;
+     
+     
+      $blindCart = BlindCart::findOrFail($id);
+      $blindCartId = $blindCart->id ?? '';
+ 
       $orderId = $order->id;
 
       // criando itens do pedido
@@ -71,32 +82,38 @@ class adminController extends Controller
       foreach ($product as $item) {
 
         $orderlist = OrderList::create([
+          'blind_carts_id'=> $blindCartId ?? '',
           'order_id'      => $orderId,
           'product_id'    => $item->product_id,
           'observation'   => $item->observation,
-          'quamtity'      => $item->quanty,
-          'value'         => $item->price,
+          'quamtity'      => $item->quanty ?? 0,
+          'value'         => $item->price ?? 0
         ]);
+
         $orderlist->orderAdditional()->attach($item->orderProductAdditional);
+        
       }
-       
+    
+    
       $orderPoints = Order::where('user_id', $users)->get();
 
       $totalPointsEarned = 0;
       
       foreach ($orderPoints as $order) {
-          $totalPointsEarned += ($order->total / 100) * 3;
+          $totalPointsEarned += ($order->total / 5) * 1;
       }
-     
+    
+
          //se existir pontos na tabela faz opdate no numero de pontos se não cria
       LoyaltyPoint::updateOrCreate(
           ['user_id' => $users],
-          ['points_earned' => $totalPointsEarned]
+          ['points_earned' => $totalPointsEarned ?? '']
       );
       
 
       $product = Order_product::where('user_id', $users)->delete();
-
+      $blindCart = BlindCart::where('user_id', $users)->update(['status' => ('aceito')]);
+    
 
 
       return redirect()->back()->with('sucessesmessagem', 'pedido enviado com sucesso');
@@ -111,16 +128,22 @@ class adminController extends Controller
   {
 
     $user      = Auth::user();
-    $users     = $user->id ?? '';
-
+    $userId     = $user->id ?? '';
+  
+    $blindCart = BlindCart::where('user_id', $userId)->get();
+    $blinCartId = $blindCart[0]->id ?? '';
 
 
     $date = now()->format('d/m/y H:i:s');
 
+    $blindCart = BlindCart::where('user_id', $userId)->get();
 
-    $orders = Order::orderBY('id', 'desc')->with('orderUser', 'orderlist', 'orderAdditional')->where('status', 'processando')->get();
-
-    return view('cart.order', compact('date', 'users', 'orders'));
+    $orders = Order::orderBY('id', 'desc')
+      ->with('orderUser', 'orderlist', 'orderAdditional')
+      ->where('status', 'processando')
+      ->get();
+  
+    return view('cart.order', compact('date', 'userId', 'orders', 'blindCart'));
   }
 
   public function update(Request $request, $id)
