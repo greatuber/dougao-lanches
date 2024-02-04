@@ -97,16 +97,16 @@
         <div class="products-section">
             <div class="row mt-4">
                 <!-- Brinde 1 -->
-                <div class="col-md-6">
+                <div class="col-md-6 pb-2">
                     <a href="{{ route('delivery.index') }}" class="btn btn-primary btn-block">
-                        <h5>Retirar na Lanchonete</h5>
+                        <h5 class="font-bold">Retirar na Lanchonete</h5>
                         <p>Click aqui para resgatar seu brinde retirando na lanchonete</p>
                     </a>
                 </div>
 
                 <div class="col-md-6">
                     <a href="{{ route('delivery.show') }}" class="btn btn-success btn-block">
-                        <h5>Resgatar com Pedido</h5>
+                        <h5 class="font-bold">Resgatar com Pedido</h5>
                         <p>Click aqui para resgatar seu brinde junto com um pedido</p>
                     </a>
                 </div>

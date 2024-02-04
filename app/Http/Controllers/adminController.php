@@ -100,7 +100,7 @@ class adminController extends Controller
       $totalPointsEarned = 0;
       
       foreach ($orderPoints as $order) {
-          $totalPointsEarned += ($order->total / 5) * 1;
+          $totalPointsEarned += floor($order->total / 5) * 1;
       }
     
 
@@ -130,20 +130,19 @@ class adminController extends Controller
     $user      = Auth::user();
     $userId     = $user->id ?? '';
   
-    $blindCart = BlindCart::where('user_id', $userId)->get();
-    $blinCartId = $blindCart[0]->id ?? '';
+  
 
 
     $date = now()->format('d/m/y H:i:s');
 
-    $blindCart = BlindCart::where('user_id', $userId)->get();
+  
 
     $orders = Order::orderBY('id', 'desc')
       ->with('orderUser', 'orderlist', 'orderAdditional')
       ->where('status', 'processando')
       ->get();
   
-    return view('cart.order', compact('date', 'userId', 'orders', 'blindCart'));
+    return view('cart.order', compact('date', 'userId', 'orders'));
   }
 
   public function update(Request $request, $id)
@@ -152,6 +151,10 @@ class adminController extends Controller
     $order = Order::findOrFail($id);
 
     $order->update(['status' => ('aceito')]);
+
+    // $blindCartId = BlindCart::findOrFail($blindCartId);
+   
+    // $blindCartId->update(['status' => ('impresso')]);
 
 
     return redirect()->back();

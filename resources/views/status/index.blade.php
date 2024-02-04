@@ -83,6 +83,7 @@
                                         <th class="py-2 px-4 border-b">PREÇO</th>
                                         <th class="py-2 px-4 border-b">OBSERVAÇÃO</th>
                                         <th class="py-2 px-4 border-b">ADICIONAIS</th>
+                                        <th class="py-2 px-4 border-b">BLINDE</th>
                                         
                                     </tr>
                                 </thead>
@@ -108,6 +109,15 @@
                                                         </div>
                                                     @endif
                                             
+                                                </td>
+                                                <td >
+                                                    @if ( $list->blindCart)
+                                                        {{ $list->blindCart->name ?? '' }}
+                                                    @else
+                                                        <div class="">
+                                                            <p>//</p>
+                                                        </div>
+                                                    @endif
                                                 </td>
                                             </tr>
                                     @endforeach 

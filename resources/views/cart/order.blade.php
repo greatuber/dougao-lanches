@@ -160,14 +160,12 @@
                                 
                             </td>
                             <td >
-                                @if($list->blindCart->name)
-                                  {{ $list->blindCart->name ?? ''}}
+                                @if ( $list->blindCart)
+                                    {{ $list->blindCart->name ?? '' }}
                                 @else
-                                  <div class="">
-                                     <p>
-                                        //
-                                     </p>
-                                  </div>
+                                    <div class="">
+                                        <p>//</p>
+                                    </div>
                                 @endif
                             </td>
                           
@@ -237,7 +235,10 @@
                      
                       
                         <div class=" flex p-2">
-                            <form action="{{route('update.status',$item->id)}}" method="POST">
+                    
+                            <form action="{{ route('update.status', ['id' => $item->id]) }}" method="POST">
+                         
+                          
                                 @csrf
                                     <div class="mr-2">
                                         <button class=" delivery border rounded p-2 button hover:text-blue-800">ACEITAR PEDIDO</button>
