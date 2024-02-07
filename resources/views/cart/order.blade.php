@@ -32,7 +32,7 @@
             color: red;
         }
         .blind {
-            background-color: rgb(151, 240, 17);
+            background-color: rgb(163, 214, 85);
 
         }
   
@@ -159,18 +159,13 @@
                                 @endif
                                 
                             </td>
-                            <td >
-                                @if ( $list->blindCart)
-                                    {{ $list->blindCart->name ?? '' }}
-                                @else
-                                    <div class="">
-                                        <p>//</p>
-                                    </div>
-                                @endif
-                            </td>
                           
+                            @endforeach
+                            <td > 
+                                <span>{{ $item->orderList[0]->blindCart->name ?? ''}}</span>
+                            </td>
                         </tr>
-                      @endforeach
+                    
                     </tbody>
                 </table>    
             </div>    

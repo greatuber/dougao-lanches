@@ -41,24 +41,25 @@ class BlindCartController extends Controller
         $orderPoints = Order::where('user_id', $users)->get();
 
         $totalPointsEarned = 0;
+
+        if ($orderPoints) 
+            {
+                foreach ($orderPoints as $order) {
+                    $totalPointsEarned += ($order->total / 5) * 1;
+                }
+                    //se existir pontos na tabela faz opdate no numero de pontos se não cria
+                LoyaltyPoint::updateOrCreate(
+                ['user_id' => $users],
+                ['points_earned' => $totalPointsEarned ?? '']
+                );
+            }
         
-        foreach ($orderPoints as $order) {
-            $totalPointsEarned += ($order->total / 5) * 1;
-        }
-      
-           //se existir pontos na tabela faz opdate no numero de pontos se não cria
-        LoyaltyPoint::updateOrCreate(
-            ['user_id' => $users],
-            ['points_earned' => $totalPointsEarned ?? '']
-        );
-
-
         $loyaut = LoyaltyPoint::where('user_id', $users)->get();
 
         if ($loyaut->isEmpty()) 
-        {
-            return redirect()->back()->with('denied', 'Você não possui pontos suficientes para resgatar este brinde');
-        }
+            {
+                return redirect()->back()->with('denied', 'Você não possui pontos suficientes para resgatar este brinde');
+            }
 
         
         $loyauts = $loyaut[0]->points_earned;
@@ -73,10 +74,13 @@ class BlindCartController extends Controller
             'name'  => $name,
             'points' => $points,
             ]);
-
-            $loyaut[0]->update([
-                'points_earned' => $loyauts - $points
-            ]); 
+        if ($loyaut)
+            {
+                $loyaut[0]->update([
+                    'points_earned' => $loyauts - $points
+                ]); 
+            }
+          
         
     
          

@@ -21,7 +21,7 @@ use Illuminate\Support\Collection;
 
 class adminController extends Controller
 {
-  public function store(Request $request, $id)
+  public function store(Request $request)
 
   {
 
@@ -69,11 +69,7 @@ class adminController extends Controller
         'quantity'    => $quantity ?? 0,
       ]);
         
-       $blindCart = $request->blindCartId;
      
-     
-      $blindCart = BlindCart::findOrFail($id);
-      $blindCartId = $blindCart->id ?? '';
  
       $orderId = $order->id;
 
@@ -82,7 +78,7 @@ class adminController extends Controller
       foreach ($product as $item) {
 
         $orderlist = OrderList::create([
-          'blind_carts_id'=> $blindCartId ?? '',
+          // 'blind_carts_id'=> $blindCartId ?? '',
           'order_id'      => $orderId,
           'product_id'    => $item->product_id,
           'observation'   => $item->observation,
@@ -125,38 +121,43 @@ class adminController extends Controller
 
   public function index(Request $request)
 
-  {
+      {
 
-    $user      = Auth::user();
-    $userId     = $user->id ?? '';
+        $user      = Auth::user();
+        $userId     = $user->id ?? '';
+      
+      
+
+
+        $date = now()->format('d/m/y H:i:s');
+
+      
+
+        $orders = Order::orderBY('id', 'desc')
+          ->with('orderUser', 'orderlist', 'orderAdditional')
+          ->where('status', 'processando')
+          ->get();
+
+              
+       
+        $lists = OrderList::with('blindCart')->latest()->first();  
   
-  
-
-
-    $date = now()->format('d/m/y H:i:s');
-
-  
-
-    $orders = Order::orderBY('id', 'desc')
-      ->with('orderUser', 'orderlist', 'orderAdditional')
-      ->where('status', 'processando')
-      ->get();
-  
-    return view('cart.order', compact('date', 'userId', 'orders'));
-  }
+      
+        return view('cart.order', compact('date', 'userId', 'orders', 'lists'));
+      }
 
   public function update(Request $request, $id)
 
-  {
-    $order = Order::findOrFail($id);
+      {
+        $order = Order::findOrFail($id);
 
-    $order->update(['status' => ('aceito')]);
+        $order->update(['status' => ('aceito')]);
 
-    // $blindCartId = BlindCart::findOrFail($blindCartId);
-   
-    // $blindCartId->update(['status' => ('impresso')]);
+        // $blindCartId = BlindCart::findOrFail($blindCartId);
+      
+        // $blindCartId->update(['status' => ('impresso')]);
 
 
-    return redirect()->back();
-  }
+        return redirect()->back();
+      }
 }

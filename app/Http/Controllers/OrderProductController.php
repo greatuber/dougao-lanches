@@ -26,8 +26,7 @@ class OrderProductController extends Controller
         
         // $blindCart = BlindCart::findOrFail($id);
         // $blindCartId = $blindCart->id ?? '';
-        
-        
+      
 
         $cart = Order_product::create([
             'blind_carts_id' => $blindCartId ?? null,
@@ -81,10 +80,10 @@ class OrderProductController extends Controller
 
         $address = Address::where('user_id', $users)->with('userAdress')->latest()->first();
 
-         $blindCart = BlindCart::where('user_id', $users)->where('status', 'pendente')->get();
+         
 
         $cart = Order_product::where('user_id', $users)
-            ->with('orderProductAdditional', 'orderProductProduct')
+            ->with('orderProductAdditional', 'orderProductProduct', 'blinCart')
             ->get();
 
         $total = 0;
@@ -100,7 +99,7 @@ class OrderProductController extends Controller
             }
         });
 
-        return view('cart.index', compact('cart', 'address', 'total', 'users', 'blindCart'));
+        return view('cart.index', compact('cart', 'address', 'total', 'users'));
     }
     public function delete(Request $request, $id)
     {

@@ -41,7 +41,7 @@
  
     </style>
     
-    <script>
+    {{-- <script>
     
       function limpa_formulário_cep() {
               //Limpa valores do formulário de cep.
@@ -111,7 +111,7 @@
           }
       };
     
-      </script>
+    </script> --}}
 
 
     @vite('resources/css/app.css')
@@ -238,7 +238,15 @@
                                       </tbody>
                           </table>
                     </div>
-
+                    {{-- @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif --}}
                         {{-- <div class="pt-2 text-center">
                           @if(count($blindCart) > 0)
                               <div class="row">
@@ -264,83 +272,140 @@
                           <div class="rounded  pt-2 mt-2  ">
                                <div class="ml-4 mr-4  container">
                                 <h1 class="font-bold text-gray-700 pt-2 pb-2">TOTAL</h1>
-                               
-                           
-                                  @foreach ($blindCart as $item)
-                                  <form action="{{ route('admin.create',['id' => $item->id] ?? '') }}" method="post">
-                                
-                                    <input type="hidden" name="blindCartId" value="{{ $item}}">
-                                      
-                                  @endforeach
-                                        
-                            
-                                
-                                                          @csrf
-                                                          <samp  class=" font-bold bg-white p-2  rounded"  id="toremove"> R$ @money($total)</samp>
-                                                          <samp  class=" font-bold bg-white p-2  rounded"  id="delivery"></samp>
-                                                          <input type="hidden" name="total" value=" @money($total)">
-                                                      </div>
-                                                  </div>
-                                            </div>
-                                            
-                                            <div class=" pb-2 mt-2">
-                                                    <div class="text-center">
-                                                        <h1 class="text-gray-700 font-bold pb-2 text-lg">o pagamento será realizado na entrega</h1>
-                                                    </div>
-                                                    <div class="p-4 relative">
-                                                          <div class="pb-4 w-full">
-
-                                                              <input class="toremove" type="radio" checked value="0" id="toRemove" name="delivery" onchange="atualizarValor()" > 
-                                                              <label for="toRemove"  class="text-gray-700 font-bold pr-4" >Retirar na lanchonete</label>
-                                                              <input  class="delivery" type="radio" value="1" id="entrega" name="delivery" onchange="atualizarValor()"> 
-                                                              <label for="entrega" class="text-gray-700 font-bold" >Para entregar</label>
-                                                              <i class="fa-solid fa-motorcycle fa-xl text-blue-500"></i>
-
-                                                          </div>
-                                                    </div>
-
-                                                    <div class="pb-4">
-                                                          <h2 class="text-gray-700 font-bold pb-2">forma de pagamento</h2>
-                                                          <input class="payment_card" type="radio" checked value="0" id="" name="payment" > 
-                                                          <label for=""  class="text-gray-700 font-bold pr-4" >cartão</label>
-                                                          <select name="credit_card" id="select" class="rounded mr-2" >
-                                                            <option  value="visa">Visa</option>     
-                                                            <option  value="Master Card">Master Card</option>
-                                                            <option  value="Ouro Card">Ouro Card</option>
-                                                          </select>
-                                                        
-                                                          <input  class="" type="radio" value="1"  name="payment"> 
-                                                          <label for="" class="text-gray-700 font-bold" >dinheiro</label>
-                                                            @error('payment')
-                                                                <div class="bg-black p-2">
-                                                                  <samp>{{ $message}}</samp>
-                                                                </div>
-                                                            @enderror
-                                                  </div>
-                                                  <div class="pl-4 grid-templates-rows">
-                                                        <input type="text" class="rounded text-sm " name="observation" id="observation" placeholder="ex: troco para 50 reais">
-                                                  </div>
-                                            </div>
-                                                  
-                                                  <div class="text-center md:flex sm:block group overflow-auto">
-                                                          
-                                                            <button type="submit" class="font-bold text-sm text-white p-2 mb-2 bg-blue-500  border rounded">
-
-                                                                Enviar pedido
-
-                                                            </button>
-                                                          
-                                    </form>     
-                                   
-                                  <div class="p-2 text-center">
-                                    <a href="{{ route('client.show')}}"><button class="text-sm text-white border bg-blue-500 font-bold rounded p-2">Continuar comprando</button></a>
+                              
+                              @if(isset($cart->blinCart) && count($cartblinCart) > 0)
+                                  
+                                  @foreach ($cart->blinCart as $item)
+                                    <form action="{{ route('admin.createBlind',$item->id) }}" method="post">
+                                          @csrf
+                                          <input type="hidden" name="blindCartId" value="{{ $item ?? ''}}">
+                                          <samp  class=" font-bold bg-white p-2  rounded"  id="toremove"> R$ @money($total)</samp>
+                                          <samp  class=" font-bold bg-white p-2  rounded"  id="delivery"></samp>
+                                          <input type="hidden" name="total" value=" @money($total)">
+                                      </div>
                                   </div>
-                  
-                                  <button class="font-bold text-white text-md p-2 bg-blue-500 border rounded mb-2 mt-2 " data-bs-toggle="modal"
-                                      data-bs-target="#firstModal"> 
-                                      Cadastrar um endereço para entrega
-                                  </button>
-                          </div>
+                            </div>
+                            
+                            <div class=" pb-2 mt-2">
+                                    <div class="text-center">
+                                        <h1 class="text-gray-700 font-bold pb-2 text-lg">o pagamento será realizado na entrega</h1>
+                                    </div>
+                                    <div class="p-4 relative">
+                                          <div class="pb-4 w-full">
+
+                                              <input class="toremove" type="radio" checked value="0" id="toRemove" name="delivery" onchange="atualizarValor()" > 
+                                              <label for="toRemove"  class="text-gray-700 font-bold pr-4" >Retirar na lanchonete</label>
+                                              <input  class="delivery" type="radio" value="1" id="entrega" name="delivery" onchange="atualizarValor()"> 
+                                              <label for="entrega" class="text-gray-700 font-bold" >Para entregar</label>
+                                              <i class="fa-solid fa-motorcycle fa-xl text-blue-500"></i>
+
+                                          </div>
+                                    </div>
+
+                                    <div class="pb-4">
+                                          <h2 class="text-gray-700 font-bold pb-2">forma de pagamento</h2>
+                                          <input class="payment_card" type="radio" checked value="0" id="" name="payment" > 
+                                          <label for=""  class="text-gray-700 font-bold pr-4" >cartão</label>
+                                          <select name="credit_card" id="select" class="rounded mr-2" >
+                                            <option  value="visa">Visa</option>     
+                                            <option  value="Master Card">Master Card</option>
+                                            <option  value="Ouro Card">Ouro Card</option>
+                                          </select>
+                                        
+                                          <input  class="" type="radio" value="1"  name="payment"> 
+                                          <label for="" class="text-gray-700 font-bold" >dinheiro</label>
+                                            @error('payment')
+                                                <div class="bg-black p-2">
+                                                  <samp>{{ $message}}</samp>
+                                                </div>
+                                            @enderror
+                                  </div>
+                                  <div class="pl-4 grid-templates-rows">
+                                        <input type="text" class="rounded text-sm " name="observation" id="observation" placeholder="ex: troco para 50 reais">
+                                  </div>
+                            </div>
+                                  
+                        <div class="text-center md:flex sm:block group overflow-auto">
+                                
+                          <button type="submit" class="font-bold text-sm text-white p-2 mb-2 bg-blue-500  border rounded">
+
+                            Enviar pedido
+
+                          </button>
+
+                                      
+                                    </form>            
+                                  @endforeach
+                              @else   
+                                <form action="{{ route('admin.create') }}" method="post">
+                          
+                                                        @csrf
+                                                        <samp  class=" font-bold bg-white p-2  rounded"  id="toremove"> R$ @money($total)</samp>
+                                                        <samp  class=" font-bold bg-white p-2  rounded"  id="delivery"></samp>
+                                                        <input type="hidden" name="total" value=" @money($total)">
+                                                    </div>
+                                                </div>
+                                          </div>
+                                          
+                                          <div class=" pb-2 mt-2">
+                                                  <div class="text-center">
+                                                      <h1 class="text-gray-700 font-bold pb-2 text-lg">o pagamento será realizado na entrega</h1>
+                                                  </div>
+                                                  <div class="p-4 relative">
+                                                        <div class="pb-4 w-full">
+
+                                                            <input class="toremove" type="radio" checked value="0" id="toRemove" name="delivery" onchange="atualizarValor()" > 
+                                                            <label for="toRemove"  class="text-gray-700 font-bold pr-4" >Retirar na lanchonete</label>
+                                                            <input  class="delivery" type="radio" value="1" id="entrega" name="delivery" onchange="atualizarValor()"> 
+                                                            <label for="entrega" class="text-gray-700 font-bold" >Para entregar</label>
+                                                            <i class="fa-solid fa-motorcycle fa-xl text-blue-500"></i>
+
+                                                        </div>
+                                                  </div>
+
+                                                  <div class="pb-4">
+                                                        <h2 class="text-gray-700 font-bold pb-2">forma de pagamento</h2>
+                                                        <input class="payment_card" type="radio" checked value="0" id="" name="payment" > 
+                                                        <label for=""  class="text-gray-700 font-bold pr-4" >cartão</label>
+                                                        <select name="credit_card" id="select" class="rounded mr-2" >
+                                                          <option  value="visa">Visa</option>     
+                                                          <option  value="Master Card">Master Card</option>
+                                                          <option  value="Ouro Card">Ouro Card</option>
+                                                        </select>
+                                                      
+                                                        <input  class="" type="radio" value="1"  name="payment"> 
+                                                        <label for="" class="text-gray-700 font-bold" >dinheiro</label>
+                                                          @error('payment')
+                                                              <div class="bg-black p-2">
+                                                                <samp>{{ $message}}</samp>
+                                                              </div>
+                                                          @enderror
+                                                </div>
+                                                <div class="pl-4 grid-templates-rows">
+                                                      <input type="text" class="rounded text-sm " name="observation" id="observation" placeholder="ex: troco para 50 reais">
+                                                </div>
+                                          </div>
+                                                
+                                      <div class="text-center md:flex sm:block group overflow-auto">
+                                              
+                                        <button type="submit" class="font-bold text-sm text-white p-2 mb-2 bg-blue-500  border rounded">
+
+                                          Enviar pedido
+  
+                                        </button>
+                                            
+                                </form> 
+                              @endif  
+                                   
+                                        <div class="p-2 text-center">
+                                          <a href="{{ route('client.show')}}"><button class="text-sm text-white border bg-blue-500 font-bold rounded p-2">Continuar comprando</button></a>
+                                        </div>
+                        
+                                        <button class="font-bold text-white text-md p-2 bg-blue-500 border rounded mb-2 mt-2 " data-bs-toggle="modal"
+                                            data-bs-target="#firstModal"> 
+                                            Cadastrar um endereço para entrega
+                                        </button>
+                                    </div>
               <div class="">   
                             @if(session('success'))
                                 <div class=" text-center  bg-white text-green-600 p-4 text-2xl rounded font-bold">
@@ -519,14 +584,7 @@
     <script> 
         
 
-        window.onload = function() {
-        var entregaInput = document.getElementById('entrega');
-        var storedValue = localStorage.getItem('entregaChecked');
-
-        if (storedValue === 'true') {
-            entregaInput.checked = true;
-        }
-    };
+    
 
     function atualizarValor() {
     const opcoes = document.getElementsByName('delivery');
@@ -537,7 +595,7 @@
     const taxa = 6.00;
     let totalAmount = 0;
 
-    localStorage.setItem('entregaChecked', entregaInput.checked);
+    
 
 for (let i = 0; i <opcoes.length; i++) {
     if (opcoes[i].checked) {
