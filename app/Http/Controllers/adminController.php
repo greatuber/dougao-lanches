@@ -48,14 +48,15 @@ class adminController extends Controller
     $quantity = $product[0]->quanty;
 
       
-    if ($total < 20.00) 
+    if ( $total < 20.00) 
     {
      return redirect()->back()->with('total', 'o valor de sua compra precisa ser maior que 20,00 reais');
     }
   
     // verificando se usuario tem endereço e depois criando pedido
 
-
+     dd($request->blindCartId);
+     
     if (Address::where('user_id', $users)->exists()) {
 
       $total = ($delivery == 1 ? ($total + 6) : $total);
@@ -78,7 +79,6 @@ class adminController extends Controller
       foreach ($product as $item) {
 
         $orderlist = OrderList::create([
-          // 'blind_carts_id'=> $blindCartId ?? '',
           'order_id'      => $orderId,
           'product_id'    => $item->product_id,
           'observation'   => $item->observation,
@@ -108,10 +108,8 @@ class adminController extends Controller
       
 
       $product = Order_product::where('user_id', $users)->delete();
-      $blindCart = BlindCart::where('user_id', $users)->update(['status' => ('aceito')]);
     
-
-
+    
       return redirect()->back()->with('sucessesmessagem', 'pedido enviado com sucesso');
     } else {
       return redirect()->back()->with('menssagem', 'Vocẽ presisa cadastrar um endereço');
@@ -126,12 +124,7 @@ class adminController extends Controller
         $user      = Auth::user();
         $userId     = $user->id ?? '';
       
-      
-
-
         $date = now()->format('d/m/y H:i:s');
-
-      
 
         $orders = Order::orderBY('id', 'desc')
           ->with('orderUser', 'orderlist', 'orderAdditional')

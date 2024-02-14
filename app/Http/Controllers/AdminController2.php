@@ -86,7 +86,7 @@ class AdminController2 extends Controller
           $orderId = $order->id;
     
           // criando itens do pedido
-    
+    dd($request->blindCartId);
           foreach ($product as $item) {
     
             $orderlist = OrderList::create([
@@ -108,6 +108,7 @@ class AdminController2 extends Controller
           $totalPointsEarned = 0;
           
           foreach ($orderPoints as $order) {
+            
               $totalPointsEarned += floor($order->total / 5) * 1;
           }
         

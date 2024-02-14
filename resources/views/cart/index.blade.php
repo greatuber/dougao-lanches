@@ -271,20 +271,24 @@
                     <div class="  container ">
                           <div class="rounded  pt-2 mt-2  ">
                                <div class="ml-4 mr-4  container">
-                                <h1 class="font-bold text-gray-700 pt-2 pb-2">TOTAL</h1>
+                                  <h1 class="font-bold text-gray-700 pt-2 pb-2">TOTAL</h1>
                               
-                              @if(isset($cart->blinCart) && count($cartblinCart) > 0)
-                                  
-                                  @foreach ($cart->blinCart as $item)
+                              
+                              @if(!empty($cart->blinCart) && count($cart->blinCart) > 0)
+                                @foreach ($cart->blinCart as $item)
+                                    
+                             
                                     <form action="{{ route('admin.createBlind',$item->id) }}" method="post">
                                           @csrf
                                           <input type="hidden" name="blindCartId" value="{{ $item ?? ''}}">
+                                          
+                                         
                                           <samp  class=" font-bold bg-white p-2  rounded"  id="toremove"> R$ @money($total)</samp>
                                           <samp  class=" font-bold bg-white p-2  rounded"  id="delivery"></samp>
                                           <input type="hidden" name="total" value=" @money($total)">
-                                      </div>
-                                  </div>
-                            </div>
+                                </div>
+                          </div>
+                    </div>
                             
                             <div class=" pb-2 mt-2">
                                     <div class="text-center">
@@ -327,15 +331,16 @@
                                   
                         <div class="text-center md:flex sm:block group overflow-auto">
                                 
-                          <button type="submit" class="font-bold text-sm text-white p-2 mb-2 bg-blue-500  border rounded">
+                                  <button type="submit" class="font-bold text-sm text-white p-2 mb-2 bg-blue-500  border rounded">
 
-                            Enviar pedido
+                                    Enviar pedido
 
-                          </button>
+                                  </button>
 
                                       
-                                    </form>            
-                                  @endforeach
+                                  </form>    
+                                  @endforeach         
+                                 
                               @else   
                                 <form action="{{ route('admin.create') }}" method="post">
                           

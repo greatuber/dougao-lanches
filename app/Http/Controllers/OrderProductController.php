@@ -46,7 +46,7 @@ class OrderProductController extends Controller
 
 
         $cart = Order_product::where('user_id', $users)
-            ->with('orderProductProduct', 'orderProductAdditional')
+            ->with('orderProductProduct', 'orderProductAdditional', 'blinCart')
             ->get();
         $blindCart = BlindCart::where('user_id', $users)->get();    
 
@@ -85,7 +85,7 @@ class OrderProductController extends Controller
         $cart = Order_product::where('user_id', $users)
             ->with('orderProductAdditional', 'orderProductProduct', 'blinCart')
             ->get();
-
+       
         $total = 0;
 
         $cart->each(function ($item) use (&$total) {
