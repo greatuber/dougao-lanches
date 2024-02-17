@@ -46,7 +46,10 @@ class adminController extends Controller
     $total      = str_replace(",", ".", $total);
     $product    = Order_product::where('user_id', $users)->get();
     $quantity = $product[0]->quanty;
-
+    $blindCartIds = $request->input('blindCartId');
+ 
+    
+  
       
     if ( $total < 20.00) 
     {
@@ -55,7 +58,6 @@ class adminController extends Controller
   
     // verificando se usuario tem endereço e depois criando pedido
 
-     dd($request->blindCartId);
      
     if (Address::where('user_id', $users)->exists()) {
 
@@ -79,6 +81,7 @@ class adminController extends Controller
       foreach ($product as $item) {
 
         $orderlist = OrderList::create([
+          'blind_carts_id'=> $blindCartIds  ?? '',
           'order_id'      => $orderId,
           'product_id'    => $item->product_id,
           'observation'   => $item->observation,
@@ -131,11 +134,8 @@ class adminController extends Controller
           ->where('status', 'processando')
           ->get();
 
-              
-       
-        $lists = OrderList::with('blindCart')->latest()->first();  
-  
-      
+          $lists = OrderList::with('blindCart')->get();
+
         return view('cart.order', compact('date', 'userId', 'orders', 'lists'));
       }
 

@@ -160,10 +160,19 @@
                                 
                             </td>
                           
+                         
                             @endforeach
+                          
                             <td > 
-                                <span>{{ $item->orderList[0]->blindCart->name ?? ''}}</span>
+                                @if($list->blindCart)
+                                    {{ $list->blindCart->name}}
+                                @else
+                                <div class="">
+                                    <p>//</p>
+                                </div>
+                                @endif
                             </td>
+                       
                         </tr>
                     
                     </tbody>
@@ -244,6 +253,17 @@
                                 @csrf
                                 <button class=" deliveryd border rounded p-2 button hover:text-blue-800">RECUSAR PEDIDO</button>
                             </form>
+                             
+                             <div class="">
+                                <form action="{{route('status.fordelivered',$item->id)}}" method="POST">
+                                    @csrf
+                                    <div class="float-rigth">
+                                       
+                                        <button class="border rounded p-2 button hover:text-blue-800">ENTREGUE</button>
+                                    </div>
+                                 </form>
+                             </div>
+
                         </div>
                  </div>
                  <div class="row pb-2">

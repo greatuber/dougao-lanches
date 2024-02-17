@@ -180,44 +180,93 @@
                                         <?php $total = $total?>
                                       <tbody>
                                               <tr class="border-b dark:border-neutral-500">
-                                                <td class="whitespace-nowrap px-2 py-4 text-gray-700 font-bold">{{ $item->orderProductProduct->name ?? ''}}</td>
+                                                <td class="whitespace-nowrap px-2 w-auto text-gray-700 font-bold">
+                                                  
+                                                   @if ($item->orderProductProduct)
+                                                   <span class="border text-white rounded p-2 px-6 md:px-4 gray font-bold ">{{ $item->orderProductProduct->name ?? ''}}</span>
+                                                   @else
+                                                       <div class="">
+                                                        <p>
+                                                          //
+                                                        </p>
+                                                       </div>
+                                                   @endif
+                                                 
+                                                </td>
 
                                                   <input type="hidden"  name="product_id" value="{{ $item->orderProductProduct->name ?? ''}}">
                                               
                                                 <td class="whitespace-nowrap px-6 py-4">
-
-                                                    <span class="gray text-white p-1 rounded">
-                                                        @money($item->orderProductProduct->price ?? 0)
+                                                   @if ( $item->orderProductProduct )
+                                                    <span class="gray text-white p-2 px-4 font-bold rounded border">
+                                                      @money($item->orderProductProduct->price ?? 0)
                                                     </span>
+                                                   @else
+                                                       <div class="">
+                                                        <p>
+                                                          //
+                                                        </p>
+                                                       </div>
+                                                   @endif
+
+                                                   
 
 
                                                 </td>
                                                 <td class="whitespace-nowrap px-6 py-4">
-
-                                                    <span class="border text-white rounded p-2 gray">{{ $item->quanty}}</span>
-
-                                                    
+                                                  @if ( $item->quanty)
+                                                  <span class="border text-white rounded p-2 px-4 gray font-bold">{{ $item->quanty}}</span>
+                                                  @else
+                                                      <div class="">
+                                                        <p>
+                                                          //
+                                                        </p>
+                                                      </div>
+                                                  @endif
+ 
                                                 </td>
                                                 
                                                 <td class="text-gray-700 font-bold">
-                                                    <p> {{ $item->observation ?? ''}}</p>
+                                                    @if ( $item->observation)
+                                                      <span class="border text-white rounded p-2 px-4 gray font-bold">{{ $item->observation ?? ''}}</span>
+                                                    @else
+                                                        <div class="">
+                                                          <p>
+                                                            //
+                                                          </p>
+                                                        </div>
+                                                    @endif
+                                                  
                                                   
                                                 </td>
                                                           
                                                 <td class="text-gray-700 font-bold">
                                               
-                                                    @if($item->orderProductAdditional()->count()>0)
-                                                    
+                                                      @if ($item->orderProductAdditional()->count()>0)
                                                         @foreach ($item->orderProductAdditional as $additional)
-                                                          {{ $additional->name ?? '' }},
+                                                          <span class="border text-white rounded p-2 px-4 gray font-bold">{{ $additional->name ?? '' }}</span><br>
                                                         @endforeach  
+                                                      @else
+                                                          <div class="">
+                                                            <p>
+                                                              //
+                                                            </p>
+                                                          </div>
+                                                      @endif   
                                                     
-                                                    @endif
-                                                  
                                                 </td> 
                                                 <td class="text-gray-700 font-bold"> 
-                                                        
-                                                        <span class="border text-white rounded p-2 gray">{{ $item->blinCart->name ?? ''}}</span>
+                                                       
+                                                       
+                                                        @if ($item->blinCart)
+                                                          <span class="border text-white rounded p-2 gray px-6">{{ $item->blinCart->name ?? ''}}</span>
+                                                        @else
+                                                            <div class="">
+                                                              <p>
+                                                                //
+                                                              </p>
+                                                            </div>
+                                                        @endif
                                                       
                                                 </td>
                                                 <td>
@@ -279,6 +328,7 @@
                                     
                              
                                     <form action="{{ route('admin.createBlind',$item->id) }}" method="post">
+                                      
                                           @csrf
                                           <input type="hidden" name="blindCartId" value="{{ $item ?? ''}}">
                                           
@@ -338,7 +388,7 @@
                                   </button>
 
                                       
-                                  </form>    
+                                    </form>    
                                   @endforeach         
                                  
                               @else   
@@ -348,6 +398,11 @@
                                                         <samp  class=" font-bold bg-white p-2  rounded"  id="toremove"> R$ @money($total)</samp>
                                                         <samp  class=" font-bold bg-white p-2  rounded"  id="delivery"></samp>
                                                         <input type="hidden" name="total" value=" @money($total)">
+
+                                                        @foreach ($cart as $item)
+                                                          <input type="hidden" name="blindCartId" value="{{ $item->blinCart->id ?? ''}} ">
+                                                        @endforeach
+                                                       
                                                     </div>
                                                 </div>
                                           </div>

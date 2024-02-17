@@ -33,7 +33,7 @@ class OrderList extends Model
     
     public function blindCart()
          {
-            return $this->belongsTo( BlindCart::class, 'blind_carts_id');
+            return $this->belongsTo( BlindCart::class, 'blind_carts_id', 'id');
          }
     
 

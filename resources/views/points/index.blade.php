@@ -90,7 +90,8 @@
 
         <div class="mt-4">
             <p class="text-center">
-                Aqui, o valor do seu pedido vira pontos e com eles você pode resgatar esses brindes:
+                Aqui, você pode verificar a quantidade de pontos
+                 que possue, e escolher a forma de resgate do seu blinde
             </p>
         </div>
           
@@ -99,7 +100,7 @@
                 <!-- Brinde 1 -->
                 <div class="col-md-6 pb-2">
                     <a href="{{ route('delivery.index') }}" class="btn btn-primary btn-block">
-                        <h5 class="font-bold">Retirar na Lanchonete</h5>
+                        <h5 class="font-bold">Resgatar na Lanchonete</h5>
                         <p>Click aqui para resgatar seu brinde retirando na lanchonete</p>
                     </a>
                 </div>

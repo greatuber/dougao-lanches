@@ -87,6 +87,10 @@
                     seu valor em diheiro vira pontos 
             @endif
         </div>
+        <div class="">
+            <a href="{{ route('cart.show')}}"><i class="fa-solid fa-cart-flatbed-suitcase fa-beat text-yellow"></i>
+                <p class="text-yellow text-2xl ">minhas compras</p></a>
+        </div>
 
         <div class="mt-4">
             <p class="text-center">

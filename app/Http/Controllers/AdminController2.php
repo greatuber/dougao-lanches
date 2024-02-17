@@ -86,7 +86,7 @@ class AdminController2 extends Controller
           $orderId = $order->id;
     
           // criando itens do pedido
-    dd($request->blindCartId);
+    // dd($request->blindCartId);
           foreach ($product as $item) {
     
             $orderlist = OrderList::create([
