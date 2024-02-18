@@ -47,7 +47,7 @@ class adminController extends Controller
     $product    = Order_product::where('user_id', $users)->get();
     $quantity = $product[0]->quanty;
     $blindCartIds = $request->input('blindCartId');
- 
+  
     
   
       
@@ -79,9 +79,9 @@ class adminController extends Controller
       // criando itens do pedido
 
       foreach ($product as $item) {
-
+    
         $orderlist = OrderList::create([
-          'blind_carts_id'=> $blindCartIds  ?? '',
+          'blind_carts_id'=> $blindCartIds  ?? null,
           'order_id'      => $orderId,
           'product_id'    => $item->product_id,
           'observation'   => $item->observation,

@@ -15,9 +15,7 @@
         font-family: 'Chela One', cursive;
         font-family: 'Roboto', sans-serif;
       }
-      .gray {
-        background-color: #696969;
-      }
+    
  
      .bg {
       color: yellow;
@@ -38,7 +36,12 @@
     
      }
    
- 
+     input[type="radio"]:checked {
+   
+    background-color: #ff9800; 
+    border-color: #ff9800;
+    color: #ff9800; 
+}
     </style>
     
     {{-- <script>
@@ -118,10 +121,10 @@
 </head>
 <body>
       <div class=" bg-orange-500 text-center md: p-2">
-                   <div class="p-2">
-                    <a href="{{route('index.point')}}"  class="cart">
+                   <div class="p-2 text-3xl text-gray-700 font-bold">
+                    <a href="{{route('index.point')}}"  class="cart ">
                       Cartão fidelidade
-                      <i class="fa-solid fa-id-card fa-2xl"></i>
+                      <i class="fa-solid fa-id-card fa-2xl text-primary"></i>
                     </a>
                    </div>
                 <div class="text-center ">
@@ -183,9 +186,9 @@
                                                 <td class="whitespace-nowrap px-2 w-auto text-gray-700 font-bold">
                                                   
                                                    @if ($item->orderProductProduct)
-                                                   <span class="border text-white rounded p-2 px-6 md:px-4 gray font-bold ">{{ $item->orderProductProduct->name ?? ''}}</span>
+                                                   <span class="border text-gray-700 rounded p-2 px-6 md:px-4 bg-orange-300 font-bold w-full text-sm ">{{ $item->orderProductProduct->name ?? ''}}</span>
                                                    @else
-                                                       <div class="">
+                                                       <div class="bg-orange-300 p-2 rounded">
                                                         <p>
                                                           //
                                                         </p>
@@ -198,11 +201,11 @@
                                               
                                                 <td class="whitespace-nowrap px-6 py-4">
                                                    @if ( $item->orderProductProduct )
-                                                    <span class="gray text-white p-2 px-4 font-bold rounded border">
+                                                    <span class="bg-orange-300 p-2 px-4 font-bold rounded border text-sm">
                                                       @money($item->orderProductProduct->price ?? 0)
                                                     </span>
                                                    @else
-                                                       <div class="">
+                                                       <div class="bg-orange-300 p-2 rounded">
                                                         <p>
                                                           //
                                                         </p>
@@ -215,9 +218,9 @@
                                                 </td>
                                                 <td class="whitespace-nowrap px-6 py-4">
                                                   @if ( $item->quanty)
-                                                  <span class="border text-white rounded p-2 px-4 gray font-bold">{{ $item->quanty}}</span>
+                                                  <span class="border  rounded p-2 px-4 bg-orange-300 font-bold text-sm">{{ $item->quanty}}</span>
                                                   @else
-                                                      <div class="">
+                                                      <div class="bg-orange-300 p-2 rounded">
                                                         <p>
                                                           //
                                                         </p>
@@ -228,10 +231,10 @@
                                                 
                                                 <td class="text-gray-700 font-bold">
                                                     @if ( $item->observation)
-                                                      <span class="border text-white rounded p-2 px-4 gray font-bold">{{ $item->observation ?? ''}}</span>
+                                                      <span class="border orange-300 rounded p-2 px-4  font-bold text-sm">{{ $item->observation ?? ''}}</span>
                                                     @else
                                                         <div class="">
-                                                          <p>
+                                                          <p class="bg-orange-300 p-2 rounded">
                                                             //
                                                           </p>
                                                         </div>
@@ -244,10 +247,10 @@
                                               
                                                       @if ($item->orderProductAdditional()->count()>0)
                                                         @foreach ($item->orderProductAdditional as $additional)
-                                                          <span class="border text-white rounded p-2 px-4 gray font-bold">{{ $additional->name ?? '' }}</span><br>
+                                                          <span class="border bg-orange-300 rounded p-2 px-4 font-bold text-sm">{{ $additional->name ?? '' }}</span><br>
                                                         @endforeach  
                                                       @else
-                                                          <div class="">
+                                                          <div class="bg-orange-300 p-2 rounded">
                                                             <p>
                                                               //
                                                             </p>
@@ -259,9 +262,9 @@
                                                        
                                                        
                                                         @if ($item->blinCart)
-                                                          <span class="border text-white rounded p-2 gray px-6">{{ $item->blinCart->name ?? ''}}</span>
+                                                          <span class="border bg-orange-300 rounded p-2  px-6 text-sm">{{ $item->blinCart->name ?? ''}}</span>
                                                         @else
-                                                            <div class="">
+                                                            <div class="bg-orange-300 p-2 rounded">
                                                               <p>
                                                                 //
                                                               </p>
@@ -274,7 +277,7 @@
                                                   <form action="{{ route('cart.delete', $item->id) }}" method="POST">
                                                     @csrf
                                                     <div class=" rounded">
-                                                        <button class="rounded text-red-500 p-2 ml-60 font-bold text-sm bg-white">EXCLUIR</button>
+                                                        <button class="rounded text-gray-700 p-2 ml-60 font-bold text-sm bg-orange-300">EXCLUIR</button>
                                                     </div>
                                                 </form>
                                                 </td>
@@ -320,7 +323,7 @@
                     <div class="  container ">
                           <div class="rounded  pt-2 mt-2  ">
                                <div class="ml-4 mr-4  container">
-                                  <h1 class="font-bold text-gray-700 pt-2 pb-2">TOTAL</h1>
+                                  <h1 class="font-bold text-gray-700 pt-2 pb-2 ">TOTAL</h1>
                               
                               
                               @if(!empty($cart->blinCart) && count($cart->blinCart) > 0)
@@ -359,7 +362,7 @@
                                     <div class="pb-4">
                                           <h2 class="text-gray-700 font-bold pb-2">forma de pagamento</h2>
                                           <input class="payment_card" type="radio" checked value="0" id="" name="payment" > 
-                                          <label for=""  class="text-gray-700 font-bold pr-4" >cartão</label>
+                                          <label for=""  class="text-gray-700 font-bold pr-4" >Cartão</label>
                                           <select name="credit_card" id="select" class="rounded mr-2" >
                                             <option  value="visa">Visa</option>     
                                             <option  value="Master Card">Master Card</option>
@@ -367,7 +370,7 @@
                                           </select>
                                         
                                           <input  class="" type="radio" value="1"  name="payment"> 
-                                          <label for="" class="text-gray-700 font-bold" >dinheiro</label>
+                                          <label for="" class="text-gray-700 font-bold" >Dinheiro</label>
                                             @error('payment')
                                                 <div class="bg-black p-2">
                                                   <samp>{{ $message}}</samp>
@@ -395,8 +398,8 @@
                                 <form action="{{ route('admin.create') }}" method="post">
                           
                                                         @csrf
-                                                        <samp  class=" font-bold bg-white p-2  rounded"  id="toremove"> R$ @money($total)</samp>
-                                                        <samp  class=" font-bold bg-white p-2  rounded"  id="delivery"></samp>
+                                                        <samp  class=" font-bold bg-orange-300 p-2  rounded"  id="toremove"> R$ @money($total)</samp>
+                                                        <samp  class=" font-bold bg-orange-300 p-2  rounded"  id="delivery"></samp>
                                                         <input type="hidden" name="total" value=" @money($total)">
 
                                                         @foreach ($cart as $item)
@@ -414,9 +417,9 @@
                                                   <div class="p-4 relative">
                                                         <div class="pb-4 w-full">
 
-                                                            <input class="toremove" type="radio" checked value="0" id="toRemove" name="delivery" onchange="atualizarValor()" > 
+                                                            <input class="toremove bg-orange-300" type="radio" checked value="0" id="toRemove" name="delivery" onchange="atualizarValor()" > 
                                                             <label for="toRemove"  class="text-gray-700 font-bold pr-4" >Retirar na lanchonete</label>
-                                                            <input  class="delivery" type="radio" value="1" id="entrega" name="delivery" onchange="atualizarValor()"> 
+                                                            <input  class="delivery bg-orange-300" type="radio" value="1" id="entrega" name="delivery" onchange="atualizarValor()"> 
                                                             <label for="entrega" class="text-gray-700 font-bold" >Para entregar</label>
                                                             <i class="fa-solid fa-motorcycle fa-xl text-blue-500"></i>
 
@@ -425,16 +428,16 @@
 
                                                   <div class="pb-4">
                                                         <h2 class="text-gray-700 font-bold pb-2">forma de pagamento</h2>
-                                                        <input class="payment_card" type="radio" checked value="0" id="" name="payment" > 
-                                                        <label for=""  class="text-gray-700 font-bold pr-4" >cartão</label>
-                                                        <select name="credit_card" id="select" class="rounded mr-2" >
+                                                        <input class="payment_card bg-orange-300" type="radio" checked value="0" id="" name="payment" > 
+                                                        <label for=""  class="text-gray-700 font-bold pr-4" >Cartão</label>
+                                                        <select name="credit_card" id="select" class="rounded mr-2 bg-orange-300" >
                                                           <option  value="visa">Visa</option>     
                                                           <option  value="Master Card">Master Card</option>
                                                           <option  value="Ouro Card">Ouro Card</option>
                                                         </select>
                                                       
-                                                        <input  class="" type="radio" value="1"  name="payment"> 
-                                                        <label for="" class="text-gray-700 font-bold" >dinheiro</label>
+                                                        <input  class="bg-orange-300" type="radio" value="1"  name="payment"> 
+                                                        <label for="" class="text-gray-700 font-bold " >Dinheiro</label>
                                                           @error('payment')
                                                               <div class="bg-black p-2">
                                                                 <samp>{{ $message}}</samp>
@@ -442,13 +445,13 @@
                                                           @enderror
                                                 </div>
                                                 <div class="pl-4 grid-templates-rows">
-                                                      <input type="text" class="rounded text-sm " name="observation" id="observation" placeholder="ex: troco para 50 reais">
+                                                      <input type="text" class="rounded text-sm  bg-orange-300" name="observation" id="observation" placeholder="ex: troco para 50 reais">
                                                 </div>
                                           </div>
                                                 
                                       <div class="text-center md:flex sm:block group overflow-auto">
                                               
-                                        <button type="submit" class="font-bold text-sm text-white p-2 mb-2 bg-blue-500  border rounded">
+                                        <button type="submit" class=" text-md bg-orange-300 p-2 mb-2   border rounded">
 
                                           Enviar pedido
   
@@ -458,10 +461,10 @@
                               @endif  
                                    
                                         <div class="p-2 text-center">
-                                          <a href="{{ route('client.show')}}"><button class="text-sm text-white border bg-blue-500 font-bold rounded p-2">Continuar comprando</button></a>
+                                          <a href="{{ route('client.show')}}"><button class="text-md bg-orange-300 border  rounded p-2">Continuar comprando</button></a>
                                         </div>
                         
-                                        <button class="font-bold text-white text-md p-2 bg-blue-500 border rounded mb-2 mt-2 " data-bs-toggle="modal"
+                                        <button class=" text-md p-2 bg-orange-300 border rounded mb-2 mt-2 " data-bs-toggle="modal"
                                             data-bs-target="#firstModal"> 
                                             Cadastrar um endereço para entrega
                                         </button>
@@ -490,7 +493,7 @@
                                                           <div class="container">
                                                               <div class="mb-4 sachadow-black">
                                                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="Produto">Cidade</label>
-                                                                <input autocomplete="off" value="" class="shadow-balck appearance-none border rounded sm:w-full py-2 px-3 text-gray-700  leading-tight focus:outline-none focus:shadow-outline" id="city" type="text" placeholder="digite a cidade" name="city">
+                                                                <input autocomplete="off" value="" class="shadow-balck appearance-none border rounded sm:w-full py-2 px-3 text-gray-700  leading-tight focus:outline-none focus:shadow-outline " id="city" type="text" placeholder="digite a cidade" name="city">
                                                                   @error('city')
                                                                   <div class=" p-2 ">
                                                                     <span class="error text-red-500">{{ $message }}</span>
@@ -587,36 +590,36 @@
                               <div class="container">
                                   <div class="mb-4">
                                     <label class="block text-gray-700 text-sm font-bold mb-2" >Cidade</label>
-                                    <p value="" class=" text-left border rounded sm:w-full py-2 px-3 text-gray-700 " id="city" type="text" placeholder="digite a cidade" name="city">{{ $address->city ?? ''}}</p>
+                                    <p value="" class=" text-left border rounded sm:w-full py-2 px-3 text-gray-700 bg-orange-300" id="city" type="text" placeholder="digite a cidade" name="city">{{ $address->city ?? ''}}</p>
                                   </div>
                                   <div class="mb-4">
                                      <label class="block text-gray-700 text-sm font-bold mb-2" >CEP</label>
-                                     <p value=""  class=" border rounded sm:w-full py-2 px-3 text-gray-700 text-left" type="text" placeholder= "digite seu cep" name="zipcode">{{ $address->zipcode ?? '' }}</p>
+                                     <p value=""  class=" border rounded sm:w-full py-2 px-3 text-gray-700 text-left bg-orange-300" type="text" placeholder= "digite seu cep" name="zipcode">{{ $address->zipcode ?? '' }}</p>
                                   </div>
   
                                   <div class="mb-4">
                                       <label class="block text-gray-700 text-sm font-bold mb-2" >Bairro</label>
-                                      <p value="" id="bairro" class="border rounded  sm:w-full py-2 px-3 text-gray-700 text-left" id="bairro" type="text" placeholder="digite o bairro" name="district"> {{ $address->district ?? ''}}</p>
+                                      <p value="" id="bairro" class="border rounded  sm:w-full py-2 px-3 text-gray-700 text-left bg-orange-300" id="bairro" type="text" placeholder="digite o bairro" name="district"> {{ $address->district ?? ''}}</p>
                                   </div>
   
                                   <div class="mb-4">
                                       <label class="block text-gray-700 text-sm font-bold mb-2" >Rua</label>
-                                      <p value=" " id="rua" class=" text-left border rounded sm:w-full py-2 px-3 text-gray-700" id="street" type="text" placeholder="digite sua rua" name="street">{{ $address->street ?? ''}}</p>
+                                      <p value=" " id="rua" class=" text-left border rounded sm:w-full py-2 px-3 text-gray-700 bg-orange-300" id="street" type="text" placeholder="digite sua rua" name="street">{{ $address->street ?? ''}}</p>
                                   </div>
   
                                   <div class="mb-4">
                                     <label class="block text-gray-700 text-sm font-bold mb-2" >Número</label>
-                                    <p value=" " id="numero" class=" text-left border rounded sm:w-full py-2 px-3 text-gray-700" id="number" type="text"  placeholder="digite seu numero" name="number">{{ $address->number ?? ''}}</p>
+                                    <p value=" " id="numero" class=" text-left border rounded sm:w-full py-2 px-3 text-gray-700 bg-orange-300" id="number" type="text"  placeholder="digite seu numero" name="number">{{ $address->number ?? ''}}</p>
                                   </div>
 
                                   <div class="mb-4">
                                     <label class="block text-gray-700 text-sm font-bold mb-2" >Celular</label>
-                                    <p value=" " id="celular" class=" text-left border rounded sm:w-full py-2 px-3 text-gray-700" id="celular" type="text"  placeholder="digite seu whatsap" name="number">{{ $address->fone ?? ''}}</p>
+                                    <p value=" " id="celular" class=" text-left border rounded sm:w-full py-2 px-3 text-gray-700 bg-orange-300" id="celular" type="text"  placeholder="digite seu whatsap" name="number">{{ $address->fone ?? ''}}</p>
                                   </div>
                    
                                   <div class="mb-4 ">
                                     <label class="block text-gray-700 text-sm font-bold mb-2" >Complemento</label>
-                                    <p value=" " id="complemento" class=" text-left border rounded sm:w-full py-3 px-3 pb-2 text-gray-700" id="complement" type="text" placeholder="digite um complemento" name="complement">{{ $address->complement ?? ''}}</p>
+                                    <p value=" " id="complemento" class=" text-left border rounded sm:w-full py-3 px-3 pb-2 text-gray-700 bg-orange-300" id="complement" type="text" placeholder="digite um complemento" name="complement">{{ $address->complement ?? ''}}</p>
                                   </div>
                             </div>
                   

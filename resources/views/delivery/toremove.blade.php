@@ -70,27 +70,42 @@
         .denied{
             color: red;
         }
+        .space {
+            justify-content: space-between;
+        }
+        .cart{
+            font-size: 1em;
+            margin-bottom: 10px;
+            color: #007bff;
+            float: right;
+        }
     </style>
 </head>
 
 <body>
     @vite('resources/css/app.css')
     <div class="container">
-        <div class="user-info">
-            <h1>{{Auth::user()->name}}</h1>
-            @if($points[0]->points_earned ?? '' > 0)
-                <p>
-                    <p>Você tem {{ $points[0]->points_earned ?? ''}} pts</p>
-                </p>
-            @else
-            Você ainda não posui pontos,mas continue porque a cada compra 
-                    seu valor em diheiro vira pontos 
-            @endif
+        <div class="space">
+            <div class="cart">
+                <a href="{{ route('cart.show')}}"><i class="fa-solid fa-cart-flatbed-suitcase fa-beat text-yellow"></i>
+                    <p class="text-yellow text-2xl ">minhas compras</p></a>
+            </div>
+            
+            <div class="user-info">
+                <h1>{{Auth::user()->name}}</h1>
+                @if($points[0]->points_earned ?? '' > 0)
+                    <p>
+                        <p>Você tem {{ $points[0]->points_earned ?? ''}} pts</p>
+                    </p>
+                @else
+                Você ainda não posui pontos,mas continue porque a cada compra 
+                        seu valor em diheiro vira pontos 
+                @endif
+            </div>
+        
+
         </div>
-        <div class="">
-            <a href="{{ route('cart.show')}}"><i class="fa-solid fa-cart-flatbed-suitcase fa-beat text-yellow"></i>
-                <p class="text-yellow text-2xl ">minhas compras</p></a>
-        </div>
+  
 
         <div class="mt-4">
             <p class="text-center">

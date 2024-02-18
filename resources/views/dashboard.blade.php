@@ -78,7 +78,7 @@
                               <p>Abre hoje às 19:00 hs</p>
                           @endif
                             @else
-                                <div class="lime pt-2">
+                                <div class="lime pt-2 font-light text-white">
                                     Lanchonete aberta
                                 </div>
                             @endif
