@@ -75,7 +75,7 @@
 
 <body>
     @vite('resources/css/app.css')
-    <div class="container">
+    <div class="container ">
         <div class="user-info">
             <h1>{{Auth::user()->name}}</h1>
             @if($points[0]->points_earned ?? '' > 0)
@@ -99,17 +99,23 @@
             <div class="row mt-4">
                 <!-- Brinde 1 -->
                 <div class="col-md-6 pb-2">
-                    <a href="{{ route('delivery.index') }}" class="btn btn-primary btn-block">
-                        <h5 class="font-bold">Resgatar na Lanchonete</h5>
-                        <p>Click aqui para resgatar seu brinde retirando na lanchonete</p>
-                    </a>
+                    <div class="bg-orange-300 p-4 rounded">
+                        <a href="{{ route('delivery.index') }}" class=" btn-block">
+                            <h5 class="font-bold">Resgatar na Lanchonete</h5>
+                            <p>Click aqui para resgatar seu brinde retirando na lanchonete</p>
+                        </a>
+                    </div>
+                  
                 </div>
 
                 <div class="col-md-6">
-                    <a href="{{ route('delivery.show') }}" class="btn btn-success btn-block">
-                        <h5 class="font-bold">Resgatar com Pedido</h5>
-                        <p>Click aqui para resgatar seu brinde junto com um pedido</p>
-                    </a>
+                    <div class="bg-orange-300 p-4 rounded">
+                        <a href="{{ route('delivery.show') }}" class=" btn-block">
+                            <h5 class="font-bold">Resgatar com Pedido</h5>
+                            <p>Click aqui para resgatar seu brinde junto com um pedido</p>
+                        </a>
+                    </div>
+                 
                 </div>
          
             </div>    

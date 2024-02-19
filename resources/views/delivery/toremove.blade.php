@@ -98,8 +98,8 @@
                         <p>Você tem {{ $points[0]->points_earned ?? ''}} pts</p>
                     </p>
                 @else
-                Você ainda não posui pontos,mas continue porque a cada compra 
-                        seu valor em diheiro vira pontos 
+                         Você ainda não posui pontos,mas continue porque a cada compra 
+                         seu valor em diheiro vira pontos 
                 @endif
             </div>
         
