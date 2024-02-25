@@ -52,6 +52,14 @@
          .button{
           margin-left: 120px;
          }
+         .cartadd {
+          box-shadow: 0 0 10px rgba(226, 231, 227, 0.5); 
+          transition: 0,5ms,ease-out;
+         }
+         .cartadd:hover {
+          background-color:white;
+          color: brown;
+         }
 
         </style>
         <title>CreateProduct</title>
@@ -185,7 +193,7 @@
                           
                                   @if ($toggle->is_open ?? '' )
                                       
-                                      <button class="btn btn-success ml-2" data-bs-toggle="modal"
+                                      <button class="btn btn-success ml-2 border cartadd" data-bs-toggle="modal"
                                           data-bs-target="#firstModal{{$products->id}}">
                                           <i class="fa-sharp fa-solid fa-cart-plus text-white"></i>
                                       </button>

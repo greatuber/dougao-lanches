@@ -25,7 +25,13 @@
       }
       .slate {
         background-color: rgb(228, 217, 217);
-        border: 2px solid black;
+        border: 2px solid #28a745; 
+        border-radius: 10px; 
+        box-shadow: 0 0 10px rgba(40, 167, 69, 0.5); 
+        transition: border-color 0.3s ease-in-out; 
+      }
+      .slate:hover {
+        background-color: #30fa5f;
       }
     </style>
     <title>CreateProduct</title>
@@ -52,15 +58,15 @@
               
                   <ul class=" flex font-bold">
                     <li class="nav-item active p-2">
-                      <a class="nav-link" href="{{ route('showbeer')}}">BEBIDAS</a>
+                      <a class="nav-link  p-2 rounded bg-orange-300 slate" href="{{ route('showbeer')}}">BEBIDAS</a>
                     </li>
                     <li class="nav-item p-2">
-                      <a class="nav-link" href="{{ route('showcombo')}}">COMBOS</a>
+                      <a class="nav-link  p-2 rounded bg-orange-300 slate" href="{{ route('showcombo')}}">COMBOS</a>
                     </li>
                     <li class="nav-item p-2">
-                      <a class="nav-link" href="{{ route('create.product')}}">LANCHES</a>
+                      <a class="nav-link  p-2  rounded bg-orange-300 slate" href="{{ route('create.product')}}">LANCHES</a>
                       <li class="nav-item p-2">
-                        <a href="{{ route('user.bomboniere')}}">BOMBONIÉRE</a>
+                        <a class="nav-link   p-2 rounded bg-orange-300 slate" href="{{ route('user.bomboniere')}}">BOMBONIÉRE</a>
                        
                       </li>
                     </li>
@@ -73,32 +79,32 @@
             <div class="pt-2">
               <h1 class="font-bold p-2">CADASTRO DE PRODUTOS</h1>
             </div>
-            <a href="{{ route('new.project')}}" class=""><div class="slate p-2 rounded mt-2 ml-2">CADASTRAR NOVO PRODUTO</div></a>
-            <a href="{{ route('view.category')}}" class=""><div class="slate p-2 rounded mt-2 ml-2">CADASTRAR NOVA CATEGORIA</div></a>
-            <a href="{{ route('view.aditional')}}" class=""><div class="slate p-2 rounded mt-2 ml-2">CADASTRAR NOVO ADICIONAL</div></a>
-            <a href="{{ route('createpoints')}}" class=""><div class="slate p-2 rounded mt-2 ml-2">CADASTRAR BRINDES</div></a>
+            <a href="{{ route('new.project')}}" class=""><div class="slate p-2 rounded mt-2 ml-2 bg-orange-300">CADASTRAR NOVO PRODUTO</div></a>
+            <a href="{{ route('view.category')}}" class=""><div class="slate p-2 rounded mt-2 ml-2 bg-orange-300">CADASTRAR NOVA CATEGORIA</div></a>
+            <a href="{{ route('view.aditional')}}" class=""><div class="slate p-2 rounded mt-2 ml-2 bg-orange-300">CADASTRAR NOVO ADICIONAL</div></a>
+            <a href="{{ route('createpoints')}}" class=""><div class="slate p-2 rounded mt-2 ml-2 bg-orange-300">CADASTRAR BRINDES</div></a>
             <div class="pt-2">
               <h1 class="font-bold p-2"> PEDIDOS</h1>
-              <a href="{{ route('order.show')}}" class=""><div class="slate p-2 rounded mt-2 ml-2">PEDIDOS</div></a>
+              <a href="{{ route('order.show')}}" class=""><div class="slate p-2 rounded mt-2 ml-2 bg-orange-300">PEDIDOS</div></a>
             </div>
           
-            <a href="{{ route('client.show')}}" class=""><div class="slate p-2 rounded mt-2 ml-2 mb-2">CLIENTES</div></a>
+            <a href="{{ route('client.show')}}" class=""><div class="slate p-2 rounded mt-2 ml-2 mb-2 bg-orange-300">CLIENTES</div></a>
 
            
 
             <div class="pt-2">
               <h1 class="font-bold p-2">RESUMO DOS PEDIDOS</h1>
-              <a href="{{ route('summary.index')}}" class=""><div class="slate p-2 rounded mt-2 ml-2 mb-2">RESUMO</div></a>
+              <a href="{{ route('summary.index')}}" class=""><div class="slate p-2 rounded mt-2 ml-2 mb-2 bg-orange-300">RESUMO</div></a>
             </div>
 
             <div class="pt-2">
               <h1 class="font-bold p-2">RESGATE DOS BLINDES</h1>
-              <a href="{{ route('blind.index')}}" class=""><div class="slate p-2 rounded mt-2 ml-2 mb-2">BLINDES</div></a>
+              <a href="{{ route('blind.index')}}" class=""><div class="slate p-2 rounded mt-2 ml-2 mb-2 bg-orange-300">BLINDES</div></a>
             </div>
 
             <div class="pt-2">
               <h1 class="font-bold p-2"> BLINDES ENTREGUES</h1>
-              <a href="{{ route('blind.show')}}" class=""><div class="slate p-2 rounded mt-2 ml-2 mb-2">BLINDES ENTREGUÊS</div></a>
+              <a href="{{ route('blind.show')}}" class=""><div class="slate p-2 rounded mt-2 ml-2 mb-2 bg-orange-300">BLINDES ENTREGUÊS</div></a>
             </div>
 
           </div>

@@ -61,20 +61,6 @@ class BlindController extends Controller
                 return redirect()->back()->with('brind','resgate enviado com suceso');
             
 
-                   
-
-                    
-                    $loyaut[0]->update([
-                        'points_earned' => $loyauts - $points
-                    ]);
-
-            return redirect()->back()->with('brind', 'Resgate enviado com sucesso junto ao pedido');
-        
-            
-        
-            
-
-    
    }
 
     /**

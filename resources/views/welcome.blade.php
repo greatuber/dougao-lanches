@@ -45,7 +45,7 @@
             @endif
                <!-- Imagem e texto de apresentação -->
                <section class=" mt-0 items-center text-center">
-                    <div class=" lg:w-full flex space-x-4 ">
+                    <div class=" lg:w-full flex  space-x-4 ">
                         <div class="baner pt-2 font-bold">
                             <div class="animate__animated animate__bounce">
                                 <h1 class="dog md:text-xl sm:text-4xl">DOUGÃO</h1>
@@ -56,9 +56,9 @@
                             <img src="{{asset('image/hamburgueorange.png')}}" alt="Imagem de Lanches" class="border-none"> 
                         </div> --}}
                     </div>
-                    <div class="container mx-auto flex flex-col md:flex-row items-center  px-4">
+                    <div class="container mx-auto  md:flex-row items-center  px-4">
                         <div class="text-end">
-                                <h1 class="text-3xl text-white font-bold mb-2">Bem-vindo(a) ao Dougão Lanches</h1>
+                                <h1 class="text-3xl text-white text-center font-bold mb-2 p-4">Bem-vindo(a) ao Dougão Lanches</h1>
                                 <div class="container ml-4 mr-4">
                                     <p class=" mb-4 text-white  text-left">
                                         Aqui você encontra o melhor lanche da cidade, com ingredientes

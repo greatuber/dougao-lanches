@@ -43,14 +43,16 @@
     color: #ff9800; 
 }
     .custom-border {
-        border: 2px solid #28a745; /* Cor da borda verde (pode ser ajustada) */
-        border-radius: 10px; /* Raio da borda, ajuste conforme necessário */
-        box-shadow: 0 0 10px rgba(40, 167, 69, 0.5); /* Sombra (opcional, ajuste conforme necessário) */
-        transition: border-color 0.3s ease-in-out; /* Adiciona uma transição suave à cor da borda */
+        border: 2px solid #28a745; 
+        border-radius: 10px; 
+        box-shadow: 0 0 10px rgba(40, 167, 69, 0.5); 
+        transition: border-color 0.3s ease-in-out; 
     }
 
     .custom-border:hover {
-        border-color: #218838; /* Cor da borda ao passar o mouse (pode ser ajustada) */
+        background-color: #57cf71; 
+        color: white;
+        border: 2px solid white;
     }
     </style>
     
@@ -134,7 +136,7 @@
                    <div class="p-2 text-3xl text-gray-700 font-bold">
                     <a href="{{route('index.point')}}"  class="cart ">
                       Cartão fidelidade
-                      <i class="fa-solid fa-id-card fa-2xl text-primary"></i>
+                      <i class="fa-solid fa-id-card fa-2xl" style="color: #20cc48"></i>
                     </a>
                    </div>
                 <div class="text-center ">

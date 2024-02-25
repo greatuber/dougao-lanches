@@ -95,13 +95,17 @@ class adminController extends Controller
     
     
       $orderPoints = Order::where('user_id', $users)->get();
+      // dd($orderPoints);
 
-      $totalPointsEarned = 0;
+     
+      $totalOrderAmount = 0;
       
       foreach ($orderPoints as $order) {
-          $totalPointsEarned += floor($order->total / 5) * 1;
+        $totalOrderAmount += $order->total;
+        // dump($order->total);
       }
-    
+      $totalPointsEarned = floor($totalOrderAmount / 50) * 5;
+    // dump($totalPointsEarned );
 
          //se existir pontos na tabela faz opdate no numero de pontos se não cria
       LoyaltyPoint::updateOrCreate(

@@ -42,17 +42,17 @@ class BlindCartController extends Controller
 
         $totalPointsEarned = 0;
 
-        if ($orderPoints) 
-            {
-                foreach ($orderPoints as $order) {
-                    $totalPointsEarned += ($order->total / 5) * 1;
-                }
-                    //se existir pontos na tabela faz opdate no numero de pontos se não cria
-                LoyaltyPoint::updateOrCreate(
-                ['user_id' => $users],
-                ['points_earned' => $totalPointsEarned ?? '']
-                );
-            }
+        // if ($orderPoints) 
+        //     {
+        //         foreach ($orderPoints as $order) {
+        //             $totalPointsEarned += ($order->total / 5) * 1;
+        //         }
+        //             //se existir pontos na tabela faz opdate no numero de pontos se não cria
+        //         LoyaltyPoint::updateOrCreate(
+        //         ['user_id' => $users],
+        //         ['points_earned' => $totalPointsEarned ?? '']
+        //         );
+        //     }
         
         $loyaut = LoyaltyPoint::where('user_id', $users)->get();
 
