@@ -95,7 +95,7 @@
                       <div class="p-2">
                           @include('layouts.closed-button')
                       </div> 
-                        <div class="bg-white text-black rounded p-2 mt-2 hidden">
+                        <div class="bg-white text-black rounded p-2 mt-2 ">
                           <form action="{{ route('update.admin')}}" method="post">
                               @csrf
                               <button type="submit">

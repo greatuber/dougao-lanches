@@ -133,7 +133,7 @@
 </head>
 <body>
       <div class=" bg-orange-500 text-center md: p-2">
-                   <div class="p-2 text-3xl text-gray-700 font-bold">
+                   <div class="p-2 text-xl text-gray-700 font-bold">
                     <a href="{{route('index.point')}}"  class="cart ">
                       Cartão fidelidade
                       <i class="fa-solid fa-id-card fa-2xl" style="color: #20cc48"></i>
@@ -141,7 +141,7 @@
                    </div>
                 <div class="text-center ">
                       
-                      <h1 class="text-3xl text-gray-700 font-bold">Bem vindo a sua Sacola de Compras:</h1>
+                      <h1 class="text-xl text-gray-700 font-bold">Bem vindo a sua Sacola de Compras:</h1>
                       <p class="text-gray-700 font-bold">{{ auth()->user()->name }}</p>
                 </div>
                             @if (session('sucessesmessagem'))
