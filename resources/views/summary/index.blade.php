@@ -52,20 +52,20 @@
                         <label for="end_date">Data de término:</label>
                         <input type="date" class="rounded" name="end_date" id="end_date">
                     </div>
-                    <button type="submit" class="border text-white p-2 bg-blue-500 hover:bg-blue-700 mb-2 rounded">Filtrar</button>
+                    <button type="submit" class="border  p-2 bg-blue-500 hover:bg-blue-700 mb-2 rounded">Filtrar</button>
                 </form>
                 <a href="{{ route('panel.admin')}}">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    <button class="bg-blue-500 hover:bg-blue-700 border font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                         Voltar
                     </button>
                 </a>
             </div>
                <a href="{{route('summary.sales')}}" class=" p-2 mt-2">
-                <button type="submit" class="mt-4 text-white bg-blue-500 p-2 rounded">GRAFICO DE VENDAS DO MÊS</button>
+                <button type="submit" class="mt-4 border bg-blue-500 p-2 rounded">GRAFICO DE VENDAS DO MÊS</button>
                </a>
 
                <a href="{{route('summary.product')}}" class=" p-2 mt-2">
-                <button type="submit" class="mt-4 text-white bg-blue-500 p-2 rounded">GRAFICO DE LANCHE MAIS VENDIDO</button>
+                <button type="submit" class="mt-4 border bg-blue-500 p-2 rounded">GRAFICO DE LANCHE MAIS VENDIDO</button>
                </a>
      </div>
   

@@ -167,8 +167,27 @@
           
             </div>
 
-              <div class="bg-orange-500">
-                @include('layouts.menu')
+              <div class="bg-orange-500 overflow-auto">
+                <ul class="folat-right mr-10 pl-4 space-y-8 text-gray-700 font-bold">
+                  <div class="flex space-x-8 ml-4 p-8 pl-2">
+                      @can('access')
+                      <li  class="custom-border p-2 rounded bg-orange-300 "><a class="p-8" href="{{ route('panel.admin')}}">ADMINISTRADOR</a></li>
+                      @endcan
+                      <li  class="custom-border p-2 rounded bg-orange-300 ">
+                          <a href="{{ route('client.show')}}">LANCHES</a>
+                      </li>
+                      <li  class="custom-border p-2 rounded bg-orange-300 ">
+                          <a href="{{ route('users.beer')}}">BEBIDAS</a>
+                      </li>
+                      <li  class="custom-border p-2 rounded bg-orange-300 ">
+                          <a href="{{ route('user.combo')}}">COMBOS</a>
+                      </li>
+                      <li  class="custom-border p-2 rounded bg-orange-300 ">
+                          <a href="{{ route('show.bomboniere')}}">BOMBONIÉRE</a>
+                      </li>
+                  </div>
+                </ul>
+               
               </div>
 
               @if(session('success'))

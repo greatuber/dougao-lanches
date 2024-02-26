@@ -38,10 +38,10 @@
     </head>
     <body class="font-sans text-gray-900 antialiased">
 
-      <div class="baner bg-red-500 pt-2 pb-4">
-         <div class="lanch animate-pulse">
+      <div class="baner bg-orange-500 pt-2 pb-4">
+         <div class="lanch ">
           <h1 class="dog">DOUGÃO</h1>
-          <H2 class="lanch animate-pulse">LANCHES</H2>
+          <H2 class="lanch ">LANCHES</H2>
          </div>
       </div>
     </body>
