@@ -72,45 +72,45 @@
 
               <div class="flex ml-4">
 
-                  <div class="pt-2 ml-2" @if ($toggle->is_open == 0) inertex @endif>
-                      @if ($toggle->is_open == 0 )
-                          @php
-                              // Verificar se o dia da semana é segunda-feira (considerando o formato padrão do Carbon)
-                              $isMonday = \Carbon\Carbon::now()->dayOfWeek === 1;
-                          @endphp
-              
-                          @if ($isMonday)
-                              <p>A lanchonete está fechada. Abre terça-feira às 18:00hs.</p>
-                          @else
-                              <p>Lanchonete fechada</p>
-                              <p>Abre hoje às 19:00 hs</p>
-                          @endif
+                      <div class="pt-2 ml-2" @if ($toggle->is_open == 0) inertex @endif>
+                            @if ($toggle->is_open == 0 )
+                            @php
+                                  // Verificar se o dia da semana é segunda-feira (considerando o formato padrão do Carbon)
+                                  $isMonday = \Carbon\Carbon::now()->dayOfWeek === 1;
+                            @endphp
+                  
+                            @if ($isMonday)
+                                  <p>A lanchonete está fechada. Abre terça-feira às 18:00hs.</p>
                             @else
-                                <div class="lime pt-2 font-light text-white">
-                                    Lanchonete aberta
-                                </div>
+                                  <p>Lanchonete fechada</p>
+                                  <p>Abre hoje às 19:00 hs</p>
                             @endif
-                  </div>
+                            @else
+                                    <div class="lime pt-2 font-light text-white">
+                                        Lanchonete aberta
+                                    </div>
+                            @endif
+                      </div>
                
-                  <div class="p-2">
-                    @include('layouts.closed-button')
-                  </div> 
+                      <div class="p-2">
+                          @include('layouts.closed-button')
+                      </div> 
                         <div class="bg-white text-black rounded p-2 mt-2 hidden">
                           <form action="{{ route('update.admin')}}" method="post">
-                            @csrf
-                            <button type="submit">
-                              trocar para admin
-                          </button>
+                              @csrf
+                              <button type="submit">
+                                  trocar para admin
+                              </button>
                           </form>
                         </div>
 
-                          @if(session('access'))
-                            <div class="text-green-600">
-                                <p>
-                                  {{ session('access')}}
-                                </p>
-                            </div>
-                          @endif
+                            @if(session('access'))
+                              <div class="text-green-600">
+                                  <p>
+                                    {{ session('access')}}
+                                  </p>
+                              </div>
+                            @endif
 
 
                           <div class="logaut ">
@@ -148,34 +148,34 @@
 
               </div>
               
-                <div class="cart">
-                      <a href="{{ route('cart.show')}}"><i class="fa-solid fa-cart-flatbed-suitcase fa-beat text-yellow"></i>
-                      <p class="text-yellow text-2xl ">minhas compras</p></a>
-                  <div class="">
+                        <div class="cart">
+                              <a href="{{ route('cart.show')}}"><i class="fa-solid fa-cart-flatbed-suitcase fa-beat text-yellow"></i>
+                              <p class="text-yellow text-2xl ">minhas compras</p></a>
+                          <div class="">
                 
-                     
-                         @if($order && $order->created_at->isToday())
-                           <p class="text-yellow text-sm ">Status do seu pedido de numero: <span class="text-lg">{{$order->id ?? ''}}</span></p>
-                           <p class="text-yellow  ">{{$order->status ?? ''}}</p>
-                        @endif
+                                @if($order && $order->created_at->isToday())
+                                  <p class="text-yellow text-sm ">Status do seu pedido de numero: <span class="text-lg">{{$order->id ?? ''}}</span></p>
+                                  <p class="text-yellow  ">{{$order->status ?? ''}}</p>
+                                @endif
  
-                
-                  </div>
-                </div>
+                          </div>
+                        </div>
         
-                <div class="">
-                  @include('layouts.baner')
-                </div>
+                  <div class="">
+                    @include('layouts.baner')
+                  </div>
           
             </div>
-              <div class="pb-8  bg-orange-500 p-2">
+
+              <div class="bg-orange-500">
                 @include('layouts.menu')
               </div>
-            @if(session('success'))
-                <div class=" success text-center  bg-white ">
-                  <p>{{ session('success')}}</p>
-                </div>
-            @endif
+
+              @if(session('success'))
+                  <div class=" success text-center  bg-white ">
+                    <p>{{ session('success')}}</p>
+                  </div>
+              @endif
             <div class=" orange bg-orange-500  w-full">
                 <table class="w-full">
                   <thead>

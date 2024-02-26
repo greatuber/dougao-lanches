@@ -26,6 +26,7 @@
             border: 2px solid white;
         }
     </style>
+     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
     <div class="nav h-12 w-full pt-12 overflow-auto pr-2">
