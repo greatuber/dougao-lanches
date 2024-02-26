@@ -72,8 +72,8 @@
 
               <div class="flex ml-4">
 
-                      <div class="pt-2 ml-2" @if ($toggle->is_open == 0) inertex @endif>
-                            @if ($toggle->is_open == 0 )
+                      <div class="pt-2 ml-2" @if ($toggle->is_open == 0 ?? '') inertex @endif>
+                            @if ($toggle->is_open == 0 ?? '')
                             @php
                                   // Verificar se o dia da semana é segunda-feira (considerando o formato padrão do Carbon)
                                   $isMonday = \Carbon\Carbon::now()->dayOfWeek === 1;
