@@ -21,9 +21,9 @@
       color: yellow;
       
      }
-     .group{
+     /* .group{
       justify-content: space-evenly;
-     }
+     } */
      .order {
       background-color: blue;
       
@@ -224,9 +224,6 @@
                                                        </div>
                                                    @endif
 
-                                                   
-
-
                                                 </td>
                                                 <td class="whitespace-nowrap px-6 py-4">
                                                   @if ( $item->quanty)
@@ -341,12 +338,12 @@
                               @if(!empty($cart->blinCart) && count($cart->blinCart) > 0)
                                 @foreach ($cart->blinCart as $item)
                                     
-                             
+                        
                                     <form action="{{ route('admin.createBlind',$item->id) }}" method="post">
                                       
                                           @csrf
                                           <input type="hidden" name="blindCartId" value="{{ $item ?? ''}}">
-                                          
+                                         
                                          
                                           <samp  class=" font-bold bg-white p-2  rounded"  id="toremove"> R$ @money($total)</samp>
                                           <samp  class=" font-bold bg-white p-2  rounded"  id="delivery"></samp>
@@ -395,7 +392,7 @@
                                   </div>
                             </div>
                                   
-                        <div class="text-center md:flex sm:block group overflow-auto">
+                        <div class="">
                                 
                                   <button type="submit" class="font-bold text-sm text-white p-2 mb-2 bg-blue-500  border rounded">
 
@@ -409,19 +406,19 @@
                                  
                               @else   
                                 <form action="{{ route('admin.create') }}" method="post">
-                          
-                                                        @csrf
-                                                        <samp  class=" font-bold bg-orange-300 p-2  rounded custom-border w-24"  id="toremove"> R$ @money($total)</samp>
-                                                        <samp  class=" font-bold bg-orange-300 p-2  rounded custom-border w-24"  id="delivery"></samp>
-                                                        <input type="hidden" name="total" value=" @money($total)">
-
+                                  @csrf
+                                                     
+                                                        <samp  class=" font-bold bg-orange-300 p-2  rounded custom-border  mb-2"  id="toremove"> R$ @money($total)</samp>
+                                                        <samp  class=" font-bold bg-orange-300 p-2  rounded custom-border  mb-2"  id="delivery"></samp>
+                                                        <input type="hidden" name="total" value=" @money ($total)">
+                                                     
                                                         @foreach ($cart as $item)
                                                           <input type="hidden" name="blindCartId" value="{{ $item->blinCart->id ?? ''}} ">
                                                         @endforeach
                                                        
                                                     </div>
                                                 </div>
-                                          </div>
+                        </div>
                                           
                                           <div class=" pb-2 mt-2">
                                                   <div class="text-center">
@@ -465,7 +462,7 @@
                                                 </div>
                                           </div>
                                                 
-                                      <div class="text-center md:flex sm:block group overflow-auto">
+                                      <div class="text-center  overflow-auto">
                                               
                                         <button type="submit" class=" text-md bg-orange-300 p-2 mb-2 custom-border  rounded">
 
