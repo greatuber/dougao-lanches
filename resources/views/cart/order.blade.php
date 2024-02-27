@@ -254,7 +254,7 @@
                                 <button class=" deliveryd border rounded p-2 button hover:text-blue-800">RECUSAR PEDIDO</button>
                             </form>
                              
-                             <div class="">
+                             {{-- <div class="">
                                 <form action="{{route('status.fordelivered',$item->id)}}" method="POST">
                                     @csrf
                                     <div class="float-rigth">
@@ -262,7 +262,7 @@
                                         <button class="border rounded p-2 button hover:text-blue-800">ENTREGUE</button>
                                     </div>
                                  </form>
-                             </div>
+                             </div> --}}
 
                         </div>
                  </div>

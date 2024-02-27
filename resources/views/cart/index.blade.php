@@ -187,6 +187,7 @@
                                     <th scope="col" class="px-4 py-2 text-gray-700">Observação</th>
                                     <th scope="col" class="px-4 py-2 text-gray-700">Adicionais</th>
                                     <th scope="col" class="px-4 py-2 text-gray-700">Blinde</th>
+                                    <th scope="col" class="px-4 py-2 text-gray-700">Açoẽs</th>
                                   
                                 </tr>
                               </thead>
@@ -238,9 +239,12 @@
  
                                                 </td>
                                                 
-                                                <td class="text-gray-700 font-bold">
+                                                <td class="text-gray-700  font-bold">
                                                     @if ( $item->observation)
-                                                      <span class="custom-border  orange-300 rounded p-2 px-4  font-bold text-sm">{{ $item->observation ?? ''}}</span>
+                                                       <div class="">
+                                                        <span class="custom-border  bg-orange-300 rounded p-2 px-4  font-bold text-sm">{{ $item->observation ?? ''}}</span>
+                                                       </div>
+                                                    
                                                     @else
                                                         <div class="">
                                                           <p class="bg-orange-300 p-2 rounded custom-border ">
@@ -286,7 +290,7 @@
                                                   <form action="{{ route('cart.delete', $item->id) }}" method="POST">
                                                     @csrf
                                                     <div class=" rounded">
-                                                        <button class="rounded text-gray-700 p-2 ml-60 font-bold text-sm bg-orange-300 custom-border ">EXCLUIR</button>
+                                                        <button class="rounded text-gray-700 p-2  font-bold text-sm bg-orange-300 custom-border ">EXCLUIR</button>
                                                     </div>
                                                 </form>
                                                 </td>
