@@ -98,8 +98,10 @@
                         <p>Você tem {{ $points[0]->points_earned ?? ''}} pts</p>
                     </p>
                 @else
-                Você ainda não posui pontos,mas continue porque a cada compra 
-                        seu valor em diheiro vira pontos 
+                        <h3>
+                            Você ainda não posui pontos,mas continue porque a cada compra 
+                            seu valor em diheiro vira pontos 
+                        </h3>
                 @endif
             </div>
 
@@ -150,7 +152,7 @@
                     <div class="card-body">
                         <p class="card-text">{{$item->name }}</p>
                         <p class="card-text">Resgate por {{$item->points}}  pontos</p>
-                        <button class="text-sm bg-blue-500 p-2 rounded text-white"  data-bs-toggle="modal"
+                        <button class="text-sm bg-blue-500 p-2 rounded border"  data-bs-toggle="modal"
                         data-bs-target="#firstModal{{$item->id}}">RESGATAR</button>
                     </div>
                 </div>
@@ -181,14 +183,11 @@
                                                
                                             </div>
                                           
-                                              
                                                 <div class="">
                                                  
-                                                    <button class='text-sm bg-blue-500 p-2 rounded text-white' type="submit">RESGATAR</button>
+                                                    <button class='text-sm bg-blue-500 p-2 rounded border' type="submit">RESGATAR</button>
                                                 </div>
                                                 
-                                            
-                                          
                                         </div>
 
                                       

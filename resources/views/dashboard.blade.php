@@ -187,7 +187,7 @@
                       </li>
                   </div>
                 </ul>
-               
+               @include('layouts.menu')
               </div>
 
               @if(session('success'))

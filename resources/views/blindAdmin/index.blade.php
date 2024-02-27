@@ -68,7 +68,7 @@
                             <td>{{ $blindItem->status }}</td>
                             <td>
                               <div class="">
-                                <button type="submit" class="rounded p-2 bg-blue-500 text-white">ENTREGAR</button>
+                                <button type="submit" class="rounded p-2 bg-blue-500 border">ENTREGAR</button>
                               </div>
                             </td>
 
