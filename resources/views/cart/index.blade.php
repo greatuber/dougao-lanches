@@ -17,10 +17,7 @@
       }
     
  
-     .bg {
-      color: yellow;
-      
-     }
+     
      /* .group{
       justify-content: space-evenly;
      } */
@@ -488,7 +485,7 @@
                                     </div>
               <div class="">   
                             @if(session('success'))
-                                <div class=" text-center  bg-white text-green-600 p-4 text-2xl rounded font-bold">
+                                <div class=" text-center  bg-white text-green-600 p-4  rounded font-bold">
                                     <p>{{ session('success')}}</p>
                                 </div>
                             @endif             
