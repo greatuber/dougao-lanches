@@ -44,9 +44,9 @@
 
         <div class=" ">
           <div class=" flex">
-            <a href="{{ route('showbeer')}}"> <div class=" border text-black p-2 mt-2 ml-12 rounded font-bold">BEBIDAS</div></a>
-            <a href="{{ route('showcombo')}}"><div class=" border text-black p-2 rounded mt-2 ml-2 font-bold">COMBOS</div></a>
-          <a href="{{ route('create.product')}}">  <div class=" border text-black p-2 rounded mt-2 ml-2 font-bold">LANCHES</div></a>
+            <a href="{{ route('showbeer')}}"> <div class=" border text-black p-2 mt-2 ml-12 rounded font-bold bg-orange-300">BEBIDAS</div></a>
+            <a href="{{ route('showcombo')}}"><div class=" border text-black p-2 rounded mt-2 ml-2 font-bold bg-orange-300">COMBOS</div></a>
+          <a href="{{ route('create.product')}}">  <div class=" border text-black p-2 rounded mt-2 ml-2 font-bold bg-orange-300">LANCHES</div></a>
         </div>
 
           {{-- <div class=" flex text-cnter  bg-orange-500">
@@ -56,8 +56,8 @@
           </div> --}}
         </div>
                   
-        <div class=" w-full sm:w-40 pr-4 overflow-auto">
-            <table class="w-full ">
+        <div class=" w-full overflow-auto ">
+            <table class="w-full overflow-auto">
               <thead>
                 <tr>
                     <th class="p-2">PRODUTOS</th>
@@ -72,7 +72,7 @@
                   <td class="p-4 sm:w-60">{{$products->name}} <hr class="linear-1"></td>
                   <td class="">
                  
-                      <p class=" bg-slate-900  ">{{$products->description}}</p>
+                      <p class="">{{$products->description}}</p>
                    
                     <hr class="linear">
                   </td>
@@ -111,7 +111,7 @@
                                                    </div>
                                                    <div class="label2 text-center">
                                                      <h1>DESCRIÇÃO</h1>
-                                                     <input type="text" class="bg-info rounded" name="description" value="{{$products->description }}"/><br>
+                                                     <input type="text" class="rounded" name="description" value="{{$products->description }}"/><br>
                                                    </div>
                                                    <div class="label3 text-center">
                                                      <h1>PREÇO</h1>

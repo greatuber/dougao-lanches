@@ -43,9 +43,9 @@
 
         <div class=" ">
           <div class=" flex">
-            <a href="{{ route('showbeer')}}"> <div class=" border text-black p-2 mt-2 ml-12 rounded font-bold">BEBIDAS</div></a>
-            <a href="{{ route('user.bomboniere')}}">  <div class=" border text-black p-2 rounded mt-2 ml-2 font-bold">BOMBONIÉRE</div></a>
-            <a href="{{ route('create.product')}}">  <div class=" border text-black p-2 rounded mt-2 ml-2 font-bold">LANCHES</div></a>
+            <a href="{{ route('showbeer')}}"> <div class=" border text-black p-2 mt-2 ml-12 rounded bg-orange-300">BEBIDAS</div></a>
+            <a href="{{ route('user.bomboniere')}}">  <div class=" border text-black p-2 rounded mt-2 ml-2 bg-orange-300">BOMBONIÉRE</div></a>
+            <a href="{{ route('create.product')}}">  <div class=" border text-black p-2 rounded mt-2 ml-2 bg-orange-300">LANCHES</div></a>
         </div>
 
           {{-- <div class=" flex text-cnter  bg-orange-500">
@@ -55,7 +55,7 @@
           </div> --}}
         </div>
                   
-        <div class=" w-full sm:w-40 pr-4 overflow-auto">
+        <div class=" w-full overflow-auto">
             <table class="w-full ">
               <thead>
                 <tr>
@@ -72,7 +72,7 @@
                   <td class="p-4 sm:w-60">{{$products->name}} <hr class="linear-1"></td>
                   <td class="">
                  
-                      <p class=" bg-slate-900  ">{{$products->description}}</p>
+                      <p class="">{{$products->description}}</p>
                    
                     <hr class="linear">
                   </td>

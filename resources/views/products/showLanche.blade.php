@@ -31,9 +31,9 @@
 <body>
     @vite('resources/css/app.css')
 
-    <div class="container pt-2">
+    <div class="container ">
      
-       <div class="text-center sm:ml-32 ml-32">
+       <div class="text-center ">
           <div class=" center">
             
 
