@@ -29,9 +29,9 @@
      @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    <div class="  w-full  pr-2">
+    <div class="pr-2  overflow-auto w-full">
         <ul class="folat-right mr-10 pl-4  text-gray-700">
-            <div class="flex space-x-8 ml-4 p-8 ">
+            <div class="flex space-x-8 ml-4 p-8">
                 @can('access')
                 <li  class="custom-border p-2 rounded bg-orange-300 "><a class="p-8" href="{{ route('panel.admin')}}">ADMINISTRADOR</a></li>
                 @endcan

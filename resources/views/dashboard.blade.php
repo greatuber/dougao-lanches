@@ -164,9 +164,7 @@
                   <div class="">
                     @include('layouts.baner')
                   </div>
-                  <div class="bg-orange-500">
-                    @include('layouts.menu')
-                  </div>
+                 
           
             </div>
 
@@ -176,6 +174,9 @@
                   </div>
               @endif
             <div class=" orange bg-orange-500  w-full">
+              <div class="bg-orange-500 ">
+                @include('layouts.menu')
+              </div>
                 <table class="w-full">
                   <thead>
                     <tr>
