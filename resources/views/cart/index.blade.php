@@ -516,7 +516,7 @@
                                                               </div>
                                                               <div class="mb-4">
                                                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="Produto">CEP</label>
-                                                                <input autocomplete="off" value=""  class="shadow appearance-none border rounded sm:w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="cep"  onblur="pesquisacep(this.value); placeholder= "digite seu cep" name="zipcode">
+                                                                <input autocomplete="off" value=""  class="shadow text-sm appearance-none border rounded sm:w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="cep"  onblur="pesquisacep(this.value); placeholder= "digite seu cep" name="zipcode">
                                                               
                                                                 @error('zipcode')
                                                                     <div class=" p-2">
@@ -546,7 +546,7 @@
                                                               </div>
                                                               <div class="mb-4">
                                                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="Produto">Número</label>
-                                                                <input autocomplete="off" value="" id="numero" class="shadow appearance-none border rounded sm:w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="number"  placeholder="digite seu numero" name="number">
+                                                                <input autocomplete="off" value="" id="numero" class="shadow text-sm appearance-none border rounded sm:w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="number"  placeholder="digite seu numero" name="number">
                                                                   @error('number')
                                                                     <div class="p-2">
                                                                       <span class="error text-red-500">{{ $message }}</span>
@@ -556,7 +556,7 @@
 
                                                               <div class="mb-4">
                                                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="Produto">Celular</label>
-                                                                <input autocomplete="off" value="" id="fone" class="shadow appearance-none border rounded sm:w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="fone"  placeholder="digite seu celular" name="fone">
+                                                                <input autocomplete="off" value="" id="fone" class="shadow text-sm appearance-none border rounded sm:w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="fone"  placeholder="digite seu celular" name="fone">
                                                                   @error('fone')
                                                                     <div class="p-2">
                                                                       <span class="error text-red-500">{{ $message }}</span>
@@ -576,7 +576,7 @@
                                                           </div>
                                                             
                                                       <div class="pb-4">
-                                                        <button type="submit" class="border p-2 rounded text-gray-700 bg-white  font-bold hover:orange-500">CADASTRAR</button>
+                                                        <button type="submit" class="border text-sm p-2 rounded text-gray-700 bg-orange-300  font-bold hover:orange-500">CADASTRAR</button>
                                                       </div>
                                                 </form>
 
