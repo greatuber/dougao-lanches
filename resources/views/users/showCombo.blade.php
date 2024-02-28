@@ -48,7 +48,7 @@
 <body>
     @vite('resources/css/app.css')
     
-    <div class="baner p-12 ">
+    <div class="baner p-12 bg-orange-500">
       <div class=" flex ml-2" @if ($toggle->is_open == 0)  inertex @endif>
         @if ($toggle->is_open == 0)
           Lanchonete fechada
@@ -62,28 +62,12 @@
       </div>
        
         @include('layouts.baner')
+        <div class="bg-orange-500">
+          @include('layouts.menu')
+        </div>
     </div>
     
-    <div class="pb-8 pt-4 bg-orange-500">
-      @include('layouts.menu')
-      <ul class="folat-right mr-10 pl-4 space-y-8 text-gray-700 font-bold">
-        <div class="flex space-x-8 ml-4 p-8 ">
-            @can('access')
-            <li  class="custom-border p-2 rounded bg-orange-300 "><a class="p-8" href="{{ route('panel.admin')}}">ADMINISTRADOR</a></li>
-            @endcan
-            <li  class="custom-border p-2 rounded bg-orange-300 ">
-                <a href="{{ route('client.show')}}">LANCHES</a>
-            </li>
-            <li  class="custom-border p-2 rounded bg-orange-300 ">
-                <a href="{{ route('users.beer')}}">BEBIDAS</a>
-            </li>
-         
-            <li  class="custom-border p-2 rounded bg-orange-300 ">
-                <a href="{{ route('show.bomboniere')}}">BOMBONIÉRE</a>
-            </li>
-        </div>
-      </ul>
-    </div>
+   
 
     <div class=" orange bg-orange-500 w-full">
         <table class="w-full ">
