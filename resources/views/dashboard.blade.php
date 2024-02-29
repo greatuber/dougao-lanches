@@ -92,9 +92,7 @@
                             @endif
                       </div>
                
-                      <div class="p-2">
-                          @include('layouts.closed-button')
-                      </div> 
+                   
                         <div class="bg-white text-black rounded p-2 mt-2 hidden">
                           <form action="{{ route('update.admin')}}" method="post">
                               @csrf
@@ -150,7 +148,7 @@
               
                         <div class="cart">
                               <a href="{{ route('cart.show')}}"><i class="fa-solid fa-cart-flatbed-suitcase fa-beat text-yellow"></i>
-                              <p class="text-yellow text-2xl ">minhas compras</p></a>
+                              <p class="text-yellow  ">minhas compras</p></a>
                           <div class="">
                 
                                 @if($order && $order->created_at->isToday())

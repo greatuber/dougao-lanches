@@ -43,13 +43,17 @@
     <div class="center">
       <div class="">
         <div class="text-center pr-4 rounded container ">
-          <h2 class="text-center font-bold pt-4">SEJA BEM VINDO AO SEU PAINEL ADMINISTRATIVO</h2> <br>
+          <h2 class="text-center font-bold pt-4">SEJA BEM VINDO AO SEU PAINEL ADMINISTRATIVO</h2>
           <h2 class="font-bold text-lg">{{Auth::user()->name }}</h2>
-          <div class="">
+          <div class="pb-4">
             <p>O sistema tem '{{$userCount}}' usuários cadastrados</p>
           </div>
-        
-          <div class="pl-2 pb-2 painel">
+      
+          <div class="pl-2 pb-2 ">
+              <div class="p-2 mb-2">
+                <h1 class="font-bold">Click aqui para abrir e fechar a lanchonete</h1>
+                @include('layouts.closed-button')
+              </div> 
             <!-- Menu com subpastas -->
             <div class="text-center p-2">
               <h3 class="font-bold">ATUALIZAÇÔES DE  CATEGORIAS</h3>
