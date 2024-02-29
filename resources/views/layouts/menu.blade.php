@@ -13,6 +13,9 @@
         li {
             padding-bottom: 5px;
         }
+        .small-li {
+        font-size: 12px; /* Adjust the font size as needed */
+        }
         .custom-border {
         border: 2px solid #28a745; 
         border-radius: 10px; 
@@ -30,21 +33,21 @@
 </head>
 <body>
     <div class="pr-2  overflow-auto w-full">
-        <ul class="folat-right mr-10 pl-4  text-gray-700">
+        <ul class="folat-right mr-10 pl-4  text-gray-700 ">
             <div class="flex space-x-8 ml-4 p-8">
                 @can('access')
-                <li  class="custom-border p-2 rounded bg-orange-300 "><a class="p-8" href="{{ route('panel.admin')}}">ADMINISTRADOR</a></li>
+                <li  class="custom-border p-2 rounded bg-orange-300 small-li"><a class="p-8" href="{{ route('panel.admin')}}">ADMIN</a></li>
                 @endcan
-                <li  class="custom-border p-2 rounded bg-orange-300 ">
-                    <a href="{{ route('client.show')}}">LANCHES</a>
+                <li  class="custom-border p-2 rounded bg-orange-300 small-li">
+                    <a class="text-sm" href="{{ route('client.show')}}">LANCHES</a>
                 </li>
-                <li  class="custom-border p-2 rounded bg-orange-300 ">
+                <li  class="custom-border p-2 rounded bg-orange-300 small-li">
                     <a href="{{ route('users.beer')}}">BEBIDAS</a>
                 </li>
-                <li  class="custom-border p-2 rounded bg-orange-300 ">
+                <li  class="custom-border p-2 rounded bg-orange-300 small-li">
                     <a href="{{ route('user.combo')}}">COMBOS</a>
                 </li>
-                <li  class="custom-border p-2 rounded bg-orange-300 ">
+                <li  class="custom-border p-2 rounded bg-orange-300 small-li">
                     <a href="{{ route('show.bomboniere')}}">BOMBONIÉRE</a>
                 </li>
             </div>
