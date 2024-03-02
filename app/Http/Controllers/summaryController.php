@@ -72,29 +72,31 @@ class summaryController extends Controller
             }
 
   // No seu controller
-    public function salesChartData()
-
-            {
-                $salesData = Order::selectRaw('DATE(created_at) as date, SUM(total) as total')
-                    ->whereMonth('created_at', now()->month)
-                    ->groupBy('date')
-                    ->get();
-            
-                // Preparar arrays
-                foreach ($salesData as $data) {
-                    $date[] = Carbon::parse($data->date)->format('d');
-                    $dateMonth = Carbon::parse($data->date)->translatedFormat('F'); 
-                    $total[] = $data->total;
-                }
-                    
-                    
-                $dataLabel = 'Gráfico de Total de Vendas no mês';
-                $dataDete = implode(',', $date);
-                $dataTotal = implode(',', $total);
-            
-                return view('summary.sales', compact('dataLabel', 'dataDete', 'dataTotal', 'dateMonth'));
-            }
-
+  public function salesChartData()
+  {
+      $salesData = Order::selectRaw('DATE(created_at) as date, SUM(total) as total')
+          ->whereMonth('created_at', '=', now()->month)
+          ->whereYear('created_at', '=', now()->year)
+          ->groupBy('date')
+          ->get();
+  
+      $date = [];
+      $total = [];
+      $dateMonth = ''; // Inicialize a variável fora do loop
+  
+      foreach ($salesData as $data) {
+          $date[] = Carbon::parse($data->date)->format('d');
+          $dateMonth = Carbon::parse($data->date)->translatedFormat('F');
+          $total[] = $data->total;
+      }
+  
+      $dataLabel = 'Gráfico de Total de Vendas no mês';
+      $dataDete = implode(',', $date);
+      $dataTotal = implode(',', $total);
+  
+      return view('summary.sales', compact('dataLabel', 'dataDete', 'dataTotal', 'dateMonth'));
+  }
+  
         public function productGraphic()
 
             {
