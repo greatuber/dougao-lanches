@@ -60,6 +60,9 @@
           background-color:white;
           color: brown;
          }
+         .wider {
+          widows: 700px;
+         }
 
         </style>
         <title>CreateProduct</title>
@@ -268,10 +271,12 @@
                                         </div>
                                 </div>
                             </td> 
-                            <td class="p-4 sm:w-60">{{$products->name}} <hr class="linear-1"></td>
+                            <td class="p-4 wider">
+                                {{$products->name}} <hr class="linear-1">
+                            </td>
                             <td class="">
                                 <details>
-                                  <summary>INGREDIENTES</summary>
+                                  <summary class="text-sm">INGREDIENTES</summary>
                                   <p class="text-start text-white mr-12 border border-blue-800 color p-2 rounded">{{$products->description}}</p>
                                 </details>
                                  <hr class="linear">

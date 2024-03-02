@@ -14,7 +14,7 @@
             padding-bottom: 5px;
         }
         .small-li {
-        font-size: 12px; /* Adjust the font size as needed */
+        font-size: 10px;
         }
         .custom-border {
         border: 2px solid #28a745; 
@@ -36,10 +36,12 @@
         <ul class="folat-right mr-10 pl-4  text-gray-700 ">
             <div class="flex space-x-8 ml-4 p-8">
                 @can('access')
-                <li  class="custom-border p-2 rounded bg-orange-300 small-li"><a class="p-8" href="{{ route('panel.admin')}}">ADMIN</a></li>
+                <li  class="custom-border p-2 rounded bg-orange-300 small-li">
+                    <a class="p-8" href="{{ route('panel.admin')}}">ADMIN</a>
+                </li>
                 @endcan
                 <li  class="custom-border p-2 rounded bg-orange-300 small-li">
-                    <a class="text-sm" href="{{ route('client.show')}}">LANCHES</a>
+                    <a href="{{ route('client.show')}}">LANCHES</a>
                 </li>
                 <li  class="custom-border p-2 rounded bg-orange-300 small-li">
                     <a href="{{ route('users.beer')}}">BEBIDAS</a>
