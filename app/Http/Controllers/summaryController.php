@@ -79,17 +79,17 @@ class summaryController extends Controller
           ->whereYear('created_at', '=', now()->year)
           ->groupBy('date')
           ->get();
-  
+   
       $date = [];
       $total = [];
       $dateMonth = ''; // Inicialize a variável fora do loop
   
       foreach ($salesData as $data) {
           $date[] = Carbon::parse($data->date)->format('d');
-          $dateMonth = Carbon::parse($data->date)->translatedFormat('F');
+          $dateMonth = now()->translatedFormat('F');
           $total[] = $data->total;
       }
-  
+
       $dataLabel = 'Gráfico de Total de Vendas no mês';
       $dataDete = implode(',', $date);
       $dataTotal = implode(',', $total);
