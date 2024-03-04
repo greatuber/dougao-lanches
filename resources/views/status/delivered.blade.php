@@ -6,7 +6,7 @@
 <body>
   <div class="container mx-auto pt-2">
     <div class="text-center mb-2">
-        <h1 class="p-2 pt-2 font-bold">LISTAGEM DE QUE SAIRAM PARA ENTREGA</h1>
+        <h1 class="p-2 pt-2 font-bold">LISTAGEM DE PEDIDOS ENTREGUES </h1>
        
         <div class="overflow-auto">
             @include('layouts.statusNavegation')
@@ -115,22 +115,12 @@
                         </div>
                     </div>
                 
-                 <div class="">
-                 
-
-                     <form action="{{route('status.fordelivered',$item->id)}}" method="POST">
-                        @csrf
-                        <div class="float-rigth">
-                           
-                            <button class="border rounded p-2 button hover:text-blue-800">ENTREGUE</button>
-                        </div>
-                     </form>
-                 </div>
+             
             
             </div>
         
         @empty
-            <p class="pt-4 font-bold text-lg">Sem Pedidos com status sairam para entrega!</p>
+            <p class="pt-4 font-bold text-lg">Sem Pedidos com status entregues!</p>
             <p>Para o dia: @datetime(now())</p>
         @endforelse
     </div>

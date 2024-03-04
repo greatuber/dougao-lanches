@@ -63,7 +63,7 @@
                                     <p class=" mb-4 text-white  text-left">
                                         Aqui você encontra o melhor lanche da cidade, com ingredientes
                                         frescos e de qualidade. Venha matar sua fome com a gente, é só cadastra aqui no delivery do 
-                                        Dougão,e fazer seu pedido por aqui mesmo sem demora e sem borocracia,forma de pagamentos,dinheiro,cartão e pix sendo efetuado 
+                                        Dougão,e fazer seu pedido por aqui mesmo sem demora e sem borocracia,forma de pagamentos,dinheiro,cartão sendo efetuado 
                                         para entregador na hora da entrega, 
                                         aberto de terça a domingo apartir das 19:00 hr e fechamento as 12:00 hr,
                                         você também pode nos fazer uma visita pessoalmente e conhecer nosso estabelecimento
