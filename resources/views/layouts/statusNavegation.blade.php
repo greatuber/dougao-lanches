@@ -24,20 +24,20 @@
     <div class="pb-4 pt-4 mr-12 text-sm">
             
         <ul class="flex content-center">
-                <li class="mr-6">
-                    <a class=" hover:text-blue-800" href="{{ route('order.show')}}"><button class="border rounded p-2 m-2 button">listagem de pedidos</button></a>
+                <li class="mr-2">
+                    <a class=" hover:text-blue-800" href="{{ route('order.show')}}"><button class="border rounded p-2 m-2 button"> pedidos</button></a>
                 </li>
-                <li class="mr-6 ">
-                    <a class=" hover:text-blue-800 " href="{{ route('status.aceito')}}"><button class="border rounded p-2 m-2  button">pedidos aceito</button></a>
+                <li class="mr-2">
+                    <a class=" hover:text-blue-800 " href="{{ route('status.aceito')}}"><button class="border rounded p-2 m-2  button"> aceito</button></a>
                 </li>
-                <li class="mr-6">
+                {{-- <li class="mr-6">
                     <a class=" hover:text-blue-800" href="{{ route('production.index')}}"><button class="border rounded p-2 m-2 button">pedidos em produção</button></a>
+                </li> --}}
+                <li class="mr-2">
+                    <a class=" hover:text-blue-800" href="{{ route('status.fordelivery')}}"><button class="border rounded p-2 m-2 button">s/p entrega</button></a>
                 </li>
-                <li class="mr-6">
-                    <a class=" hover:text-blue-800" href="{{ route('status.fordelivery')}}"><button class="border rounded p-2 m-2 button">saiu para entrega</button></a>
-                </li>
-                <li class="mr-6">
-                    <a class=" hover:text-blue-800" href="{{ route('status.delivered')}}"><button class="border rounded p-2 m-2 button">pedidos entregue</button></a>
+                <li class="mr-2">
+                    <a class=" hover:text-blue-800" href="{{ route('status.delivered')}}"><button class="border rounded p-2 m-2 button"> entregue</button></a>
                 </li>
             </ul>
     </div> 

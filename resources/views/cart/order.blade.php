@@ -5,15 +5,16 @@
 </head>
 <body>
   <div class="container mx-auto pt-2">
-    <div class="text-center">
+    <div class="text-center mb-2">
         <h1 class="p-2 pt-2 font-bold">LISTAGEM DE PEDIDOS</h1>
        
         <div class="overflow-auto">
             @include('layouts.statusNavegation')
         </div>
       
-        @forelse ($orders as $item)
-            <div class="card p-2 pt-2 mb-3">
+      
+            <div class="card p-2 pt-2 ">
+            @forelse ($orders as $item)
                 <div class="card-header">
                     Pedido N- {{ $item->id }}
                 </div>
