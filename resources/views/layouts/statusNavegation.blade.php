@@ -12,35 +12,32 @@
     <title>status.navegation</title>
 
     <style>
-            .button {
-                background-color: rgb(241, 238, 238);
-           
-            }
-         
+
+
     </style>
 </head>
 <body>
     @vite('resources/css/app.css')
-    <div class="pb-4 pt-4 mr-12 text-sm">
-            
+    <div class="pb-4 pt-4  text-sm">
+
         <ul class="flex content-center">
-                <li class="mr-2">
-                    <a class=" hover:text-blue-800" href="{{ route('order.show')}}"><button class="border rounded p-2 m-2 button"> pedidos</button></a>
+                <li class="mr-2 ">
+                    <a class=" hover:text-blue-800 " href="{{ route('order.show')}}"><button class="border rounded p-2 m-2 button bg-orange-300 "> pedidos</button></a>
                 </li>
                 <li class="mr-2">
-                    <a class=" hover:text-blue-800 " href="{{ route('status.aceito')}}"><button class="border rounded p-2 m-2  button"> aceito</button></a>
+                    <a class=" hover:text-blue-800 " href="{{ route('status.aceito')}}"><button class="border rounded p-2 m-2  bg-orange-300"> aceito</button></a>
                 </li>
                 {{-- <li class="mr-6">
                     <a class=" hover:text-blue-800" href="{{ route('production.index')}}"><button class="border rounded p-2 m-2 button">pedidos em produção</button></a>
                 </li> --}}
                 <li class="mr-2">
-                    <a class=" hover:text-blue-800" href="{{ route('status.fordelivery')}}"><button class="border rounded p-2 m-2 button">s/p entrega</button></a>
+                    <a class=" hover:text-blue-800" href="{{ route('status.fordelivery')}}"><button class="border rounded p-2 m-2 bg-orange-300">s/p entrega</button></a>
                 </li>
                 <li class="mr-2">
-                    <a class=" hover:text-blue-800" href="{{ route('status.delivered')}}"><button class="border rounded p-2 m-2 button"> entregue</button></a>
+                    <a class=" hover:text-blue-800" href="{{ route('status.delivered')}}"><button class="border rounded p-2 m-2 bg-orange-300"> entregue</button></a>
                 </li>
             </ul>
-    </div> 
+    </div>
     @vite('resources/js/app.js')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 </body>
