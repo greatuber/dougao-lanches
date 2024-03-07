@@ -31,23 +31,23 @@ class BlindController extends Controller
             $user_id = Auth::user()->id;
             $name = $request->name;
             $points = $request->points;
-        
+
             $loyaut = LoyaltyPoint::where('user_id', $user_id)->get();
-            
-            if ($loyaut->isEmpty()) 
+
+            if ($loyaut->isEmpty())
                 {
                     return redirect()->back()->with('denied', 'Você não possui pontos suficientes para resgatar este brinde');
                 }
 
-                
+
             $loyauts = $loyaut[0]->points_earned;
 
-            if ($loyauts < $points) 
+            if ($loyauts < $points)
                 {
                     return redirect()->back()->with('denied','Você não possui pontos  para resgatar este blinde');
                 }
 
-            
+
                 blind::create([
                 'user_id' => $user_id,
                 'name'  => $name,
@@ -59,7 +59,7 @@ class BlindController extends Controller
                 ]);
 
                 return redirect()->back()->with('brind','resgate enviado com suceso');
-            
+
 
    }
 

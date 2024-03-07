@@ -33,8 +33,8 @@ class adminController extends Controller
     } else {
       return redirect()->back()->with('menssagem', 'Vocẽ presisa relizar uma compra para conseguir enviar um pedido');
     }
-   
-   
+
+
 
     $payment  = $request->payment;
     $selectedCreditCard = $request->input('credit_card');
@@ -49,18 +49,18 @@ class adminController extends Controller
     $blindCartIds = $request->input('blindCartId');
 
 
-    
-    
-  
-      
-    if ( $total < 20.00) 
+
+
+
+
+    if ( $total < 20.00)
     {
      return redirect()->back()->with('total', 'o valor de sua compra precisa ser maior que 20,00 reais');
     }
-  
+
     // verificando se usuario tem endereço e depois criando pedido
 
-     
+
     if (Address::where('user_id', $users)->exists()) {
 
       $total = ($delivery == 1 ? ($total + 6) : $total);
@@ -73,15 +73,15 @@ class adminController extends Controller
         'delivery'    => $delivery,
         'quantity'    => $quantity ?? 0,
       ]);
-        
-     
- 
+
+
+
       $orderId = $order->id;
 
       // criando itens do pedido
 
       foreach ($product as $item) {
-    
+
         $orderlist = OrderList::create([
           'blind_carts_id'=> $blindCartIds  ?? null,
           'order_id'      => $orderId,
@@ -92,33 +92,44 @@ class adminController extends Controller
         ]);
 
         $orderlist->orderAdditional()->attach($item->orderProductAdditional);
-        
-      }
-    
-    
-      $orderPoints = Order::where('user_id', $users)->get();
-      // dd($orderPoints);
 
-     
+      }
+
+       //buscar todos os pedidos do usuario e somar
+
+      $orderPoints = Order::where('user_id', $users)->get();
+
+
       $totalOrderAmount = 0;
-      
+
       foreach ($orderPoints as $order) {
         $totalOrderAmount += $order->total;
-        // dump($order->total);
+
       }
+      //transformando total gasto em pontos
+
       $totalPointsEarned = floor($totalOrderAmount / 50) * 5;
-    // dump($totalPointsEarned );
+
+      //buscar todos os blindes que o usuario já resgatou
+
+      $totalBlindPoints = BlindCart::where('user_id', $users)->sum('points');
+
 
          //se existir pontos na tabela faz opdate no numero de pontos se não cria
+
       LoyaltyPoint::updateOrCreate(
           ['user_id' => $users],
-          ['points_earned' => $totalPointsEarned ?? '']
+          ['points_earned' =>  $totalPointsEarned  ?? '']
       );
-      
+
+      LoyaltyPoint::where('user_id', $users)->update([
+        'points_earned' => DB::raw('points_earned - ' . $totalBlindPoints)
+    ]);
+
 
       $product = Order_product::where('user_id', $users)->delete();
-    
-    
+
+
       return redirect()->back()->with('sucessesmessagem', 'pedido enviado com sucesso');
     } else {
       return redirect()->back()->with('menssagem', 'Vocẽ presisa cadastrar um endereço');
@@ -132,7 +143,7 @@ class adminController extends Controller
 
         $user      = Auth::user();
         $userId     = $user->id ?? '';
-      
+
         $date = now()->format('d/m/y H:i:s');
 
         $orders = Order::orderBY('id', 'desc')
@@ -153,7 +164,7 @@ class adminController extends Controller
         $order->update(['status' => ('aceito')]);
 
         // $blindCartId = BlindCart::findOrFail($blindCartId);
-      
+
         // $blindCartId->update(['status' => ('impresso')]);
 
 
