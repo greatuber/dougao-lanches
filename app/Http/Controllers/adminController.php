@@ -113,7 +113,9 @@ class adminController extends Controller
 
          //transformando total gasto em pontos
 
-      $totalPointsEarned = floor($totalOrderAmount - $totalBlindPoints / 50) * 5;
+      $totalPointsEarned = floor($totalOrderAmount / 50) * 5;
+
+      $totalPointsEarned -= $totalBlindPoints;
 
 
 
@@ -123,8 +125,9 @@ class adminController extends Controller
 
       LoyaltyPoint::updateOrCreate(
           ['user_id' => $users],
-          ['points_earned' =>  $totalPointsEarned  ?? '']
+          ['points_earned' =>   $totalPointsEarned ?? '']
       );
+
 
 
 
