@@ -65,7 +65,7 @@
                         <p class="font-bold">Total: @money($item->total)</p>
                         <p class="text-card">Entrega: {{ $item->delivery ? 'Não' : 'Sim' }}</p>
                         <p class="text-card">Forma de pagamento: {{ $item->payment ? 'Dinheiro' : 'Cartão' }}</p>
-                        <p class="text-card">Observação: {{ $item->observation ?? 'Nenhuma observação' }}</p>
+                        <p class="text-card">Observação: {{ $item->observation ?? '//' }}</p>
                         {{-- Adicione outras informações conforme necessário --}}
                     </div>
                        <div class="overflow-auto">
@@ -86,7 +86,7 @@
                                         <td>{{ $list->product->name ?? '' }}</td>
                                         <td>{{ $list->quamtity }}</td>
                                         <td>@money($list->value)</td>
-                                        <td>{{ $list->observation ?? 'Nenhuma observação' }}</td>
+                                        <td>{{ $list->observation ?? '//' }}</td>
                                         <td>
                                             @if ($list->orderAdditional->count() > 0)
                                                 @foreach ($list->orderAdditional as $additional)
