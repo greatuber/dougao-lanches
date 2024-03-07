@@ -106,13 +106,17 @@ class adminController extends Controller
         $totalOrderAmount += $order->total;
 
       }
-      //transformando total gasto em pontos
+          //buscar todos os blindes que o usuario já resgatou
 
-      $totalPointsEarned = floor($totalOrderAmount / 50) * 5;
-
-      //buscar todos os blindes que o usuario já resgatou
 
       $totalBlindPoints = BlindCart::where('user_id', $users)->sum('points');
+
+         //transformando total gasto em pontos
+
+      $totalPointsEarned = floor($totalOrderAmount - $totalBlindPoints / 50) * 5;
+
+
+
 
 
          //se existir pontos na tabela faz opdate no numero de pontos se não cria
@@ -122,9 +126,6 @@ class adminController extends Controller
           ['points_earned' =>  $totalPointsEarned  ?? '']
       );
 
-      LoyaltyPoint::where('user_id', $users)->update([
-        'points_earned' => DB::raw('points_earned - ' . $totalBlindPoints)
-    ]);
 
 
       $product = Order_product::where('user_id', $users)->delete();
