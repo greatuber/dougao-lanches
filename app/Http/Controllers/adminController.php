@@ -109,13 +109,19 @@ class adminController extends Controller
           //buscar todos os blindes que o usuario já resgatou
 
 
-      $totalBlindPoints = BlindCart::where('user_id', $users)->sum('points');
-
-      $totalBlindPointsDirect = blind::where('user_id', $users)->sum('points');
 
          //transformando total gasto em pontos
 
       $totalPointsEarned = floor($totalOrderAmount / 50) * 5;
+
+
+
+      $totalBlindPointsCart  = BlindCart::where('user_id', $users)->sum('points');
+
+      $totalBlindPointsDirect = blind::where('user_id', $users)->sum('points');
+
+      // Somar pontos dos dois tipos de resgate
+      $totalBlindPoints = $totalBlindPointsCart + $totalBlindPointsDirect;
 
       $totalPointsEarned -= $totalBlindPoints;
 

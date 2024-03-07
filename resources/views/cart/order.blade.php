@@ -93,7 +93,7 @@
                                                     {{ $additional->name ?? '' }},
                                                 @endforeach
                                             @else
-                                                Nenhum adicional
+                                                <p>//</p>
                                             @endif
                                         </td>
                                         <td >
