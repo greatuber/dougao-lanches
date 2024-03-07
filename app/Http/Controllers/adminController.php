@@ -111,6 +111,8 @@ class adminController extends Controller
 
       $totalBlindPoints = BlindCart::where('user_id', $users)->sum('points');
 
+      $totalBlindPointsDirect = blind::where('user_id', $users)->sum('points');
+
          //transformando total gasto em pontos
 
       $totalPointsEarned = floor($totalOrderAmount / 50) * 5;
