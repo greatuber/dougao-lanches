@@ -3,21 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Product;
-use App\Models\User;
 use App\Models\Order;
 use App\Models\Address;
 use App\Models\OrderList;
 use App\Models\Order_product;
 use App\Models\LoyaltyPoint;
-use App\Http\Requests\OrderProductRequest;
 use App\Models\blind;
 use App\Models\BlindCart;
-use App\Notifications\NewOrderNotification;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Collection;
+
 
 class adminController extends Controller
 {
@@ -39,13 +34,13 @@ class adminController extends Controller
     $payment  = $request->payment;
     $selectedCreditCard = $request->input('credit_card');
     $observation = $request->observation;
-    $delivery = $request->delivery;
-    $total    = $request->total;
+    $delivery  = $request->delivery;
+    $total     = $request->total;
     $user      = Auth::user();
-    $users       = $user->id;
+    $users     =$user->id;
     $total      = str_replace(",", ".", $total);
     $product    = Order_product::where('user_id', $users)->get();
-    $quantity = $product[0]->quanty;
+    $quantity   = $product[0]->quanty;
     $blindCartIds = $request->input('blindCartId');
 
 
@@ -123,6 +118,7 @@ class adminController extends Controller
       // Somar pontos dos dois tipos de resgate
       $totalBlindPoints = $totalBlindPointsCart + $totalBlindPointsDirect;
 
+      //subtrair pontos resgatados do total de pontos
       $totalPointsEarned -= $totalBlindPoints;
 
 

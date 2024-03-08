@@ -35,6 +35,12 @@
             color: #007bff;
         }
 
+        .user-info h2 {
+
+            margin-bottom: 10px;
+            color: #007bff;
+        }
+
         .user-info p {
             font-size: 1.2em;
             color: #28a745;
@@ -77,24 +83,28 @@
     @vite('resources/css/app.css')
     <div class="container ">
         <div class="user-info">
+            <h2 class="font-bold">BEM VINDO AO SEU CARTÃO FIDELIDADE</h2>
             <h1>{{Auth::user()->name}}</h1>
             @if($points[0]->points_earned ?? '' > 0)
                 <p>
-                    <p>Você tem {{ $points[0]->points_earned ?? ''}} pts</p>
+                    Você tem {{ $points[0]->points_earned ?? ''}} pts
                 </p>
             @else
-            Você ainda não posui pontos,mas continue porque a cada compra 
-                    seu valor em diheiro vira pontos 
+              <strong class="text-start">
+                Você ainda não possui pontos, mas não fique triste aqui o valor em dinheiro,
+                de suas compras viram pontos,continue comprando.
+              </strong>
+
             @endif
         </div>
 
         <div class="mt-4">
             <p class="text-center">
-                Aqui, você pode verificar a quantidade de pontos
-                 que possue, e escolher a forma de resgate do seu blinde
+
+                Escolha forma que lhe for mais conviniente para resgatar seu Blinde
             </p>
         </div>
-          
+
         <div class="products-section">
             <div class="row mt-4">
                 <!-- Brinde 1 -->
@@ -102,23 +112,51 @@
                     <div class="bg-orange-300 p-4 rounded">
                         <a href="{{ route('delivery.index') }}" class=" btn-block">
                             <h5 class="font-bold">Resgatar na Lanchonete</h5>
-                            <p>Click aqui para resgatar seu brinde retirando na lanchonete</p>
+                            <p class="text-start">Click aqui para resgatar seu brinde retirando na lanchonete.</p>
                         </a>
                     </div>
-                  
+
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-6 mb-2">
                     <div class="bg-orange-300 p-4 rounded">
                         <a href="{{ route('delivery.show') }}" class=" btn-block">
                             <h5 class="font-bold">Resgatar com Pedido</h5>
-                            <p>Click aqui para resgatar seu brinde junto com um pedido</p>
+                            <p class="text-start">Click aqui para resgatar seu brinde junto com um pedido.</p>
                         </a>
                     </div>
-                 
+
                 </div>
-         
-            </div>    
+
+                <div class="col-md-6 mb-2">
+                    <div class="bg-orange-300 p-4 rounded">
+
+                            <h3 class="font-bold">Regras para retirar o blinde na Lanchonete</h3>
+                            <p class="text-start">Para resgatar seu blinde, retirando na Lanchonte você pode clicar no botão acima
+                               e vai te levar para a pagina onde você pode escolher seus blindes de acordo com o número
+                               de pontos que possue resgatando o blinde desejado a solicitação de retirada esta feita,
+                               no estabelicimento o responsavel vai verificar a sua solicitação no sistema constando o
+                               pedido ser veridico em seguida autorizamdo a retirada do mesmo.
+                            </p>
+
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-2">
+                    <div class="bg-orange-300 p-4 rounded">
+                        <a href="{{ route('delivery.show') }}" class=" btn-block">
+                            <h5 class="font-bold">Regras para para pedir o blinde junto com um pedido</h5>
+                            <p class="text-start">Para resgatar seu blinde, junto com um pedido você pode clicar no botão acima
+                               e vai te levar para a pagina onde você pode escolher seus blindes de acordo com o número
+                               de pontos que possue resgatando o blinde desejado a solicitação de retirada esta feita,
+                               e você pode verificar no seu carrinho de compras lembrando que vai ter que respeitar as de valor
+                               minimo para entrega, e seu blinde vai chegar junto com seu pedido.
+                            </p>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
     </div>
     @vite('resources/js/app.js')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
