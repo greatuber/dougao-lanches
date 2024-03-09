@@ -112,7 +112,7 @@
                     <div class="bg-orange-300 p-4 rounded">
                         <a href="{{ route('delivery.index') }}" class=" btn-block">
                             <h5 class="font-bold">Resgatar na Lanchonete</h5>
-                            <p class="text-start">Click aqui para resgatar seu brinde retirando na lanchonete.</p>
+                            <p class="text-start">Click aqui para resgatar seu blinde retirando na lanchonete.</p>
                         </a>
                     </div>
 
@@ -122,7 +122,7 @@
                     <div class="bg-orange-300 p-4 rounded">
                         <a href="{{ route('delivery.show') }}" class=" btn-block">
                             <h5 class="font-bold">Resgatar com Pedido</h5>
-                            <p class="text-start">Click aqui para resgatar seu brinde junto com um pedido.</p>
+                            <p class="text-start">Click aqui para resgatar seu blinde junto com um pedido.</p>
                         </a>
                     </div>
 
@@ -135,8 +135,8 @@
                             <p class="text-start">Para resgatar seu blinde, retirando na Lanchonte você pode clicar no botão acima
                                e vai te levar para a pagina onde você pode escolher seus blindes de acordo com o número
                                de pontos que possue resgatando o blinde desejado a solicitação de retirada esta feita,
-                               no estabelicimento o responsavel vai verificar a sua solicitação no sistema constando o
-                               pedido ser veridico em seguida autorizamdo a retirada do mesmo.
+                               no estabelecimento o responsavel vai verificar a sua solicitação no sistema constando o
+                               pedido ser veridico em seguida autorizando a retirada do mesmo.
                             </p>
 
                     </div>
@@ -145,7 +145,7 @@
                 <div class="col-md-6 mb-2">
                     <div class="bg-orange-300 p-4 rounded">
                         <a href="{{ route('delivery.show') }}" class=" btn-block">
-                            <h5 class="font-bold">Regras para para pedir o blinde junto com um pedido</h5>
+                            <h5 class="font-bold">Regras para  pedir o blinde junto com um pedido</h5>
                             <p class="text-start">Para resgatar seu blinde, junto com um pedido você pode clicar no botão acima
                                e vai te levar para a pagina onde você pode escolher seus blindes de acordo com o número
                                de pontos que possue resgatando o blinde desejado a solicitação de retirada esta feita,

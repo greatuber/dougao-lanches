@@ -90,7 +90,7 @@
                 <a href="{{ route('cart.show')}}"><i class="fa-solid fa-cart-flatbed-suitcase fa-beat text-yellow"></i>
                     <p class="text-yellow text-2xl ">minhas compras</p></a>
             </div>
-            
+
             <div class="user-info">
                 <h1>{{Auth::user()->name}}</h1>
                 @if($points[0]->points_earned ?? '' > 0)
@@ -99,24 +99,24 @@
                     </p>
                 @else
                         <h3>
-                            Você ainda não posui pontos,mas continue porque a cada compra 
-                            seu valor em diheiro vira pontos 
+                            Você ainda não posui pontos,mas continue porque a cada compra
+                            seu valor em diheiro vira pontos
                         </h3>
                 @endif
             </div>
 
-      
+
 
         </div>
-    
+
 
 
         <div class="mt-4">
             <p class="text-center">
-                Aqui, o valor do seu pedido vira pontos e com eles você pode resgatar esses brindes:
+                Aqui, o valor do seu pedido vira pontos e com eles você pode resgatar esses blindes:
             </p>
         </div>
-          
+
             @if (session('delivery'))
                <div class="text-red text-center p-4">
                     <p>
@@ -129,7 +129,7 @@
                 <div class="blind rounded text-white p-2">
                     <p>{{session('brind')}}</p>
                 </div>
-                
+
             @endif
 
             @if ( session('denied'))
@@ -139,8 +139,8 @@
                     </p>
                 </div>
             @endif
-    
-         
+
+
         <div class="products-section">
             <div class="row mt-4">
                 <!-- Brinde 1 -->
@@ -171,7 +171,7 @@
                                     <form action="{{route('blind.create',$item->id)}}" method="POST">
                                         @csrf
                                         <div class="pb-4 w-full text-start">
-                                            
+
                                         </div>
                                         <div class="card">
                                             <img src="{{ asset('storage/' .$item->image) }}" class="product img" alt="Imagem do Doce">
@@ -180,29 +180,29 @@
                                                 <input type="hidden" name="name" value="{{$item->name}}">
                                                 <p class="card-text">Resgate por {{$item->points}}  pontos</p>
                                                 <input type="hidden" name="points" value="{{$item->points}}">
-                                               
+
                                             </div>
-                                          
+
                                                 <div class="">
-                                                 
+
                                                     <button class='text-sm bg-blue-500 p-2 rounded border' type="submit">RESGATAR</button>
                                                 </div>
-                                                
+
                                         </div>
 
-                                      
+
                                     </form>
-                                  
+
                               </div>
-                             
+
                             </div>
                             </div>
                         </div>
                 </div>
             </div>
 
-             @endforeach   
-      
+             @endforeach
+
         </div>
     </div>
     @vite('resources/js/app.js')
