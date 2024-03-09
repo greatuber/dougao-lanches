@@ -11,14 +11,14 @@
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Chela+One&display=swap" rel="stylesheet">
-           
+
                  {{-- select --}}
             <link rel="stylesheet" href="../css/bootstrap-multselect.css" type="text/css"/>
-            
+
         <style>
           .container {
             font-family: 'Chela One', cursive;
-            font-family: 'Roboto', sans-serif;                       
+            font-family: 'Roboto', sans-serif;
           }
           .price {
              font-size: 20px;
@@ -53,7 +53,7 @@
           margin-left: 120px;
          }
          .cartadd {
-          box-shadow: 0 0 10px rgba(226, 231, 227, 0.5); 
+          box-shadow: 0 0 10px rgba(226, 231, 227, 0.5);
           transition: 0,5ms,ease-out;
          }
          .cartadd:hover {
@@ -67,10 +67,10 @@
         </style>
         <title>CreateProduct</title>
     </head>
-    
+
     <body>
         @vite('resources/css/app.css')
-        
+
             <div class="baner  text-center bg-orange-500">
 
               <div class="flex ml-4">
@@ -81,7 +81,7 @@
                                   // Verificar se o dia da semana é segunda-feira (considerando o formato padrão do Carbon)
                                   $isMonday = \Carbon\Carbon::now()->dayOfWeek === 1;
                             @endphp
-                  
+
                             @if ($isMonday)
                                   <p>A lanchonete está fechada. Abre terça-feira às 18:00hs.</p>
                             @else
@@ -94,8 +94,8 @@
                                     </div>
                             @endif
                       </div>
-               
-                   
+
+
                         <div class="bg-white text-black rounded p-2 mt-2 hidden">
                           <form action="{{ route('update.admin')}}" method="post">
                               @csrf
@@ -119,7 +119,7 @@
                                 <x-slot name="trigger">
                                     <button class="  button inline-flex px-3 py-2 mt-2  text-sm leading-4 font-medium rounded-md text-yellow hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                                         <div>{{ Auth::user()->name }}</div>
-            
+
                                         <div class="ml-1">
                                             <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -127,16 +127,16 @@
                                         </div>
                                     </button>
                                 </x-slot>
-            
+
                                 <x-slot name="content">
                                     {{-- <x-dropdown-link :href="route('profile.edit')">
                                         {{ __('Profile') }}
                                     </x-dropdown-link> --}}
-            
+
                                     <!-- Authentication -->
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
-            
+
                                         <x-dropdown-link :href="route('logout')"
                                                 onclick="event.preventDefault();
                                                             this.closest('form').submit();">
@@ -148,25 +148,25 @@
                           </div>
 
               </div>
-              
+
                         <div class="cart">
                               <a href="{{ route('cart.show')}}"><i class="fa-solid fa-cart-flatbed-suitcase fa-beat text-yellow"></i>
                               <p class="text-yellow  ">minhas compras</p></a>
                           <div class="">
-                
+
                                 @if($order && $order->created_at->isToday())
                                   <p class="text-yellow text-sm ">Status do seu pedido de numero: <span class="text-lg">{{$order->id ?? ''}}</span></p>
                                   <p class="text-yellow  ">{{$order->status ?? ''}}</p>
                                 @endif
- 
+
                           </div>
                         </div>
-        
+
                   <div class="">
                     @include('layouts.baner')
                   </div>
-                 
-          
+
+
             </div>
 
               @if(session('success'))
@@ -175,14 +175,14 @@
                   </div>
               @endif
             <div class=" orange bg-orange-500  w-full">
-              <div class="bg-orange-500 ">
+              <div class="bg-orange-500 pr-4">
                 @include('layouts.menu')
               </div>
                 <table class="w-full">
                   <thead>
                     <tr>
-                        <th></th>      
-                     
+                        <th></th>
+
                         <th class="p-2">LANCHES</th>
                         <th class="p-2">INGREDIENTES</th>
                         <th class="pl-8" >PREÇO</th>
@@ -192,15 +192,15 @@
                     @foreach ($product as $products)
                         <tr>
                             <td class="">
-                          
+
                                   @if ($toggle->is_open ?? '' )
-                                      
+
                                       <button class="btn btn-success ml-2 border cartadd" data-bs-toggle="modal"
                                           data-bs-target="#firstModal{{$products->id}}">
                                           <i class="fa-sharp fa-solid fa-cart-plus text-white"></i>
                                       </button>
 
-                                  @else  
+                                  @else
 
                                     @include('layouts.button')
 
@@ -245,11 +245,11 @@
 
                                                                     <select  class=" rounded" name="additional[]" multiple="multiple">
                                                                         @foreach( $adde as $add)
-                                                                          
+
                                                                             <option value="{{$add->id}}" name="{{$add->name}}" >
                                                                               {{$add->name}}-R$- @money($add->price)
                                                                             </option>
-                                                                          
+
                                                                         @endforeach
                                                                     </select>
 
@@ -270,7 +270,7 @@
                                             </div>
                                         </div>
                                 </div>
-                            </td> 
+                            </td>
                             <td class="p-4 wider">
                                 {{$products->name}} <hr class="linear-1">
                             </td>
@@ -281,7 +281,7 @@
                                 </details>
                                  <hr class="linear">
                             </td>
-                            <td class="pl-4 text-2xl text-white price">R$_{{ number_format($products->price, 2, ',','.')}}</td>
+                            <td class="pr-4  text-white price">R$_{{ number_format($products->price, 2, ',','.')}}</td>
                         </tr>
                     @endforeach
                   </tbody>
@@ -295,8 +295,8 @@
     </body>
   </html>
 
-  
 
-  
 
-  
+
+
+
