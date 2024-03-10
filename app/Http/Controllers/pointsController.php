@@ -16,7 +16,7 @@ class pointsController extends Controller
         $user      = Auth::user()->id;
         $points = LoyaltyPoint::where('user_id', $user)->get();
         $point = Point::all();
-       
+
         return view('points.index', compact('points', 'point'));
     }
 
@@ -41,7 +41,7 @@ class pointsController extends Controller
         'name'  => $name,
         'points' => $points
        ]);
-       return redirect()->back()->with('create', 'brinde criado com sucesso');
+       return redirect()->back()->with('create', 'blinde criado com sucesso');
     }
 
     /**
@@ -49,7 +49,8 @@ class pointsController extends Controller
      */
     public function show()
     {
-        return view('points.create');
+        $points = Point::all();
+        return view('points.create', compact('points'));
     }
 
     /**
@@ -71,8 +72,15 @@ class pointsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy( $id)
     {
-        //
+
+        // dd('aqui');
+        $points = Point::findOrFail($id);
+
+        $points->delete();
+
+        return redirect()->back()->with('success', 'item deletado com sucesso!');
+
     }
 }

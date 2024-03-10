@@ -50,7 +50,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {        
+Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -62,7 +62,7 @@ Route::get('/create',[CreateController::class,'index'])->name('create.product')-
 Route::post('/store',[CreateController::class, 'store'])->name('store.product');
 Route::delete('/delete/{id}',[CreateController::class, 'delete'])->name('delete.product');
 Route::put('/update/{id}',[CreateController::class, 'update'])->name('update.product');
-                
+
 Route::get('/showbeer',[ShowController::class, 'show'])->name('showbeer');
 Route::get('/showcombo',[ShowController::class, 'shows'])->name('showcombo');
 Route::get('/showbomboniere',[bomboniereController::class, 'show'])->name('show.bomboniere');
@@ -87,12 +87,12 @@ Route::post('/adress',[AdressController::class, 'create'])->name('adress.create'
 
 // order
 
-Route::get('/showorder', [adminController::class, 'index'])->name('order.show'); 
+Route::get('/showorder', [adminController::class, 'index'])->name('order.show');
 Route::post('/adminCreateCart',[adminController::class, 'store'])->name('admin.create');
 
  //rota para criar o pedido com blinde
 
-Route::post('/adminCreateBlind/{i}', [AdminController2::class, 'store'])->name('admin.createBlind'); 
+// Route::post('/adminCreateBlind/{i}', [AdminController2::class, 'store'])->name('admin.createBlind');
 
 // update in status
 
@@ -114,7 +114,7 @@ Route::get('/delivereds',[deliveredController::class, 'index'])->name('status.de
         //   controller que vai gerar pdf para impressão
 
 Route::get('/pdfpreper,{id}',[pdfController::class, 'index'])->name('pdf.index');
- 
+
         // rota que imprimir de fato
 Route::post('/pdfimprimird,{id}',[pdfController::class, 'create'])->name('pdf.imprimird');
 
@@ -138,53 +138,61 @@ Route::get('/newProducts',[NewProjctsController::class, 'show'])->name('new.proj
 
     // rota para cadastrar categorias visualizar e excluir
 
-Route::get('/view-category',[CategoryController::class, 'index'])->name('view.category');  
+Route::get('/view-category',[CategoryController::class, 'index'])->name('view.category');
 Route::post('/create-category', [CategoryController::class, 'create'])->name('create.category');
 Route::post('/categoryDelet,{id}', [CategoryController::class, 'destroy'])->name('category.delete');
 
     //  rota para cadastra novo adicional
 
-Route::get('/view-aditional', [AditionalController::class, 'index'])->name('view.aditional'); 
-Route::post('/create-additional', [AditionalController::class, 'create'])->name('create.additional'); 
-Route::post('/additionalDelete,{id}',[AditionalController::class, 'destroy'])->name('additional.delete');  
+Route::get('/view-aditional', [AditionalController::class, 'index'])->name('view.aditional');
+Route::post('/create-additional', [AditionalController::class, 'create'])->name('create.additional');
+Route::post('/additionalDelete,{id}',[AditionalController::class, 'destroy'])->name('additional.delete');
 Route::put('/additionalUpdate,{id}',[AditionalController::class, 'update'])->name('additional.update');
 
-    //    rota para adicionar administrador no sistema  
+    //    rota para adicionar administrador no sistema
 
-Route::post('/update-admin',[updateAdminController::class, 'update'])->name('update.admin');    
- 
+Route::post('/update-admin',[updateAdminController::class, 'update'])->name('update.admin');
+
         //  view admin
 
 Route::get('/panel-admin',[panelAdminController::class, 'index'])->name('panel.admin');
 
     // rota de resumo dos pedidos graficos
-Route::get('/summary',[summaryController::class, 'index'])->name('summary.index');   
-Route::post('/summary/filter', [SummaryController::class, 'filter'])->name('summary.filter');  
-Route::post('/search',[summaryController::class, 'search'])->name('summary.search'); 
+Route::get('/summary',[summaryController::class, 'index'])->name('summary.index');
+Route::post('/summary/filter', [SummaryController::class, 'filter'])->name('summary.filter');
+Route::post('/search',[summaryController::class, 'search'])->name('summary.search');
 Route::get('/salesData',[summaryController::class, 'salesChartData'])->name('summary.sales');
 Route::get('/productQuantity',[summaryController::class, 'productGraphic'])->name('summary.product');
 require __DIR__.'/auth.php';
 
        //rota de visualização dos pontos
 
-Route::get('/points', [pointsController::class, 'index'])->name('index.point'); 
-Route::get('/creatpoints', [pointsController::class, 'show'])->name('createpoints');  
-Route::post('upload/points', [pointsController::class,'store'])->name('upload.points');   
+Route::get('/points', [pointsController::class, 'index'])->name('index.point');
+Route::get('/creatpoints', [pointsController::class, 'show'])->name('createpoints');
+
+     //cria os blindes em si
+
+Route::post('upload/points', [pointsController::class,'store'])->name('upload.points');
+
+    //deletar os blindes
+Route::post('destroy/points,{id}', [pointsController::class,'destroy'])->name('delete.points');
+
+
 
     //rota para cadastrar o regate dos blinedes
 
-Route::post('/create-blind,{id}', [BlindController::class, 'create'])->name('blind.create');  
+Route::post('/create-blind,{id}', [BlindController::class, 'create'])->name('blind.create');
 
   //rota para adiministrador visualizar o resgate
- 
-Route::get('index-blind', [BlindController::class, 'index'])->name('blind.index'); 
+
+Route::get('index-blind', [BlindController::class, 'index'])->name('blind.index');
 
   //rota de update do blinde
-Route::post('/update-blind, {id}', [BlindController::class, 'update'])->name('blind.update'); 
- 
+Route::post('/update-blind, {id}', [BlindController::class, 'update'])->name('blind.update');
+
   //rota para mostrar pedidos entregues
 
-Route::get('/blind-show', [BlindController::class, 'show'])->name('blind.show');  
+Route::get('/blind-show', [BlindController::class, 'show'])->name('blind.show');
 
 //rota para escolher como retirar o blinde
 
@@ -194,4 +202,4 @@ Route::get('delivery-toremove', [DeliveryBlindController::class, 'show'])->name(
 
  //rota para ciar blindcart
 
-Route::post('/create-blindCart,{id}', [BlindCartController::class, 'store'])->name('blindcart.store'); 
+Route::post('/create-blindCart,{id}', [BlindCartController::class, 'store'])->name('blindcart.store');

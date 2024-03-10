@@ -7,17 +7,41 @@
    <script src="https://kit.fontawesome.com/03e947ed86.js" crossorigin="anonymous"></script>
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
    <title>Create New Brinde</title>
+   <style>
+      .orange {
+        color:red;
+      }
+      .create {
+        background-color: rgb(187, 236, 112);
+        color: white;
+      }
+      .destroy {
+
+        background-color: rgb(187, 236, 112);
+        color: white;
+      }
+   </style>
 </head>
 <body>
    @vite('resources/css/app.css')
 
  <div class="container pt-4">
      @if(session('create'))
-        <div class="text-center text-green-500">
+        <div class="text-center create">
             <p>{{ session('create')}}</p>
         </div>
      @endif
-     
+
+     @if(session('success'))
+
+       <div class="text-center destroy">
+          <p>
+            {{ session('success')}}
+          </p>
+       </div>
+
+     @endif
+
    <h1 class="pt-2 font-bold text-center">CASDASTRAR NOVO BRINDE</h1>
    <form action="{{route('upload.points')}}" class=" bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 " method="post" enctype="multipart/form-data">
      @csrf
@@ -47,18 +71,53 @@
        {{-- <p class="text-red-500 text-xs italic">Please choose a password.</p> --}}
      </div>
 
-   
+
 
      <div class="flex items-center justify-between">
        <button class="bg-blue-500 hover:bg-blue-700 border text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
          cadastrar
        </button>
-   
+
        {{-- <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
          Forgot Password?
        </a> --}}
      </div>
- 
+      <div class="mt-2">
+        <h1 class="p-4 text-center">aqui vocẽ pode excluir o item que desejar</h1>
+        <table  class="table table-dark border">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Pontos</th>
+                    <th>Ações</th>
+                </tr>
+
+            </thead>
+             <tbody>
+                @foreach ($points as $item)
+                 <tr class=" space-x-2">
+                    <td class=" py-3">{{ $item->name}}</td>
+                    <td class="px-6 py-3">{{ $item->points}}</td>
+                <form action="{{ route('delete.points',$item->id) }}" method="POST">
+                        @csrf
+
+                    <td >
+                        <button type="submit">
+                          <div class="flex">
+                            <p class="orange font-bold">EXCLUIR</p>
+                            <i class="icon fa-sharp fa-solid fa-trash text-red-500 pl-2 pt-1"></i>
+                          </div>
+                        </button>
+                    </td>
+                </form>
+
+                 </tr>
+
+                @endforeach
+             </tbody>
+        </table>
+      </div>
+
    </form>
        <a href="{{ route('panel.admin')}}">
            <button class="bg-blue-500 hover:bg-blue-700 border font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
