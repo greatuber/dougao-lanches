@@ -27,7 +27,7 @@
 
  <div class="container pt-4">
      @if(session('create'))
-        <div class="text-center create">
+        <div class="text-center create p-2">
             <p>{{ session('create')}}</p>
         </div>
      @endif
@@ -83,7 +83,7 @@
        </a> --}}
      </div>
       <div class="mt-2">
-        <h1 class="p-4 text-center">aqui vocẽ pode excluir o item que desejar</h1>
+        <h1 class="p-4 text-center font-bold">aqui vocẽ pode excluir o item que desejar</h1>
         <table  class="table table-dark border">
             <thead>
                 <tr>
@@ -119,14 +119,16 @@
       </div>
 
    </form>
-       <a href="{{ route('panel.admin')}}">
-           <button class="bg-blue-500 hover:bg-blue-700 border font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-               Voltar
-           </button>
-       </a>
+
 
  </div>
-
+   <div class="text-center mb-4">
+    <a href="{{ route('panel.admin')}}">
+        <button class="bg-blue-500 hover:bg-blue-700 border font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+            Voltar
+        </button>
+    </a>
+   </div>
 
 
 

@@ -33,7 +33,7 @@ class pointsController extends Controller
      */
     public function store(Request $request)
     {
-       $imagePath = $request->file('image')->store('upload', 'public');
+       $imagePath = $request->file('image' ?? '')->store('upload', 'public');
        $name = $request->name;
        $points = $request->points;
        Point::create([
