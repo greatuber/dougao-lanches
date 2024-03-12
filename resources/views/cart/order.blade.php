@@ -63,7 +63,7 @@
                         <p class="text-card">Quantidade de Pedidos na Plataforma: {{ $userCount }}</p>
                         <p class="text-card">Data: {{ $item->created_at->format('d/m/Y H:i') }}</p>
                         <p class="font-bold">Total: @money($item->total)</p>
-                        <p class="text-card">Entrega: {{ $item->delivery ? 'Não' : 'Sim' }}</p>
+                        <p class="text-card">Entrega: {{ $item->delivery ? 'Sim' : 'Não'}}</p>
                         <p class="text-card">Forma de pagamento: {{ $item->payment ? 'Dinheiro' : 'Cartão' }}</p>
                         <p class="text-card">Observação: {{ $item->observation ?? '//' }}</p>
                         {{-- Adicione outras informações conforme necessário --}}
