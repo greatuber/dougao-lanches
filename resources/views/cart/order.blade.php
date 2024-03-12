@@ -96,6 +96,9 @@
                                                 <p>//</p>
                                             @endif
                                         </td>
+
+
+                                @endforeach
                                         <td >
                                             @if($list->blindCart)
                                                 {{ $list->blindCart->name}}
@@ -105,8 +108,8 @@
                                             </div>
                                             @endif
                                         </td>
-                                    </tr>
-                                @endforeach
+
+                                   </tr>
                             </tbody>
                         </table>
 
