@@ -696,27 +696,32 @@ for (let i = 0; i <opcoes.length; i++) {
 }
 }
 
- // Selecionando os elementos relevantes
- const paymentRadioButtons = document.querySelectorAll('input[name="payment"]');
+   // Selecionando os elementos relevantes
+   const paymentRadioButtons = document.querySelectorAll('input[name="payment"]');
     const observationInput = document.getElementById('observation');
+
+    // Função para verificar e atualizar o estado do campo de observação
+    function updateObservationField() {
+        // Verificando qual opção de pagamento está selecionada
+        const selectedPayment = document.querySelector('input[name="payment"]:checked').value;
+
+        // Se a opção selecionada for "Cartão", desabilita o campo de observação
+        if (selectedPayment === '0') {
+            observationInput.disabled = true;
+            observationInput.classList.add('disabled');
+        } else {
+            observationInput.disabled = false;
+            observationInput.classList.remove('disabled');
+        }
+    }
 
     // Adicionando um event listener para cada botão de rádio de pagamento
     paymentRadioButtons.forEach(function(radioButton) {
-        radioButton.addEventListener('change', function() {
-            // Verificando se o botão de rádio selecionado é o de "Cartão"
-            if (this.value === '0') {
-                // Desabilitando o campo de texto
-                observationInput.disabled = true;
-                // Adicionando a classe 'disabled' para estilizar
-                observationInput.classList.add('disabled');
-            } else {
-                // Habilitando o campo de texto
-                observationInput.disabled = false;
-                // Removendo a classe 'disabled'
-                observationInput.classList.remove('disabled');
-            }
-        });
+        radioButton.addEventListener('change', updateObservationField);
     });
+
+    // Chamando a função para atualizar o estado do campo de observação quando a página carregar
+    updateObservationField();
 
 
 
