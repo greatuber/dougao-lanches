@@ -22,18 +22,21 @@ class CreateController extends Controller
         public function store(ProductRequest $request)
 
         {
-                $category = Category::all();
-                $price = $request->price;
+            $imagePath = $request->file('image')->store('upload', 'public');
+            $category = Category::all();
+            $price = str_replace(',', '.', $request->price);
 
-                $price = str_replace(',', '.', $request->price);
-                $product = Product::create([
-                                'name'          => $request->name,
-                                'description'   => $request->description,
-                                'price'         => $price,
-                                'category_id'   => $request->category,
-                        ]);
+            $product = Product::create([
+                'photo'         => $imagePath,
+                'name'          => $request->name,
+                'description'   => $request->description,
+                'price'         => $price,
+                'category_id'   => $request->category,
 
-                $product::all();
+            ]);
+
+
+
 
                 return redirect()->back()->with('success', 'produto cadastrado com suceeso!');
         }

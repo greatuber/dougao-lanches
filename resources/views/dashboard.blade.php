@@ -174,118 +174,121 @@
                     <p>{{ session('success')}}</p>
                   </div>
               @endif
-            <div class=" orange bg-orange-500  w-full">
-              <div class="bg-orange-500 pr-4">
+            <div class=" orange bg-slate-50  w-full">
+              <div class=" pr-4">
                 @include('layouts.menu')
               </div>
-                <table class="w-full">
-                  <thead>
-                    <tr>
-                        <th></th>
 
-                        <th class="p-2">LANCHES</th>
-                        <th class="p-2">INGREDIENTES</th>
-                        <th class="pl-8" >PREÇO</th>
-                    </tr>
-                  </thead>
-                  <tbody class="p-2">
-                    @foreach ($product as $products)
-                        <tr>
-                            <td class="">
 
-                                  @if ($toggle->is_open ?? '' )
+                <div class="mb-5 mt-4 text-center" id="menu">
+                    <main class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 lg:px-8 mx-auto max-w-7xl px-2 mb-15 ">
+                       <!-- PRODUTO-ITEM  -->
+                       @foreach ($product as $item)
+                       <div class=" flex gap-4 ">
+                            @if($item->photo)
+                              <div class="w-40">
+                                <img src="{{ asset('storage/' .$item->photo) }}" alt="foto do lanche"
+                                class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300">
+                              </div>
+                            @endif
+                            <div class="">
+                                <p class="font-bold text-start">{{$item->name}}</p>
+                                <p class="text-sm">{{$item->description}}</p>
+
+                                <div class="flex items-center gap-2 justify-between mt-3">
+                                    <p class="font-bold text-lg">R$_ @money($item->price)</p>
+
+
+                                    @if ($toggle->is_open ?? '' )
 
                                       <button class="btn btn-success ml-2 border cartadd" data-bs-toggle="modal"
-                                          data-bs-target="#firstModal{{$products->id}}">
+                                          data-bs-target="#firstModal{{$item->id}}">
                                           <i class="fa-sharp fa-solid fa-cart-plus text-white"></i>
                                       </button>
 
-                                  @else
+                                    @else
 
-                                    @include('layouts.button')
+                                      @include('layouts.button')
 
-                                  @endif
+                                    @endif
 
-                                <div class="modal fade" id="firstModal{{$products->id}}" tabindex="-1"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header,btn btn-warning">
-                                                {{-- <h2 class="modal-title pt-4 ml-40" id="exampleModalLabel text-center">Adiciona este produto em seu carrinho</h2> --}}
-                                                <button type="button" class="btn-close " data-bs-dismiss="modal"   aria-label="Close">
-                                                  X
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <Form action="{{ route('store.cart',$products->id)}}" method="post">
-                                                    @csrf
-                                                    <div class="text  pt-4 rounded">
-                                                      <form class="grup-control">
-                                                          <fieldset>
-                                                                <div class="label text-center">
-                                                                    <strong><h1>PRODUTO</h1></strong>
-                                                                    <input type="text" disabled class=" p-2  rounded "  name="product_id" id="product_id" value="{{ $products->name }}"/><br>
-                                                                </div>
-                                                                <div class=" mt-2 label2 text-center">
-                                                                    <strong><h1>DESCRIÇÃO</h1></strong>
-                                                                    <input type="text" disabled class=" p-2 rounded " id="description" value="{{ $products->description }}"/><br>
-                                                                </div>
-                                                                <div class=" mt-2 label2 text-center">
-                                                                  <strong><h1>QUANTIDADE</h1></strong>
-                                                                    <input type="number" min="1"  class=" p-2  rounded text-center " name="quanty" value="{{ $products->quanty }}"/><br>
-                                                                </div>
-                                                                <div class="label3 text-center p-2">
-                                                                    <strong><h1>PREÇO UNITARIO</h1></strong>
-                                                                    <input type="text"  disabled class=" rounded text-center " name="price" id="price" value="{{number_format($products->price,2,',','.')?? '' }}"/><br>
-                                                                </div>
-                                                                <div class="text-center p-2">
-                                                                    <strong><label for="additional">ADICIONAIS</label></strong>
+                                    <div class="modal fade" id="firstModal{{$item->id}}" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header,btn btn-warning">
+                                                    {{-- <h2 class="modal-title pt-4 ml-40" id="exampleModalLabel text-center">Adiciona este produto em seu carrinho</h2> --}}
+                                                    <button type="button" class="btn-close " data-bs-dismiss="modal"   aria-label="Close">
+                                                      X
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <Form action="{{ route('store.cart',$item->id)}}" method="post">
+                                                        @csrf
+                                                        <div class="text  pt-4 rounded">
+                                                          <form class="grup-control">
+                                                              <fieldset class="text-center">
+
+                                                                    <div class="label text-center">
+                                                                        <img src="{{ asset('storage/' .$item->photo ?? '') }}" alt="foto do produto" class="img-fluid p-2 mx-auto d-block"><br>
+                                                                        <strong><h1>PRODUTO</h1></strong>
+                                                                        <input type="text" disabled class=" p-2  rounded "  name="product_id" id="product_id" value="{{ $item->name }}"/><br>
                                                                     </div>
-                                                                <div class="text-center  rounded multiselect-container ">
+                                                                    <div class=" mt-2 label2 text-center">
+                                                                        <strong><h1>DESCRIÇÃO</h1></strong>
+                                                                        <input type="text" disabled class=" p-2 rounded " id="description" value="{{ $item->description }}"/><br>
+                                                                    </div>
+                                                                    <div class=" mt-2 label2 text-center">
+                                                                      <strong><h1>QUANTIDADE</h1></strong>
+                                                                        <input type="number" min="1"  class=" p-2  rounded text-center " name="quanty" value="{{ $item->quanty }}"/><br>
+                                                                    </div>
+                                                                    <div class="label3 text-center p-2">
+                                                                        <strong><h1>PREÇO UNITARIO</h1></strong>
+                                                                        <input type="text"  disabled class=" rounded text-center " name="price" id="price" value="{{number_format($item->price,2,',','.')?? '' }}"/><br>
+                                                                    </div>
+                                                                    <div class="text-center p-2">
+                                                                        <strong><label for="additional">ADICIONAIS</label></strong>
+                                                                        </div>
+                                                                    <div class="text-center  rounded multiselect-container ">
 
-                                                                    <select  class=" rounded" name="additional[]" multiple="multiple">
-                                                                        @foreach( $adde as $add)
+                                                                        <select  class=" rounded" name="additional[]" multiple="multiple">
+                                                                            @foreach( $adde as $add)
 
-                                                                            <option value="{{$add->id}}" name="{{$add->name}}" >
-                                                                              {{$add->name}}-R$- @money($add->price)
-                                                                            </option>
+                                                                                <option value="{{$add->id}}" name="{{$add->name}}" >
+                                                                                  {{$add->name}}-R$- @money($add->price)
+                                                                                </option>
 
-                                                                        @endforeach
-                                                                    </select>
+                                                                            @endforeach
+                                                                        </select>
 
-                                                                </div>
-                                                                <div class=" p-2 text-center">
-                                                                  <strong><h1>OBSERVAÇÃO</h1></strong>
-                                                                  <input type="text" autocomplete="off" class="  rounded " placeholder="Ex: sem tomate" name="observation" id="observation" value="{{$products->observation}}">
-                                                                </div>
-                                                                <div class="flex flex-col gap-2">
-                                                                  <button class="btn btn-success text-with bg-success m-2" type="submit">ADICIONAR</button>
-                                                                  <button type="button" class="btn btn-warning bg-warning m-2"data-bs-dismiss="modal">Cancelar</button>
-                                                                </div>
-                                                          </fieldset>
-                                                      </form>
-                                                    </div>
-                                                </Form>
+                                                                    </div>
+                                                                    <div class=" p-2 text-center">
+                                                                      <strong><h1>OBSERVAÇÃO</h1></strong>
+                                                                      <input type="text" autocomplete="off" class="  rounded " placeholder="Ex: sem tomate" name="observation" id="observation" value="{{$item->observation}}">
+                                                                    </div>
+                                                                    <div class="flex flex-col gap-2">
+                                                                      <button class="btn btn-success text-with bg-success m-2" type="submit">ADICIONAR</button>
+                                                                      <button type="button" class="btn btn-warning bg-warning m-2"data-bs-dismiss="modal">Cancelar</button>
+                                                                    </div>
+                                                              </fieldset>
+                                                          </form>
+                                                        </div>
+                                                    </Form>
+                                                </div>
+                                                </div>
                                             </div>
-                                            </div>
-                                        </div>
+                                    </div>
+
                                 </div>
-                            </td>
-                            <td class="p-4 wider">
-                                {{$products->name}} <hr class="linear-1">
-                            </td>
-                            <td class="">
-                                <details>
-                                  <summary class="text-sm">INGREDIENTES</summary>
-                                  <p class="text-start text-white mr-12 border border-blue-800 color p-2 rounded">{{$products->description}}</p>
-                                </details>
-                                 <hr class="linear">
-                            </td>
-                            <td class="pr-4  text-white price">R$_{{ number_format($products->price, 2, ',','.')}}</td>
-                        </tr>
-                    @endforeach
-                  </tbody>
-                </table>
+                            </div>
+                      </div>
+
+                       @endforeach
+
+                    </main>
+
+                 </div>
+
                   <div class="">
                       {{   $product->links() }}
                   </div>

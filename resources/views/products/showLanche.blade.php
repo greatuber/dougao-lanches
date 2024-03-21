@@ -7,11 +7,11 @@
     <script src="https://kit.fontawesome.com/03e947ed86.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <style>
-    
+
       .orange {
         width: 400px;
         border-radius: 8px;
-       
+
       }
     .icon {
       font-size: 30px;
@@ -23,7 +23,7 @@
     background-color: rgb(21, 185, 21);
    }
 
-  
+
     </style>
 
     <title>CreateProduct</title>
@@ -32,21 +32,21 @@
     @vite('resources/css/app.css')
 
     <div class="container ">
-     
+
        <div class="text-center ">
           <div class=" center">
-            
+
 
                   @if ( session('update'))
                       <p class="text-green-600 ">{{ session('update')}}</p>
                   @endif
 
                   @if (session('delete'))
-                  
+
                   <div class="text-green-600">
                       {{ session('delete')}}
                   </div>
-                    
+
                 @endif
               <div class="text-center pt-2">
                 <h1>ÁREA ADMINISTRATIVA</h1>
@@ -67,12 +67,13 @@
                             <th class="p-2">LANCHES</th>
                             <th class="p-2">INGREDIENTES</th>
                             <th class="p-2" >PREÇO</th>
+                            <th class="p-2">IMAGE</th>
                             <th class="">AÇOẼS</th>
                         </tr>
                       </thead>
                       <tbody class="">
                         @foreach ($product as $products)
-                        
+
                             <tr>
                               {{-- <td class="">{{$products->id}}-</td> --}}
                               <td class="p-4 sm:w-60">{{$products->name}} <hr class="linear-1"></td>
@@ -84,8 +85,10 @@
                                 <hr class="linear">
                               </td>
                               <td class="">{{number_format($products->price,2,',','.')}}</td>
-                              
-                          
+
+                             {{-- <td class="w-8">
+                               <img src="{{ asset('storage/' .$products->photo ?? "") }}" alt="Imagem do Produto">
+                             </td> --}}
 
                               <td class="p-2  flex max-w-full">
                                 <button class="btn btn-success" data-bs-toggle="modal"
@@ -108,16 +111,23 @@
                                                             <fieldset>
                                                                 <div class="label">
                                                                   <h1>PRODUTO</h1>
-                                                                  <input type="text" class=" m-2 bg-info rounded" name="name" value="{{ $products->name }}"/><br>
+                                                                  <input type="text" class=" m-2  rounded" name="name" value="{{ $products->name }}"/><br>
                                                                 </div>
+
                                                                 <div class="label2">
                                                                   <h1>DESCRIÇÃO</h1>
-                                                                  <input type="text" class=" m-2 bg-info rounded" name="description" value="{{ $products->description }}"/><br>
+                                                                  <input type="text" class=" m-2  rounded" name="description" value="{{ $products->description }}"/><br>
                                                                 </div>
+
                                                                 <div class="label3">
                                                                   <h1>PREÇO</h1>
-                                                                  <input type="" class="bg-info rounded m-2" name="price" value="{{number_format($products->price,2, ',', '.')}}"/><br>
+                                                                  <input type="text" class=" rounded m-2" name="price" value="{{number_format($products->price,2, ',', '.')}}"/><br>
                                                                 </div>
+
+                                                                <div class="label3">
+                                                                    <h1>IMAGE</h1>
+                                                                    <input type="file" class=" rounded m-2" name="image" value="{{ $products->photo}}"/><br>
+                                                                  </div>
                                                               <button class="btn btn-primary text-with bg-primary mt-2" type="submit">Atualizar</button>
                                                             </fieldset>
                                                         </form>
@@ -132,8 +142,8 @@
                                           </div>
                                       </div>
                                   </div>
-                                
-                                  
+
+
                                   <div class="pr-2 produto flex flex-row lg:flex-row  w-full" w-full>
                                     <form action="{{ route('delete.product',$products->id)}}" method="post">
                                         @method('DELETE' )
@@ -147,18 +157,18 @@
                                         @csrf
                                     <div class="flex">
                                           <div class="">
-                                            <button type="submit" 
-                                                class="toggle-button bg-white p-2 ml-2 rounded 
+                                            <button type="submit"
+                                                class="toggle-button bg-white p-2 ml-2 rounded
                                                 @if($products->status == 0) inertex @endif">
                                                 {{-- <i class="fa-solid fa-toggle-on"></i> --}}
-                                            
+
                                                 @if($products->status == 0)
 
-                                                  <p class="pr-2 ">Desativar</p> 
-                                                  
+                                                  <p class="pr-2 ">Desativar</p>
+
                                                 @else
                                                   Ativar
-                                                
+
                                                 @endif
                                             </button>
                                           </div>
@@ -171,13 +181,13 @@
                                               @endif
                                           </div>
                                     </div>
-                                        
+
                                     </form>
                                   </div>
-                                  
+
                               </td>
                               <td>
-                              
+
                               </td>
                             </tr>
                         @endforeach
@@ -190,7 +200,7 @@
                 </a>
            </div>
              <p class="text-center text-gray-500 text-xs">
-        
+
                &copy;2023 todos os direitos reservados.
              </p>
          </div>
@@ -203,4 +213,3 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 </html>
- 
