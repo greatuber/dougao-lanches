@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Additional;
 use App\Models\Order;
+use App\Models\Order_product;
 use App\Models\Toggle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,11 +24,13 @@ class ClientController extends Controller
 
             $adde = Additional::all();
 
+            $productCount = Order_product::where('user_id', $users)->with('orderProductProduct')->count();
+
             $product = Product::where('category_id', 1)->where('status', 0)->simplePaginate(10);
 
 
 
-            return view('dashboard', compact('product', 'adde',  'order', 'toggle'));
+            return view('dashboard', compact('product', 'adde',  'order', 'toggle', 'productCount'));
       }
       public function toggle(Request $resquest)
       {

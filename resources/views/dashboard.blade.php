@@ -35,7 +35,7 @@
           margin-top: 3px;
           }
           .success{
-            border: 2px solid green;
+
             padding: 4px;
             color: green;
             font-size: 18px;
@@ -62,6 +62,9 @@
          }
          .wider {
           widows: 700px;
+         }
+         .img {
+            width: 40px;
          }
 
         </style>
@@ -105,15 +108,6 @@
                           </form>
                         </div>
 
-                            @if(session('access'))
-                              <div class="text-green-600">
-                                  <p>
-                                    {{ session('access')}}
-                                  </p>
-                              </div>
-                            @endif
-
-
                           <div class="logaut ">
                             <x-dropdown width="48">
                                 <x-slot name="trigger">
@@ -152,7 +146,13 @@
                         <div class="cart">
                               <a href="{{ route('cart.show')}}"><i class="fa-solid fa-cart-flatbed-suitcase fa-beat text-yellow"></i>
                               <p class="text-yellow  ">minhas compras</p></a>
-                          <div class="">
+                          <div class="text-2xl font-normal">
+
+                               @if($productCount)
+
+                                  {{($productCount)}}
+
+                               @endif
 
                                 @if($order && $order->created_at->isToday())
                                   <p class="text-yellow text-sm ">Status do seu pedido de numero: <span class="text-lg">{{$order->id ?? ''}}</span></p>
@@ -165,19 +165,26 @@
                   <div class="">
                     @include('layouts.baner')
                   </div>
-
-
             </div>
 
-              @if(session('success'))
-                  <div class=" success text-center  bg-white ">
-                    <p>{{ session('success')}}</p>
-                  </div>
-              @endif
             <div class=" orange bg-slate-50  w-full">
               <div class=" pr-4">
                 @include('layouts.menu')
               </div>
+
+              @if(session('access'))
+              <div class="text-green-600">
+                  <p>
+                  {{ session('access')}}
+                  </p>
+              </div>
+          @endif
+
+          @if(session('success'))
+              <div class=" success text-center  bg-white ">
+                  <p>{{ session('success')}}</p>
+              </div>
+          @endif
 
 
                 <div class="mb-5 mt-4 text-center" id="menu">
@@ -186,7 +193,7 @@
                        @foreach ($product as $item)
                        <div class=" flex gap-4 ">
                             @if($item->photo)
-                              <div class="w-40">
+                              <div class="w-40 img">
                                 <img src="{{ asset('storage/' .$item->photo) }}" alt="foto do lanche"
                                 class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300">
                               </div>
