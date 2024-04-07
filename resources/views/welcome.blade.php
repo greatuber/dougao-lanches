@@ -26,7 +26,7 @@
 
         @vite('resources/css/app.css')
 
-       
+
     </head>
     <body class="antialiased">
         <div class="relative sm:flex sm:justify-center  sm:items-center min-h-screen bg-orange-500 ">
@@ -48,12 +48,12 @@
                     <div class=" lg:w-full flex  space-x-4 ">
                         <div class="baner pt-2 font-bold">
                             <div class="animate__animated animate__bounce">
-                                <h1 class="dog md:text-xl sm:text-4xl">DOUGÃO</h1>
+                                <h1 class="animate-bounce">DOUGÃO</h1>
                                 <h2 class="lanch animate-pulse">LANCHES</h2>
                             </div>
                         </div>
                         {{-- <div class="items-center pr-4">
-                            <img src="{{asset('image/hamburgueorange.png')}}" alt="Imagem de Lanches" class="border-none"> 
+                            <img src="{{asset('image/hamburgueorange.png')}}" alt="Imagem de Lanches" class="border-none">
                         </div> --}}
                     </div>
                     <div class="container mx-auto  md:flex-row items-center  px-4">
@@ -62,22 +62,22 @@
                                 <div class="container ml-4 mr-4">
                                     <p class=" mb-4 text-white  text-left">
                                         Aqui você encontra o melhor lanche da cidade, com ingredientes
-                                        frescos e de qualidade. Venha matar sua fome com a gente, é só cadastra aqui no delivery do 
-                                        Dougão,e fazer seu pedido por aqui mesmo sem demora e sem borocracia,forma de pagamentos,dinheiro,cartão e pix sendo efetuado 
-                                        para entregador na hora da entrega, 
-                                        aberto de terça a domingo apartir das 19:00 hr e fechamento as 12:00 hr,
+                                        frescos e de qualidade. Venha matar sua fome com a gente, é só cadastra aqui no delivery do
+                                        Dougão,e fazer seu pedido por aqui mesmo sem demora e sem borocracia,forma de pagamentos,dinheiro,cartão e pix sendo efetuado
+                                        para entregador na hora da entrega,
+                                        aberto de terça a domingo apartir das 19:00 hr e fechamento as 24:00 hr,
                                         você também pode nos fazer uma visita pessoalmente e conhecer nosso estabelecimento
                                         situado na Rua Batista Luzardo numéro 1005 São Lourenço MG,será um praser recebelo em nosso
-                                        estabecimento e nâo se esqueça de nos seguir no faceboock, para ficar pordentro das novidades.
+                                        estabecimento e nâo se esqueça de nos seguir no faceboock,instagram para ficar pordentro das novidades.
                                     </p>
                                 </div>
                         </div>
-                   
-                
+
+
                     <!-- Rodapé -->
                             <footer class="bg-orange-500 py-4">
                                 <div class="container mx-auto  justify-between items-center ">
-                                      
+
                                         <nav class="text-center">
                                             <ul class="flex">
                                                 <li>
@@ -92,13 +92,13 @@
                                                     <a  href="https://api.whatsapp.com/send?phone=553599810371  target_blanck" class="text-white hover:text-gray-200 px-4 py-2 icons"><i class="fa-brands fa-whatsapp fa-2xl"></i></a>
                                                 </li>
 
-                                            </ul>   
-                                        </nav>       
+                                            </ul>
+                                        </nav>
                                 </div>
-                            </footer> 
+                            </footer>
                 </section>
         </div>
-    
+
     @vite('resources/js/app.js')
 </body>
 </html>

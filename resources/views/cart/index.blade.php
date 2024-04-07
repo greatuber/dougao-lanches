@@ -51,6 +51,9 @@
         color: white;
         border: 2px solid white;
     }
+    .success {
+        color: green;
+    }
     </style>
 
     {{-- <script>
@@ -141,10 +144,24 @@
                       <h1 class="text-xl text-gray-700 font-bold">Bem vindo a sua Sacola de Compras:</h1>
                       <p class="text-gray-700 font-bold">{{ auth()->user()->name }}</p>
                 </div>
-                            @if (session('sucessesmessagem'))
 
-                                <div class="text-green-600 text-lg p-2 font-bold">
-                                  {{ session('sucessesmessagem')}}
+                        {{-- <audio controls autoplay>
+                            <source src="{{asset('sounds/new_order.mp3')}}" type="audio/mp3">
+                            Your browser does not support the audio element.
+                        </audio> --}}
+                                            {{-- @dd(session('new_order')) --}}
+                                @if (session('new_order'))
+                                    <script>
+                                        // Reproduzir som de notificação
+                                        var audio = new Audio('{{ asset('sounds/audio.mp3') }}');
+                                        audio.play();
+                                    </script>
+                                @endif
+
+                            @if (session('successmessage'))
+
+                                <div class="success text-lg p-2 font-bold">
+                                  {{ session('successmessage')}}
                                 </div>
 
                               @endif
@@ -639,8 +656,8 @@
 
 
                                 </div>
-                                       @else
-                              <div class="">
+                            @else
+                              <div class="bg-slate-400 text-green p-2 ">
                                 <p class="bg mb-4">
                                   Você ainda não tem um endereço cadastrado click no botão acima para fazer o cadastro!
                                 </p>

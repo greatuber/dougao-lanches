@@ -32,6 +32,30 @@
 </head>
 <body>
     @vite('resources/css/app.css')
+    <iframe src="play.html" width="300" height="100" class="hidden"></iframe>
+
+    {{-- <button id="playButton" style="display: none;"></button>
+
+    @if ($newOrder)
+        <script>
+            // Função para simular um clique em um botão oculto para reproduzir o áudio
+            function playAudio() {
+                var audioButton = document.getElementById('playButton');
+                if (audioButton) {
+                    audioButton.click();
+                }
+            }
+
+            // Simular a reprodução automática do áudio
+            playAudio();
+
+            // Reproduzir som de notificação
+            var audio = new Audio('{{ asset('sounds/new_order.mp3') }}');
+            audio.play();
+        </script>
+    @endif --}}
+
+
   <div class="container mx-auto pt-2">
     <div class="text-center mb-2">
         <h1 class="p-2 pt-2 font-bold">LISTAGEM DE PEDIDOS</h1>
@@ -99,7 +123,8 @@
 
 
                                 @endforeach
-                                        <td >
+                                        <td>
+
                                             @if($list->blindCart)
                                                 {{ $list->blindCart->name}}
                                             @else
@@ -171,5 +196,6 @@
     </div>
   </div>
   @vite('resources/js/app.js')
+
 </body>
 </html>

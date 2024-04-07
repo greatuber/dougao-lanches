@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -25,10 +25,10 @@
       }
       .slate {
         background-color: rgb(228, 217, 217);
-        border: 2px solid #28a745; 
-        border-radius: 10px; 
-        box-shadow: 0 0 10px rgba(40, 167, 69, 0.5); 
-        transition: border-color 0.3s ease-in-out; 
+        border: 2px solid #28a745;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
+        transition: border-color 0.3s ease-in-out;
       }
       .slate:hover {
         background-color: #30fa5f;
@@ -48,18 +48,18 @@
           <div class="pb-4">
             <p>O sistema tem '{{$userCount}}' usuários cadastrados</p>
           </div>
-      
+
           <div class="pl-2 pb-2 ">
               <div class="p-2 mb-2">
                 <h1 class="font-bold">Click aqui para abrir e fechar a lanchonete</h1>
                 @include('layouts.closed-button')
-              </div> 
+              </div>
             <!-- Menu com subpastas -->
             <div class="text-center p-2">
               <h3 class="font-bold">ATUALIZAÇÔES DE  CATEGORIAS</h3>
             </div>
               <div class="container-fluid navbar-light bg-light overflow-auto">
-              
+
                   <ul class=" flex font-bold">
                     <li class="nav-item active p-2">
                       <a class="nav-link  p-2 rounded bg-orange-300 slate" href="{{ route('showbeer')}}">BEBIDAS</a>
@@ -71,14 +71,14 @@
                       <a class="nav-link  p-2  rounded bg-orange-300 slate" href="{{ route('create.product')}}">LANCHES</a>
                       <li class="nav-item p-2">
                         <a class="nav-link   p-2 rounded bg-orange-300 slate" href="{{ route('user.bomboniere')}}">BOMBONIÉRE</a>
-                       
+
                       </li>
                     </li>
                     <!-- Adicione mais itens de menu conforme necessário -->
                   </ul>
-                
+
               </div>
-           
+
 
             <div class="pt-2">
               <h1 class="font-bold p-2">CADASTRO DE PRODUTOS</h1>
@@ -91,10 +91,10 @@
               <h1 class="font-bold p-2"> PEDIDOS</h1>
               <a href="{{ route('order.show')}}" class=""><div class="slate p-2 rounded mt-2 ml-2 bg-orange-300">PEDIDOS</div></a>
             </div>
-          
+
             <a href="{{ route('client.show')}}" class=""><div class="slate p-2 rounded mt-2 ml-2 mb-2 bg-orange-300">CLIENTES</div></a>
 
-           
+
 
             <div class="pt-2">
               <h1 class="font-bold p-2">RESUMO DOS PEDIDOS</h1>
@@ -125,4 +125,106 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </body>
+</html> --}}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://kit.fontawesome.com/03e947ed86.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>CreateProduct</title>
+</head>
+<body class="bg-gray-100">
+<div class="container mx-auto py-8">
+  <div class="text-center">
+    <div class="">
+      <div class="p-4 rounded-lg bg-white shadow-md">
+        <h2 class="text-center font-bold text-2xl mb-4">SEJA BEM VINDO AO SEU PAINEL ADMINISTRATIVO</h2>
+        <h2 class="font-bold text-lg">{{ Auth::user()->name }}</h2>
+        <div class="py-2">
+          <p>O sistema tem '{{ $userCount }}' usuários cadastrados</p>
+        </div>
+
+        <!-- Section 1: Cadastro de Produtos -->
+
+        <div class="py-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="bg-gray-50 rounded-lg p-4 transform hover:scale-105 transition duration-300 hover:bg-gray-200">
+              <h1 class="font-bold text-lg">CADASTRAR NOVO PRODUTO</h1>
+              <a href="{{ route('new.project') }}" class="btn-slate">CADASTRAR NOVO PRODUTO</a>
+            </div>
+            <div class="bg-gray-50 rounded-lg p-4 transform hover:scale-105 transition duration-300 hover:bg-gray-200">
+              <h1 class="font-bold text-lg">CADASTRAR NOVA CATEGORIA</h1>
+              <a href="{{ route('view.category') }}" class="btn-slate">CADASTRAR NOVA CATEGORIA</a>
+            </div>
+            <div class="bg-gray-50 rounded-lg p-4 transform hover:scale-105 transition duration-300 hover:bg-gray-200">
+              <h1 class="font-bold text-lg">CADASTRAR NOVO ADICIONAL</h1>
+              <a href="{{ route('view.aditional') }}" class="btn-slate">CADASTRAR NOVO ADICIONAL</a>
+            </div>
+            <div class="bg-gray-50 rounded-lg p-4 transform hover:scale-105 transition duration-300 hover:bg-gray-200">
+              <h1 class="font-bold text-lg">CADASTRAR BRINDES</h1>
+              <a href="{{ route('createpoints') }}" class="btn-slate">CADASTRAR BRINDES</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Pedidos -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="py-4">
+                <div class="bg-gray-50 rounded-lg p-4 transform hover:scale-105 transition duration-300 hover:bg-gray-200">
+                  <h1 class="font-bold text-lg">PEDIDOS</h1>
+                  <a href="{{ route('order.show') }}" class="btn-slate">PEDIDOS</a>
+                </div>
+              </div>
+
+              <!-- Section 3: Clientes -->
+              <div class="py-4">
+                <div class="bg-gray-50 rounded-lg p-4 transform hover:scale-105 transition duration-300 hover:bg-gray-200">
+                  <h1 class="font-bold text-lg">CLIENTES</h1>
+                  <a href="{{ route('client.show') }}" class="btn-slate">CLIENTES</a>
+                </div>
+              </div>
+
+              <!-- Section 4: Resumo dos Pedidos -->
+              <div class="py-4">
+                <div class="bg-gray-50 rounded-lg p-4 transform hover:scale-105 transition duration-300 hover:bg-gray-200">
+                  <h1 class="font-bold text-lg">RESUMO DOS PEDIDOS</h1>
+                  <a href="{{ route('summary.index') }}" class="btn-slate">RESUMO</a>
+                </div>
+              </div>
+
+              <!-- Section 5: Resgate dos Brindes -->
+              <div class="py-4">
+                <div class="bg-gray-50 rounded-lg p-4 transform hover:scale-105 transition duration-300 hover:bg-gray-200">
+                  <h1 class="font-bold text-lg">RESGATE DOS BLINDES</h1>
+                  <a href="{{ route('blind.index') }}" class="btn-slate">BLINDES</a>
+                </div>
+              </div>
+
+              <!-- Section 6: Brindes Entregues -->
+              <div class="py-4">
+                <div class="bg-gray-50 rounded-lg p-4 transform hover:scale-105 transition duration-300 hover:bg-gray-200">
+                  <h1 class="font-bold text-lg">BLINDES ENTREGUES</h1>
+                  <a href="{{ route('blind.show') }}" class="btn-slate">BLINDES ENTREGUÊS</a>
+                </div>
+              </div>
+        </div>
+
+
+      </div>
+      <p class="text-center text-gray-500 text-xs mt-4 transform hover:scale-105 transition duration-300 hover:bg-gray-200">
+        &copy;2024 todos os direitos reservados desenvolvedor web Alexandre Roberto.
+      </p>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</body>
 </html>
+

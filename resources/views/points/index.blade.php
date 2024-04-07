@@ -135,8 +135,8 @@
                             <p class="text-start">Para resgatar seu blinde, retirando na Lanchonte você pode clicar no botão acima
                                e vai te levar para a pagina onde você pode escolher seus blindes de acordo com o número
                                de pontos que possue resgatando o blinde desejado a solicitação de retirada esta feita,
-                               no estabelecimento o responsavel vai verificar a sua solicitação no sistema constando o
-                               pedido ser veridico em seguida autorizando a retirada do mesmo.
+                               no estabelecimento o responsavel vai verificar a sua solicitação no sistema constando a veracidade do Pedido
+                                em seguida autorizando a entrega do mesmo.
                             </p>
 
                     </div>
@@ -149,7 +149,7 @@
                             <p class="text-start">Para resgatar seu blinde, junto com um pedido você pode clicar no botão acima
                                e vai te levar para a pagina onde você pode escolher seus blindes de acordo com o número
                                de pontos que possue resgatando o blinde desejado a solicitação de retirada esta feita,
-                               e você pode verificar no seu carrinho de compras lembrando que vai ter que respeitar as de valor
+                               e você pode verificar no seu carrinho de compras lembrando que vai ter que respeitar as regras de valor
                                minimo para entrega, e seu blinde vai chegar junto com seu pedido.
                             </p>
                         </a>

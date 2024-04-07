@@ -66,6 +66,21 @@
          .img {
             width: 40px;
          }
+         .green{
+            color: green;
+            /* background-color: cornsilk; */
+            padding: 2px;
+            border-radius: 6px;
+
+
+         }
+         .red {
+            color: red;
+            border-radius: 6px;
+         }
+         .greend {
+            color: rgb(28, 108, 28);
+         }
 
         </style>
         <title>CreateProduct</title>
@@ -74,11 +89,11 @@
     <body>
         @vite('resources/css/app.css')
 
-            <div class="baner  text-center bg-orange-500">
+            <div class="baner  text-center bg-orange-500 pb-4">
 
-              <div class="flex ml-4">
+              <div class="flex">
 
-                      <div class="pt-2 ml-2 bg-orange-500" @if ($toggle->is_open == 0 ?? '') inertex @endif>
+                      <div class="pt-2 ml-2 bg-orange-500 pb-2" @if ($toggle->is_open == 0 ?? '') inertex @endif>
                             @if ($toggle->is_open == 0 ?? '')
                             @php
                                   // Verificar se o dia da semana é segunda-feira (considerando o formato padrão do Carbon)
@@ -86,13 +101,15 @@
                             @endphp
 
                             @if ($isMonday)
-                                  <p>A lanchonete está fechada. Abre terça-feira às 18:00hs.</p>
+                                  <p >A lanchonete está fechada. Abre terça-feira às 19:00hs.</p>
                             @else
-                                  <p>Lanchonete fechada</p>
-                                  <p>Abre hoje às 19:00 hs</p>
+                                <div class="bg-orange-300 red pl-2 pr-2 ">
+                                    <p>Lanchonete fechada</p>
+                                    <p>Abre hoje às 19:00 hs</p>
+                                </div>
                             @endif
                             @else
-                                    <div class="lime pt-2 font-light text-white">
+                                    <div class="lime pt-2 bg-orange-300 green pl-2 pr-2">
                                         Lanchonete aberta
                                     </div>
                             @endif
@@ -144,26 +161,48 @@
               </div>
 
                         <div class="cart">
-                              <a href="{{ route('cart.show')}}"><i class="fa-solid fa-cart-flatbed-suitcase fa-beat text-yellow"></i>
-                              <p class="text-yellow  ">minhas compras</p></a>
+                              <div class="flex">
+                                 <div class="">
+                                    <a href="{{ route('cart.show')}}">
+                                        <i class="fa-solid fa-cart-flatbed-suitcase fa-beat text-yellow"></i>
+                                        <p class="text-yellow  ">
+                                            minhas compras
+                                        </p>
+                                    </a>
+                                 </div>
+                                <div class="text-3xl font-normal">
+                                    @if($productCount)
+
+                                        {{$productCount}}
+
+                                    @endif
+                                    @if(!$productCount)
+                                    <i class="fa-solid fa-sad-tear  text-3xl text-white"></i>
+
+                                    @endif
+                                </div>
+
+                              </div>
                           <div class="text-2xl font-normal">
 
-                               @if($productCount)
 
-                                  {{($productCount)}}
-
-                               @endif
-
+                             <div class="pb-2">
                                 @if($order && $order->created_at->isToday())
-                                  <p class="text-yellow text-sm ">Status do seu pedido de numero: <span class="text-lg">{{$order->id ?? ''}}</span></p>
-                                  <p class="text-yellow  ">{{$order->status ?? ''}}</p>
-                                @endif
+                                <p class="text-yellow text-sm ">Status do seu pedido de numero: <span class="text-lg">{{$order->id ?? ''}}</span></p>
+                                <p class="greend  pb-2">{{$order->status ?? ''}}</p>
+                              @endif
+                             </div>
 
                           </div>
                         </div>
 
                   <div class="">
                     @include('layouts.baner')
+                    <div class="text-sm ">
+                        <p>Horario de funcionamento: de Terça a Domingo<br>
+                            das 19:00 hs as 24:00 hs
+                        </p>
+                    </div>
                   </div>
             </div>
 
@@ -191,7 +230,7 @@
                     <main class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 lg:px-8 mx-auto max-w-7xl px-2 mb-15 ">
                        <!-- PRODUTO-ITEM  -->
                        @foreach ($product as $item)
-                       <div class=" flex gap-4 ">
+                       <div class=" flex gap-4 ml-4">
                             @if($item->photo)
                               <div class="w-40 img">
                                 <img src="{{ asset('storage/' .$item->photo) }}" alt="foto do lanche"
@@ -200,24 +239,36 @@
                             @endif
                             <div class="">
                                 <p class="font-bold text-start">{{$item->name}}</p>
-                                <p class="text-sm">{{$item->description}}</p>
 
-                                <div class="flex items-center gap-2 justify-between mt-3">
-                                    <p class="font-bold text-lg">R$_ @money($item->price)</p>
+                                <details class="flex gap-2">
+                                  <p class="text-sm text-start text-white md:text-lg bg-slate-600 p-2">{{$item->description}}</p>
+                                  <summary class="text-sm text-start">
+                                      Ingredientes
+                                  </summary>
+                                </details>
+
+                                <div class="flex gap-10">
+                                    <div class="">
+                                        <p class="font-bold md:text-2xl whitespace-nowrap text-green">R$ @money( $item->price )</p>
+                                    </div>
+
+                                  <div class="ml-8">
+                                      @if ($toggle->is_open ?? '' )
+
+                                        <button class="btn btn-success ml-10 border cartadd " data-bs-toggle="modal"
+                                            data-bs-target="#firstModal{{$item->id}}">
+
+                                            <i class="fa-sharp fa-solid fa-cart-plus text-white"></i>
 
 
-                                    @if ($toggle->is_open ?? '' )
+                                        </button>
 
-                                      <button class="btn btn-success ml-2 border cartadd" data-bs-toggle="modal"
-                                          data-bs-target="#firstModal{{$item->id}}">
-                                          <i class="fa-sharp fa-solid fa-cart-plus text-white"></i>
-                                      </button>
+                                      @else
 
-                                    @else
+                                        @include('layouts.button')
 
-                                      @include('layouts.button')
-
-                                    @endif
+                                      @endif
+                                  </div>
 
                                     <div class="modal fade" id="firstModal{{$item->id}}" tabindex="-1"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">

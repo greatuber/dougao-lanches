@@ -29,6 +29,7 @@ use App\Http\Controllers\panelAdminController;
 use App\Http\Controllers\pointsController;
 use App\Http\Controllers\summaryController;
 use App\Http\Controllers\toggleController;
+use App\Http\Controllers\verificationOrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -203,3 +204,7 @@ Route::get('delivery-toremove', [DeliveryBlindController::class, 'show'])->name(
  //rota para ciar blindcart
 
 Route::post('/create-blindCart,{id}', [BlindCartController::class, 'store'])->name('blindcart.store');
+
+
+
+
