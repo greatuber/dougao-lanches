@@ -15,7 +15,7 @@
             color: red;
         }
     </style>
- 
+
 </head>
 <body>
   <div class="container mx-auto pt-2 ">
@@ -28,7 +28,7 @@
                          </p>
                       </div>
                  @endforeach
-                   
+
                @endif
 
                 @if(session('nfound'))
@@ -41,7 +41,7 @@
                 <div class="text-center">
                     <h1 class="font-bold pt-2">RESUMO DE TODOS OS PEDIDOS</h1>
                 </div>
-        
+
                 <form action="{{ route('summary.filter') }}" method="post">
                     @csrf
                     <div class="my-4">
@@ -67,13 +67,18 @@
                <a href="{{route('summary.product')}}" class=" p-2 mt-2">
                 <button type="submit" class="mt-4 border bg-blue-500 p-2 rounded">GRAFICO DE LANCHE MAIS VENDIDO</button>
                </a>
+
+               <a href="{{ route('panel.admin')}}">
+                <button class="bg-blue-500 hover:bg-blue-700  font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    Voltar
+                </button>
+              </a>
      </div>
-  
+
      <canvas id="salesChart" width="800" height="400"></canvas>
 
-   
-    
-             
+
+
+
 </body>
 </html>
- 

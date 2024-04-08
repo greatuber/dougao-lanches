@@ -10,36 +10,36 @@
     <title>centerCart</title>
     @vite('resources/css/app.css')
 
-  
- 
+
+
 </head>
 <body>
   <div class="container mx-auto pt-2 ">
      <div class="text-center">
-         
+
 
             <div class="container mx-auto pt-2">
                 <div class="text-center">
                     <h1 class="font-bold pt-2">GRÁFICO DE LANCHES MAIS VENDIDOS</h1>
                 </div>
-        
-            
+
+
             </div>
-               
+
      </div>
-     
+
      <div style="width: 80%; margin: auto;">
         <canvas id="salesChart"></canvas>
     </div>
 
      <a href="{{ route('panel.admin')}}">
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+        <button class="bg-blue-500 hover:bg-blue-700  font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
             Voltar
         </button>
     </a>
-   
+
      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-     
+
      <script>
         // Obtenha os dados do controlador
         var data = <?php echo json_encode($data); ?>;
@@ -83,8 +83,7 @@
             }
         });
     </script>
-    
-             
+
+
 </body>
 </html>
- 

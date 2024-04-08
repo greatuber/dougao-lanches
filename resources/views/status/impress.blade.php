@@ -11,14 +11,14 @@
     @vite('resources/css/app.css')
     <style>
         .row{
-          
+
            background-color: black;
         }
         .payment{
             align-items: center;
             justify-content: space-evenly;
         }
-  
+
     </style>
 </head>
 <body>
@@ -30,16 +30,16 @@
           </div> --}}
 
          @forelse ($order as $item)
-          
+
         <form action="{{ route('pdf.imprimird',$item->id)}}" method="POST">
-         
-            @csrf 
+
+            @csrf
                 <div class="pt-2 container overflow-auto">
                     <div class="border p-2 flex payment">
                         <h3 class="font-bold troco p-2">forma de pagamento</h3>
-                  
+
                         <p>{{ $item->payment ? 'DINHEIRO' : 'CARTÃO' }} :</p>
-                    
+
                         <p class="troco p-2">{{ $order[0]->observation}}</p>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                                 </tr>
                             </tbody>
                     </table>
-                </div>  
+                </div>
             </div>
             <div class=" overflow-auto">
                 <table class="w-full border border-gray-100 ">
@@ -80,12 +80,12 @@
                             <th class="py-2 px-4 border-b">PREÇO</th>
                             <th class="py-2 px-4 border-b">OBSERVAÇÃO</th>
                             <th class="py-2 px-4 border-b">ADICIONAIS</th>
-                            
+
                         </tr>
                     </thead>
                     <tbody class="pb-2">
-                        
-                        @foreach ($item->orderList as $list) 
+
+                        @foreach ($item->orderList as $list)
 
                                 <tr>
                                     <td class="py-2 px-4 border-b">{{ $list->product->name ?? ''}}</td>
@@ -93,32 +93,32 @@
                                     <td class="py-2 px-4 border-b">{{ number_format($list->value, 2, ',', '.')  }}</td>
                                     <td class="py-2 px-4 border-b">{{ $list->observation ?? '' }}</td>
                                     <td class="py-2 px-4 border-b">
-                                       
+
                                         @if($list->orderAdditional->count()>0)
                                     {{-- @dd($list->orderAdditional); --}}
                                     @foreach ($list->orderAdditional as $additional)
                                         {{ $additional->name ?? '' }},
-                                    @endforeach 
+                                    @endforeach
                                 @else
-                                
+
                                     <div class="">
                                         <p>sem adicional</p>
                                     </div>
-                                    
-                                    
+
+
                                 @endif
-                                   
+
                                     </td>
                                 </tr>
-                        @endforeach 
+                        @endforeach
                     </tbody>
-                </table>    
-            </div>    
+                </table>
+            </div>
 
                     <div class="flex flex-wrap content-start pb-4">
                         {{-- <div class="p-2 text-start">
                             <label for="">Cidade:</label>
-                        
+
                             <span class=" p-2 mr-2 font-bold">{{$item->orderUser->address[0]->city  ?? ''}}</span>
                         </div> --}}
                         <div class="p-2 text-start">
@@ -139,14 +139,14 @@
                         </div>
                         <div class="p-2 text-start">
                             <label for="">Complemento:</label>
-                        
+
                             <span class="p-2 mr-2 font-bold">{{$item->orderUser->address->last()->complement	 ?? ''}}</span>
                         </div>
                     </div>
-            
+
                     <div class=" flex">
                            <div class="">
-                               
+
                 <button type="submit" class="border rounded p-2 button hover:text-blue-800 mr-2">IMPRIMIR</button>
         </form>
                            </div>
@@ -158,16 +158,20 @@
                             </div>
                     </div>
                  </div>
-              
+                 <a href="{{ route('panel.admin')}}">
+                    <button class="bg-blue-500 hover:bg-blue-700 border font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                        Voltar
+                    </button>
+                  </a>
                  <div class="row pb-2">
                     <hr>
                  </div>
+
             @empty
               <p class="pt-4 font-bold text-lg">Sem Pedidos com estatus aceito no momento!</p>
               <p>Para o dia: @datetime(now())</p>
            @endforelse
-          
+
     </div>
 </body>
 </html>
- 

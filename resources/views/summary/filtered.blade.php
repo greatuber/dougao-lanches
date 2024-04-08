@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <title>centerCart</title>
     @vite('resources/css/app.css')
- 
+
 </head>
 <body>
 
@@ -43,7 +43,7 @@
                                         @foreach ($order->orderList as $item)
                                           {{$item->product->name ?? ''}},
                                         @endforeach
-                                        
+
                                     </td>
                                     <td class="border border-gray-300 px-4 py-2">${{$order->total}}</td>
                                     <td class="border border-gray-300 px-4 py-2">{{$order->payment == '0' ? 'Cartão' : 'Dinheiro'}}</td>
@@ -54,7 +54,7 @@
                         </table>
                     </div>
             </details>
-            
+
             <div class="pb-2 container">
                 <div class="text">
                     <p class="p-2 text-lg">Número de pedidos: {{$count}}</p>
@@ -75,10 +75,10 @@
                 <input type="search" class="border mb-2 rounded" required autocomplete="off" name="search" placeholder="digite o numero do pedido">
                 <button type="submit" class="border text-white p-2 bg-blue-500 hover:bg-blue-700 rounded">Pesquisar</button>
             </form>
-         
+
          </div>
         <a href="{{ route('panel.admin')}}">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+            <button class="bg-blue-500 hover:bg-blue-700  font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                 Voltar
             </button>
         </a>
@@ -160,4 +160,3 @@
 
 </body>
 </html>
- 

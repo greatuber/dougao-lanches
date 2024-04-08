@@ -11,12 +11,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <style>
       .container {
-        
+
       }
       .orange {
         width: 400px;
         border-radius: 8px;
-       
+
       }
     .icon {
       font-size: 30px;
@@ -35,11 +35,11 @@
     @vite('resources/css/app.css')
 
     <div class="container">
-         
+
           <div class="text-center pt-2">
                <h1 class="pb-2">ÁREA ADMINISTRATIVA</h1>
                <h2 class="pb-2">aqui você pode excluir,editar e desativar um produto</h2>
-      
+
           </div>
 
         <div class=" ">
@@ -55,7 +55,7 @@
             <a href="{{ route('create.product')}}">  <div class=" border text-white p-2 rounded mt-2 ml-2 font-bold">LANCHES/USER</div></a>
           </div> --}}
         </div>
-                  
+
         <div class=" w-full overflow-auto ">
             <table class="w-full overflow-auto">
               <thead>
@@ -71,9 +71,9 @@
                   {{-- <td class="">{{$products->id}}-</td> --}}
                   <td class="p-4 sm:w-60">{{$products->name}} <hr class="linear-1"></td>
                   <td class="">
-                 
+
                       <p class="">{{$products->description}}</p>
-                   
+
                     <hr class="linear">
                   </td>
                   <td class="">{{number_format($products->price,2,',','.')}}</td>
@@ -83,7 +83,7 @@
                           data-bs-target="#firstModal{{$products->id}}">
                           <i class="fa-regular fa-pen-to-square "></i>
                       </button>
-                      
+
                      <div class="modal fade" id="firstModal{{$products->id}}" tabindex="-1"
                          aria-labelledby="exampleModalLabel" aria-hidden="true">
                          <div class="modal-dialog">
@@ -92,7 +92,7 @@
                                   <div class="text-center">
                                     <h1 class="modal-title pt-4" id="exampleModalLabel">ATUALIZAR</h1>
                                   </div>
-                                  
+
                                      <button type="button" class="btn-close" data-bs-dismiss="modal"   aria-label="Close">
                                      </button>
                                  </div>
@@ -104,9 +104,9 @@
                                            <form class="grup-control">
                                                <fieldset>
                                                    <div class="label text-center">
-                                                     
+
                                                      <h1>PRODUTO</h1>
-                                                     
+
                                                      <input type="text" class="bg-info rounded" name="name" value="{{ $products->name }}"/><br>
                                                    </div>
                                                    <div class="label2 text-center">
@@ -144,17 +144,17 @@
                         @csrf
                         <div class="flex">
                           <div class="">
-                            <button type="submit" 
-                                class="toggle-button bg-white p-2 ml-2 rounded 
+                            <button type="submit"
+                                class="toggle-button bg-white p-2 ml-2 rounded
                                 @if($products->status == 0) inertex @endif">
-                            
+
                                 @if($products->status == 0)
 
-                                  <p class="pr-2 ">Desativar</p> 
-                                  
+                                  <p class="pr-2 ">Desativar</p>
+
                                 @else
                                   Ativar
-                                
+
                                 @endif
                             </button>
                           </div>
@@ -167,12 +167,12 @@
                               @endif
                           </div>
                         </div>
-                 
+
                         </form>
                      </div>
                  </td>
                  <td>
-                 
+
                  </td>
                 </tr>
                 @endforeach
@@ -180,12 +180,12 @@
             </table>
          </div>
          <a href="{{ route('panel.admin')}}">
-          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+          <button class="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
               Voltar
           </button>
       </a>
          <div class="">
-         
+
          </div>
 
     </div>

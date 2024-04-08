@@ -13,7 +13,7 @@
    @vite('resources/css/app.css')
 
  <div class="container pt-4">
-     
+
    <h1 class="pt-2 font-bold text-center">CASDASTRAR NOVO ADICIONAL</h1>
    <form action="{{route('create.additional')}}" class=" bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 " method="post">
      @csrf
@@ -38,14 +38,14 @@
        <button class="bg-blue-500 hover:bg-blue-700 border font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
          cadastrar
        </button>
-   
+
        {{-- <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
          Forgot Password?
        </a> --}}
      </div>
      @if(session('success'))
         <div class="text-green-600">
-            {{ session('success')}}  
+            {{ session('success')}}
         </div>
       @endif
 
@@ -54,7 +54,7 @@
          <div class="text-green-600">
              {{ session('deleted')}}
          </div>
-          
+
       @endif
    </form>
 
@@ -64,7 +64,7 @@
          {{ session('updated')}}
 
        </div>
-        
+
     @endif
    <div class="container pt-2 ml-4">
     <table class="">
@@ -74,7 +74,7 @@
           <th class="px-6 py-3">PREÇO</th>
           <th >AÇÕES</th>
         </tr>
-          
+
       </thead>
       <tbody>
         @foreach ($additional as $item)
@@ -83,16 +83,16 @@
           <td class="px-6 py-3">@money($item->price)</td>
             <form action="{{ route('additional.delete',$item->id)}}" method="post">
                @csrf
-           
+
           <td>
             <button type="submit">
               <i class="icon fa-sharp fa-solid fa-trash fa-2xl text-red-500"></i>
             </button>
           </td>
-            
+
             </form>
 
-        
+
               <td>
                 <button class="btn btn-success" data-bs-toggle="modal"
                   data-bs-target="#firstModal{{$item->id}}">
@@ -106,7 +106,7 @@
                             <div class="text-center">
                               <h1 class="modal-title pt-4" id="exampleModalLabel">ATUALIZAR</h1>
                             </div>
-                            
+
                               <button type="button" class="btn-close" data-bs-dismiss="modal"   aria-label="Close">
                               </button>
                           </div>
@@ -118,12 +118,12 @@
                                     <form class="grup-control">
                                         <fieldset>
                                             <div class="label text-center">
-                                              
+
                                               <h1>PRODUTO</h1>
-                                              
+
                                               <input type="text" class=" rounded" name="name" value="{{ $item->name }}"/><br>
                                             </div>
-                                         
+
                                             <div class="label3 text-center">
                                               <h1>PREÇO</h1>
                                               <input type="text" class=" rounded" name="price" value="@money($item->price)"/><br>
@@ -143,22 +143,22 @@
                       </div>
                   </div>
               </div>
-              
+
               </td>
-           
-        
-          
+
+
+
         </tr>
-      
+
         @endforeach
-          
+
       </tbody>
     </table>
-    <a href="{{ route('panel.admin')}}">
-      <button class="bg-blue-500 hover:bg-blue-700 border font-bold py-2 px-4  rounded focus:outline-none focus:shadow-outline" type="submit">
-          Voltar
-      </button>
-  </a>
+        <a href="{{ route('panel.admin')}}">
+            <button class="bg-blue-500 hover:bg-blue-700 border font-bold py-2 px-4  rounded focus:outline-none focus:shadow-outline" type="submit">
+                Voltar
+            </button>
+        </a>
 
 </div>
 

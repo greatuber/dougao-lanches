@@ -11,13 +11,13 @@
     @vite('resources/css/app.css')
     <style>
         .row{
-          
+
            background-color: black;
         }
         .order {
             background-color: rgba(184, 177, 177, 0.897);
         }
-   
+
     </style>
 </head>
 <body>
@@ -28,7 +28,7 @@
         <div class="">
             @include('layouts.statusNavegation')
           </div>
-  
+
          @forelse ($order as $item)
             <div class="card p-2">
                 <div class="overflow-auto">
@@ -56,7 +56,7 @@
                                 </tr>
                             </tbody>
                     </table>
-                </div>  
+                </div>
             </div>
             <div class=" overflow-auto">
                 <table class="w-full border border-gray-100 ">
@@ -70,20 +70,20 @@
                         </tr>
                     </thead>
                     <tbody class="pb-2">
-                      
-                      @foreach ($item->orderList as $list)            
+
+                      @foreach ($item->orderList as $list)
                         <tr>
                             <td class="py-2 px-4 border-b">{{ $list->product->name ?? ''}}</td>
                             <td class="py-2 px-4 border-b text-center">{{ $list->quamtity}}</td>
                             <td class="py-2 px-4 border-b">{{ number_format($list->value, 2, ',', '.')  }}</td>
                             <td class="py-2 px-4 border-b">{{ $list->observation ?? '' }}</td>
                             <td class="py-2 px-4 border-b">
-                           
+
                                 @if($list->orderAdditional->count()>0)
                                 {{-- @dd($list->orderAdditional); --}}
                                 @foreach ($list->orderAdditional as $additional)
                                     {{ $additional->name ?? '' }},
-                                @endforeach 
+                                @endforeach
                                  @else
                                     <div class="">
                                         <p>//</p>
@@ -91,16 +91,16 @@
                                 @endif
 
                             </td>
-                            
+
                         </tr>
                       @endforeach
                     </tbody>
-                </table>    
-            </div>    
-               
+                </table>
+            </div>
+
                  <div class=" container pt-4 pb-4">
                     <h1 class="font-bold">ENDEREÇO PARA ENTREGA</h1>
-            
+
                     <div class="flex flex-wrap content-start ">
                         <div class="p-2 text-start">
                             <label for="">Cidade:</label>
@@ -127,7 +127,7 @@
                             <input class="rounded border" type="text" value="{{$item->orderUser->address[0]->complement	 ?? ''}}">
                         </div>
                     </div>
-            
+
                      <form action="{{route('status.delivery',$item->id)}}" method="POST">
                         @csrf
                         <div class="float-rigth">
@@ -135,7 +135,12 @@
                         </div>
                      </form>
                  </div>
-                
+                 <a href="{{ route('panel.admin')}}">
+                    <button class="bg-blue-500 hover:bg-blue-700 border font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                        Voltar
+                    </button>
+                  </a>
+
                  <div class="row pb-2">
                     <hr>
                  </div>
@@ -147,4 +152,3 @@
     </div>
 </body>
 </html>
- 

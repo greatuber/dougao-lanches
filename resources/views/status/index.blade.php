@@ -7,24 +7,24 @@
   <div class="container mx-auto pt-2">
     <div class="text-center mb-2">
         <h1 class="p-2 pt-2 font-bold">LISTAGEM DE PEDIDOS</h1>
-       
+
         <div class="overflow-auto">
             @include('layouts.statusNavegation')
         </div>
-      
-      
+
+
             <div class="card p-2 pt-2 ">
             @forelse ($orders as $item)
-    <form action="{{ route('pdf.imprimird',$item->id)}}" method="POST">    
+    <form action="{{ route('pdf.imprimird',$item->id)}}" method="POST">
                 <div class="card-header">
                     Pedido N- {{ $item->id }}
                 </div>
                         @php
-                
+
                             $user = $item->user_id
-                
+
                         @endphp
-            
+
                         @php
                             // $userOrderCount = $userCount->firstWhere('id', $users)->UserOrder_count;
                             $userCount = $item->where('user_id', $user)->count();
@@ -64,12 +64,12 @@
                                             @if ($list->orderAdditional->count() > 0)
                                                 @foreach ($list->orderAdditional as $additional)
                                                     {{ $additional->name ?? '' }},
-                                                @endforeach 
+                                                @endforeach
                                             @else
                                                 Nenhum adicional
                                             @endif
                                         </td>
-                                        <td > 
+                                        <td >
                                             @if($list->blindCart)
                                                 {{ $list->blindCart->name}}
                                             @else
@@ -84,7 +84,7 @@
                         </table>
 
                        </div>
-                       
+
                     <div class="container pt-4 pb-4">
                         <h1 class="font-bold">ENDEREÇO PARA ENTREGA</h1>
                         <div class="flex flex-wrap content-start pb-4">
@@ -124,9 +124,13 @@
                         </div>
                      </form>
                  </div>
-            
+
             </div>
-        
+             <a href="{{ route('panel.admin')}}">
+                <button class="bg-blue-500 hover:bg-blue-700 border font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    Voltar
+                </button>
+              </a>
         @empty
             <p class="pt-4 font-bold text-lg">Sem Pedidos com status processando aceito!</p>
             <p>Para o dia: {{ $date }}</p>

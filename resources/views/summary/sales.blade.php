@@ -9,34 +9,34 @@
     <title>centerCart</title>
     @vite('resources/css/app.css')
 
-  
- 
+
+
 </head>
 <body>
   <div class="container mx-auto pt-2 ">
      <div class="text-center">
-         
+
 
             <div class="container mx-auto pt-2">
                 <div class="text-center">
                     <h1 class="font-bold pt-2">Resumo das vendas no mês de {{$dateMonth}}</h1>
                 </div>
-        
-            
+
+
             </div>
-               
+
      </div>
-  
+
      <canvas id="salesChart" width="800" height="400"></canvas>
 
      <a href="{{ route('panel.admin')}}">
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+        <button class="bg-blue-500 hover:bg-blue-700  font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
             Voltar
         </button>
     </a>
-   
+
      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-     
+
      <script>
         document.addEventListener('DOMContentLoaded', function() {
             const salesChart = new Chart(document.getElementById('salesChart').getContext('2d'), {
@@ -61,9 +61,8 @@
             });
         });
     </script>
-    
-    
-             
+
+
+
 </body>
 </html>
- 

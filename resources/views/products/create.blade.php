@@ -148,67 +148,109 @@
           <p>O sistema tem '{{ $userCount }}' usuários cadastrados</p>
         </div>
 
-        <!-- Section 1: Cadastro de Produtos -->
+
+        <div class="py-2">
+          <h1 class="font-bold">Click aqui para abrir e fechar a lanchonete</h1>
+          @include('layouts.closed-button')
+        </div>
+
+        <div class="pt-2 font-bold">
+          <h2>
+            ATUALIZAÇÕES DE PRODUTOS
+          </h2>
+        </div>
 
         <div class="py-4">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="bg-gray-50 rounded-lg p-4 transform hover:scale-105 transition duration-300 hover:bg-gray-200">
-              <h1 class="font-bold text-lg">CADASTRAR NOVO PRODUTO</h1>
-              <a href="{{ route('new.project') }}" class="btn-slate">CADASTRAR NOVO PRODUTO</a>
+              <a href="{{ route('showbeer') }}" class="btn-slate font-bold">BEBIDAS</a>
             </div>
             <div class="bg-gray-50 rounded-lg p-4 transform hover:scale-105 transition duration-300 hover:bg-gray-200">
-              <h1 class="font-bold text-lg">CADASTRAR NOVA CATEGORIA</h1>
-              <a href="{{ route('view.category') }}" class="btn-slate">CADASTRAR NOVA CATEGORIA</a>
+              <a href="{{ route('showcombo') }}" class="btn-slate font-bold">COMBOS</a>
             </div>
             <div class="bg-gray-50 rounded-lg p-4 transform hover:scale-105 transition duration-300 hover:bg-gray-200">
-              <h1 class="font-bold text-lg">CADASTRAR NOVO ADICIONAL</h1>
-              <a href="{{ route('view.aditional') }}" class="btn-slate">CADASTRAR NOVO ADICIONAL</a>
+              <a href="{{ route('create.product') }}" class="btn-slate font-bold">LANCHES</a>
             </div>
             <div class="bg-gray-50 rounded-lg p-4 transform hover:scale-105 transition duration-300 hover:bg-gray-200">
-              <h1 class="font-bold text-lg">CADASTRAR BRINDES</h1>
-              <a href="{{ route('createpoints') }}" class="btn-slate">CADASTRAR BRINDES</a>
+              <a href="{{ route('user.bomboniere') }}" class="btn-slate font-bold">BOMBONIÉRE</a>
+            </div>
+          </div>
+        </div>
+
+
+<!-- Section 1: Cadastro de Produtos -->
+        <div class="pt-2 font-bold">
+          <h2>
+            CADASTRO DE PRODUTOS
+          </h2>
+        </div>
+
+        <div class="py-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="bg-gray-50 rounded-lg p-4 transform hover:scale-105 transition duration-300 hover:bg-gray-200">
+              {{-- <h1 class="font-bold text-lg">CADASTRAR NOVO PRODUTO</h1> --}}
+              <a href="{{ route('new.project') }}" class="btn-slate font-bold">CADASTRAR NOVO PRODUTO</a>
+            </div>
+            <div class="bg-gray-50 rounded-lg p-4 transform hover:scale-105 transition duration-300 hover:bg-gray-200">
+              {{-- <h1 class="font-bold text-lg">CADASTRAR NOVA CATEGORIA</h1> --}}
+              <a href="{{ route('view.category') }}" class="btn-slate font-bold">CADASTRAR NOVA CATEGORIA</a>
+            </div>
+            <div class="bg-gray-50 rounded-lg p-4 transform hover:scale-105 transition duration-300 hover:bg-gray-200">
+              {{-- <h1 class="font-bold text-lg">CADASTRAR NOVO ADICIONAL</h1> --}}
+              <a href="{{ route('view.aditional') }}" class="btn-slate font-bold">CADASTRAR NOVO ADICIONAL</a>
+            </div>
+            <div class="bg-gray-50 rounded-lg p-4 transform hover:scale-105 transition duration-300 hover:bg-gray-200">
+              {{-- <h1 class="font-bold text-lg">CADASTRAR BRINDES</h1> --}}
+              <a href="{{ route('createpoints') }}" class="btn-slate font-bold">CADASTRAR BRINDES</a>
             </div>
           </div>
         </div>
 
         <!-- Section 2: Pedidos -->
+        <div class="pt-2 font-bold">
+          <h2>
+            INFORMAÇOẼS SOBRE PEIDOS E BLINDES
+          </h2>
+        </div>
+
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="py-4">
                 <div class="bg-gray-50 rounded-lg p-4 transform hover:scale-105 transition duration-300 hover:bg-gray-200">
-                  <h1 class="font-bold text-lg">PEDIDOS</h1>
-                  <a href="{{ route('order.show') }}" class="btn-slate">PEDIDOS</a>
+                  {{-- <h1 class="font-bold text-lg">PEDIDOS</h1> --}}
+                  <a href="{{ route('order.show') }}" class="btn-slate font-bold">PEDIDOS</a>
                 </div>
               </div>
 
-              <!-- Section 3: Clientes -->
+              <!-- Section 3:  Entregues -->
               <div class="py-4">
                 <div class="bg-gray-50 rounded-lg p-4 transform hover:scale-105 transition duration-300 hover:bg-gray-200">
-                  <h1 class="font-bold text-lg">CLIENTES</h1>
-                  <a href="{{ route('client.show') }}" class="btn-slate">CLIENTES</a>
+                  {{-- <h1 class="font-bold text-lg">BLINDES ENTREGUES</h1> --}}
+                  <a href="{{ route('blind.show') }}" class="btn-slate font-bold">BLINDES ENTREGUÊS</a>
                 </div>
               </div>
 
               <!-- Section 4: Resumo dos Pedidos -->
               <div class="py-4">
                 <div class="bg-gray-50 rounded-lg p-4 transform hover:scale-105 transition duration-300 hover:bg-gray-200">
-                  <h1 class="font-bold text-lg">RESUMO DOS PEDIDOS</h1>
-                  <a href="{{ route('summary.index') }}" class="btn-slate">RESUMO</a>
+                  {{-- <h1 class="font-bold text-lg">RESUMO DOS PEDIDOS</h1> --}}
+                  <a href="{{ route('summary.index') }}" class="btn-slate font-bold">RESUMO</a>
                 </div>
               </div>
 
               <!-- Section 5: Resgate dos Brindes -->
               <div class="py-4">
                 <div class="bg-gray-50 rounded-lg p-4 transform hover:scale-105 transition duration-300 hover:bg-gray-200">
-                  <h1 class="font-bold text-lg">RESGATE DOS BLINDES</h1>
-                  <a href="{{ route('blind.index') }}" class="btn-slate">BLINDES</a>
+                  {{-- <h1 class="font-bold text-lg">RESGATE DOS BLINDES</h1> --}}
+                  <a href="{{ route('blind.index') }}" class="btn-slate font-bold">BLINDES</a>
                 </div>
               </div>
 
-              <!-- Section 6: Brindes Entregues -->
+              <!-- Section 6:  Clientes Brindes-->
+
               <div class="py-4">
                 <div class="bg-gray-50 rounded-lg p-4 transform hover:scale-105 transition duration-300 hover:bg-gray-200">
-                  <h1 class="font-bold text-lg">BLINDES ENTREGUES</h1>
-                  <a href="{{ route('blind.show') }}" class="btn-slate">BLINDES ENTREGUÊS</a>
+                  <h2 class=" text-lg">voltar ao menu principal</h2>
+                  <a href="{{ route('client.show') }}" class="btn-slate font-bold">CLIENTES</a>
                 </div>
               </div>
         </div>
