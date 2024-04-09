@@ -82,6 +82,11 @@
 <body>
     @vite('resources/css/app.css')
     <div class="container ">
+
+        <div class="pt-2 text-blue">
+            <a href="{{ route('cart.show')}}"><i class="fa-solid fa-cart-flatbed-suitcase fa-beat text-yellow"></i>
+                <p class="text-yellow text-2xl ">minhas compras</p></a>
+        </div>
         <div class="user-info">
             <h2 class="font-bold">BEM VINDO AO SEU CARTÃO FIDELIDADE</h2>
             <h1>{{Auth::user()->name}}</h1>
